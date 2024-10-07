@@ -1,0 +1,71 @@
+import React from "react";
+
+const sanitizeFontName = (name: string) => name.replace(/ /g, '+');
+const sanitizeText = (text?: string) => text ? [
+  ...new Set([...text.replace(/ /g, ' ')])
+].join('') : undefined;
+
+export const GoogleFontHeaders = (props: {
+  preConnect: boolean,
+  configList: { name: string, text?: string }[],
+  strategy: 'swap' | 'block',
+}) => {
+  const {preConnect, configList, strategy} = props;
+  return <>
+    {preConnect && <>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+    </>}
+    {configList.map(config => {
+      const family = sanitizeFontName(config.name);
+      const text = sanitizeText(config.text);
+
+      if (text) {
+        return <link
+          key={family}
+          href={`https://fonts.googleapis.com/css2?family=${family}&text=${text}&display=${strategy}`}
+          rel="stylesheet"
+        />
+      };
+
+      return <link
+        key={family}
+        href={`https://fonts.googleapis.com/css2?family=${family}&display=${strategy}`}
+        rel="stylesheet"
+      />
+    })}
+  </>;
+};
+
+
+
+export const checkFontExists = async (fontName: string) => {
+  if (!fontName) {
+    return Promise.reject();
+  }
+
+  const WebFont = await import('webfontloader');
+
+  return new Promise((resolve, reject) => {
+    WebFont.load({
+      google: {
+        families: [fontName]
+      },
+      active() {
+        console.log('the font is loaded');
+        resolve(true);
+      },
+      inactive() {
+        console.log('inactive');
+        reject();
+      }
+    });
+  });
+};
+
+export const toCssFontFamily = (googleFontName: string) => {
+  // eg. Fira+Code:wght@300..700
+  const variableStripped = googleFontName.split(':')[0]!;
+  const plusReplaced = variableStripped.split('+').join(' ');
+  return `"${plusReplaced}"`;
+};

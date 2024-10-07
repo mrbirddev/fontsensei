@@ -1,0 +1,4 @@
+tools/**/*.*
+public/**/*.*
+src/browser/editorRichText/lexicalVanilla/**/*.*
+src/browser/editorRichText/lexicalVanilla/.eslintrc.cjs
