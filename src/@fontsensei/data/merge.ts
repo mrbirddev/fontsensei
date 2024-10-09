@@ -16,6 +16,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import csvParser from 'csv-parser';
 import { fileURLToPath } from 'url';
+import {uniq} from "lodash-es";
 type FontData = Record<string, string[] | undefined>;
 
 const __filename = fileURLToPath(import.meta.url);
@@ -88,21 +89,18 @@ const mergeData = async () => {
     const tagsChineseSimplified = await readJSON(tagsChineseSimplifiedPath);
     const tagsChineseTraditional = await readJSON(tagsChineseTraditionalPath);
     const tagsKorean = await readJSON(tagsKoreanPath);
-    const fontSenseiTags = {
-      ...tagsJapanese,
-      ...tagsChineseSimplified,
-      ...tagsChineseTraditional,
-      ...tagsKorean
-    };
 
     const mergedData: FontData = {};
 
     familiesFromCSV.forEach((family) => {
       matched[family] = true;
-      const tags = [
+      const tags = uniq([
         ...(fontFamilyTags[family] ?? []),
-        ...(fontSenseiTags[family] ?? []),
-      ];
+        ...(tagsJapanese[family] ?? []),
+        ...(tagsChineseSimplified[family] ?? []),
+        ...(tagsChineseTraditional[family] ?? []),
+        ...(tagsKorean[family] ?? []),
+      ]);
       if (tags.length) {
         mergedData[family] = tags;
 
