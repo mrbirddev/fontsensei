@@ -1,4 +1,4 @@
-import React, {ReactNode, useMemo, useState} from "react";
+import React, {ReactNode, useContext, useMemo, useState} from "react";
 import ProductIcon from "../ProductIcon";
 import Link from "next/link";
 import ChooseLocaleModal from "../i18n/ChooseLocaleModal";
@@ -8,7 +8,6 @@ import {PRODUCT_NAME} from "../productConstants";
 import locales, {langMap} from "../i18n/locales";
 import {FaBars} from "react-icons/fa";
 import {useRouter} from "next/router";
-import {compact} from "lodash-es";
 import SwitchLocaleHint from "../i18n/SwitchLocaleHint";
 import useUserPreferencesStore from "../page/useUserPreferencesStore";
 
@@ -20,8 +19,13 @@ export type MenuItem = {
   target?: Parameters<typeof Link>[0]['target'],
   onClick?: () => void,
 };
+export interface NavbarContextOpts {
+  extraMenuItems?: MenuItem[];
+}
 
-const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties, extraMenuItems?: MenuItem[] }) => {
+export const NavbarContext = React.createContext<NavbarContextOpts>({}!);
+
+const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
   const [localeModalOpen, setLocaleModalOpen] = useState(false);
 
   const t = useI18n();
@@ -32,9 +36,11 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties, extraM
 
   const preferredLocale = useUserPreferencesStore(s => s.locale);
 
+  const navbarContext = useContext(NavbarContext);
+
   const menuItems = useMemo(() => {
     return [
-      ...(props.extraMenuItems ?? []),
+      ...(navbarContext?.extraMenuItems ?? []),
       {
         icon: <IoLanguage />,
         label: preferredLocale && (preferredLocale !== currentLocale)
@@ -46,7 +52,7 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties, extraM
         },
       } as MenuItem,
     ];
-  }, [lang, router.pathname, props.extraMenuItems, preferredLocale]);
+  }, [lang, router.pathname, navbarContext?.extraMenuItems, preferredLocale]);
 
   return <>
     <div className="h-16" />

@@ -1,4 +1,4 @@
-import Navbar from "../../browser/landing/Navbar";
+import Navbar, {MenuItem} from "../../browser/landing/Navbar";
 import React, {type PropsWithChildren} from "react";
 import {PRODUCT_DOMAIN, PRODUCT_NAME} from "../../browser/productConstants";
 import {useI18n} from "@fontsensei/locales";
@@ -35,12 +35,9 @@ const MinimalFooter = () => {
     </a>
   </div>
 };
-
-
 const LandingLayout = (props: PropsWithChildren & {
   className?: string,
-  fullWidth?: boolean,
-  extraMenuItems?: Parameters<typeof Navbar>[0]['extraMenuItems']
+  fullWidth?: boolean
 }) => {
   return (
     <main
@@ -54,7 +51,7 @@ const LandingLayout = (props: PropsWithChildren & {
         background: 'linear-gradient(to right, rgb(104, 136, 53), rgb(89, 138, 135))'
       }}
     >
-      <Navbar fullWidth={props.fullWidth} extraMenuItems={props.extraMenuItems} />
+      <Navbar fullWidth={props.fullWidth} />
       {props.fullWidth && <div className={cx(
         "w-full",
         props.className

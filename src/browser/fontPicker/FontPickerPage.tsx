@@ -28,7 +28,7 @@ import languageSpecificTags from "@fontsensei/data/raw/fontSensei/languageSpecif
 import VirtualList from "@fontsensei/components/VirtualList";
 import {MdOutlineFeedback} from "react-icons/md";
 import useFeedbackStore from "../feedback/useFeedbackStore";
-import {MenuItem} from "../landing/Navbar";
+import {MenuItem, NavbarContext} from "../landing/Navbar";
 import FeedbackModal from "../feedback/FeedbackModal";
 import {tClient} from "../../shared/api";
 import {toast} from "react-toastify";
@@ -40,10 +40,13 @@ interface PageProps {
   initialFontItemList: FSFontItem[];
   countByTags: Record<string, number>;
   firstFontByTags: Record<string, string>;
-  extraMenuItems?: MenuItem[];
+}
+export interface FontPickerPageContextOpts {
+  onCreateTagValue?: (tagName: string, msg: string) => void;
   onAddTag?: (fontName: string, tagName: string, msg: string) => void;
   onRemoveTag?: (fontName: string, tagName: string, msg: string) => void;
 }
+export const FontPickerPageContext = React.createContext<FontPickerPageContextOpts>({}!);
 
 const TagButton = (props: PropsWithChildren<{
   isActive: boolean,
@@ -135,15 +138,7 @@ const FontPickerPage = (props: PageProps) => {
   );
 
   return (
-    <LandingLayout fullWidth={true} className="relative" extraMenuItems={[
-      ...(props.extraMenuItems ?? []),
-      {
-        icon: <FaGithub />,
-        label: "Github",
-        href: GITHUB_LINK,
-        target: '_blank',
-      },
-    ]}>
+    <LandingLayout fullWidth={true} className="relative">
       <Head>
         <title>{title}</title>
         <GoogleFontHeaders preConnect={true} configList={allFontConfigList} strategy="block"/>
