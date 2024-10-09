@@ -68,7 +68,7 @@ const TagButton = (props: PropsWithChildren<{
     )}
     href={href}
     style={{
-      fontFamily: font,
+      fontFamily: `"${font}"`,
     }}
   >
     {children}

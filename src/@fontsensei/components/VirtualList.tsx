@@ -40,8 +40,14 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
     <div className="text-xl" style={{whiteSpace: 'nowrap', overflow: 'auto hidden'}}>
       #{index} {fontItem.name} {JSON.stringify(fontItem.tags)}
     </div>
-    <div className="text-4xl bg-white/50 rounded px-2"
-         style={{fontFamily: fontItem.name, whiteSpace: 'nowrap', overflow: 'auto hidden'}}>
+    <div
+      className="text-4xl bg-white/50 rounded px-2"
+      style={{
+        fontFamily: `"${fontItem.name}"`,
+        whiteSpace: 'nowrap',
+        overflow: 'auto hidden'
+      }}
+    >
       {text}
     </div>
   </div>;
