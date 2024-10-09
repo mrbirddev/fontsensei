@@ -5,7 +5,9 @@ export default {
   "maru": "마루체",
   "songti": "송체",
   "heiti": "흑체",
-  "kaiti": "개체",
+  "kaiti": "카이체",
+  "xingshu": "흘림체",
+  "meishuti": "명실체",
   "batang": "바탕체",
   "dotum": "돋움체",
   "gungsuhche": "궁서체"

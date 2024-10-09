@@ -1,12 +1,14 @@
 export default {
   "all": "すべて",
-  "mincho": "明朝体",
-  "gothic": "ゴシック体",
-  "maru": "丸ゴシック",
+  "mincho": "明朝",
+  "gothic": "ゴシック",
+  "maru": "丸",
   "songti": "宋体",
-  "heiti": "平体",
-  "kaiti": "楷書体",
-  "batang": "八行書",
+  "heiti": "黑体",
+  "kaiti": "楷書",
+  "xingshu": "行書",
+  "meishuti": "美術体",
+  "batang": "八行",
   "dotum": "ドトゥム",
   "gungsuhche": "ゴンスチェ"
 } as const;

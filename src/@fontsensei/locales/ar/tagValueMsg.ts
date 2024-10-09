@@ -6,7 +6,9 @@ export default {
   "songti": "سونجتي",
   "heiti": "هيتي",
   "kaiti": "كايتي",
+  "xingshu": "شينغشو",
+  "meishuti": "ميشوتي",
   "batang": "باتانغ",
   "dotum": "دوتوم",
-  "gungsuhche": "جونغسوهشي"
+  "gungsuhche": "غونغسوهتشي"
 } as const;

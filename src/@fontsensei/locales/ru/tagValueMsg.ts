@@ -4,8 +4,10 @@ export default {
   "gothic": "Готика",
   "maru": "Мару",
   "songti": "Сонгти",
-  "heiti": "Хейти",
+  "heiti": "Хэйти",
   "kaiti": "Кайти",
+  "xingshu": "Синшу",
+  "meishuti": "Мейшути",
   "batang": "Батанг",
   "dotum": "Дотум",
   "gungsuhche": "Гунсучче"

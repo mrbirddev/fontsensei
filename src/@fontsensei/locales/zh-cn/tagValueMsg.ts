@@ -6,7 +6,9 @@ export default {
   "songti": "宋体",
   "heiti": "黑体",
   "kaiti": "楷体",
-  "batang": "明朝体",
-  "dotum": "斜体",
+  "xingshu": "行书",
+  "meishuti": "美术体",
+  "batang": "八号",
+  "dotum": "돋움",
   "gungsuhche": "궁서체"
 } as const;

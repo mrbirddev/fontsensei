@@ -6,6 +6,8 @@ export default {
   "songti": "סונגטי",
   "heiti": "הייטי",
   "kaiti": "קאיטי",
+  "xingshu": "שינגשו",
+  "meishuti": "מיישוטי",
   "batang": "בטאנג",
   "dotum": "דוטום",
   "gungsuhche": "גונגסוחצ'ה"
