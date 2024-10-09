@@ -43,7 +43,8 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
     key={fontItem.name}
     className={cx(
       ITEM_HEIGHT_CLS,
-      "overflow-hidden hover:bg-black/20 cursor-pointer p-2 rounded"
+      "overflow-hidden cursor-pointer p-2 rounded-2xl",
+      "hover:shadow-xl hover:bg-white/10",
     )}
     style={style}
     onWheel={onWheel}
@@ -53,7 +54,7 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
     <a
       href={'https://fonts.google.com/specimen/' + fontItem.name.split(' ').join('+')}
       target="_blank"
-      className="inline-block h-full"
+      className="inline-block h-full w-full"
     >
       <div
         className={cx(
@@ -65,15 +66,15 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
         <span>
           #{index + 1}
         </span>
-        <span className="badge badge-neutral badge-lg">
+        <span className="font-bold badge badge-neutral badge-lg">
           {fontItem.name}
         </span>
         {fontItem.tags.map((tag) => {
-          return <span className="badge badge-neutral">{tTagValueMsg(tag as TagValueMsgLabelType)}</span>;
+          return <span className="badge badge-ghost bg-white/30">{tTagValueMsg(tag as TagValueMsgLabelType)}</span>;
         })}
       </div>
       <div
-        className="text-4xl bg-white/50 rounded px-2"
+        className="text-4xl rounded px-2 "
         style={{
           fontFamily: `"${fontItem.name}"`,
           whiteSpace: 'nowrap',

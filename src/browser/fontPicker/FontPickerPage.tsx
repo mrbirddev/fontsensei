@@ -58,7 +58,7 @@ const TagButton = (props: PropsWithChildren<{
     key={tag}
     className={cx(
       // "focus:ring-4 focus:ring-gray-300",
-      "text-gray-900 bg-white/50 text-xl font-medium text-center",
+      "text-gray-900 bg-white/30 text-xl font-medium text-center",
       "border-4 focus:outline-none rounded px-2 py-1",
       (
         isActive
