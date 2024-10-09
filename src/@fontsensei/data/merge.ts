@@ -1,10 +1,19 @@
+/*
+To run this script
+  npx tsx merge.ts
+
+To get source data
+
+JSON.stringify([...document.querySelectorAll('[href]')].filter(n => n.href && n.href.includes('specimen')).map(n => [n.innerText, n.href]))
+
+ */
+
+
 import * as fs from 'fs';
 import * as path from 'path';
 import csvParser from 'csv-parser';
 import { fileURLToPath } from 'url';
 type FontData = Record<string, string[] | undefined>;
-
-// npx tsx merge.ts
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
