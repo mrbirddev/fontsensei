@@ -1,13 +1,15 @@
-import React, {CSSProperties, forwardRef, useEffect, useState} from "react";
-import {FSFontItem} from "@fontsensei/core/types";
+import React, {type CSSProperties, forwardRef, useEffect, useState} from "react";
+import {type FSFontItem} from "@fontsensei/core/types";
 import listFonts from "@fontsensei/core/listFonts";
-import {useScopedI18n} from "@fontsensei/locales";
+import {TagValueMsgLabelType, useScopedI18n} from "@fontsensei/locales";
 import {debounce} from "lodash-es";
 import {GoogleFontHeaders} from "@fontsensei/components/GoogleFontHeaders";
 import AutoSizer from "react-virtualized-auto-sizer";
 import {FixedSizeList as List} from "react-window";
+import {cx} from "@emotion/css";
 
-const ITEM_HEIGHT = 100;
+const ITEM_HEIGHT = 140;
+const ITEM_HEIGHT_CLS = 'h-[140px]';
 
 // add a function onOuterWheel to window typing
 declare global {
@@ -26,6 +28,8 @@ type RowProps = {
 };
 
 const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) => {
+  const tTagValueMsg = useScopedI18n('tagValueMsg');
+
   if (!fontItem) {
     return <div key="END" className="h-[100px] overflow-hidden" style={style} onWheel={onWheel} ref={forwardedRef}
                 data-itemindex={index}>
@@ -35,21 +39,50 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
     </div>
   }
 
-  return <div key={fontItem.name} className="h-[100px] overflow-hidden" style={style} onWheel={onWheel}
-              ref={forwardedRef} data-itemindex={index}>
-    <div className="text-xl" style={{whiteSpace: 'nowrap', overflow: 'auto hidden'}}>
-      #{index} {fontItem.name} {JSON.stringify(fontItem.tags)}
-    </div>
-    <div
-      className="text-4xl bg-white/50 rounded px-2"
-      style={{
-        fontFamily: `"${fontItem.name}"`,
-        whiteSpace: 'nowrap',
-        overflow: 'auto hidden'
-      }}
+  return <div
+    key={fontItem.name}
+    className={cx(
+      ITEM_HEIGHT_CLS,
+      "overflow-hidden hover:bg-black/20 cursor-pointer p-2 rounded"
+    )}
+    style={style}
+    onWheel={onWheel}
+    ref={forwardedRef}
+    data-itemindex={index}
+  >
+    <a
+      href={'https://fonts.google.com/specimen/' + fontItem.name.split(' ').join('+')}
+      target="_blank"
+      className="inline-block h-full"
     >
-      {text}
-    </div>
+      <div
+        className={cx(
+          "text-xl",
+          "flex items-center justify-start gap-1 mb-2"
+        )}
+        style={{whiteSpace: 'nowrap', overflow: 'auto hidden'}}
+      >
+        <span>
+          #{index + 1}
+        </span>
+        <span className="badge badge-neutral badge-lg">
+          {fontItem.name}
+        </span>
+        {fontItem.tags.map((tag) => {
+          return <span className="badge badge-neutral">{tTagValueMsg(tag as TagValueMsgLabelType)}</span>;
+        })}
+      </div>
+      <div
+        className="text-4xl bg-white/50 rounded px-2"
+        style={{
+          fontFamily: `"${fontItem.name}"`,
+          whiteSpace: 'nowrap',
+          overflow: 'auto hidden'
+        }}
+      >
+        {text}
+      </div>
+    </a>
   </div>;
 };
 
