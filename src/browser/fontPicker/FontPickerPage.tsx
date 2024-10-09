@@ -41,12 +41,6 @@ interface PageProps {
   countByTags: Record<string, number>;
   firstFontByTags: Record<string, string>;
 }
-export interface FontPickerPageContextOpts {
-  onCreateTagValue?: (tagName: string, msg: string) => void;
-  onAddTag?: (fontName: string, tagName: string, msg: string) => void;
-  onRemoveTag?: (fontName: string, tagName: string, msg: string) => void;
-}
-export const FontPickerPageContext = React.createContext<FontPickerPageContextOpts>({}!);
 
 const TagButton = (props: PropsWithChildren<{
   isActive: boolean,

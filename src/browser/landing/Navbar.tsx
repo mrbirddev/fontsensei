@@ -19,11 +19,11 @@ export type MenuItem = {
   target?: Parameters<typeof Link>[0]['target'],
   onClick?: () => void,
 };
-export interface NavbarContextOpts {
+export type NavbarContextOpts = {
   extraMenuItems?: MenuItem[];
-}
+} | undefined;
 
-export const NavbarContext = React.createContext<NavbarContextOpts>({}!);
+export const NavbarContext = React.createContext<NavbarContextOpts>(undefined);
 
 const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
   const [localeModalOpen, setLocaleModalOpen] = useState(false);

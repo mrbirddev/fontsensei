@@ -1,4 +1,4 @@
-import React, {type CSSProperties, forwardRef, useEffect, useState} from "react";
+import React, {type CSSProperties, forwardRef, useContext, useEffect, useState} from "react";
 import {type FSFontItem} from "@fontsensei/core/types";
 import listFonts from "@fontsensei/core/listFonts";
 import {TagValueMsgLabelType, useScopedI18n} from "@fontsensei/locales";
@@ -7,6 +7,8 @@ import {GoogleFontHeaders} from "@fontsensei/components/GoogleFontHeaders";
 import AutoSizer from "react-virtualized-auto-sizer";
 import {FixedSizeList as List} from "react-window";
 import {cx} from "@emotion/css";
+import {FaPlus, FaXmark} from "react-icons/fa6";
+import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 
 const ITEM_HEIGHT = 140;
 const ITEM_HEIGHT_CLS = 'h-[140px]';
@@ -29,6 +31,7 @@ type RowProps = {
 
 const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) => {
   const tTagValueMsg = useScopedI18n('tagValueMsg');
+  const pageCtx = useContext(FontPickerPageContext);
 
   if (!fontItem) {
     return <div key="END" className="h-[100px] overflow-hidden" style={style} onWheel={onWheel} ref={forwardedRef}
@@ -69,8 +72,16 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
         <span className="font-bold badge badge-neutral badge-lg">
           {fontItem.name}
         </span>
+        {pageCtx?.onAddTag && <span className="badge badge-ghost bg-white/30" onClick={() => {
+          pageCtx?.onAddTag?.(fontItem.name);
+        }}><FaPlus /></span>}
         {fontItem.tags.map((tag) => {
-          return <span className="badge badge-ghost bg-white/30">{tTagValueMsg(tag as TagValueMsgLabelType)}</span>;
+          return <span className="badge badge-ghost bg-white/30">
+            {tTagValueMsg(tag as TagValueMsgLabelType)}
+            {pageCtx?.onRemoveTag && <FaXmark onClick={() => {
+              pageCtx?.onRemoveTag?.(fontItem.name);
+            }} />}
+          </span>;
         })}
       </div>
       <div
