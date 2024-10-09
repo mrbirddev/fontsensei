@@ -2,6 +2,8 @@
 
 Font sensei is a Google fonts picker categorized by tag names.
 
+![screenshot](./public/screenshot.png)
+
 ## Features
 - Tags for non-Latin languages, eg CJK(Chinese, Japanese, Korean).
 - Readable tags on the left.
