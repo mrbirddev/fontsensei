@@ -44,7 +44,7 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
     className={cx(
       ITEM_HEIGHT_CLS,
       "overflow-hidden cursor-pointer p-2 rounded-2xl",
-      "hover:shadow-xl hover:bg-white/10",
+      "hover:shadow-xl hover:bg-white/30",
     )}
     style={style}
     onWheel={onWheel}
