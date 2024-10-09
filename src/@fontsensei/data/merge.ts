@@ -8,7 +8,19 @@
 
 # Generate tags file from specimen array
 
-  JSON.stringify(Object.fromEntries(temp1.map(n => [n[0], []])), null, 2)
+  function extractFamily(url) {
+      // Create a URL object
+      const urlObj = new URL(url);
+
+      // Get the pathname and remove the leading '/specimen/'
+      const fontPath = urlObj.pathname.replace('/specimen/', '');
+
+      // Replace '+' with spaces
+      const fontName = fontPath.replace(/\+/g, ' ');
+
+      return fontName;
+  }
+  JSON.stringify(Object.fromEntries(zhcn.map(n => [extractFamily(n[1]), []])), null, 2)
  */
 
 

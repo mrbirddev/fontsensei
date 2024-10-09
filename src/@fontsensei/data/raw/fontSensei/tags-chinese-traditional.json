@@ -1,10 +1,10 @@
 {
-  "Noto Sans Traditional Chinese": ["heiti"],
-  "Noto Sans Hong Kong": ["heiti"],
-  "Noto Serif Traditional Chinese": ["songti"],
-  "LXGW WenKai Mono TC": ["kaiti"],
-  "LXGW WenKai TC": ["kaiti"],
-  "Cactus Classical Serif": [],
-  "Chocolate Classical Sans": [],
-  "Noto Serif Hong Kong": ["songti"]
+  "Noto Sans TC": ["heiti"],
+  "Noto Sans HK": ["heiti"],
+  "Noto Serif TC": ["songti"],
+  "LXGW WenKai Mono TC": ["code"],
+  "LXGW WenKai TC": [],
+  "Cactus Classical Serif": ["songti"],
+  "Chocolate Classical Sans": ["heiti"],
+  "Noto Serif HK": ["songti"]
 }

@@ -1,11 +1,11 @@
 {
-  "Noto Sans Simplified Chinese": ["heiti"],
-  "Noto Serif Simplified Chinese": ["songti"],
-  "Ma Shan Zheng": ["meishuti"],
+  "Noto Sans SC": ["heiti"],
+  "Noto Serif SC": ["songti"],
+  "Ma Shan Zheng": ["xingshu"],
   "ZCOOL QingKe HuangYou": ["meishuti"],
-  "ZCOOL XiaoWei": [],
+  "ZCOOL XiaoWei": ["songti"],
   "ZCOOL KuaiLe": ["meishuti"],
-  "Zhi Mang Xing": [],
+  "Zhi Mang Xing": ["xingshu"],
   "Liu Jian Mao Cao": ["xingshu"],
-  "Long Cang": []
+  "Long Cang": ["xingshu"]
 }
