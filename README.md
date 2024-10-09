@@ -7,7 +7,7 @@ Font sensei is a Google fonts picker categorized by tag names.
 ## Features
 - Tags for non-Latin languages, eg CJK(Chinese, Japanese, Korean).
 - Readable tags on the left.
-- Easy on the eye coloring for day & night.
+- Easy on the eye coloring for both day & night.
 
 ## Structure
 - src/@fontsensei contains the core code of this repo.
@@ -17,7 +17,8 @@ Font sensei is a Google fonts picker categorized by tag names.
 
 ## Contribute
 - Create a ticket
-- Or you can directly edit files on github if u know how to `src/@fontsensei/data`, `src/@fontsensei/locales`
+- Or you can directly edit files on Github if u know how to `src/@fontsensei/data`, `src/@fontsensei/locales`
+- Help is needed on all non-Latin fonts!
 
 ## Run
 
@@ -30,7 +31,7 @@ NEXT_PUBLIC_DOMAIN_NAME=localhost:3000
 yarn dev
 ```
 
-## Tribution
+## Credits
 
 Font source => [Google fonts](https://fonts.google.com)
 
