@@ -1,11 +1,14 @@
 /*
-To run this script
+# To run this script
   npx tsx merge.ts
 
-To get source data
+# To get source data
 
-JSON.stringify([...document.querySelectorAll('[href]')].filter(n => n.href && n.href.includes('specimen')).map(n => [n.innerText, n.href]))
+  JSON.stringify([...document.querySelectorAll('[href]')].filter(n => n.href && n.href.includes('specimen')).map(n => [n.innerText, n.href]))
 
+# Generate tags file from specimen array
+
+  JSON.stringify(Object.fromEntries(temp1.map(n => [n[0], []])), null, 2)
  */
 
 
@@ -20,8 +23,10 @@ const __dirname = path.dirname(__filename);
 
 const csvFilePath = path.join(__dirname, './raw/googleFonts/families.csv');
 const jsonFilePath = path.join(__dirname, './raw/fontLibrary/families.json');
-const fontSenseiTagsPath = path.join(__dirname, './raw/fontSensei/tags.json');
-
+const tagsJapanesePath = path.join(__dirname, './raw/fontSensei/tags-japanese.json');
+const tagsChineseSimplifiedPath = path.join(__dirname, './raw/fontSensei/tags-chinese-simplified.json');
+const tagsChineseTraditionalPath = path.join(__dirname, './raw/fontSensei/tags-chinese-traditional.json');
+const tagsKoreanPath = path.join(__dirname, './raw/fontSensei/tags-korean.json');
 // output file names
 const outputDirWithSlash = path.join(__dirname, '../../../public/data/');
 fs.mkdirSync(outputDirWithSlash, { recursive: true });
@@ -79,7 +84,16 @@ const mergeData = async () => {
   try {
     const familiesFromCSV = await parseCSV(csvFilePath);
     const fontFamilyTags = await readJSON(jsonFilePath);
-    const fontSenseiTags = await readJSON(fontSenseiTagsPath);
+    const tagsJapanese = await readJSON(tagsJapanesePath);
+    const tagsChineseSimplified = await readJSON(tagsChineseSimplifiedPath);
+    const tagsChineseTraditional = await readJSON(tagsChineseTraditionalPath);
+    const tagsKorean = await readJSON(tagsKoreanPath);
+    const fontSenseiTags = {
+      ...tagsJapanese,
+      ...tagsChineseSimplified,
+      ...tagsChineseTraditional,
+      ...tagsKorean
+    };
 
     const mergedData: FontData = {};
 
