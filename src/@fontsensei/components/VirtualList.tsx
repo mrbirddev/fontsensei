@@ -72,15 +72,25 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
         <span className="font-bold badge badge-neutral badge-lg">
           {fontItem.name}
         </span>
-        {pageCtx?.onAddTag && <span className="badge badge-ghost bg-white/30" onClick={() => {
-          pageCtx?.onAddTag?.(fontItem.name);
-        }}><FaPlus /></span>}
+        {pageCtx?.onAddTag && <span
+            className="badge badge-ghost bg-white/30 hover:bg-white/70"
+            onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            pageCtx?.onAddTag?.(fontItem.name);
+          }}>
+            <FaPlus />
+        </span>}
         {fontItem.tags.map((tag) => {
           return <span className="badge badge-ghost bg-white/30">
             {tTagValueMsg(tag as TagValueMsgLabelType)}
-            {pageCtx?.onRemoveTag && <FaXmark onClick={() => {
+            {pageCtx?.onRemoveTag && <span className="hover:bg-white/70" onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
               pageCtx?.onRemoveTag?.(fontItem.name);
-            }} />}
+            }}>
+              <FaXmark />
+            </span>}
           </span>;
         })}
       </div>
