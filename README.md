@@ -1,6 +1,6 @@
 # Font sensei - Google fonts categorized by tag names
 
-Font sensei is a Google fonts picker categorized by tag names.
+Font sensei is a Google fonts picker categorized by tag names. View the result at https://fontsensei.com 
 
 ![screenshot](./public/screenshot.png)
 
