@@ -8,28 +8,28 @@ Font sensei is a Google fonts picker categorized by tag names.
 Check the data on UI ->
 
 ### [Japanese (ja)](https://fontsensei.com/ja)
-- [明朝 (Mincho)](https://fontsensei.com/ja/mincho)
-- [ゴシック (Gothic)](https://fontsensei.com/ja/gothic)
-- [丸 (Maru)](https://fontsensei.com/ja/maru)
+- [明朝 (Mincho)](https://fontsensei.com/ja/tag/mincho)
+- [ゴシック (Gothic)](https://fontsensei.com/ja/tag/gothic)
+- [丸 (Maru)](https://fontsensei.com/ja/tag/maru)
 
 ### [Chinese Simplified (zh-cn)](https://fontsensei.com/zh-cn)
-- [宋体 (Songti)](https://fontsensei.com/zh-cn/songti)
-- [黑体 (Heiti)](https://fontsensei.com/zh-cn/heiti)
-- [楷体 (Kaiti)](https://fontsensei.com/zh-cn/kaiti)
-- [行书 (Xingshu)](https://fontsensei.com/zh-cn/xingshu)
-- [美术体 (Meishuti)](https://fontsensei.com/zh-cn/meishuti)
+- [宋体 (Songti)](https://fontsensei.com/zh-cn/tag/songti)
+- [黑体 (Heiti)](https://fontsensei.com/zh-cn/tag/heiti)
+- [楷体 (Kaiti)](https://fontsensei.com/zh-cn/tag/kaiti)
+- [行书 (Xingshu)](https://fontsensei.com/zh-cn/tag/xingshu)
+- [美术体 (Meishuti)](https://fontsensei.com/zh-cn/tag/meishuti)
 
 ### [Chinese Traditional (zh-tw)](https://fontsensei.com/zh-tw)
-- [宋體 (Songti)](https://fontsensei.com/zh-tw/songti)
-- [黑體 (Heiti)](https://fontsensei.com/zh-tw/heiti)
-- [楷體 (Kaiti)](https://fontsensei.com/zh-tw/kaiti)
-- [行書 (Xingshu)](https://fontsensei.com/zh-tw/xingshu)
-- [美術體 (Meishuti)](https://fontsensei.com/zh-tw/meishuti)
+- [宋體 (Songti)](https://fontsensei.com/zh-tw/tag/songti)
+- [黑體 (Heiti)](https://fontsensei.com/zh-tw/tag/heiti)
+- [楷體 (Kaiti)](https://fontsensei.com/zh-tw/tag/kaiti)
+- [行書 (Xingshu)](https://fontsensei.com/zh-tw/tag/xingshu)
+- [美術體 (Meishuti)](https://fontsensei.com/zh-tw/tag/meishuti)
 
 ### [Korean (ko)](https://fontsensei.com/ko)
-- [바탕 (Batang)](https://fontsensei.com/ko/batang)
-- [돋움 (Dotum)](https://fontsensei.com/ko/dotum)
-- [궁서체 (Gungsuhche)](https://fontsensei.com/ko/gungsuhche)
+- [바탕 (Batang)](https://fontsensei.com/ko/tag/batang)
+- [돋움 (Dotum)](https://fontsensei.com/ko/tag/dotum)
+- [궁서체 (Gungsuhche)](https://fontsensei.com/ko/tag/gungsuhche)
 
 ## Features
 - Tags for non-Latin languages, eg CJK(Chinese, Japanese, Korean).
