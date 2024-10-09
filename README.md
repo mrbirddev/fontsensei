@@ -1,8 +1,16 @@
 # Font sensei - Google fonts categorized by tag names
 
-Font sensei is a Google fonts picker categorized by tag names. View the result at https://fontsensei.com 
+Font sensei is a Google fonts picker categorized by tag names.
 
 ![screenshot](./public/screenshot.png)
+
+
+Check the data on UI ->
+
+- Japanese https://fontsensei.com/ja
+- Chinese https://fontsensei.com/zh-cn https://fontsensei.com/zh-tw
+- Korean https://fontsensei.com/ko
+
 
 ## Features
 - Tags for non-Latin languages, eg CJK(Chinese, Japanese, Korean).
