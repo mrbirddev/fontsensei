@@ -15,7 +15,7 @@ import {type TagValueMsgLabelType, useCurrentLocale, useI18n, useScopedI18n} fro
 import {useRouter} from "next/router";
 import Link from "next/link";
 import Head from "next/head";
-import {PRODUCT_NAME} from "../productConstants";
+import {GITHUB_LINK, PRODUCT_NAME} from "../productConstants";
 import {getLocaleContent} from "../../shared/getStaticPropsLocale";
 import AutoSizer from "react-virtualized-auto-sizer";
 import {FixedSizeList as List} from "react-window";
@@ -23,7 +23,7 @@ import {GoogleFontHeaders} from "@fontsensei/components/GoogleFontHeaders";
 import {debounce} from "lodash-es";
 import {cx} from "@emotion/css";
 import listFonts from "@fontsensei/core/listFonts";
-import {type FSFontItem} from "@fontsensei/core/types";
+import {FSFontFilterOptions, type FSFontItem} from "@fontsensei/core/types";
 import languageSpecificTags from "@fontsensei/data/raw/fontSensei/languageSpecificTags";
 import VirtualList from "@fontsensei/components/VirtualList";
 import {MdOutlineFeedback} from "react-icons/md";
@@ -32,6 +32,7 @@ import {MenuItem} from "../landing/Navbar";
 import FeedbackModal from "../feedback/FeedbackModal";
 import {tClient} from "../../shared/api";
 import {toast} from "react-toastify";
+import {FaGithub} from "react-icons/fa6";
 
 const PAGE_SIZE = 10;
 
@@ -134,7 +135,15 @@ const FontPickerPage = (props: PageProps) => {
   );
 
   return (
-    <LandingLayout fullWidth={true} className="relative">
+    <LandingLayout fullWidth={true} className="relative" extraMenuItems={[
+      ...(props.extraMenuItems ?? []),
+      {
+        icon: <FaGithub />,
+        label: "Github",
+        href: GITHUB_LINK,
+        target: '_blank',
+      },
+    ]}>
       <Head>
         <title>{title}</title>
         <GoogleFontHeaders preConnect={true} configList={allFontConfigList} strategy="block"/>

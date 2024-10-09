@@ -17,6 +17,7 @@ export type MenuItem = {
   label: string,
   className?: string,
   href?: Parameters<typeof Link>[0]['href'],
+  target?: Parameters<typeof Link>[0]['target'],
   onClick?: () => void,
 };
 
@@ -30,18 +31,11 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties, extraM
   const router = useRouter();
 
   const preferredLocale = useUserPreferencesStore(s => s.locale);
-  // console.log({preferredLocale});
-
-  // switch language dynamically
-  // 1. is buggy for SSG pages
-  // 2. blogs are not completely i18n, some of them are missing
-  // so let's disable it for blogs
-  const shouldProvideLocaleSwitch = !router.pathname.startsWith('/blogs');
 
   const menuItems = useMemo(() => {
-    return compact([
+    return [
       ...(props.extraMenuItems ?? []),
-      shouldProvideLocaleSwitch ? {
+      {
         icon: <IoLanguage />,
         label: preferredLocale && (preferredLocale !== currentLocale)
           ? lang + " | " + langMap[preferredLocale]
@@ -50,8 +44,8 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties, extraM
         onClick: () => {
           setLocaleModalOpen(true);
         },
-      } as MenuItem : undefined,
-    ]);
+      } as MenuItem,
+    ];
   }, [lang, router.pathname, props.extraMenuItems, preferredLocale]);
 
   return <>
@@ -85,9 +79,9 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties, extraM
           <div className="navbar-end">
             <div className="hidden md:inline-flex items-center">
               {menuItems.map((item) => {
-                const {icon, label, className, href, onClick} = item;
+                const {icon, label, className, href, target, onClick} = item;
                 if (href) {
-                  return <Link key={label} className={className ?? "btn btn-ghost"} href={href} onClick={onClick}>
+                  return <Link key={label} className={className ?? "btn btn-ghost"} href={href} target={target} onClick={onClick}>
                     {icon}
                     <span>{label}</span>
                   </Link>
@@ -103,9 +97,9 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties, extraM
               <div tabIndex={0} role="button" className="btn btn-ghost"><FaBars /></div>
               <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                 {menuItems.map(item => {
-                  const {icon, label, className, href, onClick} = item;
+                  const {icon, label, className, href, target, onClick} = item;
                   if (href) {
-                    return <Link key={label} className={className ?? "btn btn-ghost"} href={href} onClick={onClick}>
+                    return <Link key={label} className={className ?? "btn btn-ghost"} href={href} target={target} onClick={onClick}>
                       {icon}
                       <span>{label}</span>
                     </Link>
@@ -138,8 +132,8 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties, extraM
         </div>
       </div>
     </div>
-    {shouldProvideLocaleSwitch && <ChooseLocaleModal isOpen={localeModalOpen} setOpen={setLocaleModalOpen} />}
-    {shouldProvideLocaleSwitch && <SwitchLocaleHint />}
+    <ChooseLocaleModal isOpen={localeModalOpen} setOpen={setLocaleModalOpen} />
+    <SwitchLocaleHint />
     </>
 };
 
