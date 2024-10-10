@@ -97,10 +97,22 @@ const mergeData = async () => {
   try {
     const familiesFromCSV = await parseCSV(csvFilePath);
     const fontFamilyTags = await readJSON(jsonFilePath);
-    const tagsJapanese = await readJSON(tagsJapanesePath);
-    const tagsChineseSimplified = await readJSON(tagsChineseSimplifiedPath);
-    const tagsChineseTraditional = await readJSON(tagsChineseTraditionalPath);
-    const tagsKorean = await readJSON(tagsKoreanPath);
+    const tagsJapanese_raw = await readJSON(tagsJapanesePath);
+    const tagsJapanese = Object.fromEntries(Object.entries(tagsJapanese_raw).map(([k, v]) => {
+      return [k, [...v ?? [], 'lang_ja']];
+    }));
+    const tagsChineseSimplified_raw = await readJSON(tagsChineseSimplifiedPath);
+    const tagsChineseSimplified = Object.fromEntries(Object.entries(tagsChineseSimplified_raw).map(([k, v]) => {
+      return [k, [...v ?? [], 'lang_zh-Hans']];
+    }));
+    const tagsChineseTraditional_raw = await readJSON(tagsChineseTraditionalPath);
+    const tagsChineseTraditional = Object.fromEntries(Object.entries(tagsChineseTraditional_raw).map(([k, v]) => {
+      return [k, [...v ?? [], 'lang_zh-Hant']];
+    }));
+    const tagsKorean_raw = await readJSON(tagsKoreanPath);
+    const tagsKorean = Object.fromEntries(Object.entries(tagsKorean_raw).map(([k, v]) => {
+      return [k, [...v ?? [], 'lang_ko']];
+    }));
 
     const mergedData: FontData = {};
 
