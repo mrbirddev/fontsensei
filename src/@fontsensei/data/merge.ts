@@ -144,6 +144,12 @@ const mergeData = async () => {
       }
     });
 
+    // fixing first font to ensure readability on tags
+    firstFontByTags.lang_ja = 'Noto Sans JP';
+    firstFontByTags["lang_zh-hans"] = 'Noto Sans SC';
+    firstFontByTags["lang_zh-hant"] = 'Noto Sans TC';
+    firstFontByTags.lang_ko = 'Noto Sans KR';
+
     fs.writeFileSync(outputDirWithSlash + TAGS_BY_NAME_FILE, JSON.stringify(mergedData, null, 2), 'utf-8');
     fs.writeFileSync(outputDirWithSlash + COUNT_BY_TAGS_FILE, JSON.stringify(countByTags, null, 2), 'utf-8');
     fs.writeFileSync(outputDirWithSlash + FIRST_FONT_BY_TAGS_FILE, JSON.stringify(firstFontByTags, null, 2), 'utf-8');
