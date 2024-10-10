@@ -2,7 +2,7 @@ import React, {type CSSProperties, forwardRef, useContext, useEffect, useMemo, u
 import {type FSFontItem} from "@fontsensei/core/types";
 import listFonts from "@fontsensei/core/listFonts";
 import {TagValueMsgLabelType, useScopedI18n} from "@fontsensei/locales";
-import {debounce} from "lodash-es";
+import {throttle} from "lodash-es";
 import {GoogleFontHeaders} from "@fontsensei/components/GoogleFontHeaders";
 import AutoSizer from "react-virtualized-auto-sizer";
 import {FixedSizeList as List} from "react-window";
@@ -151,7 +151,9 @@ const VirtualList = ({
   }, [lorem]);
 
   useEffect(() => {
-    const delayedUpdate = debounce((start, count) => {
+    // throttle makes more sense because the user may be scrolling
+    // continously & slowly. debounce will never trigger.
+    const delayedUpdate = throttle((start, count) => {
       setConfigList(
         list.slice(
           start,
