@@ -17,10 +17,6 @@ export const GoogleFontHeaders = (props: {
       const family = fontFamilyToUrlParam(config.name);
       const text = textToUrlParam(config.text);
 
-      if (family.startsWith('LXGW')) {
-        console.log('family', family, 'text', text);
-      }
-
       if (text) {
         return <link
           key={family + '&t=' + text}

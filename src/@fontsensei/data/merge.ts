@@ -138,6 +138,7 @@ const mergeData = async () => {
         ...(tagsChineseSimplified[family] ?? []),
         ...(tagsChineseTraditional[family] ?? []),
         ...(tagsKorean[family] ?? []),
+        ...(tagsHardCoded[family] ?? []),
       ]).map(tagToUrlSlug);
       if (tags.length) {
         mergedData[family] = tags;

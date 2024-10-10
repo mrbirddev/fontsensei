@@ -1,6 +1,6 @@
 import {type FSFontFilterOptions, type FSFontItem} from "./types";
 
-const ENABLE_CACHE = true;
+const ENABLE_CACHE = process.env.NODE_ENV !== 'production';
 let _serverCache = undefined as FSFontItem[] | undefined;
 let _clientCache = undefined as FSFontItem[] | undefined;
 
