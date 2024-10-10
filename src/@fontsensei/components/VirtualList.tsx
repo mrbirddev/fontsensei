@@ -9,6 +9,7 @@ import {FixedSizeList as List} from "react-window";
 import {cx} from "@emotion/css";
 import {FaPlus, FaXmark} from "react-icons/fa6";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
+import {PRODUCT_NAME} from "../../browser/productConstants";
 
 const ITEM_HEIGHT = 140;
 const ITEM_HEIGHT_CLS = 'h-[140px]';
@@ -143,10 +144,10 @@ const VirtualList = ({
   const [configList, setConfigList] = useState([] as { name: string, text?: string }[]);
 
   const tProduct = useScopedI18n('product');
-  const lorem = tProduct('lorem');
-  const [text, setText] = useState('123,Abc! ' + lorem);
+  const lorem = tProduct('description', {productName: PRODUCT_NAME});
+  const [text, setText] = useState(lorem);
   useEffect(() => {
-    setText('123,Abc! ' + lorem);
+    setText(lorem);
   }, [lorem]);
 
   useEffect(() => {
