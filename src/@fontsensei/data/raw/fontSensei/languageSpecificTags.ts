@@ -13,8 +13,8 @@ const languageSpecificTags: Record<LocaleStr, string[]> = {
   "ru": [],
   "tr": [],
   "id": [],
-  "zh-cn": ["lang_zh-Hans", "lang_zh-Hant", "songti", "heiti", "kaiti", "shouxie", "maobi", "meishuti"],
-  "zh-tw": ["lang_zh-Hant", "lang_zh-Hans", "songti", "heiti", "kaiti", "shouxie", "maobi", "meishuti"],
+  "zh-cn": ["lang_zh-hans", "lang_zh-hant", "songti", "heiti", "kaiti", "shouxie", "maobi", "meishuti"],
+  "zh-tw": ["lang_zh-hant", "lang_zh-hans", "songti", "heiti", "kaiti", "shouxie", "maobi", "meishuti"],
   "ko": [
     "lang_ko",
     "dotum",

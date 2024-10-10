@@ -100,11 +100,11 @@ const mergeData = async () => {
     }));
     const tagsChineseSimplified_raw = await readJSON(tagsChineseSimplifiedPath);
     const tagsChineseSimplified = Object.fromEntries(Object.entries(tagsChineseSimplified_raw).map(([k, v]) => {
-      return [k, ['lang_zh-Hans', ...v ?? []]];
+      return [k, ['lang_zh-hans', ...v ?? []]];
     }));
     const tagsChineseTraditional_raw = await readJSON(tagsChineseTraditionalPath);
     const tagsChineseTraditional = Object.fromEntries(Object.entries(tagsChineseTraditional_raw).map(([k, v]) => {
-      return [k, ['lang_zh-Hant', ...v ?? []]];
+      return [k, ['lang_zh-hant', ...v ?? []]];
     }));
     const tagsKorean_raw = await readJSON(tagsKoreanPath);
     const tagsKorean = Object.fromEntries(Object.entries(tagsKorean_raw).map(([k, v]) => {

@@ -48,9 +48,9 @@ const getDefaultTag = (currentLocale: LocaleStr) => {
     case "ja":
       return "lang_ja";
     case "zh-cn":
-      return "lang_zh-Hans";
+      return "lang_zh-hans";
     case "zh-tw":
-      return "lang_zh-Hant";
+      return "lang_zh-hant";
     case "ko":
       return "lang_ko";
     default:
