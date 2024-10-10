@@ -8,28 +8,42 @@ Font sensei is a Google fonts picker categorized by tag names.
 Check the data on UI ->
 
 ### [Japanese (ja)](https://fontsensei.com/ja)
-- [明朝 (Mincho)](https://fontsensei.com/ja/tag/mincho)
-- [ゴシック (Gothic)](https://fontsensei.com/ja/tag/gothic)
-- [丸 (Maru)](https://fontsensei.com/ja/tag/maru)
+- [明朝体 (Mincho)](https://fontsensei.com/ja/tag/mincho)
+- [角ゴシック (Kaku Gothic)](https://fontsensei.com/ja/tag/kaku-gothic)
+- [丸ゴシック (Maru Gothic)](https://fontsensei.com/ja/tag/maru-gothic)
+- [手書き (Tegaki)](https://fontsensei.com/ja/tag/tegaki)
+- [毛筆体 (Fude)](https://fontsensei.com/ja/tag/fude)
+- [ポップ体 (Poppu)](https://fontsensei.com/ja/tag/poppu)
+- [かわいい (Kawaii)](https://fontsensei.com/ja/tag/kawaii)
 
 ### [Chinese Simplified (zh-cn)](https://fontsensei.com/zh-cn)
 - [宋体 (Songti)](https://fontsensei.com/zh-cn/tag/songti)
 - [黑体 (Heiti)](https://fontsensei.com/zh-cn/tag/heiti)
 - [楷体 (Kaiti)](https://fontsensei.com/zh-cn/tag/kaiti)
-- [行书 (Xingshu)](https://fontsensei.com/zh-cn/tag/xingshu)
+- [手写 (Shouxie)](https://fontsensei.com/zh-cn/tag/shouxie)
+- [毛笔 (Maobi)](https://fontsensei.com/zh-cn/tag/maobi)
 - [美术体 (Meishuti)](https://fontsensei.com/zh-cn/tag/meishuti)
 
 ### [Chinese Traditional (zh-tw)](https://fontsensei.com/zh-tw)
 - [宋體 (Songti)](https://fontsensei.com/zh-tw/tag/songti)
 - [黑體 (Heiti)](https://fontsensei.com/zh-tw/tag/heiti)
 - [楷體 (Kaiti)](https://fontsensei.com/zh-tw/tag/kaiti)
-- [行書 (Xingshu)](https://fontsensei.com/zh-tw/tag/xingshu)
+- [手寫 (Shouxie)](https://fontsensei.com/zh-tw/tag/shouxie)
+- [毛筆 (Maobi)](https://fontsensei.com/zh-tw/tag/maobi)
 - [美術體 (Meishuti)](https://fontsensei.com/zh-tw/tag/meishuti)
 
 ### [Korean (ko)](https://fontsensei.com/ko)
-- [바탕 (Batang)](https://fontsensei.com/ko/tag/batang)
 - [돋움 (Dotum)](https://fontsensei.com/ko/tag/dotum)
+- [바탕 (Batang)](https://fontsensei.com/ko/tag/batang)
+- [송을씨체 (Songeulssi)](https://fontsensei.com/ko/tag/songeulssi)
+- [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
+- [픽셀체 (Piksellche)](https://fontsensei.com/ko/tag/piksellche)
+- [고전체 (Gojeonche)](https://fontsensei.com/ko/tag/gojeonche)
+- [탈네모 (Talnemo)](https://fontsensei.com/ko/tag/talnemo)
+- [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
+- [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
 - [궁서체 (Gungsuhche)](https://fontsensei.com/ko/tag/gungsuhche)
+
 
 ## Features
 - Tags for non-Latin languages, eg CJK(Chinese, Japanese, Korean).
