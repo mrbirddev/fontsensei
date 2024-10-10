@@ -41,6 +41,8 @@ const tagsJapanesePath = path.join(__dirname, './raw/fontSensei/tags-japanese.js
 const tagsChineseSimplifiedPath = path.join(__dirname, './raw/fontSensei/tags-chinese-simplified.json');
 const tagsChineseTraditionalPath = path.join(__dirname, './raw/fontSensei/tags-chinese-traditional.json');
 const tagsKoreanPath = path.join(__dirname, './raw/fontSensei/tags-korean.json');
+const tagsHardCodedPath = path.join(__dirname, './raw/fontSensei/tags-hardcoded.json');
+
 // output file names
 const outputDirWithSlash = path.join(__dirname, '../../../public/data/');
 fs.mkdirSync(outputDirWithSlash, { recursive: true });
@@ -111,6 +113,8 @@ const mergeData = async () => {
       return [k, ['lang_ko',...v ?? []]];
     }));
 
+    const tagsHardCoded = await readJSON(tagsHardCodedPath);
+
     const mergedData: FontData = {};
 
     const families = uniq([
@@ -121,6 +125,9 @@ const mergeData = async () => {
       ...Object.keys(tagsChineseSimplified),
       ...Object.keys(tagsChineseTraditional),
       ...Object.keys(tagsKorean),
+
+      // hardcoded tags
+      ...Object.keys(tagsHardCoded),
     ]);
 
     families.forEach((family) => {

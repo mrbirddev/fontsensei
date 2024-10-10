@@ -7,7 +7,7 @@ const languageSpecificTags: Record<LocaleStr, string[]> = {
   "de": [],
   "fr": [],
   "he": [],
-  "ja": ["lang_ja", "mincho", "kaku gothic", "maru gothic", "tegaki", "fude", "poppu", "kawaii"],
+  "ja": ["lang_ja", "mincho", "kaku gothic", "maru gothic", "tegaki", "fude", "poppu", "kawaii", "manga"],
   "it": [],
   "nl": [],
   "ru": [],

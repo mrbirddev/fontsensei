@@ -12,6 +12,7 @@ export default {
   "fude": "Fude",
   "poppu": "Poppu",
   "kawaii": "Kawaii",
+  "manga": "Manga",
   "songti": "Songti",
   "heiti": "Heiti",
   "kaiti": "Kaiti",
