@@ -135,7 +135,7 @@ const VirtualList = ({
       skip: pageSize,
       take: 10000,
     }).then(res => {
-      setList(prev => [...prev, ...res])
+      setList([...initialFontItemList, ...res]);
     });
   }, [tagValue, initialFontItemList]);
 
