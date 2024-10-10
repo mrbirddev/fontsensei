@@ -96,24 +96,40 @@ const mergeData = async () => {
   try {
     const familiesFromGoogle = await parseCSV(googleCsvFilePath);
     const fontFamilyTags = await readJSON(jsonFilePath);
-    const tagsJapanese_raw = await readJSON(tagsJapanesePath);
-    const tagsJapanese = Object.fromEntries(Object.entries(tagsJapanese_raw).map(([k, v]) => {
-      return [k, ['lang_ja', ...v ?? []]];
-    }));
-    const tagsChineseSimplified_raw = await readJSON(tagsChineseSimplifiedPath);
-    const tagsChineseSimplified = Object.fromEntries(Object.entries(tagsChineseSimplified_raw).map(([k, v]) => {
-      return [k, ['lang_zh-hans', ...v ?? []]];
-    }));
-    const tagsChineseTraditional_raw = await readJSON(tagsChineseTraditionalPath);
-    const tagsChineseTraditional = Object.fromEntries(Object.entries(tagsChineseTraditional_raw).map(([k, v]) => {
-      return [k, ['lang_zh-hant', ...v ?? []]];
-    }));
-    const tagsKorean_raw = await readJSON(tagsKoreanPath);
-    const tagsKorean = Object.fromEntries(Object.entries(tagsKorean_raw).map(([k, v]) => {
-      return [k, ['lang_ko',...v ?? []]];
-    }));
 
     const tagsHardCoded = await readJSON(tagsHardCodedPath);
+
+    const tagsJapanese_raw = await readJSON(tagsJapanesePath);
+    const tagsJapanese = Object.fromEntries(Object.entries(tagsJapanese_raw).map(([k, v]) => {
+      return [k, ['lang_ja', ...v ?? [], ...tagsHardCoded[k] ?? []]];
+    }));
+    const tagListJapanese = uniq(
+      Object.entries(tagsJapanese).map(([k, v]) => v).flat()
+    );
+
+    const tagsChineseSimplified_raw = await readJSON(tagsChineseSimplifiedPath);
+    const tagsChineseSimplified = Object.fromEntries(Object.entries(tagsChineseSimplified_raw).map(([k, v]) => {
+      return [k, ['lang_zh-hans', ...v ?? [], ...tagsHardCoded[k] ?? []]];
+    }));
+    const tagListChineseSimplified = uniq(
+      Object.entries(tagsChineseSimplified).map(([k, v]) => v).flat()
+    );
+
+    const tagsChineseTraditional_raw = await readJSON(tagsChineseTraditionalPath);
+    const tagsChineseTraditional = Object.fromEntries(Object.entries(tagsChineseTraditional_raw).map(([k, v]) => {
+      return [k, ['lang_zh-hant', ...v ?? [], ...tagsHardCoded[k] ?? []]];
+    }));
+    const tagListChineseTraditional = uniq(
+      Object.entries(tagsChineseTraditional).map(([k, v]) => v).flat()
+    );
+
+    const tagsKorean_raw = await readJSON(tagsKoreanPath);
+    const tagsKorean = Object.fromEntries(Object.entries(tagsKorean_raw).map(([k, v]) => {
+      return [k, ['lang_ko',...v ?? [], ...tagsHardCoded[k] ?? []]];
+    }));
+    const tagListKorean = uniq(
+      Object.entries(tagsKorean).map(([k, v]) => v).flat()
+    );
 
     const mergedData: FontData = {};
 
@@ -125,9 +141,6 @@ const mergeData = async () => {
       ...Object.keys(tagsChineseSimplified),
       ...Object.keys(tagsChineseTraditional),
       ...Object.keys(tagsKorean),
-
-      // hardcoded tags
-      ...Object.keys(tagsHardCoded),
     ]);
 
     families.forEach((family) => {
@@ -138,8 +151,34 @@ const mergeData = async () => {
         ...(tagsChineseSimplified[family] ?? []),
         ...(tagsChineseTraditional[family] ?? []),
         ...(tagsKorean[family] ?? []),
-        ...(tagsHardCoded[family] ?? []),
       ]).map(tagToUrlSlug);
+
+      const lang = tags.filter(tag => tag.startsWith('lang_'))[0];
+      if (lang) {
+        switch (lang) {
+          case 'lang_ja':
+            // console.log('sorting', family, tags);
+            tags.sort(t => tagListJapanese.includes(t) ? -1 : 1);
+            // console.log('after', tags);
+            break;
+          case 'lang_zh-hans':
+            // console.log('sorting', family, tags);
+            tags.sort(t => tagListChineseSimplified.includes(t) ? -1 : 1);
+            // console.log('after', tags);
+            break;
+          case 'lang_zh-hant':
+            // console.log('sorting', family, tags);
+            tags.sort(t => tagListChineseTraditional.includes(t) ? -1 : 1);
+            // console.log('after', tags);
+            break;
+          case 'lang_ko':
+            // console.log('sorting', family, tags);
+            tags.sort(t => tagListKorean.includes(t) ? -1 : 1);
+            // console.log('after', tags);
+            break;
+        }
+      }
+
       if (tags.length) {
         mergedData[family] = tags;
 
