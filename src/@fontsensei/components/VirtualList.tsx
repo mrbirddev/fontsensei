@@ -43,7 +43,7 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
   }
 
   return <div
-    key={fontItem.name}
+    key={fontItem.family}
     className={cx(
       ITEM_HEIGHT_CLS,
       "overflow-hidden cursor-pointer p-2 rounded-2xl",
@@ -55,7 +55,7 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
     data-itemindex={index}
   >
     <a
-      href={'https://fonts.google.com/specimen/' + fontItem.name.split(' ').join('+')}
+      href={'https://fonts.google.com/specimen/' + fontItem.family.split(' ').join('+')}
       target="_blank"
       className="inline-block h-full w-full"
     >
@@ -70,14 +70,14 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
           #{index + 1}
         </span>
         <span className="font-bold badge badge-neutral badge-lg">
-          {fontItem.name}
+          {fontItem.family}
         </span>
         {pageCtx?.onAddTag && <span
             className="badge badge-ghost bg-white/30 hover:bg-white/70"
             onClick={(e) => {
             e.stopPropagation();
             e.preventDefault();
-            pageCtx?.onAddTag?.(fontItem.name);
+            pageCtx?.onAddTag?.(fontItem.family);
           }}>
             <FaPlus />
         </span>}
@@ -87,7 +87,7 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
             {pageCtx?.onRemoveTag && <span className="hover:bg-white/70" onClick={(e) => {
               e.stopPropagation();
               e.preventDefault();
-              pageCtx?.onRemoveTag?.(fontItem.name);
+              pageCtx?.onRemoveTag?.(fontItem.family);
             }}>
               <FaXmark />
             </span>}
@@ -97,7 +97,7 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
       <div
         className="text-4xl rounded px-2 "
         style={{
-          fontFamily: `"${fontItem.name}"`,
+          fontFamily: `"${fontItem.family}"`,
           whiteSpace: 'nowrap',
           overflow: 'auto hidden'
         }}
@@ -155,7 +155,7 @@ const VirtualList = ({
         list.slice(
           start,
           start + count,
-        ).map(fontItem => ({name: fontItem.name, text: text})),
+        ).map(fontItem => ({name: fontItem.family, text: text})),
       );
     }, 1000);
     window.onOuterWheel = (el) => {

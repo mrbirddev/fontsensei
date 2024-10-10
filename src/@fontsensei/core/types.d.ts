@@ -1,5 +1,5 @@
 export interface FSFontItem {
-  name: string;
+  family: string;
   tags: string[];
 }
 

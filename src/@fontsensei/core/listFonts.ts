@@ -8,7 +8,7 @@ const toFontItemList = (jsonObj: object) => {
   const list = [] as FSFontItem[];
   Object.keys(jsonObj).forEach((fontName) => {
     list.push({
-      name: fontName,
+      family: fontName,
       tags: (jsonObj as Record<string, string[]>)[fontName],
     } as FSFontItem);
   });
