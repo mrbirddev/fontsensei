@@ -165,8 +165,8 @@ const FontPickerPage = (props: PageProps) => {
     <LandingLayout fullWidth={true} className="relative">
       <Head>
         <title>{title}</title>
-        <GoogleFontHeaders preConnect={true} configList={allFontConfigList} strategy="block"/>
       </Head>
+      <GoogleFontHeaders preConnect={true} configList={allFontConfigList} strategy="block"/>
 
       <div className="flex h-[calc(100vh-6rem)]">
         <div className="p-4 flex-0 w-[40%] min-w-[200px] h-full overflow-scroll">

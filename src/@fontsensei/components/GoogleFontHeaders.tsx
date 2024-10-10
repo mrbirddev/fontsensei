@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 
 const sanitizeFontName = (name: string) => name.replace(/ /g, '+');
 const sanitizeText = (text?: string) => text ? [
@@ -11,7 +12,7 @@ export const GoogleFontHeaders = (props: {
   strategy: 'swap' | 'block',
 }) => {
   const {preConnect, configList, strategy} = props;
-  return <>
+  return <Head>
     {preConnect && <>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -34,7 +35,7 @@ export const GoogleFontHeaders = (props: {
         rel="stylesheet"
       />
     })}
-  </>;
+  </Head>;
 };
 
 
