@@ -82,7 +82,7 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
             <FaPlus />
         </span>}
         {fontItem.tags.map((tag) => {
-          return <span className="badge badge-ghost bg-white/30">
+          return <span key={tag} className="badge badge-ghost bg-white/30">
             {tTagValueMsg(tag as TagValueMsgLabelType)}
             {pageCtx?.onRemoveTag && <span className="hover:bg-white/70" onClick={(e) => {
               e.stopPropagation();
