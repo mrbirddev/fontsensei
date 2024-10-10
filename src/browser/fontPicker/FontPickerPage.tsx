@@ -20,7 +20,7 @@ import {getLocaleContent} from "../../shared/getStaticPropsLocale";
 import AutoSizer from "react-virtualized-auto-sizer";
 import {FixedSizeList as List} from "react-window";
 import {GoogleFontHeaders} from "@fontsensei/components/GoogleFontHeaders";
-import {debounce} from "lodash-es";
+import {compact, debounce} from "lodash-es";
 import {cx} from "@emotion/css";
 import listFonts from "@fontsensei/core/listFonts";
 import {FSFontFilterOptions, type FSFontItem} from "@fontsensei/core/types";
@@ -144,7 +144,10 @@ const FontPickerPage = (props: PageProps) => {
 
   const langTagList = useMemo(() => languageSpecificTags[currentLocale].map(tagToUrlSlug), [currentLocale]);
   const tagList = useMemo(
-    () => [...Object.keys(props.countByTags)]
+    () => compact([
+      langTagList.length ? false : 'all',
+      ...Object.keys(props.countByTags)
+    ])
       .filter(t => !langTagList.includes(t)),
     [props.countByTags, langTagList]
   );
@@ -176,11 +179,33 @@ const FontPickerPage = (props: PageProps) => {
                 })
             }
           </div>
+          {!!langTagList.length && <>
+              <div className="flex items-center justify-start flex-wrap gap-2">
+                {
+                  [
+                    'all',
+                    ...langTagList
+                  ].map((t) => <TagButton
+                    key={t}
+                    isActive={(tagValue === t)}
+                    tag={t}
+                    font={props.firstFontByTags[t]}
+                    href={t === defaultTag
+                      ? "/"
+                      : `/tag/${t}`
+                    }>
+                    {tTagValueMsg(t as TagValueMsgLabelType)} {props.countByTags[t]}
+                  </TagButton>)
+                }
+              </div>
+              <div className="my-4">
+                More tags
+              </div>
+            </>
+          }
           <div className="flex items-center justify-start flex-wrap gap-2">
             {
               [
-                'all',
-                ...langTagList,
                 ...tagList
               ].map((t) => <TagButton
                 key={t}
