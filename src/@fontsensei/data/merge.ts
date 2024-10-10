@@ -37,10 +37,10 @@ const __dirname = path.dirname(__filename);
 
 const googleCsvFilePath = path.join(__dirname, './raw/googleFonts/families.csv');
 const jsonFilePath = path.join(__dirname, './raw/fontLibrary/families.json');
-const tagsJapanesePath = path.join(__dirname, './raw/fontSensei/tags-japanese.json');
-const tagsChineseSimplifiedPath = path.join(__dirname, './raw/fontSensei/tags-chinese-simplified.json');
-const tagsChineseTraditionalPath = path.join(__dirname, './raw/fontSensei/tags-chinese-traditional.json');
-const tagsKoreanPath = path.join(__dirname, './raw/fontSensei/tags-korean.json');
+const tagsJapanesePath = path.join(__dirname, './raw/fontSensei/step2-generated/tags-japanese.json');
+const tagsChineseSimplifiedPath = path.join(__dirname, './raw/fontSensei/step2-generated/tags-chinese-simplified.json');
+const tagsChineseTraditionalPath = path.join(__dirname, './raw/fontSensei/step2-generated/tags-chinese-traditional.json');
+const tagsKoreanPath = path.join(__dirname, './raw/fontSensei/step2-generated/tags-korean.json');
 const tagsHardCodedPath = path.join(__dirname, './raw/fontSensei/tags-hardcoded.json');
 
 // output file names
