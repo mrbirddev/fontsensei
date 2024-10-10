@@ -155,10 +155,13 @@ const FontPickerPage = (props: PageProps) => {
   const allFontConfigList = useMemo(
     () =>
       Object.keys(props.firstFontByTags).reduce(
-        (acc, tag) => [...acc, {name: props.firstFontByTags[tag]!, text: tag}],
+        (acc, tag) => [...acc, {
+          name: props.firstFontByTags[tag]!,
+          text: tTagValueMsg(tag as TagValueMsgLabelType),
+        }],
         [] as { name: string; text: string }[],
       ),
-    [props.firstFontByTags]
+    [props.firstFontByTags, tTagValueMsg]
   );
 
   return (
