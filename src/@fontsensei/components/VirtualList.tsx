@@ -1,4 +1,4 @@
-import React, {type CSSProperties, forwardRef, useContext, useEffect, useState} from "react";
+import React, {type CSSProperties, forwardRef, useContext, useEffect, useMemo, useState} from "react";
 import {type FSFontItem} from "@fontsensei/core/types";
 import listFonts from "@fontsensei/core/listFonts";
 import {TagValueMsgLabelType, useScopedI18n} from "@fontsensei/locales";
@@ -122,11 +122,18 @@ const createOuterElementType = forwardRef<HTMLDivElement>((props, ref) => (
 ));
 
 const VirtualList = ({
-  tagValue,
+  tagValue: tagValue_raw,
   initialFontItemList,
   pageSize,
 }: { tagValue: string | undefined, initialFontItemList: FSFontItem[], pageSize: number }) => {
   const [list, setList] = useState(initialFontItemList);
+
+  const tagValue = useMemo(() => {
+    if (tagValue_raw === 'all') {
+      return undefined;
+    }
+    return tagValue_raw;
+  }, [tagValue_raw]);
 
   useEffect(() => {
     // console.log('changed', tagValue, initialFontItemList);
