@@ -1,6 +1,6 @@
 export default {
   "all": "Todos",
-  "untagged": "Sem tag",
+  "untagged": "Sem etiqueta",
   "lang_ja": "Japonês",
   "lang_zh-hans": "Chinês Simplificado",
   "lang_zh-hant": "Chinês Tradicional",
@@ -12,6 +12,7 @@ export default {
   "fude": "Fude",
   "poppu": "Poppu",
   "kawaii": "Kawaii",
+  "manga": "Manga",
   "songti": "Songti",
   "heiti": "Heiti",
   "kaiti": "Kaiti",

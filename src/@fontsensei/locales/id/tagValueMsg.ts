@@ -1,6 +1,6 @@
 export default {
   "all": "Semua",
-  "untagged": "Tidak berlabel",
+  "untagged": "Tidak Berlabel",
   "lang_ja": "Jepang",
   "lang_zh-hans": "Cina Sederhana",
   "lang_zh-hant": "Cina Tradisional",
@@ -12,6 +12,7 @@ export default {
   "fude": "Fude",
   "poppu": "Poppu",
   "kawaii": "Kawaii",
+  "manga": "Manga",
   "songti": "Songti",
   "heiti": "Heiti",
   "kaiti": "Kaiti",

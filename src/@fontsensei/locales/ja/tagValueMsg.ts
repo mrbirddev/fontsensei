@@ -12,6 +12,7 @@ export default {
   "fude": "筆",
   "poppu": "ポップ",
   "kawaii": "かわいい",
+  "manga": "マンガ",
   "songti": "宋体",
   "heiti": "黑体",
   "kaiti": "楷書",

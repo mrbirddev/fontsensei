@@ -1,10 +1,10 @@
 export default {
   "all": "الكل",
   "untagged": "غير مصنف",
-  "lang_ja": "ياباني",
-  "lang_zh-hans": "صيني مبسط",
-  "lang_zh-hant": "صيني تقليدي",
-  "lang_ko": "كوري",
+  "lang_ja": "اليابانية",
+  "lang_zh-hans": "الصينية المبسطة",
+  "lang_zh-hant": "الصينية التقليدية",
+  "lang_ko": "الكورية",
   "mincho": "مينشو",
   "kaku-gothic": "كاكو غوثيك",
   "maru-gothic": "مارو غوثيك",
@@ -12,6 +12,7 @@ export default {
   "fude": "فودي",
   "poppu": "بوبو",
   "kawaii": "كاواي",
+  "manga": "مانغا",
   "songti": "سونجتي",
   "heiti": "هيتي",
   "kaiti": "كايتي",
@@ -27,5 +28,5 @@ export default {
   "talnemo": "تالنيمو",
   "kaelriponteu": "كايلريبونتو",
   "kodingche": "كودينجشي",
-  "gungsuhche": "جونغسوشي"
+  "gungsuhche": "جونغسوهشي"
 } as const;
