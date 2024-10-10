@@ -34,7 +34,7 @@ type FontData = Record<string, string[] | undefined>;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const csvFilePath = path.join(__dirname, './raw/googleFonts/families.csv');
+const googleCsvFilePath = path.join(__dirname, './raw/googleFonts/families.csv');
 const jsonFilePath = path.join(__dirname, './raw/fontLibrary/families.json');
 const tagsJapanesePath = path.join(__dirname, './raw/fontSensei/tags-japanese.json');
 const tagsChineseSimplifiedPath = path.join(__dirname, './raw/fontSensei/tags-chinese-simplified.json');
@@ -95,7 +95,7 @@ const countByTags = {} as Record<string, number>;
 const firstFontByTags = {} as Record<string, string>;
 const mergeData = async () => {
   try {
-    const familiesFromCSV = await parseCSV(csvFilePath);
+    const familiesFromGoogle = await parseCSV(googleCsvFilePath);
     const fontFamilyTags = await readJSON(jsonFilePath);
     const tagsJapanese_raw = await readJSON(tagsJapanesePath);
     const tagsJapanese = Object.fromEntries(Object.entries(tagsJapanese_raw).map(([k, v]) => {
@@ -116,7 +116,17 @@ const mergeData = async () => {
 
     const mergedData: FontData = {};
 
-    familiesFromCSV.forEach((family) => {
+    const families = uniq([
+      ...familiesFromGoogle,
+
+      // it's weird that google is missing fonts in their Github csv.
+      ...Object.keys(tagsJapanese),
+      ...Object.keys(tagsChineseSimplified),
+      ...Object.keys(tagsChineseTraditional),
+      ...Object.keys(tagsKorean),
+    ]);
+
+    families.forEach((family) => {
       matched[family] = true;
       const tags = uniq([
         ...(fontFamilyTags[family] ?? []),
@@ -144,7 +154,7 @@ const mergeData = async () => {
 
     console.log(
       'missing font faces from fontLibrary:',
-      [...familiesFromCSV].filter((family) => !matched[family])
+      [...familiesFromGoogle].filter((family) => !matched[family])
     );
 
   } catch (error) {
