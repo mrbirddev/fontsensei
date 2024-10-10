@@ -1,10 +1,10 @@
 export default {
   "all": "הכל",
   "untagged": "לא מסומן",
-  "lang_ja": "כל היפני",
-  "lang_zh-hans": "כל סיני פשוט",
-  "lang_zh-hant": "כל סיני מסורתי",
-  "lang_ko": "כל קוריאני",
+  "lang_ja": "יפני",
+  "lang_zh-hans": "סיני פשוט",
+  "lang_zh-hant": "סיני מסורתי",
+  "lang_ko": "קוריאני",
   "mincho": "מינצ'ו",
   "kaku-gothic": "קאקו גותי",
   "maru-gothic": "מארו גותי",
@@ -26,6 +26,6 @@ export default {
   "gojeonche": "גוג'וןצ'ה",
   "talnemo": "טאלנמו",
   "kaelriponteu": "קאלריפונטו",
-  "kodingche": "קודינצ'ה",
+  "kodingche": "קודינגצ'ה",
   "gungsuhche": "גונגסוצ'ה"
 } as const;

@@ -1,10 +1,10 @@
 export default {
   "all": "الكل",
   "untagged": "غير مصنف",
-  "lang_ja": "الكل باليابانية",
-  "lang_zh-hans": "الكل بالصينية المبسطة",
-  "lang_zh-hant": "الكل بالصينية التقليدية",
-  "lang_ko": "الكل بالكورية",
+  "lang_ja": "ياباني",
+  "lang_zh-hans": "صيني مبسط",
+  "lang_zh-hant": "صيني تقليدي",
+  "lang_ko": "كوري",
   "mincho": "مينشو",
   "kaku-gothic": "كاكو غوثيك",
   "maru-gothic": "مارو غوثيك",
@@ -20,12 +20,12 @@ export default {
   "meishuti": "ميشوتي",
   "dotum": "دوتوم",
   "batang": "باتانغ",
-  "songeulssi": "سونجيولسي",
+  "songeulssi": "سونجولسي",
   "jangsikche": "جانجسيكشي",
-  "piksellche": "بيكسيلشي",
+  "piksellche": "بيكسلشي",
   "gojeonche": "جوجيونشي",
   "talnemo": "تالنيمو",
   "kaelriponteu": "كايلريبونتو",
   "kodingche": "كودينجشي",
-  "gungsuhche": "جونغسوهشي"
+  "gungsuhche": "جونغسوشي"
 } as const;
