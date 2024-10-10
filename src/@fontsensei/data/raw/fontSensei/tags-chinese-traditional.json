@@ -2,8 +2,8 @@
   "Noto Sans TC": ["heiti"],
   "Noto Sans HK": ["heiti"],
   "Noto Serif TC": ["songti"],
-  "LXGW WenKai Mono TC": ["code"],
-  "LXGW WenKai TC": [],
+  "LXGW WenKai Mono TC": ["kaiti","code"],
+  "LXGW WenKai TC": ["kaiti"],
   "Cactus Classical Serif": ["songti"],
   "Chocolate Classical Sans": ["heiti"],
   "Noto Serif HK": ["songti"]
