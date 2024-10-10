@@ -78,7 +78,30 @@ const FontPickerPage = (props: PageProps) => {
   const tLandingMsg = useScopedI18n('landingMsg');
   const tTagValueMsg = useScopedI18n('tagValueMsg');
   const router = useRouter();
-  const tagValue = router.query.slugList?.[0];
+  const raw_tagValue = router.query.slugList?.[0];
+  const defaultTag = useMemo(() => {
+    switch (currentLocale) {
+      case "ja":
+        return "lang_ja";
+      case "zh-cn":
+        return "lang_zh-Hans";
+      case "zh-tw":
+        return "lang_zh-Hant";
+      case "ko":
+        return "lang_ko";
+      default:
+        return "all";
+    }
+  }, [currentLocale]);
+
+  const tagValue = useMemo(() => {
+    if (raw_tagValue) {
+      return raw_tagValue;
+    }
+
+    return defaultTag;
+  }, [defaultTag, raw_tagValue]);
+
   const tagDisplayName = useMemo(
     () => tTagValueMsg(tagValue as TagValueMsgLabelType),
     [tagValue]
@@ -157,10 +180,13 @@ const FontPickerPage = (props: PageProps) => {
                 ...tagList
               ].map((t) => <TagButton
                 key={t}
-                isActive={(tagValue === t) || ((t === "all") && !tagValue)}
+                isActive={(tagValue === t)}
                 tag={t}
                 font={props.firstFontByTags[t]}
-                href={(t === 'all' || !t) ? "/" : `/tag/${t}`}>
+                href={t === defaultTag
+                  ? "/"
+                  : `/tag/${t}`
+                }>
                 {tTagValueMsg(t as TagValueMsgLabelType)} {props.countByTags[t]}
               </TagButton>)
             }

@@ -122,21 +122,13 @@ const createOuterElementType = forwardRef<HTMLDivElement>((props, ref) => (
 ));
 
 const VirtualList = ({
-  tagValue: tagValue_raw,
+  tagValue,
   initialFontItemList,
   pageSize,
-}: { tagValue: string | undefined, initialFontItemList: FSFontItem[], pageSize: number }) => {
+}: { tagValue: string, initialFontItemList: FSFontItem[], pageSize: number }) => {
   const [list, setList] = useState(initialFontItemList);
 
-  const tagValue = useMemo(() => {
-    if (tagValue_raw === 'all') {
-      return undefined;
-    }
-    return tagValue_raw;
-  }, [tagValue_raw]);
-
   useEffect(() => {
-    // console.log('changed', tagValue, initialFontItemList);
     setList(initialFontItemList);
     void listFonts({
       tagValue,

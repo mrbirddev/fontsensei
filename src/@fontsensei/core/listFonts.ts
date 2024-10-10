@@ -18,10 +18,12 @@ const toFontItemList = (jsonObj: object) => {
 const filterByOpts = (list: FSFontItem[], opts: FSFontFilterOptions) => {
   const filteredList = [] as FSFontItem[];
   for (const font of list) {
-    if (opts.tagValue && !font.tags.includes(opts.tagValue)) {
-      continue;
+    if (opts.tagValue === "all") {
+      filteredList.push(font);
+    } else if (font.tags.indexOf(opts.tagValue) >= 0) {
+      filteredList.push(font);
     }
-    filteredList.push(font);
+
     if (filteredList.length >= (opts.skip + opts.take)) {
       break;
     }
@@ -49,7 +51,7 @@ const listFonts = async (opts: FSFontFilterOptions) => {
 
   if (_clientCache) {
     // force make this function async
-    // otherwise react will combine loading state and the initial list is not refreshed
+    // otherwise React will combine loading state and the initial list is not refreshed
     await new Promise((resolve) => setTimeout(resolve, 1));
 
     return filterByOpts(_clientCache, opts);

@@ -99,19 +99,19 @@ const mergeData = async () => {
     const fontFamilyTags = await readJSON(jsonFilePath);
     const tagsJapanese_raw = await readJSON(tagsJapanesePath);
     const tagsJapanese = Object.fromEntries(Object.entries(tagsJapanese_raw).map(([k, v]) => {
-      return [k, [...v ?? [], 'lang_ja']];
+      return [k, ['lang_ja', ...v ?? []]];
     }));
     const tagsChineseSimplified_raw = await readJSON(tagsChineseSimplifiedPath);
     const tagsChineseSimplified = Object.fromEntries(Object.entries(tagsChineseSimplified_raw).map(([k, v]) => {
-      return [k, [...v ?? [], 'lang_zh-Hans']];
+      return [k, ['lang_zh-Hans', ...v ?? []]];
     }));
     const tagsChineseTraditional_raw = await readJSON(tagsChineseTraditionalPath);
     const tagsChineseTraditional = Object.fromEntries(Object.entries(tagsChineseTraditional_raw).map(([k, v]) => {
-      return [k, [...v ?? [], 'lang_zh-Hant']];
+      return [k, ['lang_zh-Hant', ...v ?? []]];
     }));
     const tagsKorean_raw = await readJSON(tagsKoreanPath);
     const tagsKorean = Object.fromEntries(Object.entries(tagsKorean_raw).map(([k, v]) => {
-      return [k, [...v ?? [], 'lang_ko']];
+      return [k, ['lang_ko',...v ?? []]];
     }));
 
     const mergedData: FontData = {};
