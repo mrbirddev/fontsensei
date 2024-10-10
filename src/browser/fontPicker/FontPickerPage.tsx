@@ -33,6 +33,7 @@ import FeedbackModal from "../feedback/FeedbackModal";
 import {tClient} from "../../shared/api";
 import {toast} from "react-toastify";
 import {FaGithub} from "react-icons/fa6";
+import {tagToUrlSlug} from "../../@fontsensei/utils";
 
 const PAGE_SIZE = 10;
 
@@ -141,7 +142,7 @@ const FontPickerPage = (props: PageProps) => {
     : '';
   const title = titlePrefix + PRODUCT_NAME + ' - ' + t('product.slogan');
 
-  const langTagList = useMemo(() => languageSpecificTags[currentLocale], [currentLocale]);
+  const langTagList = useMemo(() => languageSpecificTags[currentLocale].map(tagToUrlSlug), [currentLocale]);
   const tagList = useMemo(
     () => [...Object.keys(props.countByTags)]
       .filter(t => !langTagList.includes(t)),

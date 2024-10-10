@@ -29,6 +29,7 @@ import * as path from 'path';
 import csvParser from 'csv-parser';
 import { fileURLToPath } from 'url';
 import {uniq} from "lodash-es";
+import {tagToUrlSlug} from "../utils";
 type FontData = Record<string, string[] | undefined>;
 
 const __filename = fileURLToPath(import.meta.url);
@@ -48,10 +49,6 @@ const TAGS_BY_NAME_FILE = 'tagsByName.json';
 const COUNT_BY_TAGS_FILE = 'countByTags.json';
 const FIRST_FONT_BY_TAGS_FILE = 'firstFontByTags.json';
 
-const toUrlSlug = (tag: string) => {
-  return tag.toLowerCase().split(' ').join('-');
-};
-
 // Function to read JSON data
 const readJSON = (filePath: string): Promise<FontData> => {
   return new Promise((resolve, reject) => {
@@ -61,7 +58,7 @@ const readJSON = (filePath: string): Promise<FontData> => {
       }
       const parsed = JSON.parse(data);
       Object.keys(parsed).forEach((k) => {
-        parsed[k] = parsed[k].map(toUrlSlug);
+        parsed[k] = parsed[k].map(tagToUrlSlug);
       });
 
       resolve(parsed);
