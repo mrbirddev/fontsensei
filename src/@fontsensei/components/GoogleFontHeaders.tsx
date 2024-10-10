@@ -23,7 +23,7 @@ export const GoogleFontHeaders = (props: {
 
       if (text) {
         return <link
-          key={family}
+          key={family + '&t=' + text}
           href={`https://fonts.googleapis.com/css2?family=${family}&text=${text}&display=${strategy}`}
           rel="stylesheet"
         />
