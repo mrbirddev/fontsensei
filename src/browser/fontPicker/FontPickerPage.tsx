@@ -70,16 +70,16 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
   const menuItems = useMemo(() => {
     return [
       ...(navbarContext?.extraMenuItems ?? []),
-      {
-        icon: <IoLanguage />,
-        label: preferredLocale && (preferredLocale !== currentLocale)
-          ? lang + " | " + langMap[preferredLocale]
-          : lang,
-        href: "",
-        onClick: () => {
-          setLocaleModalOpen(true);
-        },
-      } as MenuItem,
+      // {
+      //   icon: <IoLanguage />,
+      //   label: preferredLocale && (preferredLocale !== currentLocale)
+      //     ? lang + " | " + langMap[preferredLocale]
+      //     : lang,
+      //   href: "",
+      //   onClick: () => {
+      //     setLocaleModalOpen(true);
+      //   },
+      // } as MenuItem,
     ];
   }, [lang, router.pathname, navbarContext?.extraMenuItems, preferredLocale]);
 
@@ -94,7 +94,15 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
                 <ProductIcon />
               </div>
             </Link>
-            <h1 className="font-bold truncate">{PRODUCT_NAME}</h1>
+            <h1 className="font-bold truncate hidden md:block">{PRODUCT_NAME}</h1>
+            <div className="btn btn-ghost" onClick={() => {
+              setLocaleModalOpen(true);
+            }} >
+              <IoLanguage />
+              <span>{preferredLocale && (preferredLocale !== currentLocale)
+                ? lang + " | " + langMap[preferredLocale]
+                : lang}</span>
+            </div>
           </div>
           <div className="navbar-center hidden md:flex">
             {/*<ul className="menu menu-horizontal px-1">*/}
@@ -200,7 +208,6 @@ const LandingLayout = (props: PropsWithChildren & {
     </main>
   );
 };
-
 
 const getDefaultTag = (currentLocale: LocaleStr) => {
   switch (currentLocale) {
