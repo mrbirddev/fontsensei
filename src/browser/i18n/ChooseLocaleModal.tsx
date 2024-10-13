@@ -5,6 +5,7 @@ import {ModalTitle} from "@fontsensei/components/modal/commonComponents";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import useUserPreferencesStore from "../page/useUserPreferencesStore";
+import MobileOnlyModal from "@fontsensei/components/modal/MobileOnlyModal";
 
 const ChooseLocaleModal = (props: {
   isOpen: boolean,
@@ -15,28 +16,24 @@ const ChooseLocaleModal = (props: {
   const router = useRouter();
 
   return (
-    <dialog id="my_modal_1" className={"modal " + (props.isOpen ? 'modal-open' : '')}>
-      <div className="modal-box text-gray-700 w-11/12 max-w-5xl">
-        <ModalTitle onCancel={() => props.setOpen(false)}>
-          {tI18nMsg('Choose language')}
-        </ModalTitle>
+    <MobileOnlyModal isOpen={props.isOpen} setOpen={props.setOpen}>
+      <ModalTitle>
+        {tI18nMsg('Choose language')}
+      </ModalTitle>
+      <div className="flex flex-wrap justify-start items-start gap-6">
+        {locales.map(item => {
+          // the href is for Google spiders
+          return <Link key={item.locale} className="link link-ghost" href={router.asPath} locale={item.locale} onClick={(e) => {
+            e.preventDefault();
 
-        <div className="flex flex-wrap justify-start items-start gap-6">
-          {locales.map(item => {
-            // the href is for Google spiders
-            return <Link key={item.locale} className="link link-ghost" href={router.asPath} locale={item.locale} onClick={(e) => {
-              e.preventDefault();
-
-              // change on the client side instead
-              changeLocale(item.locale);
-              useUserPreferencesStore.getState().setLocale(item.locale);
-              props.setOpen(false);
-            }}>{item.lang}</Link>
-          })}
-        </div>
-
+            // change on the client side instead
+            changeLocale(item.locale);
+            useUserPreferencesStore.getState().setLocale(item.locale);
+            props.setOpen(false);
+          }}>{item.lang}</Link>
+        })}
       </div>
-    </dialog>
+    </MobileOnlyModal>
   );
 }
 

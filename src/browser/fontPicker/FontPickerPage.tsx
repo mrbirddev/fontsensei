@@ -33,6 +33,7 @@ import ChooseLocaleModal from "../i18n/ChooseLocaleModal";
 import SwitchLocaleHint from "../i18n/SwitchLocaleHint";
 import {FaTag} from "react-icons/fa6";
 import {ModalTitle} from "@fontsensei/components/modal/commonComponents";
+import MobileOnlyModal from "@fontsensei/components/modal/MobileOnlyModal";
 
 const PAGE_SIZE = 10;
 
@@ -56,7 +57,6 @@ export type NavbarContextOpts = {
 } | undefined;
 
 export const NavbarContext = React.createContext<NavbarContextOpts>(undefined);
-
 const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
   const [localeModalOpen, setLocaleModalOpen] = useState(false);
 
@@ -133,26 +133,23 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
                 setIsMenuOpen(!isMenuOpen);
               }}><FaBars /></div>
             </div>
-            <dialog id="my_modal_1" className={"modal " + (isMenuOpen ? 'modal-open' : '')} onClick={() => setIsMenuOpen(false)}>
-              <div className="modal-box text-gray-700 w-11/12 max-w-5xl" onClick={e => e.stopPropagation()}>
-                <ModalTitle onCancel={() => setIsMenuOpen(false)}>
-                </ModalTitle>
-                {menuItems.map(item => {
-                  const {icon, label, className, href, target, onClick} = item;
-                  if (href) {
-                    return <Link key={label} className={className ?? "btn btn-ghost"} href={href} target={target} onClick={onClick}>
-                      {icon}
-                      <span>{label}</span>
-                    </Link>
-                  } else {
-                    return <div key={label} className={className ?? "btn btn-ghost"} onClick={onClick} >
-                      {icon}
-                      <span>{label}</span>
-                    </div>
-                  }
-                })}
-              </div>
-            </dialog>
+
+            <MobileOnlyModal isOpen={isMenuOpen} setOpen={setIsMenuOpen}>
+              {menuItems.map(item => {
+                const {icon, label, className, href, target, onClick} = item;
+                if (href) {
+                  return <Link key={label} className={className ?? "btn btn-ghost"} href={href} target={target} onClick={onClick}>
+                    {icon}
+                    <span>{label}</span>
+                  </Link>
+                } else {
+                  return <div key={label} className={className ?? "btn btn-ghost"} onClick={onClick} >
+                    {icon}
+                    <span>{label}</span>
+                  </div>
+                }
+              })}
+            </MobileOnlyModal>
             {/*<div className="dropdown dropdown-end">*/}
             {/*  <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">*/}
             {/*    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>*/}
@@ -428,16 +425,11 @@ const FontPickerPage = (props: PageProps) => {
           </div>
         </div>
 
-        <dialog id="my_modal_1" className={"modal " + (isSelectorOpen ? 'modal-open' : '')} onClick={() => setSelectorOpen(false)}>
-          <div className="modal-box text-gray-700 w-11/12 max-w-5xl" onClick={e => e.stopPropagation()}>
-            <ModalTitle onCancel={() => setSelectorOpen(false)}>
-            </ModalTitle>
-
-            <div className="flex flex-wrap justify-start items-start gap-6">
-              {tagSelectorContent}
-            </div>
+        <MobileOnlyModal isOpen={isSelectorOpen} setOpen={setSelectorOpen}>
+          <div className="flex flex-wrap justify-start items-start gap-6">
+            {tagSelectorContent}
           </div>
-        </dialog>
+        </MobileOnlyModal>
       </LandingLayout>
     </NavbarContext.Provider>
   );
