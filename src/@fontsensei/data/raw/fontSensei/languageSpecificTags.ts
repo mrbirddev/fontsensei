@@ -21,12 +21,12 @@ const languageSpecificTags: Record<LocaleStr, string[]> = {
     "batang",
     "songeulssi",
     "jangsikche",
-    "piksellche",
-    "gojeonche",
-    "talnemo",
+    // "piksellche",
+    // "gojeonche",
+    // "talnemo",
     "kaelriponteu",
     "kodingche",
-    "gungsuhche"
+    // "gungsuhche"
   ],
   "ar": [],
   "sv": []
