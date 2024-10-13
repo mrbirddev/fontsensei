@@ -31,6 +31,8 @@ import {IoLanguage} from "react-icons/io5";
 import {FaBars} from "react-icons/fa";
 import ChooseLocaleModal from "../i18n/ChooseLocaleModal";
 import SwitchLocaleHint from "../i18n/SwitchLocaleHint";
+import {FaTag} from "react-icons/fa6";
+import {ModalTitle} from "@fontsensei/components/modal/commonComponents";
 
 const PAGE_SIZE = 10;
 
@@ -49,6 +51,7 @@ export type MenuItem = {
   onClick?: () => void,
 };
 export type NavbarContextOpts = {
+  extraLeftNode?: ReactNode;
   extraMenuItems?: MenuItem[];
 } | undefined;
 
@@ -95,6 +98,7 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
               </div>
             </Link>
             <h1 className="font-bold truncate hidden md:block">{PRODUCT_NAME}</h1>
+            {navbarContext?.extraLeftNode}
             <div className="btn btn-ghost" onClick={() => {
               setLocaleModalOpen(true);
             }} >
@@ -383,29 +387,57 @@ const FontPickerPage = (props: PageProps) => {
     </div>
   </>;
 
+  const [isSelectorOpen, setSelectorOpen] = useState(false);
+  const selectorModalButton = <div className={cx(
+    "btn btn-ghost",
+    "flex md:hidden items-center justify-center gap-1"
+  )} onClick={() => {
+    setSelectorOpen(true);
+  }} >
+    <FaTag />
+    <span>{tagValue ? tTagValueMsg(tagValue as TagValueMsgLabelType) : ''}</span>
+  </div>;
+
+  const navbarContextOutside = useContext(NavbarContext);
+
   return (
-    <LandingLayout fullWidth={true} className="relative">
-      <Head>
-        <title>{title}</title>
-      </Head>
-      <GoogleFontHeaders preConnect={true} configList={allFontConfigList} strategy="block"/>
+    <NavbarContext.Provider value={{
+      ...navbarContextOutside,
+      extraLeftNode: selectorModalButton,
+    }}>
+      <LandingLayout fullWidth={true} className="relative">
+        <Head>
+          <title>{title}</title>
+        </Head>
+        <GoogleFontHeaders preConnect={true} configList={allFontConfigList} strategy="block"/>
 
-      <div className="flex h-[calc(100vh-4rem)] gap-4">
-        <div className={cx(
-          "hidden md:block",
-          "py-4 flex-0 w-[40%] min-w-[200px] h-full overflow-scroll",
-        )}>
-          {tagSelectorContent}
+        <div className="flex h-[calc(100vh-4rem)] gap-4">
+          <div className={cx(
+            "hidden md:block",
+            "py-4 flex-0 w-[40%] min-w-[200px] h-full overflow-scroll",
+          )}>
+            {tagSelectorContent}
+          </div>
+          <div className={cx(
+            "py-4 flex-1 h-full overflow-scroll"
+          )}>
+            {!loading && <VirtualList tagValue={tagValue} initialFontItemList={initialFontItemList} pageSize={PAGE_SIZE}/>}
+            {loading && <span className="loading loading-bars loading-sm"/>}
+          </div>
         </div>
-        <div className={cx(
-          "py-4 flex-1 h-full overflow-scroll"
-        )}>
-          {!loading && <VirtualList tagValue={tagValue} initialFontItemList={initialFontItemList} pageSize={PAGE_SIZE}/>}
-          {loading && <span className="loading loading-bars loading-sm"/>}
-        </div>
-      </div>
 
-    </LandingLayout>
+        <dialog id="my_modal_1" className={"modal " + (isSelectorOpen ? 'modal-open' : '')}>
+          <div className="modal-box text-gray-700 w-11/12 max-w-5xl">
+            <ModalTitle onCancel={() => setSelectorOpen(false)}>
+            </ModalTitle>
+
+            <div className="flex flex-wrap justify-start items-start gap-6">
+              {tagSelectorContent}
+            </div>
+          </div>
+        </dialog>
+      </LandingLayout>
+    </NavbarContext.Provider>
   );
 };
 
