@@ -133,8 +133,8 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
                 setIsMenuOpen(!isMenuOpen);
               }}><FaBars /></div>
             </div>
-            <dialog id="my_modal_1" className={"modal " + (isMenuOpen ? 'modal-open' : '')}>
-              <div className="modal-box text-gray-700 w-11/12 max-w-5xl">
+            <dialog id="my_modal_1" className={"modal " + (isMenuOpen ? 'modal-open' : '')} onClick={() => setIsMenuOpen(false)}>
+              <div className="modal-box text-gray-700 w-11/12 max-w-5xl" onClick={e => e.stopPropagation()}>
                 <ModalTitle onCancel={() => setIsMenuOpen(false)}>
                 </ModalTitle>
                 {menuItems.map(item => {
@@ -428,8 +428,8 @@ const FontPickerPage = (props: PageProps) => {
           </div>
         </div>
 
-        <dialog id="my_modal_1" className={"modal " + (isSelectorOpen ? 'modal-open' : '')}>
-          <div className="modal-box text-gray-700 w-11/12 max-w-5xl">
+        <dialog id="my_modal_1" className={"modal " + (isSelectorOpen ? 'modal-open' : '')} onClick={() => setSelectorOpen(false)}>
+          <div className="modal-box text-gray-700 w-11/12 max-w-5xl" onClick={e => e.stopPropagation()}>
             <ModalTitle onCancel={() => setSelectorOpen(false)}>
             </ModalTitle>
 
