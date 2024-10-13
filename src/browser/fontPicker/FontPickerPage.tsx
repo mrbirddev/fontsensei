@@ -235,8 +235,9 @@ const TagButton = (props: PropsWithChildren<{
   tag: string,
   font: string | undefined,
   href: Parameters<typeof Link>[0]['href'],
+  onClick?: () => void,
 }>) => {
-  const {isActive, tag, font, href, children} = props;
+  const {isActive, tag, font, href, children, onClick} = props;
 
   return <Link
     type="button"
@@ -255,6 +256,7 @@ const TagButton = (props: PropsWithChildren<{
     style={{
       fontFamily: `"${font}"`,
     }}
+    onClick={onClick}
   >
     {children}
   </Link>;
@@ -349,6 +351,9 @@ const FontPickerPage = (props: PageProps) => {
               isActive={(tagValue === t)}
               tag={t}
               font={props.firstFontByTags[t]}
+              onClick={() => {
+                setSelectorOpen(false);
+              }}
               href={t === defaultTag
                 ? "/"
                 : `/tag/${t}`
@@ -371,6 +376,9 @@ const FontPickerPage = (props: PageProps) => {
           isActive={(tagValue === t)}
           tag={t}
           font={props.firstFontByTags[t]}
+          onClick={() => {
+            setSelectorOpen(false);
+          }}
           href={t === defaultTag
             ? "/"
             : `/tag/${t}`
