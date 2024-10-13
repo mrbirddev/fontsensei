@@ -47,8 +47,9 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
     key={fontItem.family}
     className={cx(
       ITEM_HEIGHT_CLS,
-      "overflow-hidden cursor-pointer p-2 rounded-2xl",
+      "overflow-hidden cursor-pointer rounded-2xl",
       "hover:shadow-xl hover:bg-white/30",
+      "md:p-2"
     )}
     style={style}
     onWheel={onWheel}
