@@ -90,8 +90,8 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
     <div className="h-16" />
     <div className="fixed left-0 top-0 right-0 z-10" style={props.style}>
       <div className={"container mx-auto px-4" + (props.fullWidth ? ' max-w-full' : '')}>
-        <div className="navbar px-0">
-          <div className="navbar-start gap-2">
+        <div className="flex items-center justify-center gap-2 py-2">
+          <div className="flex-1 flex items-center justify-start gap-1">
             <Link className="btn btn-ghost px-0 text-xl" href="/">
               <div style={{height: '3rem', width: '3rem'}}>
                 <ProductIcon />
@@ -108,22 +108,7 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
                 : lang}</span>
             </div>
           </div>
-          <div className="navbar-center hidden md:flex">
-            {/*<ul className="menu menu-horizontal px-1">*/}
-            {/*  <li><a>Item 1</a></li>*/}
-            {/*  <li>*/}
-            {/*    <details>*/}
-            {/*      <summary>Parent</summary>*/}
-            {/*      <ul className="p-2">*/}
-            {/*        <li><a>Submenu 1</a></li>*/}
-            {/*        <li><a>Submenu 2</a></li>*/}
-            {/*      </ul>*/}
-            {/*    </details>*/}
-            {/*  </li>*/}
-            {/*  <li><a>Item 3</a></li>*/}
-            {/*</ul>*/}
-          </div>
-          <div className="navbar-end">
+          <div className="flex items-center justify-end gap-1">
             <div className="hidden md:inline-flex items-center">
               {menuItems.map((item) => {
                 const {icon, label, className, href, target, onClick} = item;
