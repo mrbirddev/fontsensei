@@ -1,5 +1,5 @@
 import FontPickerPage from "../browser/fontPicker/FontPickerPage";
-import {NavbarContext} from "../browser/landing/Navbar";
+import {NavbarContext} from "../browser/fontPicker/FontPickerPage";
 import {GITHUB_LINK} from "../browser/productConstants";
 import React from "react";
 import {FaGithub} from "react-icons/fa6";
