@@ -172,7 +172,10 @@ const FontPickerPage = (props: PageProps) => {
       <GoogleFontHeaders preConnect={true} configList={allFontConfigList} strategy="block"/>
 
       <div className="flex h-[calc(100vh-6rem)]">
-        <div className="p-4 flex-0 w-[40%] min-w-[200px] h-full overflow-scroll">
+        <div className={cx(
+          "hidden md:block",
+          "p-4 flex-0 w-[40%] min-w-[200px] h-full overflow-scroll",
+        )}>
           <div className="font-normal mb-4">
             {
               (tagValue === 'all' || !tagValue)
@@ -224,7 +227,9 @@ const FontPickerPage = (props: PageProps) => {
             }
           </div>
         </div>
-        <div className="p-4 flex-1 h-full overflow-scroll">
+        <div className={cx(
+          "p-4 flex-1 h-full overflow-scroll"
+        )}>
           {!loading && <VirtualList tagValue={tagValue} initialFontItemList={initialFontItemList} pageSize={PAGE_SIZE}/>}
           {loading && <span className="loading loading-bars loading-sm"/>}
         </div>
