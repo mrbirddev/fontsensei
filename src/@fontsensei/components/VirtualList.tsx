@@ -125,22 +125,22 @@ const createOuterElementType = forwardRef<HTMLDivElement>((props, ref) => (
 
 const VirtualList = ({
   tagValue,
+  filterText,
   initialFontItemList,
   pageSize,
-}: { tagValue: string, initialFontItemList: FSFontItem[], pageSize: number }) => {
+}: { tagValue: string, initialFontItemList: FSFontItem[], pageSize: number, filterText: string }) => {
   const [list, setList] = useState(initialFontItemList);
 
   useEffect(() => {
-    setList(initialFontItemList);
     void listFonts({
+      filterText,
       tagValue,
-      skip: pageSize,
+      skip: 0,
       take: 10000,
     }).then(res => {
-      setList([...initialFontItemList, ...res]);
+      setList([...res]);
     });
-  }, [tagValue, initialFontItemList]);
-
+  }, [tagValue, filterText, initialFontItemList]);
 
   const [configList, setConfigList] = useState([] as { name: string, text?: string }[]);
 

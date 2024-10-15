@@ -17,7 +17,7 @@ import Head from "next/head";
 import {GITHUB_LINK, PRODUCT_DOMAIN, PRODUCT_NAME} from "../productConstants";
 import {getLocaleContent} from "../../shared/getStaticPropsLocale";
 import {GoogleFontHeaders} from "@fontsensei/components/GoogleFontHeaders";
-import {compact, debounce} from "lodash-es";
+import {compact, debounce, throttle} from "lodash-es";
 import {cx} from "@emotion/css";
 import listFonts from "@fontsensei/core/listFonts";
 import {FSFontFilterOptions, type FSFontItem} from "@fontsensei/core/types";
@@ -32,7 +32,6 @@ import {FaBars} from "react-icons/fa";
 import ChooseLocaleModal from "../i18n/ChooseLocaleModal";
 import SwitchLocaleHint from "../i18n/SwitchLocaleHint";
 import {FaTag} from "react-icons/fa6";
-import {ModalTitle} from "@fontsensei/components/modal/commonComponents";
 import MobileOnlyModal from "@fontsensei/components/modal/MobileOnlyModal";
 
 const PAGE_SIZE = 10;
@@ -278,6 +277,15 @@ const FontPickerPage = (props: PageProps) => {
   const lastTagValueRef = useRef(tagValue);
   const [loading, setLoading] = useState(false);
 
+  const [filterText, setFilterText] = useState('');
+  const [debouncedFilterText, setDebouncedFilterText] = useState(filterText);
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setDebouncedFilterText(filterText);
+    }, 1000);
+    return () => clearTimeout(id);
+  }, [filterText]);
+
   useEffect(() => {
     if (lastTagValueRef.current === tagValue) {
       return;
@@ -288,13 +296,14 @@ const FontPickerPage = (props: PageProps) => {
     setLoading(true);
     void listFonts({
       tagValue: tagValue,
+      filterText: filterText,
       skip: 0,
       take: PAGE_SIZE
     }).then((response) => {
       setInitialFontItemList(response);
       setLoading(false);
     });
-  }, [tagValue]);
+  }, [tagValue, filterText]);
 
   const titlePrefix = tagDisplayName
     ? (
@@ -420,7 +429,15 @@ const FontPickerPage = (props: PageProps) => {
           <div className={cx(
             "py-4 flex-1 h-full overflow-scroll"
           )}>
-            {!loading && <VirtualList tagValue={tagValue} initialFontItemList={initialFontItemList} pageSize={PAGE_SIZE}/>}
+            <input
+              className="input input-bordered w-full mb-4 bg-transparent"
+              value={filterText}
+              onChange={e => {
+                setFilterText(e.target.value);
+              }}
+              placeholder="Filter font family"
+            />
+            {!loading && <VirtualList tagValue={tagValue} filterText={debouncedFilterText} initialFontItemList={initialFontItemList} pageSize={PAGE_SIZE}/>}
             {loading && <span className="loading loading-bars loading-sm"/>}
           </div>
         </div>
@@ -444,6 +461,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const initialFontItemList = await listFonts({
     tagValue: tagValue,
+    filterText: '',
     skip: 0,
     take: PAGE_SIZE
   });

@@ -4,6 +4,7 @@ export interface FSFontItem {
 }
 
 export interface FSFontFilterOptions {
+  filterText: string;
   tagValue: string;
   skip: number;
   take: number;

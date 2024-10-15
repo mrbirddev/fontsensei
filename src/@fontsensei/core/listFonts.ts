@@ -18,9 +18,10 @@ const toFontItemList = (jsonObj: object) => {
 const filterByOpts = (list: FSFontItem[], opts: FSFontFilterOptions) => {
   const filteredList = [] as FSFontItem[];
   for (const font of list) {
-    if (opts.tagValue === "all") {
-      filteredList.push(font);
-    } else if (font.tags.indexOf(opts.tagValue) >= 0) {
+    const hitTag = (opts.tagValue === "all") || (font.tags.indexOf(opts.tagValue) >= 0);
+    const hitText = !opts.filterText || (font.family.toLowerCase().indexOf(opts.filterText.toLowerCase()) >= 0);
+
+    if (hitTag && hitText) {
       filteredList.push(font);
     }
 
