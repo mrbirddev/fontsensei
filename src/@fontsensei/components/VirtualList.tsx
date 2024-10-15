@@ -181,9 +181,26 @@ const VirtualList = ({
     );
   }, [list, text]);
 
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return <>
     <GoogleFontHeaders preConnect={false} configList={configList} strategy="block"/>
-    <AutoSizer>
+    {!isClient && <div>
+      {initialFontItemList.map((fontItem) => (
+        <Row
+          key={fontItem.family}
+          index={list.indexOf(fontItem)}
+          fontItem={fontItem}
+          text={text}
+          style={{}}
+          forwardedRef={() => void 0}
+        />
+      ))}
+    </div>}
+    {isClient && <AutoSizer>
       {({height, width}) => (
         <List
           className="List"
@@ -196,7 +213,7 @@ const VirtualList = ({
           {(props) => <RefForwardedRow {...props} fontItem={list[props.index]} text={text}/>}
         </List>
       )}
-    </AutoSizer>
+    </AutoSizer>}
   </>;
 };
 
