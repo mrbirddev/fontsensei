@@ -30,6 +30,7 @@ import csvParser from 'csv-parser';
 import { fileURLToPath } from 'url';
 import {uniq} from "lodash-es";
 import {tagToUrlSlug} from "../utils";
+import languageSpecificTags from "@fontsensei/data/raw/fontSensei/languageSpecificTags";
 type FontData = Record<string, string[] | undefined>;
 
 const __filename = fileURLToPath(import.meta.url);
@@ -50,6 +51,7 @@ fs.mkdirSync(outputDirWithSlash, { recursive: true });
 const TAGS_BY_NAME_FILE = 'tagsByName.json';
 const COUNT_BY_TAGS_FILE = 'countByTags.json';
 const FIRST_FONT_BY_TAGS_FILE = 'firstFontByTags.json';
+const LANGUAGE_SPECIFIC_TAGS = 'languageSpecificTags.json';
 
 // Function to read JSON data
 const readJSON = (filePath: string): Promise<FontData> => {
@@ -200,6 +202,7 @@ const mergeData = async () => {
     fs.writeFileSync(outputDirWithSlash + TAGS_BY_NAME_FILE, JSON.stringify(mergedData, null, 2), 'utf-8');
     fs.writeFileSync(outputDirWithSlash + COUNT_BY_TAGS_FILE, JSON.stringify(countByTags, null, 2), 'utf-8');
     fs.writeFileSync(outputDirWithSlash + FIRST_FONT_BY_TAGS_FILE, JSON.stringify(firstFontByTags, null, 2), 'utf-8');
+    fs.writeFileSync(outputDirWithSlash + LANGUAGE_SPECIFIC_TAGS, JSON.stringify(languageSpecificTags, null, 2), 'utf-8');
     console.log('Data successfully merged and written!');
 
     console.log(
