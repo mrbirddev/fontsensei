@@ -76,7 +76,7 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
       ITEM_HEIGHT_CLS,
       "overflow-hidden rounded-2xl",
       "hover:shadow-xl hover:bg-white/30",
-      "md:p-2"
+      "p-2"
     )}
     style={style}
     onWheel={onWheel}
