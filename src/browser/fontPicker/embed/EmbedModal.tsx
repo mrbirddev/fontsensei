@@ -13,8 +13,7 @@ const EmbedModal = (props: {
   isOpen: boolean,
   setOpen: (o: boolean) => void,
 }) => {
-  const tFeedback = useScopedI18n('feedback');
-  const t = useI18n();
+  const tLandingMsg = useScopedI18n('landingMsg');
 
   const contentInputRef = useRef(null as HTMLTextAreaElement | null);
   useEffect(() => {
@@ -42,7 +41,7 @@ const EmbedModal = (props: {
       <div className="modal-box text-grey-700">
         {/*<ModalTitle>{props.title}</ModalTitle>*/}
         <ModalTextarea
-          label="Embed code in the <head> of your html"
+          label={tLandingMsg("Embed code in the <head> of your html")}
           textareaProps={{
             ref: (el) => {
               contentInputRef.current = el;
@@ -57,10 +56,10 @@ const EmbedModal = (props: {
         <ModalButtons
           confirmChildren={isCopied ? <>
             <FaCheck className="text-success" />
-            <span>Copied</span>
+            <span>{tLandingMsg("Copied")}</span>
           </> : <>
             <FaCopy />
-            <span>Copy</span>
+            <span>{tLandingMsg("Copy")}</span>
           </>}
           onConfirm={() => {
             copyToClipboard(props.content);

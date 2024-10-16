@@ -372,7 +372,7 @@ const FontPickerPage = (props: PageProps) => {
           }
         </div>
         <div className="my-4">
-            More tags
+          {t('landingMsg.More tags')}
         </div>
     </>
     }
