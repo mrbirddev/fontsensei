@@ -25,6 +25,7 @@
     "@trpc/server": "^10.43.6",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
+    "copy-to-clipboard": "^3.3.3",
     "immer": "^10.0.3",
     "lodash-es": "^4.17.21",
     "next": "^14.1.4",

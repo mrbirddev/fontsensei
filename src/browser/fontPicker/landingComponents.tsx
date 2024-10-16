@@ -3,6 +3,8 @@ import {GITHUB_LINK} from "../productConstants";
 import React from "react";
 import {FaExternalLinkAlt} from "react-icons/fa";
 import {FontPickerPageContextOpts} from "@fontsensei/components/fontPickerCommon";
+import useEmbedStore from "./embed/useEmbedStore";
+import EmbedModal from "./embed/EmbedModal";
 
 export const extraMenuItems = [
   {
@@ -21,6 +23,19 @@ type NonNullable<T> = T extends null | undefined ? never : T;
 export const Toolbar: NonNullable<FontPickerPageContextOpts>['Toolbar'] = ({fontItem}) => <div className="flex items-center justify-start gap-2 mt-2">
     <div className="btn btn-sm btn-outline animate-none transition-none" onClick={(e) => {
       e.stopPropagation();
+      useEmbedStore.getState().renderPopup(<EmbedModal
+        content={`<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=${
+          fontItem.family.replace(' ', '+')
+        }${
+          fontItem.metadata.defaultSuffix
+        }&display=swap" rel="stylesheet">`}
+        isOpen={true}
+        setOpen={() => {
+          useEmbedStore.getState().renderPopup(null);
+        }}
+      />);
     }}>
       <FaCode/> Embed
     </div>

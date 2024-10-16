@@ -33,6 +33,8 @@ import ChooseLocaleModal from "../i18n/ChooseLocaleModal";
 import SwitchLocaleHint from "../i18n/SwitchLocaleHint";
 import {FaTag} from "react-icons/fa6";
 import MobileOnlyModal from "@fontsensei/components/modal/MobileOnlyModal";
+import useEmbedStore from "./embed/useEmbedStore";
+import EmbedModal from "./embed/EmbedModal";
 
 const PAGE_SIZE = 10;
 
@@ -267,6 +269,7 @@ const FontPickerPage = (props: PageProps) => {
   const raw_tagValue = router.query.slugList?.[0];
   const defaultTag = useMemo(() => getDefaultTag(currentLocale), [currentLocale]);
   const tagValue = useMemo(() => getTagValue(raw_tagValue, currentLocale), [raw_tagValue, currentLocale]);
+  const embedPopup = useEmbedStore(state => state.popup);
 
   const tagDisplayName = useMemo(
     () => tTagValueMsg(tagValue as TagValueMsgLabelType),
@@ -447,6 +450,7 @@ const FontPickerPage = (props: PageProps) => {
             {tagSelectorContent}
           </div>
         </MobileOnlyModal>
+        {embedPopup}
       </LandingLayout>
     </NavbarContext.Provider>
   );
