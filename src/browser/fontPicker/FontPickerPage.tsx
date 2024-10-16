@@ -89,7 +89,7 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
     ];
   }, [lang, router.pathname, navbarContext?.extraMenuItems, preferredLocale]);
 
-  const basePath = router.basePath;
+  const pickerBasePath = useMemo(() => getPickerBasePathFromPath(router.asPath), [router.asPath]);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -103,7 +103,7 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
       <div className={"container mx-auto px-4" + (props.fullWidth ? ' max-w-full' : '')}>
         <div className="flex items-center justify-center gap-2 py-2">
           <div className="flex-1 flex items-center justify-start gap-1">
-            <Link className="btn btn-ghost px-0 text-xl" href={basePath}>
+            <Link className="btn btn-ghost px-0 text-xl" href={pickerBasePath}>
               <div style={{height: '3rem', width: '3rem'}}>
                 <ProductIcon />
               </div>
@@ -267,6 +267,15 @@ const TagButton = (props: PropsWithChildren<{
   </Link>;
 }
 
+const getPickerBasePathFromPath = (pathNoLocale: string) => {
+  // console.log({ pathNoLocale });
+  if (pathNoLocale.lastIndexOf('/tags/') >= 0) {
+    return pathNoLocale.slice(pathNoLocale.lastIndexOf('/tags/'), '/tags/'.length);
+  }
+
+  return pathNoLocale.endsWith('/') ? pathNoLocale.slice(0, -1) : pathNoLocale;
+};
+
 const FontPickerPage = (props: PageProps) => {
   const t = useI18n();
   const currentLocale = useCurrentLocale();
@@ -315,7 +324,7 @@ const FontPickerPage = (props: PageProps) => {
     });
   }, [tagValue, filterText]);
 
-  const basePath = router.basePath;
+  const pickerBasePath = useMemo(() => getPickerBasePathFromPath(router.asPath), [router.asPath]);
 
   const titlePrefix = tagDisplayName
     ? (
@@ -373,8 +382,8 @@ const FontPickerPage = (props: PageProps) => {
                 setSelectorOpen(false);
               }}
               href={t === defaultTag
-                ? basePath + "/"
-                : basePath + `/tag/${t}`
+                ? pickerBasePath + "/"
+                : pickerBasePath + `/tag/${t}`
               }>
               {tTagValueMsg(t as TagValueMsgLabelType)} {props.countByTags[t]}
             </TagButton>)
@@ -398,8 +407,8 @@ const FontPickerPage = (props: PageProps) => {
             setSelectorOpen(false);
           }}
           href={t === defaultTag
-            ? basePath + "/"
-            : basePath + `/tag/${t}`
+            ? pickerBasePath + "/"
+            : pickerBasePath + `/tag/${t}`
           }>
           {tTagValueMsg(t as TagValueMsgLabelType)} {props.countByTags[t]}
         </TagButton>)
