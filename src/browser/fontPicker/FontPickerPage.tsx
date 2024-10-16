@@ -53,6 +53,7 @@ export type MenuItem = {
   onClick?: () => void,
 };
 export type NavbarContextOpts = {
+  shouldHide?: boolean;
   extraLeftNode?: ReactNode;
   extraMenuItems?: MenuItem[];
 } | undefined;
@@ -89,6 +90,10 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
 
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  if (navbarContext?.shouldHide) {
+    return false;
+  }
 
   return <>
     <div className="h-16" />
@@ -422,7 +427,11 @@ const FontPickerPage = (props: PageProps) => {
         </Head>
         <GoogleFontHeaders preConnect={true} configList={allFontConfigList} strategy="block"/>
 
-        <div className="flex h-[calc(100vh-4rem)] gap-4">
+        <div className={cx(
+          "flex gap-4",
+          navbarContextOutside?.shouldHide ? "h-[100vh]" : false,
+          !navbarContextOutside?.shouldHide ? "h-[calc(100vh-4rem)]" : false,
+        )}>
           <div className={cx(
             "hidden md:block",
             "py-4 flex-0 w-[40%] min-w-[200px] h-full overflow-scroll",
