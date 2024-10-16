@@ -7,12 +7,12 @@ let _clientCache = undefined as Record<string, FontMetadata> | undefined;
 
 export const reduceMetadata = (metadata: FontMetadata) => {
   const hasItalic = Object.keys(metadata.fonts).some(font => font.indexOf('i') >= 0);
-  const opticalSize = metadata.axes.find(v => v.type === "opsz");
-  const weight = metadata.axes.find(v => v.type === "wght");
+  const opticalSize = metadata.axes.find(v => v.tag === "opsz");
+  const weight = metadata.axes.find(v => v.tag === "wght");
 
   let defaultSuffix = '';
   const axesRawData = compact([opticalSize, weight]);
-  const axesTypeString = axesRawData.map(v => v.type).join(',');
+  const axesTypeString = axesRawData.map(v => v.tag).join(',');
   const axesRangeString = axesRawData.map(v => v.min + '..' + v.max).join(',');
   if (hasItalic) {
     const commaOptional = axesRawData.length ? ',' : '';

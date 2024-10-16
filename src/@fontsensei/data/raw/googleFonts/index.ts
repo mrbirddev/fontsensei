@@ -8,7 +8,7 @@ type FontDetails = {
 export type Font = Record<string, FontDetails>;
 
 export type AxesItem = {
-  type: 'opsz' | 'wght' | 'YTLC' | 'wdth';
+  tag: 'opsz' | 'wght' | 'YTLC' | 'wdth';
   min: number;
   max: number;
   defaultValue: number;
