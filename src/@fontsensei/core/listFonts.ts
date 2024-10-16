@@ -2,7 +2,7 @@ import {type FSFontFilterOptions, type FSFontItem} from "./types";
 import getMetadata, {reduceMetadata} from "@fontsensei/core/getMetadata";
 import invariant from "tiny-invariant";
 
-const ENABLE_CACHE = process.env.NODE_ENV !== 'production';
+const ENABLE_CACHE = process.env.NODE_ENV === 'production';
 let _serverCache = undefined as FSFontItem[] | undefined;
 let _clientCache = undefined as FSFontItem[] | undefined;
 

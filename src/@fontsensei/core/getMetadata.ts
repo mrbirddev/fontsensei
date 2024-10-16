@@ -1,7 +1,7 @@
 import {FontMetadata, FontMetadataReduced} from "@fontsensei/data/raw/googleFonts";
 import {compact} from "lodash-es";
 
-const ENABLE_CACHE = process.env.NODE_ENV !== 'production';
+const ENABLE_CACHE = process.env.NODE_ENV === 'production';
 let _serverCache = undefined as Record<string, FontMetadata> | undefined;
 let _clientCache = undefined as Record<string, FontMetadata> | undefined;
 
