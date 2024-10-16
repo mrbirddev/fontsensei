@@ -267,16 +267,6 @@ const TagButton = (props: PropsWithChildren<{
     {children}
   </Link>;
 }
-
-const getPickerBasePathFromPath = (pathNoLocale: string) => {
-  // console.log({ pathNoLocale });
-  if (pathNoLocale.lastIndexOf('/tags/') >= 0) {
-    return pathNoLocale.slice(pathNoLocale.lastIndexOf('/tags/'), '/tags/'.length);
-  }
-
-  return pathNoLocale.endsWith('/') ? pathNoLocale.slice(0, -1) : pathNoLocale;
-};
-
 const FontPickerPage = (props: PageProps) => {
   const t = useI18n();
   const currentLocale = useCurrentLocale();
@@ -383,7 +373,7 @@ const FontPickerPage = (props: PageProps) => {
                 setSelectorOpen(false);
               }}
               href={t === defaultTag
-                ? pickerBasePath + "/"
+                ? pickerBasePath + ""
                 : pickerBasePath + `/tag/${t}`
               }>
               {tTagValueMsg(t as TagValueMsgLabelType)} {props.countByTags[t]}
@@ -408,7 +398,7 @@ const FontPickerPage = (props: PageProps) => {
             setSelectorOpen(false);
           }}
           href={t === defaultTag
-            ? pickerBasePath + "/"
+            ? pickerBasePath + ""
             : pickerBasePath + `/tag/${t}`
           }>
           {tTagValueMsg(t as TagValueMsgLabelType)} {props.countByTags[t]}
