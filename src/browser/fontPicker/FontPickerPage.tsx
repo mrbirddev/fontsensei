@@ -438,7 +438,7 @@ const FontPickerPage = (props: PageProps) => {
               onChange={e => {
                 setFilterText(e.target.value);
               }}
-              placeholder="Filter font family"
+              placeholder={t("landingMsg.Filter by font family")}
             />
             {!loading && <VirtualList tagValue={tagValue} filterText={debouncedFilterText} initialFontItemList={initialFontItemList} pageSize={PAGE_SIZE}/>}
             {loading && <span className="loading loading-bars loading-sm"/>}

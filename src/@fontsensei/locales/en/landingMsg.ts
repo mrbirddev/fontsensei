@@ -6,4 +6,5 @@ export default {
   "Embed": "Embed",
   "Embed code in the <head> of your html": "Embed code in the <head> of your html",
   "More tags": "More tags",
+  "Filter by font family": "Filter by font family",
 } as const;
