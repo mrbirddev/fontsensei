@@ -442,15 +442,17 @@ const FontPickerPage = (props: PageProps) => {
             "py-4 flex-1 h-full overflow-scroll"
           )}>
             <input
-              className="input input-bordered w-full mb-4 bg-transparent"
+              className="h-12 mb-4 input input-bordered w-full bg-transparent"
               value={filterText}
               onChange={e => {
                 setFilterText(e.target.value);
               }}
               placeholder={t("landingMsg.Filter by font family")}
             />
-            {!loading && <VirtualList tagValue={tagValue} filterText={debouncedFilterText} initialFontItemList={initialFontItemList} pageSize={PAGE_SIZE}/>}
-            {loading && <span className="loading loading-bars loading-sm"/>}
+            <div className="h-[calc(100%-4rem)]">
+              {!loading && <VirtualList tagValue={tagValue} filterText={debouncedFilterText} initialFontItemList={initialFontItemList} pageSize={PAGE_SIZE}/>}
+              {loading && <span className="loading loading-bars loading-sm"/>}
+            </div>
           </div>
         </div>
 
