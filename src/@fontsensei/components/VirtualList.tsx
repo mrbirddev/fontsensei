@@ -35,8 +35,17 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
   const pageCtx = useContext(FontPickerPageContext);
 
   if (!fontItem) {
-    return <div key="END" className="h-[100px] overflow-hidden" style={style} onWheel={onWheel} ref={forwardedRef}
-                data-itemindex={index}>
+    return <div
+      key="END"
+      className={cx(
+        ITEM_HEIGHT_CLS,
+        "overflow-hidden"
+      )}
+      style={style}
+      onWheel={onWheel}
+      ref={forwardedRef}
+      data-itemindex={index}
+    >
       <div className="text-center">
         THE END
       </div>
