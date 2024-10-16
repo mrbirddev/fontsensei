@@ -20,6 +20,7 @@ export type MenuItem = {
   onClick?: () => void,
 };
 export type NavbarContextOpts = {
+  shouldHide?: boolean;
   extraMenuItems?: MenuItem[];
 } | undefined;
 
@@ -53,6 +54,10 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
       } as MenuItem,
     ];
   }, [lang, router.pathname, navbarContext?.extraMenuItems, preferredLocale]);
+
+  if (navbarContext?.shouldHide) {
+    return false;
+  }
 
   return <>
     <div className="h-16" />
