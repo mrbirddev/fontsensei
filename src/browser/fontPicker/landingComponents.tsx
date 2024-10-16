@@ -6,11 +6,12 @@ import {FontPickerPageContextOpts} from "@fontsensei/components/fontPickerCommon
 import useEmbedStore from "./embed/useEmbedStore";
 import EmbedModal from "./embed/EmbedModal";
 import {MdOutlineFeedback} from "react-icons/md";
+import {useI18n} from "@fontsensei/locales";
 
-export const extraMenuItems = [
+export const getExtraMenuItems = (t: ReturnType<typeof useI18n>) => [
   {
     icon: <MdOutlineFeedback />,
-    label: "Feedback",
+    label: t("landingMsg.Feedback"),
     href: GITHUB_LINK + "/issues/new",
     target: "_blank",
   },
