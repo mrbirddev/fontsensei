@@ -47,7 +47,7 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
     key={fontItem.family}
     className={cx(
       ITEM_HEIGHT_CLS,
-      "overflow-hidden cursor-pointer rounded-2xl",
+      "overflow-hidden rounded-2xl",
       "hover:shadow-xl hover:bg-white/30",
       "md:p-2"
     )}
@@ -56,10 +56,8 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
     ref={forwardedRef}
     data-itemindex={index}
   >
-    <a
-      href={'https://fonts.google.com/specimen/' + fontItem.family.split(' ').join('+')}
-      target="_blank"
-      className="inline-block h-full w-full"
+    <div
+      className="h-full w-full"
     >
       <div
         className={cx(
@@ -106,7 +104,8 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
       >
         {text}
       </div>
-    </a>
+      {pageCtx?.Toolbar?.({fontItem}) ?? false}
+    </div>
   </div>;
 };
 
