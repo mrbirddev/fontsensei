@@ -7,6 +7,13 @@ type FontDetails = {
 
 export type Font = Record<string, FontDetails>;
 
+export type AxesItem = {
+  type: 'opsz' | 'wght' | 'YTLC' | 'wdth';
+  min: number;
+  max: number;
+  defaultValue: number;
+}
+
 export interface FontMetadata {
   family: string;
   displayName: string | null;
@@ -16,7 +23,7 @@ export interface FontMetadata {
   size: number;
   subsets: string[];
   fonts: Font;
-  axes: any[];
+  axes: AxesItem[];
   designers: string[];
   lastModified: string;
   dateAdded: string;
@@ -30,5 +37,10 @@ export interface FontMetadata {
   primaryLanguage: string;
   isOpenSource: boolean;
   isBrandFont: boolean;
+}
+
+export interface FontMetadataReduced {
+  defaultSuffix: string;
+  designers: string[];
 }
 

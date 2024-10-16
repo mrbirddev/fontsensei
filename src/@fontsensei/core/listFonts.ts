@@ -1,5 +1,5 @@
 import {type FSFontFilterOptions, type FSFontItem} from "./types";
-import getMetadata from "@fontsensei/core/getMetadata";
+import getMetadata, {reduceMetadata} from "@fontsensei/core/getMetadata";
 import invariant from "tiny-invariant";
 
 const ENABLE_CACHE = process.env.NODE_ENV !== 'production';
@@ -14,7 +14,7 @@ const toFontItemList = async (jsonObj: object) => {
     list.push({
       family: fontName,
       tags: (jsonObj as Record<string, string[]>)[fontName],
-      metadata,
+      metadata: reduceMetadata(metadata),
     } as FSFontItem);
   }
   return list;

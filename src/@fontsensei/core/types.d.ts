@@ -1,9 +1,9 @@
-import {FontMetadata} from "@fontsensei/data/raw/googleFonts";
+import {FontMetadataReduced} from "@fontsensei/data/raw/googleFonts";
 
 export interface FSFontItem {
   family: string;
   tags: string[];
-  metadata: FontMetadata;
+  metadata: FontMetadataReduced;
 }
 
 export interface FSFontFilterOptions {
