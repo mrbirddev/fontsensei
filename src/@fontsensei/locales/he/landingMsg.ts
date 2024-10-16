@@ -4,6 +4,7 @@ export default {
   "Copy": "העתק",
   "Copied": "הועתק",
   "Embed": "הטמע",
-  "Embed code in the <head> of your html": "קוד הטמעה בתוך תגית <head> של ה-HTML שלך",
-  "More tags": "תגיות נוספות"
+  "Embed code in the <head> of your html": "קוד הטמעה בתוך ה-<head> של ה-HTML שלך",
+  "More tags": "עוד תגיות",
+  "Filter by font family": "סנן לפי משפחת פונטים"
 } as const;

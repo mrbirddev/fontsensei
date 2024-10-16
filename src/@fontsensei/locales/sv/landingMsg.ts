@@ -4,6 +4,7 @@ export default {
   "Copy": "Kopiera",
   "Copied": "Kopierad",
   "Embed": "Bädda in",
-  "Embed code in the <head> of your html": "Bädda in koden i <head> på din html",
-  "More tags": "Fler taggar"
+  "Embed code in the <head> of your html": "Bädda in kod i <head> av din html",
+  "More tags": "Fler taggar",
+  "Filter by font family": "Filtrera efter typsnittsfamilj"
 } as const;

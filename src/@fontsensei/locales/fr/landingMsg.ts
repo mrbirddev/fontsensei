@@ -5,5 +5,6 @@ export default {
   "Copied": "Copié",
   "Embed": "Intégrer",
   "Embed code in the <head> of your html": "Code d'intégration dans la <head> de votre html",
-  "More tags": "Plus d'étiquettes"
+  "More tags": "Plus d'étiquettes",
+  "Filter by font family": "Filtrer par famille de polices"
 } as const;

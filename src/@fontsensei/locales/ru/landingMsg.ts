@@ -5,5 +5,6 @@ export default {
   "Copied": "Скопировано",
   "Embed": "Встроить",
   "Embed code in the <head> of your html": "Код встраивания в <head> вашего html",
-  "More tags": "Больше тегов"
+  "More tags": "Больше тегов",
+  "Filter by font family": "Фильтровать по семейству шрифтов"
 } as const;

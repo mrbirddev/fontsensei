@@ -4,6 +4,7 @@ export default {
   "Copy": "Salin",
   "Copied": "Disalin",
   "Embed": "Sematkan",
-  "Embed code in the <head> of your html": "Kode sematan di bagian <head> html Anda",
-  "More tags": "Lebih banyak tag"
+  "Embed code in the <head> of your html": "Kode sematan di bagian <head> dari html Anda",
+  "More tags": "Lebih banyak tag",
+  "Filter by font family": "Filter berdasarkan keluarga font"
 } as const;

@@ -5,5 +5,6 @@ export default {
   "Copied": "Gekopieerd",
   "Embed": "Insluiten",
   "Embed code in the <head> of your html": "Insluitcode in de <head> van je html",
-  "More tags": "Meer tags"
+  "More tags": "Meer tags",
+  "Filter by font family": "Filteren op lettertypefamilie"
 } as const;

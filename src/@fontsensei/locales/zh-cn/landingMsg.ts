@@ -4,6 +4,7 @@ export default {
   "Copy": "复制",
   "Copied": "已复制",
   "Embed": "嵌入",
-  "Embed code in the <head> of your html": "将嵌入代码放入您的 HTML 的 <head> 部分",
-  "More tags": "更多标签"
+  "Embed code in the <head> of your html": "将嵌入代码放入您的 html 的 <head> 部分",
+  "More tags": "更多标记",
+  "Filter by font family": "按字体系列筛选"
 } as const;
