@@ -1,17 +1,22 @@
 import {type FSFontFilterOptions, type FSFontItem} from "./types";
+import getMetadata from "@fontsensei/core/getMetadata";
+import invariant from "tiny-invariant";
 
 const ENABLE_CACHE = process.env.NODE_ENV !== 'production';
 let _serverCache = undefined as FSFontItem[] | undefined;
 let _clientCache = undefined as FSFontItem[] | undefined;
 
-const toFontItemList = (jsonObj: object) => {
+const toFontItemList = async (jsonObj: object) => {
   const list = [] as FSFontItem[];
-  Object.keys(jsonObj).forEach((fontName) => {
+  for (const fontName of Object.keys(jsonObj)) {
+    const metadata = await getMetadata(fontName);
+    invariant(metadata);
     list.push({
       family: fontName,
       tags: (jsonObj as Record<string, string[]>)[fontName],
+      metadata,
     } as FSFontItem);
-  });
+  }
   return list;
 };
 
@@ -41,7 +46,7 @@ const listFonts = async (opts: FSFontFilterOptions) => {
 
     // reading the file from public/merged.json on server side,
     const mod = await import(`../../../public/data/tagsByName.json`);
-    const list = toFontItemList(mod.default);
+    const list = await toFontItemList(mod.default);
 
     if (ENABLE_CACHE) {
       _serverCache = list;

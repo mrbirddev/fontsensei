@@ -54,6 +54,7 @@ const TAGS_BY_NAME_FILE = 'tagsByName.json';
 const COUNT_BY_TAGS_FILE = 'countByTags.json';
 const FIRST_FONT_BY_TAGS_FILE = 'firstFontByTags.json';
 const LANGUAGE_SPECIFIC_TAGS = 'languageSpecificTags.json';
+const METADATA_RECORD = 'metadataRecord.json';
 
 // Function to read JSON data
 const readJsonFontData = (filePath: string): Promise<FontData> => {
@@ -81,6 +82,11 @@ const mergeData = async () => {
   try {
     const googleApiRes = await readRawJson(googleApiResPath) as {familyMetadataList: FontMetadata[]};
     const familiesFromGoogle = googleApiRes.familyMetadataList.map(row => row.family);
+    const metadataRecord = {} as Record<string, FontMetadata>;
+    googleApiRes.familyMetadataList.forEach(row => {
+      metadataRecord[row.family] = row;
+    });
+
     const fontFamilyTags = await readJsonFontData(jsonFilePath);
 
     const tagsHardCoded = await readJsonFontData(tagsHardCodedPath);
@@ -187,6 +193,7 @@ const mergeData = async () => {
     fs.writeFileSync(outputDirWithSlash + COUNT_BY_TAGS_FILE, JSON.stringify(countByTags, null, 2), 'utf-8');
     fs.writeFileSync(outputDirWithSlash + FIRST_FONT_BY_TAGS_FILE, JSON.stringify(firstFontByTags, null, 2), 'utf-8');
     fs.writeFileSync(outputDirWithSlash + LANGUAGE_SPECIFIC_TAGS, JSON.stringify(languageSpecificTags, null, 2), 'utf-8');
+    fs.writeFileSync(outputDirWithSlash + METADATA_RECORD, JSON.stringify(metadataRecord, null, 2), 'utf-8');
     console.log('Data successfully merged and written!');
 
     console.log(
