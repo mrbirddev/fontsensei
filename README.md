@@ -76,10 +76,6 @@ Check the data on UI ->
 - [바탕 (Batang)](https://fontsensei.com/ko/tag/batang)
 - [송을씨체 (Songeulssi)](https://fontsensei.com/ko/tag/songeulssi)
 - [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
-- [픽셀체 (Piksellche)](https://fontsensei.com/ko/tag/piksellche)
-- [고전체 (Gojeonche)](https://fontsensei.com/ko/tag/gojeonche)
-- [탈네모 (Talnemo)](https://fontsensei.com/ko/tag/talnemo)
 - [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
 - [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
-- [궁서체 (Gungsuhche)](https://fontsensei.com/ko/tag/gungsuhche)
 
