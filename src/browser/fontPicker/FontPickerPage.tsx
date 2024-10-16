@@ -54,6 +54,7 @@ export type MenuItem = {
 };
 export type NavbarContextOpts = {
   shouldHide?: boolean;
+  noSwitchLocaleHint?: boolean;
   extraLeftNode?: ReactNode;
   extraMenuItems?: MenuItem[];
 } | undefined;
@@ -177,7 +178,7 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
       </div>
     </div>
     <ChooseLocaleModal isOpen={localeModalOpen} setOpen={setLocaleModalOpen} />
-    <SwitchLocaleHint />
+    {navbarContext?.noSwitchLocaleHint && <SwitchLocaleHint />}
   </>
 };
 const LandingLayout = (props: PropsWithChildren & {
