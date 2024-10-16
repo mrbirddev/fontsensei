@@ -35,6 +35,7 @@ import {FaTag} from "react-icons/fa6";
 import MobileOnlyModal from "@fontsensei/components/modal/MobileOnlyModal";
 import useEmbedStore from "./embed/useEmbedStore";
 import EmbedModal from "./embed/EmbedModal";
+import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 
 const PAGE_SIZE = 10;
 
@@ -89,7 +90,7 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
     ];
   }, [lang, router.pathname, navbarContext?.extraMenuItems, preferredLocale]);
 
-  const pickerBasePath = useMemo(() => getPickerBasePathFromPath(router.asPath), [router.asPath]);
+  const pickerBasePath = useContext(FontPickerPageContext)?.basePath ?? "";
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -324,7 +325,7 @@ const FontPickerPage = (props: PageProps) => {
     });
   }, [tagValue, filterText]);
 
-  const pickerBasePath = useMemo(() => getPickerBasePathFromPath(router.asPath), [router.asPath]);
+  const pickerBasePath = useContext(FontPickerPageContext)?.basePath ?? "";
 
   const titlePrefix = tagDisplayName
     ? (

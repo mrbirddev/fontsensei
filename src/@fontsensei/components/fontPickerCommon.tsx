@@ -6,6 +6,7 @@ export type FontPickerPageContextOpts =  {
   onAddTag?: (family: string) => void;
   onRemoveTag?: (family: string) => void;
   Toolbar?: (props: {fontItem: FSFontItem}) => ReactNode;
+  basePath?: string;
 } | undefined;
 
 export const FontPickerPageContext = React.createContext<FontPickerPageContextOpts>(undefined);
