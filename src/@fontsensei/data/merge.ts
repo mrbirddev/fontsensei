@@ -31,12 +31,14 @@ import { fileURLToPath } from 'url';
 import {uniq} from "lodash-es";
 import {tagToUrlSlug} from "../utils";
 import languageSpecificTags from "@fontsensei/data/raw/fontSensei/languageSpecificTags";
+import {readRawJson} from "@fontsensei/data/utils";
+import {FontMetadata} from "@fontsensei/data/raw/googleFonts";
 type FontData = Record<string, string[] | undefined>;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const googleCsvFilePath = path.join(__dirname, './raw/googleFonts/families.csv');
+const googleApiResPath = path.join(__dirname, './raw/googleFonts/fonts.json');
 const jsonFilePath = path.join(__dirname, './raw/fontLibrary/families.json');
 const tagsJapanesePath = path.join(__dirname, './raw/fontSensei/step2-generated/tags-japanese.json');
 const tagsChineseSimplifiedPath = path.join(__dirname, './raw/fontSensei/step2-generated/tags-chinese-simplified.json');
@@ -54,7 +56,7 @@ const FIRST_FONT_BY_TAGS_FILE = 'firstFontByTags.json';
 const LANGUAGE_SPECIFIC_TAGS = 'languageSpecificTags.json';
 
 // Function to read JSON data
-const readJSON = (filePath: string): Promise<FontData> => {
+const readJsonFontData = (filePath: string): Promise<FontData> => {
   return new Promise((resolve, reject) => {
     fs.readFile(filePath, 'utf-8', (err, data) => {
       if (err) {
@@ -70,25 +72,6 @@ const readJSON = (filePath: string): Promise<FontData> => {
   });
 };
 
-// Function to parse CSV and extract family names
-const parseCSV = (filePath: string): Promise<Set<string>> => {
-  return new Promise((resolve, reject) => {
-    const families = new Set<string>();
-
-    fs.createReadStream(filePath)
-      .pipe(csvParser())
-      .on('data', (row) => {
-        families.add(row.Family);
-      })
-      .on('end', () => {
-        resolve(families);
-      })
-      .on('error', (error) => {
-        reject(error);
-      });
-  });
-};
-
 // Main function to merge data and write to output
 const matched: Record<string, true> = {};
 
@@ -96,12 +79,13 @@ const countByTags = {} as Record<string, number>;
 const firstFontByTags = {} as Record<string, string>;
 const mergeData = async () => {
   try {
-    const familiesFromGoogle = await parseCSV(googleCsvFilePath);
-    const fontFamilyTags = await readJSON(jsonFilePath);
+    const googleApiRes = await readRawJson(googleApiResPath) as {familyMetadataList: FontMetadata[]};
+    const familiesFromGoogle = googleApiRes.familyMetadataList.map(row => row.family);
+    const fontFamilyTags = await readJsonFontData(jsonFilePath);
 
-    const tagsHardCoded = await readJSON(tagsHardCodedPath);
+    const tagsHardCoded = await readJsonFontData(tagsHardCodedPath);
 
-    const tagsJapanese_raw = await readJSON(tagsJapanesePath);
+    const tagsJapanese_raw = await readJsonFontData(tagsJapanesePath);
     const tagsJapanese = Object.fromEntries(Object.entries(tagsJapanese_raw).map(([k, v]) => {
       return [k, ['lang_ja', ...v ?? [], ...tagsHardCoded[k] ?? []]];
     }));
@@ -109,7 +93,7 @@ const mergeData = async () => {
       Object.entries(tagsJapanese).map(([k, v]) => v).flat()
     );
 
-    const tagsChineseSimplified_raw = await readJSON(tagsChineseSimplifiedPath);
+    const tagsChineseSimplified_raw = await readJsonFontData(tagsChineseSimplifiedPath);
     const tagsChineseSimplified = Object.fromEntries(Object.entries(tagsChineseSimplified_raw).map(([k, v]) => {
       return [k, ['lang_zh-hans', ...v ?? [], ...tagsHardCoded[k] ?? []]];
     }));
@@ -117,7 +101,7 @@ const mergeData = async () => {
       Object.entries(tagsChineseSimplified).map(([k, v]) => v).flat()
     );
 
-    const tagsChineseTraditional_raw = await readJSON(tagsChineseTraditionalPath);
+    const tagsChineseTraditional_raw = await readJsonFontData(tagsChineseTraditionalPath);
     const tagsChineseTraditional = Object.fromEntries(Object.entries(tagsChineseTraditional_raw).map(([k, v]) => {
       return [k, ['lang_zh-hant', ...v ?? [], ...tagsHardCoded[k] ?? []]];
     }));
@@ -125,7 +109,7 @@ const mergeData = async () => {
       Object.entries(tagsChineseTraditional).map(([k, v]) => v).flat()
     );
 
-    const tagsKorean_raw = await readJSON(tagsKoreanPath);
+    const tagsKorean_raw = await readJsonFontData(tagsKoreanPath);
     const tagsKorean = Object.fromEntries(Object.entries(tagsKorean_raw).map(([k, v]) => {
       return [k, ['lang_ko',...v ?? [], ...tagsHardCoded[k] ?? []]];
     }));
