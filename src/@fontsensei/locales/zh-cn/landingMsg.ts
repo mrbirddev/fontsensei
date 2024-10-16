@@ -1,6 +1,8 @@
 export default {
   "Google fonts tagged {tagName}": "Google 字体标记为 {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "由 Google 字体提供的带有 {tagValue} 标记的免费字体",
+  "Free font tagged {tagValue} provided by Google fonts": "由 Google 字体提供的带有标记 {tagValue} 的免费字体",
+  "Feedback": "反馈",
+  "Select": "选择",
   "Copy": "复制",
   "Copied": "已复制",
   "Embed": "嵌入",

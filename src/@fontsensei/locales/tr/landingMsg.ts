@@ -1,6 +1,8 @@
 export default {
   "Google fonts tagged {tagName}": "Google fontları etiketlendi {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "Google fontları tarafından sağlanan ücretsiz font etiketli {tagValue}",
+  "Free font tagged {tagValue} provided by Google fonts": "Google fontları tarafından sağlanan ücretsiz font etiketlendi {tagValue}",
+  "Feedback": "Geribildirim",
+  "Select": "Seç",
   "Copy": "Kopyala",
   "Copied": "Kopyalandı",
   "Embed": "Göm",
