@@ -5,8 +5,15 @@ import {FaExternalLinkAlt} from "react-icons/fa";
 import {FontPickerPageContextOpts} from "@fontsensei/components/fontPickerCommon";
 import useEmbedStore from "./embed/useEmbedStore";
 import EmbedModal from "./embed/EmbedModal";
+import {MdOutlineFeedback} from "react-icons/md";
 
 export const extraMenuItems = [
+  {
+    icon: <MdOutlineFeedback />,
+    label: "Feedback",
+    href: GITHUB_LINK + "/issues/new",
+    target: "_blank",
+  },
   {
     icon: <FaGithub />,
     label: "GitHub",
