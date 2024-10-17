@@ -11,8 +11,8 @@ import {FaPlus, FaXmark} from "react-icons/fa6";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 import {PRODUCT_NAME} from "../../browser/productConstants";
 
-const ITEM_HEIGHT = 140;
-const ITEM_HEIGHT_CLS = 'h-[140px]';
+const ITEM_HEIGHT = 180;
+const ITEM_HEIGHT_CLS = 'h-[180px]';
 
 // add a function onOuterWheel to window typing
 declare global {
@@ -122,7 +122,7 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
         })}
       </div>
       <div
-        className="text-4xl rounded px-2 "
+        className="text-4xl rounded py-4"
         style={{
           fontFamily: `"${fontItem.family}"`,
           whiteSpace: 'nowrap',
