@@ -292,7 +292,7 @@ const FontPickerPage = (props: PageProps) => {
   useEffect(() => {
     const id = setTimeout(() => {
       setDebouncedFilterText(filterText);
-    }, 1000);
+    }, 500);
     return () => clearTimeout(id);
   }, [filterText]);
 
