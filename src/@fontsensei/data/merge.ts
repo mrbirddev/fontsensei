@@ -32,7 +32,8 @@ import {uniq} from "lodash-es";
 import {tagToUrlSlug} from "../utils";
 import languageSpecificTags from "@fontsensei/data/raw/fontSensei/languageSpecificTags";
 import {readRawJson} from "@fontsensei/data/utils";
-import {FontMetadata} from "@fontsensei/data/raw/googleFonts";
+import {FontMetadata, FontMetadataReduced} from "@fontsensei/data/raw/googleFonts";
+import {reduceMetadata} from "@fontsensei/core/getMetadata";
 type FontData = Record<string, string[] | undefined>;
 
 const __filename = fileURLToPath(import.meta.url);
@@ -82,9 +83,9 @@ const mergeData = async () => {
   try {
     const googleApiRes = await readRawJson(googleApiResPath) as {familyMetadataList: FontMetadata[]};
     const familiesFromGoogle = googleApiRes.familyMetadataList.map(row => row.family);
-    const metadataRecord = {} as Record<string, FontMetadata>;
+    const metadataRecord = {} as Record<string, FontMetadataReduced>;
     googleApiRes.familyMetadataList.forEach(row => {
-      metadataRecord[row.family] = row;
+      metadataRecord[row.family] = reduceMetadata(row);
     });
 
     const fontFamilyTags = await readJsonFontData(jsonFilePath);
