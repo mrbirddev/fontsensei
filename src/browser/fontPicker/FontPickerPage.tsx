@@ -446,7 +446,7 @@ const FontPickerPage = (props: PageProps) => {
             "py-4 flex-1 h-full overflow-scroll"
           )}>
             <input
-              className="h-12 mb-4 input input-bordered w-full bg-transparent"
+              className="h-12 mb-4 input input-bordered w-full placeholder-black/50 bg-white/20 focus:outline-none shadow-md focus:shadow-lg"
               value={filterText}
               onChange={e => {
                 setFilterText(e.target.value);
