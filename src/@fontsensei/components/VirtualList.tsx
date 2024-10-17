@@ -10,10 +10,9 @@ import {cx} from "@emotion/css";
 import {FaPlus, FaXmark} from "react-icons/fa6";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 import {PRODUCT_NAME} from "../../browser/productConstants";
-import {useRouter} from "next/router";
 
-const ITEM_HEIGHT = 180;
-const ITEM_HEIGHT_CLS = 'h-[180px]';
+const ITEM_HEIGHT = 200;
+const ITEM_HEIGHT_CLS = 'h-[200px]';
 
 // add a function onOuterWheel to window typing
 declare global {
@@ -100,13 +99,25 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
         <span className="font-bold badge badge-neutral badge-lg">
           {fontItem.family}
         </span>
+        <span className="text-lg text-gray">
+          {fontItem.metadata.variants.length} Variant(s)
+        </span>
+        <span className="text-lg text-gray">
+          {fontItem.metadata.axes.length} Axes
+        </span>
+      </div>
+      <div
+        className={cx(
+          "text-xl",
+          "flex items-center justify-start gap-1 mb-2"
+        )}>
         {pageCtx?.onAddTag && <span
             className="badge badge-ghost bg-white/30 hover:bg-white/70"
             onClick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-            pageCtx?.onAddTag?.(fontItem.family);
-          }}>
+              e.stopPropagation();
+              e.preventDefault();
+              pageCtx?.onAddTag?.(fontItem.family);
+            }}>
             <FaPlus />
         </span>}
         {fontItem.tags.map((tag) => {
@@ -122,6 +133,7 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
           </span>;
         })}
       </div>
+      {pageCtx?.Toolbar?.({fontItem}) ?? false}
       <div
         className="text-4xl rounded py-4"
         style={{
@@ -132,7 +144,6 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
       >
         {text}
       </div>
-      {pageCtx?.Toolbar?.({fontItem}) ?? false}
     </div>
   </div>;
 };

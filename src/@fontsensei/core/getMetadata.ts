@@ -42,6 +42,7 @@ export const reduceMetadata = (metadata: FontMetadata) => {
   return {
     defaultSuffix,
     variants,
+    axes: metadata.axes,
     designers: metadata.designers,
   } as FontMetadataReduced;
 }
