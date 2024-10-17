@@ -43,6 +43,7 @@ interface PageProps {
   initialFontItemList: FSFontItem[];
   countByTags: Record<string, number>;
   firstFontByTags: Record<string, string>;
+  placeholderText: string | undefined;
 }
 
 export type MenuItem = {
@@ -458,7 +459,13 @@ const FontPickerPage = (props: PageProps) => {
               />
             </div>
             <div className="h-[calc(100%-4rem)]">
-              {!loading && <VirtualList tagValue={tagValue} filterText={debouncedFilterText} initialFontItemList={initialFontItemList} pageSize={PAGE_SIZE}/>}
+              {!loading && <VirtualList
+                  tagValue={tagValue}
+                  filterText={debouncedFilterText}
+                  initialFontItemList={initialFontItemList}
+                  placeholderText={props.placeholderText}
+                  pageSize={PAGE_SIZE}
+              />}
               {loading && <span className="loading loading-bars loading-sm"/>}
             </div>
           </div>
@@ -495,6 +502,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       locale: await getLocaleContent(context.locale),
       countByTags: await import("../../../public/data/countByTags.json").then(res => res.default as Record<string, number>),
       firstFontByTags: await import("../../../public/data/firstFontByTags.json").then(res => res.default as Record<string, string>),
+      placeholderText: context.query.text as string | undefined,
     } as PageProps
   };
 };

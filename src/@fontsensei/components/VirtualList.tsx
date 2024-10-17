@@ -10,6 +10,7 @@ import {cx} from "@emotion/css";
 import {FaPlus, FaXmark} from "react-icons/fa6";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 import {PRODUCT_NAME} from "../../browser/productConstants";
+import {useRouter} from "next/router";
 
 const ITEM_HEIGHT = 180;
 const ITEM_HEIGHT_CLS = 'h-[180px]';
@@ -153,8 +154,15 @@ const VirtualList = ({
   tagValue,
   filterText,
   initialFontItemList,
+  placeholderText,
   pageSize,
-}: { tagValue: string, initialFontItemList: FSFontItem[], pageSize: number, filterText: string }) => {
+}: {
+  tagValue: string,
+  placeholderText: string | undefined;
+  initialFontItemList: FSFontItem[],
+  pageSize: number,
+  filterText: string
+}) => {
   const [list, setList] = useState([
     ...initialFontItemList,
     {
@@ -188,10 +196,10 @@ const VirtualList = ({
 
   const tProduct = useScopedI18n('product');
   const lorem = tProduct('description', {productName: PRODUCT_NAME});
-  const [text, setText] = useState(lorem);
+  const [text, setText] = useState(placeholderText ?? lorem);
   useEffect(() => {
-    setText(lorem);
-  }, [lorem]);
+    setText(placeholderText ?? lorem);
+  }, [lorem, placeholderText]);
 
   useEffect(() => {
     const update = (start: number, count: number) => {
