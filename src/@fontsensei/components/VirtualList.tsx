@@ -194,16 +194,18 @@ const VirtualList = ({
   }, [lorem]);
 
   useEffect(() => {
-    // throttle makes more sense because the user may be scrolling
-    // continuously & slowly. debounce will never trigger.
-    const delayedUpdate = throttle((start, count) => {
+    const update = (start: number, count: number) => {
       setConfigList(
         list.slice(
           start,
           start + count,
         ).map(fontItem => ({name: fontItem.family, text: text})),
       );
-    }, 1000);
+    };
+
+    // throttle makes more sense because the user may be scrolling
+    // continuously & slowly. debounce will never trigger.
+    const delayedUpdate = throttle(update, 1000);
     window.onOuterWheel = (el) => {
       if (!el) {
         return;
@@ -218,8 +220,9 @@ const VirtualList = ({
       delayedUpdate(start, count);
     }
 
+    const ssrOuter = document.querySelector('#ssr-outer') ;
     window.onOuterWheel(
-      document.querySelector('#outer')
+      (ssrOuter as HTMLDivElement | null) ?? document.querySelector('#outer')
     );
   }, [list, text]);
 
@@ -230,7 +233,7 @@ const VirtualList = ({
 
   return <div className="relative h-full w-full">
     <GoogleFontHeaders preConnect={false} configList={configList} strategy="block"/>
-    {!isClient && <>
+    {!isClient && <div id="ssr-outer">
       {initialFontItemList.map((fontItem) => (
         <Row
           key={fontItem.family}
@@ -241,7 +244,7 @@ const VirtualList = ({
           forwardedRef={() => void 0}
         />
       ))}
-    </>}
+    </div>}
     {isClient && <AutoSizer>
       {({height, width}) => (
         <List
