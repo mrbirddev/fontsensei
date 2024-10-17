@@ -163,7 +163,10 @@ const VirtualList = ({
     } as unknown as FSFontItem
   ]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
+    setIsLoading(true);
     void listFonts({
       filterText,
       tagValue,
@@ -177,6 +180,7 @@ const VirtualList = ({
           tags: [],
         } as unknown as FSFontItem
       ]);
+      setIsLoading(false);
     });
   }, [tagValue, filterText, initialFontItemList]);
 
@@ -191,7 +195,7 @@ const VirtualList = ({
 
   useEffect(() => {
     // throttle makes more sense because the user may be scrolling
-    // continously & slowly. debounce will never trigger.
+    // continuously & slowly. debounce will never trigger.
     const delayedUpdate = throttle((start, count) => {
       setConfigList(
         list.slice(
@@ -224,9 +228,9 @@ const VirtualList = ({
     setIsClient(true);
   }, []);
 
-  return <>
+  return <div className="relative h-full w-full">
     <GoogleFontHeaders preConnect={false} configList={configList} strategy="block"/>
-    {!isClient && <div>
+    {!isClient && <>
       {initialFontItemList.map((fontItem) => (
         <Row
           key={fontItem.family}
@@ -237,7 +241,7 @@ const VirtualList = ({
           forwardedRef={() => void 0}
         />
       ))}
-    </div>}
+    </>}
     {isClient && <AutoSizer>
       {({height, width}) => (
         <List
@@ -252,7 +256,10 @@ const VirtualList = ({
         </List>
       )}
     </AutoSizer>}
-  </>;
+    {isLoading && <div className="absolute inset-0 flex items-center justify-center bg-white/10">
+      <span className="loading loading-bars" />
+    </div>}
+  </div>;
 };
 
 export default VirtualList;
