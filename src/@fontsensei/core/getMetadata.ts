@@ -6,27 +6,42 @@ let _serverCache = undefined as Record<string, FontMetadata> | undefined;
 let _clientCache = undefined as Record<string, FontMetadata> | undefined;
 
 export const reduceMetadata = (metadata: FontMetadata) => {
+  const variants = Object.keys(metadata.fonts);
   const hasItalic = Object.keys(metadata.fonts).some(font => font.indexOf('i') >= 0);
   const opticalSize = metadata.axes.find(v => v.tag === "opsz");
   const weight = metadata.axes.find(v => v.tag === "wght");
 
   let defaultSuffix = '';
   const axesRawData = compact([opticalSize, weight]);
-  const axesTypeString = axesRawData.map(v => v.tag).join(',');
-  const axesRangeString = axesRawData.map(v => v.min + '..' + v.max).join(',');
-  if (hasItalic) {
-    const commaOptional = axesRawData.length ? ',' : '';
-    defaultSuffix = `:ital${commaOptional}${axesTypeString}@0${commaOptional}${axesRangeString};1${commaOptional}${axesRangeString}`;
-  } else {
-    if (axesRawData.length) {
-      defaultSuffix = `:${axesTypeString}@${axesRangeString}`;
+  if (axesRawData.length) {
+    const axesTypeString = axesRawData.map(v => v.tag).join(',');
+    const axesRangeString = axesRawData.map(v => v.min + '..' + v.max).join(',');
+    if (hasItalic) {
+      defaultSuffix = `:ital,${axesTypeString}@0,${axesRangeString};1,${axesRangeString}`;
     } else {
-      // do nothing. no suffix
+      defaultSuffix = `:${axesTypeString}@${axesRangeString}`;
+    }
+  } else {
+    // not a variable font? For example Poppins
+
+    // Javascript objects are in fact ordered
+    // https://stackoverflow.com/a/31102605/1922857
+    if (variants.length > 1) {
+      if (hasItalic) {
+        defaultSuffix = ':ital,wght@' + variants.map((v) => {
+          if (v.endsWith('i')) {
+            return '1,' + v.substring(0, v.length - 1);
+          }
+
+          return '0,' + v;
+        }).join(';');
+      }
     }
   }
 
   return {
     defaultSuffix,
+    variants,
     designers: metadata.designers,
   } as FontMetadataReduced;
 }
