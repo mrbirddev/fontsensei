@@ -1,28 +1,6 @@
 import {type LocaleStr, narrowLocaleString} from "@nextutils/locales";
 import {PRODUCT_DOMAIN} from "@nextutils/config";
-
-export const defaultLocale = {"locale": "en", "lang": "English"} as const;
-
-// extracted wordpress.com
-const locales = [
-  defaultLocale,
-  {"locale": "es", "lang": "Español"},
-  {"locale": "pt-br", "lang": "Português do Brasil"},
-  {"locale": "de", "lang": "Deutsch"},
-  {"locale": "fr", "lang": "Français"},
-  {"locale": "he", "lang": "עִבְרִית"},
-  {"locale": "ja", "lang": "日本語"},
-  {"locale": "it", "lang": "Italiano"},
-  {"locale": "nl", "lang": "Nederlands"},
-  {"locale": "ru", "lang": "Русский"},
-  {"locale": "tr", "lang": "Türkçe"},
-  {"locale": "id", "lang": "Bahasa Indonesia"},
-  {"locale": "zh-cn", "lang": "简体中文"},
-  {"locale": "zh-tw", "lang": "繁體中文"},
-  {"locale": "ko", "lang": "한국어"},
-  {"locale": "ar", "lang": "العربية"},
-  {"locale": "sv", "lang": "Svenska"}
-] as const;
+import {locales} from "@nextutils/i18n/constants";
 
 export const langMap = locales.reduce((map, l) => {
   map[l.locale] = l.lang;
@@ -84,6 +62,3 @@ export const getCanonicalUrl = (
     hackAsPath(asPath) === '/' ? '' : hackAsPath(asPath)
   }`
 };
-
-
-export default locales;
