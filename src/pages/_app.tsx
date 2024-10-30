@@ -28,21 +28,17 @@ toast.error = (...args) => originalToastError(args[0], {
   ...args[1],
 });
 
-const HeadElements = (props: {isStaticPage: boolean}) => {
+const getCanonicalPath = (locale: string, asPath: string) => {
+  return `https://${PRODUCT_DOMAIN}${getLocaleUrlPrefix(locale)}${
+    asPath === '/' ? '' : asPath
+  }`
+};
+
+const HeadElements = () => {
   const t = useI18n();
   const currentLocale = useCurrentLocale();
   const router = useRouter();
-  // console.log(router);
-
-    // https://nextjs.org/docs/pages/building-your-application/routing/dynamic-routes
-    // a guard to prevent that I make such mistakes again.
-    invariant(!(props.isStaticPage && router.pathname.indexOf('[') < 0));
-
-    const canonical = `https://${PRODUCT_DOMAIN}${getLocaleUrlPrefix(currentLocale)}${
-      router.pathname === '/'
-       ? ''
-      : router.pathname
-    }`;
+  const canonical = getCanonicalPath(currentLocale, router.asPath);
 
   const seo = <NextSeo
     title={`${PRODUCT_NAME} - ${t('product.slogan')}`}
@@ -60,13 +56,7 @@ const HeadElements = (props: {isStaticPage: boolean}) => {
         ...allLocaleStrList.filter(localeStr => localeStr !== currentLocale).map(localeStr => {
           return {
             hrefLang: localeStr,
-            href: `https://${
-              PRODUCT_DOMAIN
-            }${
-              getLocaleUrlPrefix(localeStr)
-            }${
-              router.pathname === '/' ? '' : router.pathname
-            }`
+            href: getCanonicalPath(localeStr, router.asPath),
           };
         }),
 
@@ -117,10 +107,7 @@ function MyApp({
   return (
     <>
       <I18nProvider locale={pageProps.locale}>
-        <HeadElements isStaticPage={
-          // @ts-expect-error - Component is NextPage
-          !!Component.getStaticProps
-        } />
+        <HeadElements />
         <LoadingBar
           color="oklch(0.4912 0.3096 275.75)"
           progress={progress}
