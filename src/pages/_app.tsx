@@ -8,17 +8,10 @@ import '@szhsin/react-menu/dist/index.css';
 import React, {useEffect, useState} from "react";
 // import nightwind from "nightwind/helper";
 import Head from "next/head";
-import {PRODUCT_DOMAIN, PRODUCT_NAME} from "../browser/productConstants";
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {allLocaleStrList, I18nProvider, useCurrentLocale, useI18n} from "@fontsensei/locales";
-import {useRouter} from "next/router";
-import LoadingBar from "react-top-loading-bar";
-import {SpeedInsights} from "@vercel/speed-insights/next";
-import {Analytics} from "@vercel/analytics/react"
-import {NextSeo} from "next-seo";
-import {getCanonicalUrl} from "../browser/i18n/locales";
-import _appMiddlewares, {AppFC} from "../shared/_app/_appMiddlewares";
+import _appMiddlewares from "../shared/_app/_appMiddlewares";
+import {AppFC} from "../shared/_app/AppMiddleware";
 
 const originalToastError = toast.error;
 // do not auto close error toasts by default
@@ -26,48 +19,6 @@ toast.error = (...args) => originalToastError(args[0], {
   autoClose: false,
   ...args[1],
 });
-
-const HeadElements = () => {
-  const t = useI18n();
-  const currentLocale = useCurrentLocale();
-  const router = useRouter();
-  const canonical = getCanonicalUrl(currentLocale, router.asPath);
-
-  const seo = <NextSeo
-    title={`${PRODUCT_NAME} - ${t('product.slogan')}`}
-    description={`${PRODUCT_NAME} - ${t('product.slogan')}`}
-    canonical={canonical}
-    openGraph={{
-      type: 'website',
-      locale: currentLocale,
-      url: canonical,
-      siteName: `${PRODUCT_NAME} - ${t('product.slogan')}`,
-      images: [{ url: `https://${PRODUCT_DOMAIN}/icon.png` }]
-    }}
-    languageAlternates={
-      [
-        ...allLocaleStrList.filter(localeStr => localeStr !== currentLocale).map(localeStr => {
-          return {
-            hrefLang: localeStr,
-            href: getCanonicalUrl(localeStr, router.asPath),
-          };
-        }),
-
-        // Use the x-default value for unmatched languages.
-        // The reserved x-default value is used when no other language/region matches the user's browser setting.
-        {hrefLang: 'x-default', href: canonical}
-      ]
-    }
-  />;
-
-  return <>
-    {seo}
-    <Head>
-      <link rel="icon" href="/icon.png"/>
-      {/*<script dangerouslySetInnerHTML={{__html: nightwind.init()}}/>*/}
-    </Head>
-  </>;
-};
 
 const MyApp: AppFC = ({
                  Component,
@@ -78,42 +29,13 @@ const MyApp: AppFC = ({
   // console.log({ pageProps });
   // console.log( appRouter, (appRouter as NextRouter).locale);
 
-  const [progress, setProgress] = useState(0);
-  const router = useRouter();
-
-  useEffect(() => {
-    // START VALUE - WHEN LOADING WILL START
-    router.events.on("routeChangeStart", () => {
-      setProgress(40);
-    });
-
-    // COMPLETE VALUE - WHEN LOADING IS FINISHED
-    router.events.on("routeChangeComplete", () => {
-      setProgress(100);
-    });
-
-    router.events.on("routeChangeError", () => {
-      setProgress(0);
-    });
-  }, []);
-
   return (
     <>
-      <I18nProvider locale={pageProps.locale}>
-        <HeadElements />
-        <LoadingBar
-          color="oklch(0.4912 0.3096 275.75)"
-          progress={progress}
-          waitingTime={400}
-          onLoaderFinished={() => {
-            setProgress(0);
-          }}
-        />
-        <Component {...restPageProps} />
-        <ToastContainer/>
-      </I18nProvider>
-      <SpeedInsights/>
-      <Analytics/>
+      <Head>
+        <link rel="icon" href="/icon.png"/>
+      </Head>
+      <Component {...restPageProps} />
+      <ToastContainer/>
     </>
   );
 };
