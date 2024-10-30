@@ -169,7 +169,7 @@ const VirtualList = ({
   pageSize,
 }: {
   tagValue: string,
-  placeholderText: string | undefined;
+  placeholderText: string | null;
   initialFontItemList: FSFontItem[],
   pageSize: number,
   filterText: string

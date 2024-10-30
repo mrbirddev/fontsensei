@@ -43,7 +43,7 @@ interface PageProps {
   initialFontItemList: FSFontItem[];
   countByTags: Record<string, number>;
   firstFontByTags: Record<string, string>;
-  placeholderText: string | undefined;
+  placeholderText: string | null;
 }
 
 export type MenuItem = {
@@ -502,7 +502,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       locale: await getLocaleContent(context.locale),
       countByTags: await import("../../../public/data/countByTags.json").then(res => res.default as Record<string, number>),
       firstFontByTags: await import("../../../public/data/firstFontByTags.json").then(res => res.default as Record<string, string>),
-      placeholderText: context.query.text as string | undefined,
+      placeholderText: (context.query.text as string | undefined) ?? null,
     } as PageProps
   };
 };
