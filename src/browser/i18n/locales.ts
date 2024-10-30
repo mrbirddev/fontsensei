@@ -48,6 +48,17 @@ export const getCanonicalPath = (
   locale: string,
   asPath: string // use router.asPath
 ) => {
+  return `${
+    locale === fallbackLocale ? '' : '/' + locale
+  }${
+    asPath === '/' ? '' : asPath
+  }`
+}
+
+export const getCanonicalUrl = (
+  locale: string,
+  asPath: string // use router.asPath
+) => {
   return `https://${
     PRODUCT_DOMAIN
   }${

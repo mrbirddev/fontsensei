@@ -18,7 +18,7 @@ import {SpeedInsights} from "@vercel/speed-insights/next";
 import {Analytics} from "@vercel/analytics/react"
 import {NextSeo} from "next-seo";
 import {api} from "../shared/api";
-import {getCanonicalPath} from "../browser/i18n/locales";
+import {getCanonicalUrl} from "../browser/i18n/locales";
 
 const originalToastError = toast.error;
 // do not auto close error toasts by default
@@ -31,7 +31,7 @@ const HeadElements = () => {
   const t = useI18n();
   const currentLocale = useCurrentLocale();
   const router = useRouter();
-  const canonical = getCanonicalPath(currentLocale, router.asPath);
+  const canonical = getCanonicalUrl(currentLocale, router.asPath);
 
   const seo = <NextSeo
     title={`${PRODUCT_NAME} - ${t('product.slogan')}`}
@@ -49,7 +49,7 @@ const HeadElements = () => {
         ...allLocaleStrList.filter(localeStr => localeStr !== currentLocale).map(localeStr => {
           return {
             hrefLang: localeStr,
-            href: getCanonicalPath(localeStr, router.asPath),
+            href: getCanonicalUrl(localeStr, router.asPath),
           };
         }),
 

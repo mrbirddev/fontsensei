@@ -1,5 +1,5 @@
 import React from "react";
-import locales from "./locales";
+import locales, {getCanonicalPath} from "./locales";
 import {useChangeLocale, useScopedI18n} from "@fontsensei/locales";
 import {ModalTitle} from "@fontsensei/components/modal/commonComponents";
 import {useRouter} from "next/router";
@@ -25,7 +25,7 @@ const ChooseLocaleModal = (props: {
             use <a> not next/link because of this bug
             https://github.com/vercel/next.js/issues/72063
           */
-          return <a key={item.locale} className="link link-ghost" href={'/' + item.locale + router.asPath} onClick={() => {
+          return <a key={item.locale} className="link link-ghost" href={getCanonicalPath(item.locale, router.asPath)} onClick={() => {
             useUserPreferencesStore.getState().setLocale(item.locale);
             props.setOpen(false);
           }}>
