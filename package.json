@@ -28,7 +28,7 @@
     "copy-to-clipboard": "^3.3.3",
     "immer": "^10.0.3",
     "lodash-es": "^4.17.21",
-    "next": "^14.1.4",
+    "next": "^15.0.3-canary.1",
     "next-auth": "^4.24.7",
     "next-international": "^1.2.4",
     "next-seo": "^6.5.0",
