@@ -55,6 +55,23 @@ export const getCanonicalPath = (
   }`
 }
 
+// Fix this on vercel
+// https://github.com/vercel/next.js/issues/72063
+export const hackAsPath = (asPath: string) => {
+  let finalPath = asPath;
+  for (const l of locales) {
+    if (asPath.startsWith('/' + l.locale)) {
+      finalPath = finalPath.slice(('/' + l.locale).length);
+      break;
+    }
+  }
+
+  // remove the parameter nxtPslugList
+  finalPath = finalPath.split('?')[0]!;
+
+  return finalPath;
+};
+
 export const getCanonicalUrl = (
   locale: string,
   asPath: string // use router.asPath
@@ -64,7 +81,7 @@ export const getCanonicalUrl = (
   }${
     locale === fallbackLocale ? '' : '/' + locale
   }${
-    asPath === '/' ? '' : asPath
+    hackAsPath(asPath) === '/' ? '' : hackAsPath(asPath)
   }`
 };
 
