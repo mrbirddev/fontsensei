@@ -13,6 +13,8 @@ const ChooseLocaleModal = (props: {
   const tI18nMsg = useScopedI18n('i18nMsg');
   const router = useRouter();
 
+  console.log("ChooseLocaleModal", {asPath: router.asPath});
+
   return (
     <MobileOnlyModal isOpen={props.isOpen} setOpen={props.setOpen}>
       <ModalTitle>
