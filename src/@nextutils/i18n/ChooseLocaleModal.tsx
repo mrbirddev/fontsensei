@@ -6,7 +6,7 @@ import Link from "next/link";
 import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";
 import MobileOnlyModal from "@nextutils/ui/modal/MobileOnlyModal";
 import {ModalTitle} from "@nextutils/ui/modal/commonComponents";
-import {locales} from "@nextutils/i18n/constants";
+import {locales} from "@nextutils/config";
 
 const ChooseLocaleModal = (props: {
   isOpen: boolean,

@@ -1,6 +1,5 @@
 import {type LocaleStr, narrowLocaleString} from "@nextutils/locales";
-import {PRODUCT_DOMAIN} from "@nextutils/config";
-import {locales} from "@nextutils/i18n/constants";
+import {locales, PRODUCT_DOMAIN} from "@nextutils/config";
 
 export const langMap = locales.reduce((map, l) => {
   map[l.locale] = l.lang;
