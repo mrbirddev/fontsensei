@@ -5,7 +5,7 @@ import {
   useChangeLocale,
   useCurrentLocale
 } from "@nextutils/locales";
-import {PRODUCT_NAME} from "../productConstants";
+import {PRODUCT_NAME} from "@nextutils/config";
 import {getPreferredLocaleInBrowser, langMap} from "./locales";
 import {tClient} from "../../shared/api";
 import {type Id, toast} from "react-toastify";

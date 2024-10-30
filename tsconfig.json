@@ -13,6 +13,7 @@
       "@fontsensei/components/*": ["./src/@fontsensei/components/*"],
       "@fontsensei/data/*": ["./src/@fontsensei/data/*"],
       "@nextutils/*": ["./src/@nextutils/*"],
+      "@nextutils/config": ["./nextutils.config.ts"],
     },
 
     /* Strictness */

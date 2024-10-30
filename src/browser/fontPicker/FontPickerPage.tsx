@@ -30,7 +30,7 @@ import {FaTag} from "react-icons/fa6";
 import useEmbedStore from "./embed/useEmbedStore";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 import locales, {langMap} from "@nextutils/i18n/locales";
-import {PRODUCT_NAME} from "@nextutils/productConstants";
+import {PRODUCT_NAME} from "@nextutils/config";
 import ChooseLocaleModal from "@nextutils/i18n/ChooseLocaleModal";
 import SwitchLocaleHint from "@nextutils/i18n/SwitchLocaleHint";
 import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";

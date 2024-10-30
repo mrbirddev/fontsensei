@@ -4,7 +4,7 @@ import {NextSeo} from "next-seo";
 import React from "react";
 import {AppFC, AppMiddleware} from "./AppMiddleware";
 import {getCanonicalUrl} from "@nextutils/i18n/locales";
-import {PRODUCT_DOMAIN, PRODUCT_NAME} from "@nextutils/productConstants";
+import {PRODUCT_DOMAIN, PRODUCT_NAME} from "@nextutils/config";
 
 const i18nLangAltHead: AppMiddleware = (App) => {
   const Augmented: AppFC = (props) => {
