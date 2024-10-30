@@ -78,14 +78,14 @@ const config = {
     // Dangerously allow production builds to successfully complete even if
     // your project has lint errors.
     // !! WARN !!
-    ignoreDuringBuilds: true,
+    // ignoreDuringBuilds: true,
   },
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
     // your project has type errors.
     // !! WARN !!
-    ignoreBuildErrors: true,
+    // ignoreBuildErrors: true,
   },
   /**
    * If you are using `appDir` then you must comment the below `i18n` config out.
