@@ -17,8 +17,8 @@ import LoadingBar from "react-top-loading-bar";
 import {SpeedInsights} from "@vercel/speed-insights/next";
 import {Analytics} from "@vercel/analytics/react"
 import {NextSeo} from "next-seo";
-import {api} from "../shared/api";
 import {getCanonicalUrl} from "../browser/i18n/locales";
+import _appMiddlewares, {AppFC} from "../shared/_app/_appMiddlewares";
 
 const originalToastError = toast.error;
 // do not auto close error toasts by default
@@ -69,10 +69,10 @@ const HeadElements = () => {
   </>;
 };
 
-function MyApp({
+const MyApp: AppFC = ({
                  Component,
                  pageProps,
-               }: AppProps) {
+               }: AppProps) => {
   const {session, ...restPageProps} = pageProps;
   // console.log('_app.tsx ', typeof window === 'undefined' ? 'backend' : 'frontend');
   // console.log({ pageProps });
@@ -118,4 +118,8 @@ function MyApp({
   );
 };
 
-export default api.withTRPC(MyApp);
+const reduced = _appMiddlewares.reduce((acc, fn) => {
+  return fn(acc);
+}, MyApp);
+
+export default reduced;
