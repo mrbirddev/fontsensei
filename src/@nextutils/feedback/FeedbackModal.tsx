@@ -1,6 +1,8 @@
 import React, { useEffect, useRef} from "react";
 import {useI18n, useScopedI18n} from "@nextutils/locales";
 import {useForm} from "react-hook-form";
+import {type Emotion, emotionEmoji, emotionList} from "../../shared/emotion";
+import useFeedbackStore from "./useFeedbackStore";
 import {
   isValidEmail,
   ModalButtons,
@@ -8,9 +10,7 @@ import {
   ModalInput,
   ModalTextarea,
   ModalTitle
-} from "@fontsensei/components/modal/commonComponents";
-import {type Emotion, emotionEmoji, emotionList} from "../../shared/emotion";
-import useFeedbackStore from "./useFeedbackStore";
+} from "@nextutils/ui/modal/commonComponents";
 
 type Inputs = {
   email: string

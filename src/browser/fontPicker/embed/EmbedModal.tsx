@@ -1,12 +1,8 @@
 import React, { useEffect, useRef} from "react";
 import {useI18n, useScopedI18n} from "@nextutils/locales";
-import {
-  ModalButtons,
-  ModalTextarea,
-  ModalTitle
-} from "@fontsensei/components/modal/commonComponents";
 import copyToClipboard from "copy-to-clipboard";
 import {FaCheck, FaCopy} from "react-icons/fa6";
+import {ModalButtons, ModalTextarea} from "@nextutils/ui/modal/commonComponents";
 
 const EmbedModal = (props: {
   content: string;

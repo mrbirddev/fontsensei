@@ -27,7 +27,6 @@ import ProductIcon from "../ProductIcon";
 import {IoLanguage} from "react-icons/io5";
 import {FaBars, FaSearch} from "react-icons/fa";
 import {FaTag} from "react-icons/fa6";
-import MobileOnlyModal from "@fontsensei/components/modal/MobileOnlyModal";
 import useEmbedStore from "./embed/useEmbedStore";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 import locales, {langMap} from "@nextutils/i18n/locales";
@@ -35,6 +34,7 @@ import {PRODUCT_NAME} from "@nextutils/productConstants";
 import ChooseLocaleModal from "@nextutils/i18n/ChooseLocaleModal";
 import SwitchLocaleHint from "@nextutils/i18n/SwitchLocaleHint";
 import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";
+import MobileOnlyModal from "@nextutils/ui/modal/MobileOnlyModal";
 
 const PAGE_SIZE = 10;
 

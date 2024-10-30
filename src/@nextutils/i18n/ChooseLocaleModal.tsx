@@ -1,11 +1,11 @@
 import React from "react";
 import locales, {hackAsPath} from "./locales";
 import {useChangeLocale, useScopedI18n} from "@nextutils/locales";
-import {ModalTitle} from "@fontsensei/components/modal/commonComponents";
 import {useRouter} from "next/router";
-import MobileOnlyModal from "@fontsensei/components/modal/MobileOnlyModal";
 import Link from "next/link";
 import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";
+import MobileOnlyModal from "@nextutils/ui/modal/MobileOnlyModal";
+import {ModalTitle} from "@nextutils/ui/modal/commonComponents";
 
 const ChooseLocaleModal = (props: {
   isOpen: boolean,

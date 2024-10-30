@@ -1,5 +1,5 @@
 import React, {PropsWithChildren} from "react";
-import {ModalTitle} from "@fontsensei/components/modal/commonComponents";
+import {ModalTitle} from "./commonComponents";
 
 const MobileOnlyModal = (props: PropsWithChildren<{
   isOpen: boolean,
