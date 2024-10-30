@@ -24,10 +24,6 @@ const ChooseLocaleModal = (props: {
         {locales.map(item => {
           // the href is for Google spiders
           return <Link key={item.locale} className="link link-ghost" href={router.asPath} locale={item.locale} onClick={(e) => {
-            e.preventDefault();
-
-            // change on the client side instead
-            changeLocale(item.locale);
             useUserPreferencesStore.getState().setLocale(item.locale);
             props.setOpen(false);
           }}>{item.lang}</Link>
