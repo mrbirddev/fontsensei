@@ -1,4 +1,5 @@
 import {type LocaleStr, narrowLocaleString} from "@fontsensei/locales";
+import {PRODUCT_DOMAIN} from "../productConstants";
 
 export const defaultLocale = {"locale": "en", "lang": "English"} as const;
 
@@ -43,12 +44,18 @@ export const getPreferredLocaleInBrowser = () => {
 
 export const fallbackLocale = 'en' as const;
 
-export const getLocaleUrlPrefix = (locale: string) => {
-  if (locale === fallbackLocale) {
-    return '';
-  }
-  return `/${locale}`;
-}
+export const getCanonicalPath = (
+  locale: string,
+  asPath: string // use router.asPath
+) => {
+  return `https://${
+    PRODUCT_DOMAIN
+  }${
+    locale === fallbackLocale ? '' : '/' + locale
+  }${
+    asPath === '/' ? '' : asPath
+  }`
+};
 
 
 export default locales;

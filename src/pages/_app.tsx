@@ -18,8 +18,7 @@ import {SpeedInsights} from "@vercel/speed-insights/next";
 import {Analytics} from "@vercel/analytics/react"
 import {NextSeo} from "next-seo";
 import {api} from "../shared/api";
-import invariant from "tiny-invariant";
-import {getLocaleUrlPrefix} from "../browser/i18n/locales";
+import {getCanonicalPath} from "../browser/i18n/locales";
 
 const originalToastError = toast.error;
 // do not auto close error toasts by default
@@ -27,12 +26,6 @@ toast.error = (...args) => originalToastError(args[0], {
   autoClose: false,
   ...args[1],
 });
-
-const getCanonicalPath = (locale: string, asPath: string) => {
-  return `https://${PRODUCT_DOMAIN}${getLocaleUrlPrefix(locale)}${
-    asPath === '/' ? '' : asPath
-  }`
-};
 
 const HeadElements = () => {
   const t = useI18n();
