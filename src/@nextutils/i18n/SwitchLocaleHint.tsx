@@ -7,9 +7,9 @@ import {
 } from "@nextutils/locales";
 import {PRODUCT_NAME} from "../productConstants";
 import {getPreferredLocaleInBrowser, langMap} from "./locales";
-import useUserPreferencesStore from "../page/useUserPreferencesStore";
 import {tClient} from "../../shared/api";
 import {type Id, toast} from "react-toastify";
+import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";
 
 const SwitchLocaleHint = () => {
   const changeLocale = useChangeLocale();

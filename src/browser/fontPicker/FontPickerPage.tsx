@@ -14,7 +14,6 @@ import {type LocaleStr, type TagValueMsgLabelType, useCurrentLocale, useI18n, us
 import {useRouter} from "next/router";
 import Link from "next/link";
 import Head from "next/head";
-import {GITHUB_LINK, PRODUCT_DOMAIN, PRODUCT_NAME} from "../productConstants";
 import {getLocaleContent} from "../../shared/getStaticPropsLocale";
 import {GoogleFontHeaders} from "@fontsensei/components/GoogleFontHeaders";
 import {compact, debounce, throttle} from "lodash-es";
@@ -25,17 +24,17 @@ import languageSpecificTags from "@fontsensei/data/raw/fontSensei/languageSpecif
 import VirtualList from "@fontsensei/components/VirtualList";
 import {tagToUrlSlug} from "../../@fontsensei/utils";
 import ProductIcon from "../ProductIcon";
-import locales, {langMap} from "../i18n/locales";
-import useUserPreferencesStore from "../page/useUserPreferencesStore";
 import {IoLanguage} from "react-icons/io5";
 import {FaBars, FaSearch} from "react-icons/fa";
-import ChooseLocaleModal from "../i18n/ChooseLocaleModal";
-import SwitchLocaleHint from "../i18n/SwitchLocaleHint";
 import {FaTag} from "react-icons/fa6";
 import MobileOnlyModal from "@fontsensei/components/modal/MobileOnlyModal";
 import useEmbedStore from "./embed/useEmbedStore";
-import EmbedModal from "./embed/EmbedModal";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
+import locales, {langMap} from "@nextutils/i18n/locales";
+import {PRODUCT_NAME} from "@nextutils/productConstants";
+import ChooseLocaleModal from "@nextutils/i18n/ChooseLocaleModal";
+import SwitchLocaleHint from "@nextutils/i18n/SwitchLocaleHint";
+import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";
 
 const PAGE_SIZE = 10;
 

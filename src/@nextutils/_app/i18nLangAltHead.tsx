@@ -1,10 +1,10 @@
 import {allLocaleStrList, useCurrentLocale, useI18n} from "@nextutils/locales";
 import {useRouter} from "next/router";
-import {getCanonicalUrl} from "../../browser/i18n/locales";
 import {NextSeo} from "next-seo";
-import {PRODUCT_DOMAIN, PRODUCT_NAME} from "../../browser/productConstants";
 import React from "react";
 import {AppFC, AppMiddleware} from "./AppMiddleware";
+import {getCanonicalUrl} from "@nextutils/i18n/locales";
+import {PRODUCT_DOMAIN, PRODUCT_NAME} from "@nextutils/productConstants";
 
 const i18nLangAltHead: AppMiddleware = (App) => {
   const Augmented: AppFC = (props) => {

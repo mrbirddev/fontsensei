@@ -1,5 +1,4 @@
 import {FaCode, FaGithub, FaUser} from "react-icons/fa6";
-import {GITHUB_LINK} from "../productConstants";
 import React from "react";
 import {FaExternalLinkAlt} from "react-icons/fa";
 import {FontPickerPageContextOpts} from "@fontsensei/components/fontPickerCommon";
@@ -8,6 +7,7 @@ import EmbedModal from "./embed/EmbedModal";
 import {MdOutlineFeedback} from "react-icons/md";
 import {useI18n} from "@nextutils/locales";
 
+const GITHUB_LINK = "https://github.com/mrbirddev/fontsensei";
 export const getExtraMenuItems = (t: ReturnType<typeof useI18n>) => [
   {
     icon: <MdOutlineFeedback />,

@@ -9,7 +9,7 @@ import {FixedSizeList as List} from "react-window";
 import {cx} from "@emotion/css";
 import {FaPlus, FaXmark} from "react-icons/fa6";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
-import {PRODUCT_NAME} from "../../browser/productConstants";
+import {PRODUCT_NAME} from "@nextutils/productConstants";
 
 const ITEM_HEIGHT = 200;
 const ITEM_HEIGHT_CLS = 'h-[200px]';

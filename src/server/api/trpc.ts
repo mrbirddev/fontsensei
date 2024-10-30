@@ -14,7 +14,7 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 import {type LocaleStr, narrowLocaleString} from "@nextutils/locales";
 import invariant from "tiny-invariant";
-import {fallbackLocale} from "../../browser/i18n/locales";
+import {fallbackLocale} from "@nextutils/i18n/locales";
 
 /**
  * 1. CONTEXT

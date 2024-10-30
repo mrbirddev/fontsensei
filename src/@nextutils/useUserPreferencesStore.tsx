@@ -2,7 +2,7 @@ import {create} from "zustand";
 import {immer} from "zustand/middleware/immer";
 import {mountStoreDevtool} from "simple-zustand-devtools";
 import {type LocaleStr} from "@nextutils/locales";
-import {getPreferredLocaleInBrowser, setPreferredLocaleInBrowser} from "../i18n/locales";
+import {getPreferredLocaleInBrowser, setPreferredLocaleInBrowser} from "@nextutils/i18n/locales";
 interface State {
   locale: LocaleStr | undefined,
   setLocale: (locale: LocaleStr) => void

@@ -53,6 +53,17 @@ const config = {
         "message": "Import styles in _app.tsx only"
       }],
     }],
+
+    "import/no-restricted-paths": ["error",
+      {
+        "zones": [{
+          "target": "./src/@nextutils/**/*",
+          "from": ["./src/browser/**/*"],
+          "except":["./src/@nextutils/**/*"],
+          "message": "Don't use file outside this module, this module might be extracted one day"
+        }],
+      }
+    ],
   },
 
   'settings': {
