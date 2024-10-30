@@ -1,7 +1,7 @@
 import {FontPickerPageContextOpts} from "@fontsensei/components/fontPickerCommon";
 import {FaCode, FaUser} from "react-icons/fa6";
 import React from "react";
-import {useI18n} from "@fontsensei/locales";
+import {useI18n} from "@nextutils/locales";
 
 
 /**

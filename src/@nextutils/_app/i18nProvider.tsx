@@ -1,5 +1,5 @@
 import React from "react";
-import {I18nProvider} from "@fontsensei/locales";
+import {I18nProvider} from "@nextutils/locales";
 import {AppFC, AppMiddleware} from "./AppMiddleware";
 
 const i18nProvider: AppMiddleware = (App) => {

@@ -1,4 +1,4 @@
-import {type LocaleStr, narrowLocaleString} from "@fontsensei/locales";
+import {type LocaleStr, narrowLocaleString} from "@nextutils/locales";
 import {PRODUCT_DOMAIN} from "../productConstants";
 
 export const defaultLocale = {"locale": "en", "lang": "English"} as const;

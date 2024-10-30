@@ -4,7 +4,7 @@ import {
   createTRPCRouter,
   publicProcedure,
 } from "../trpc";
-import {zLocaleStr, allLoadedForServer, type RootDictType} from "@fontsensei/locales";
+import {zLocaleStr, allLoadedForServer, type RootDictType} from "@nextutils/locales";
 
 export const profileRouter = createTRPCRouter({
   loadLocaleRootDict: publicProcedure

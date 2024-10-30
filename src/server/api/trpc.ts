@@ -12,7 +12,7 @@ import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import { type Session } from "next-auth";
 import superjson from "superjson";
 import { ZodError } from "zod";
-import {type LocaleStr, narrowLocaleString} from "@fontsensei/locales";
+import {type LocaleStr, narrowLocaleString} from "@nextutils/locales";
 import invariant from "tiny-invariant";
 import {fallbackLocale} from "../../browser/i18n/locales";
 

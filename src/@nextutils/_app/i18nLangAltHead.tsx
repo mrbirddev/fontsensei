@@ -1,4 +1,4 @@
-import {allLocaleStrList, useCurrentLocale, useI18n} from "@fontsensei/locales";
+import {allLocaleStrList, useCurrentLocale, useI18n} from "@nextutils/locales";
 import {useRouter} from "next/router";
 import {getCanonicalUrl} from "../../browser/i18n/locales";
 import {NextSeo} from "next-seo";

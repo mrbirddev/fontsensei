@@ -6,7 +6,7 @@ import {FontPickerPageContextOpts} from "@fontsensei/components/fontPickerCommon
 import useEmbedStore from "./embed/useEmbedStore";
 import EmbedModal from "./embed/EmbedModal";
 import {MdOutlineFeedback} from "react-icons/md";
-import {useI18n} from "@fontsensei/locales";
+import {useI18n} from "@nextutils/locales";
 
 export const getExtraMenuItems = (t: ReturnType<typeof useI18n>) => [
   {

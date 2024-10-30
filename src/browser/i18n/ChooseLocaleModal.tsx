@@ -1,6 +1,6 @@
 import React from "react";
 import locales, {hackAsPath} from "./locales";
-import {useChangeLocale, useScopedI18n} from "@fontsensei/locales";
+import {useChangeLocale, useScopedI18n} from "@nextutils/locales";
 import {ModalTitle} from "@fontsensei/components/modal/commonComponents";
 import {useRouter} from "next/router";
 import useUserPreferencesStore from "../page/useUserPreferencesStore";

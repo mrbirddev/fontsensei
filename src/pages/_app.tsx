@@ -11,7 +11,7 @@ import Head from "next/head";
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import _appMiddlewares from "../shared/_app/_appMiddlewares";
-import {AppFC} from "../shared/_app/AppMiddleware";
+import {AppFC} from "@nextutils/_app/AppMiddleware";
 
 const originalToastError = toast.error;
 // do not auto close error toasts by default

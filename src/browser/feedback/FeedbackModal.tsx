@@ -1,5 +1,5 @@
 import React, { useEffect, useRef} from "react";
-import {useI18n, useScopedI18n} from "@fontsensei/locales";
+import {useI18n, useScopedI18n} from "@nextutils/locales";
 import {useForm} from "react-hook-form";
 import {
   isValidEmail,

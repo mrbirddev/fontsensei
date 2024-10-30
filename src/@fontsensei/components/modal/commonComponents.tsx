@@ -5,7 +5,7 @@ import React, {
   type PropsWithChildren,
   type ReactNode, type TextareaHTMLAttributes
 } from "react";
-import {useI18n} from "@fontsensei/locales";
+import {useI18n} from "@nextutils/locales";
 import {Controller, type FieldError, type FieldValues} from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
 import Select from "react-select";

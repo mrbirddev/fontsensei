@@ -14,12 +14,12 @@ View on https://fontsensei.com
 ## Structure
 - src/@fontsensei contains the core code of this repo.
   - src/@fontsensei/data is the source data
-  - src/@fontsensei/locales is the translation data
+  - src/@nextutils/locales is the translation data
 - for everything outside src/@fontsensei, it's the demo application with i18n tuned.
 
 ## Contribute
 - Create a ticket
-- Or you can directly edit files on Github if u know how to `src/@fontsensei/data`, `src/@fontsensei/locales`
+- Or you can directly edit files on Github if u know how to `src/@fontsensei/data`, `src/@nextutils/locales`
 - Help is needed on all non-Latin fonts!
 
 ## Run

@@ -10,7 +10,7 @@ import React, {
   type CSSProperties,
   type PropsWithChildren, useContext, type ReactNode
 } from 'react';
-import {type LocaleStr, type TagValueMsgLabelType, useCurrentLocale, useI18n, useScopedI18n} from "@fontsensei/locales";
+import {type LocaleStr, type TagValueMsgLabelType, useCurrentLocale, useI18n, useScopedI18n} from "@nextutils/locales";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import Head from "next/head";

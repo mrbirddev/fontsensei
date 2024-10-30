@@ -1,7 +1,7 @@
 import React, {type CSSProperties, forwardRef, useContext, useEffect, useMemo, useState} from "react";
 import {type FSFontItem} from "@fontsensei/core/types";
 import listFonts from "@fontsensei/core/listFonts";
-import {type TagValueMsgLabelType, useScopedI18n} from "@fontsensei/locales";
+import {type TagValueMsgLabelType, useScopedI18n} from "@nextutils/locales";
 import {throttle} from "lodash-es";
 import {GoogleFontHeaders} from "@fontsensei/components/GoogleFontHeaders";
 import AutoSizer from "react-virtualized-auto-sizer";

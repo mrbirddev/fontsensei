@@ -1,4 +1,4 @@
-import {allLoadedForServer, narrowLocaleString} from "@fontsensei/locales";
+import {allLoadedForServer, narrowLocaleString} from "@nextutils/locales";
 import {type BaseLocale, flattenLocale} from "next-international";
 import {type GetStaticProps} from "next";
 

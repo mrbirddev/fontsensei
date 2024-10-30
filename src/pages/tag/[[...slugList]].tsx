@@ -3,7 +3,7 @@ import {NavbarContext} from "../../browser/fontPicker/FontPickerPage";
 import React from "react";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 import {getExtraMenuItems, Toolbar} from "../../browser/fontPicker/landingComponents";
-import {useI18n} from "@fontsensei/locales";
+import {useI18n} from "@nextutils/locales";
 
 export {getServerSideProps} from "../../browser/fontPicker/FontPickerPage";
 export default (props: Parameters<typeof FontPickerPage>[0]) => {

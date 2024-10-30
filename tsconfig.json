@@ -11,8 +11,8 @@
     "paths": {
       "@fontsensei/core/*": ["./src/@fontsensei/core/*"],
       "@fontsensei/components/*": ["./src/@fontsensei/components/*"],
-      "@fontsensei/locales": ["./src/@fontsensei/locales"],
       "@fontsensei/data/*": ["./src/@fontsensei/data/*"],
+      "@nextutils/*": ["./src/@nextutils/*"],
     },
 
     /* Strictness */

@@ -4,7 +4,7 @@ import {
   matchClosestLocale,
   useChangeLocale,
   useCurrentLocale
-} from "@fontsensei/locales";
+} from "@nextutils/locales";
 import {PRODUCT_NAME} from "../productConstants";
 import {getPreferredLocaleInBrowser, langMap} from "./locales";
 import useUserPreferencesStore from "../page/useUserPreferencesStore";

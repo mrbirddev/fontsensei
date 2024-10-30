@@ -1,4 +1,4 @@
-import {type LocaleStr} from "@fontsensei/locales";
+import {type LocaleStr} from "@nextutils/locales";
 
 const languageSpecificTags: Record<LocaleStr, string[]> = {
   "en": [],

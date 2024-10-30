@@ -1,9 +1,9 @@
+import vercel from "@nextutils/_app/vercel";
+import loadingBar from "@nextutils/_app/loadingBar";
+import i18nLangAltHead from "@nextutils/_app/i18nLangAltHead";
+import i18nProvider from "@nextutils/_app/i18nProvider";
 import {api} from "../api";
-import i18nProvider from "./i18nProvider";
-import i18nLangAltHead from "./i18nLangAltHead";
-import loadingBar from "./loadingBar";
-import {AppMiddleware} from "./AppMiddleware";
-import vercel from "./vercel";
+import {AppMiddleware} from "@nextutils/_app/AppMiddleware";
 
 const _appMiddlewares = [
   vercel,
