@@ -12,6 +12,7 @@
       "@fontsensei/core/*": ["./src/@fontsensei/core/*"],
       "@fontsensei/components/*": ["./src/@fontsensei/components/*"],
       "@fontsensei/data/*": ["./src/@fontsensei/data/*"],
+      "@fontsensei/locales": ["./src/@fontsensei/locales"],
       "@nextutils/*": ["./src/@nextutils/*"],
       "@nextutils/config": ["./nextutils.config.ts"],
     },
