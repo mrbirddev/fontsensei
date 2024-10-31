@@ -1,8 +1,10 @@
-import {createI18n} from "next-international";
+import {BaseLocale, createI18n, flattenLocale} from "next-international";
 import type {RootDictType} from "./en";
 import {z} from "zod";
 import invariant from "tiny-invariant";
 import {isEqual} from "lodash-es";
+import {GetStaticProps} from "next";
+import {getStaticPropsLocale as getStaticPropsLocaleNextUtils} from '@nextutils/i18n/locales';
 
 export const allLocaleStrList = [
   "en",
@@ -84,3 +86,22 @@ export const {defineLocale, useI18n, useScopedI18n, I18nProvider, useChangeLocal
 
 export type { RootDictType } from "./en";
 export type TagValueMsgLabelType = Exclude<keyof RootDictType["tagValueMsg"], "">;
+
+const getLocaleContent = async (localeStr: string | undefined) => {
+  const localeKey = narrowLocaleString(localeStr) ?? "en";
+  return flattenLocale((await allLoadedForServer[localeKey]()).default);
+};
+
+export const getStaticPropsLocale = (async (context) => {
+  const localeContent = await getLocaleContent(context.locale);
+  return {
+    props: {
+      locale: localeContent,
+      ...(await getStaticPropsLocaleNextUtils(context)).props,
+    }
+  };
+}) satisfies GetStaticProps<{
+  // locale: any
+  localeNextUtils: BaseLocale
+}>;
+
