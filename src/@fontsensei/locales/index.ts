@@ -102,6 +102,6 @@ export const getStaticPropsLocale = (async (context) => {
   };
 }) satisfies GetStaticProps<{
   // locale: any
-  localeNextUtils: BaseLocale
+  locale: BaseLocale
 }>;
 
