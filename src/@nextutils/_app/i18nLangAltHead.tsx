@@ -3,8 +3,8 @@ import {useRouter} from "next/router";
 import {NextSeo} from "next-seo";
 import React from "react";
 import {AppFC, AppMiddleware} from "./AppMiddleware";
-import {getCanonicalUrl} from "@nextutils/i18n/locales";
-import {PRODUCT_DOMAIN, PRODUCT_NAME} from "@nextutils/config";
+import {getCanonicalUrl, hackAsPath} from "@nextutils/i18n/locales";
+import {noIndexPathList, PRODUCT_DOMAIN, PRODUCT_NAME} from "@nextutils/config";
 
 const i18nLangAltHead: AppMiddleware = (App) => {
   const Augmented: AppFC = (props) => {
@@ -13,7 +13,10 @@ const i18nLangAltHead: AppMiddleware = (App) => {
     const router = useRouter();
     const canonical = getCanonicalUrl(currentLocale, router.asPath);
 
+    const noIndex = !!noIndexPathList.find(prefix => hackAsPath(router.asPath).startsWith(prefix));
+
     const seo = <NextSeo
+      noindex={noIndex}
       title={`${PRODUCT_NAME} - ${t('product.slogan')}`}
       description={`${PRODUCT_NAME} - ${t('product.slogan')}`}
       canonical={canonical}
