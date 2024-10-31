@@ -1,5 +1,5 @@
 import {allLoadedForServer, type LocaleStr, narrowLocaleString} from "@nextutils/locales";
-import {locales, PRODUCT_DOMAIN} from "@nextutils/config";
+import {locales, PREFERENCES_PREFIX, PRODUCT_DOMAIN} from "@nextutils/config";
 import {BaseLocale, flattenLocale} from "next-international";
 import {GetStaticProps} from "next";
 
@@ -25,16 +25,14 @@ export const langMap = locales.reduce((map, l) => {
   return map;
 }, {} as Record<LocaleStr, string>);
 
-const PREF_PREFIX = 'fontsensei'
-
 export const setPreferredLocaleInBrowser = (preferredLocale: LocaleStr) => {
-  localStorage.setItem(`${PREF_PREFIX}.preferences.locale`, preferredLocale);
+  localStorage.setItem(`${PREFERENCES_PREFIX}.preferences.locale`, preferredLocale);
 };
 
 
 export const getPreferredLocaleInBrowser = () => {
   return narrowLocaleString(
-    localStorage.getItem(`${PREF_PREFIX}.preferences.locale`) ?? undefined
+    localStorage.getItem(`${PREFERENCES_PREFIX}.preferences.locale`) ?? undefined
   );
 };
 
