@@ -7,7 +7,7 @@ import {
 } from "@nextutils/locales";
 import {PRODUCT_NAME} from "@nextutils/config";
 import {getPreferredLocaleInBrowser, langMap} from "./locales";
-import {tClient} from "../../shared/api";
+import {tClient} from "@nextutils/trpc/api";
 import {type Id, toast} from "react-toastify";
 import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";
 

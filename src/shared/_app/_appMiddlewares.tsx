@@ -2,7 +2,7 @@ import vercel from "@nextutils/_app/vercel";
 import loadingBar from "@nextutils/_app/loadingBar";
 import i18nLangAltHead from "@nextutils/_app/i18nLangAltHead";
 import i18nProvider from "@nextutils/_app/i18nProvider";
-import {api} from "../api";
+import {api} from "@nextutils/trpc/api";
 import {AppMiddleware} from "@nextutils/_app/AppMiddleware";
 
 const _appMiddlewares = [
