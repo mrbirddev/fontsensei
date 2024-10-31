@@ -1,5 +1,24 @@
-import {type LocaleStr, narrowLocaleString} from "@nextutils/locales";
+import {allLoadedForServer, type LocaleStr, narrowLocaleString} from "@nextutils/locales";
 import {locales, PRODUCT_DOMAIN} from "@nextutils/config";
+import {BaseLocale, flattenLocale} from "next-international";
+import {GetStaticProps} from "next";
+
+const getLocaleContent = async (localeStr: string | undefined) => {
+  const localeKey = narrowLocaleString(localeStr) ?? "en";
+  return flattenLocale((await allLoadedForServer[localeKey]()).default);
+};
+
+export const getStaticPropsLocale = (async (context) => {
+  const localeContent = await getLocaleContent(context.locale);
+  return {
+    props: {
+      localeNextUtils: localeContent,
+    }
+  };
+}) satisfies GetStaticProps<{
+  // locale: any
+  localeNextUtils: BaseLocale
+}>;
 
 export const langMap = locales.reduce((map, l) => {
   map[l.locale] = l.lang;

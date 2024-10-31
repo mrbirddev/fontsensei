@@ -4,7 +4,7 @@ import {AppFC, AppMiddleware} from "./AppMiddleware";
 
 const i18nProvider: AppMiddleware = (App) => {
   const Augmented: AppFC = (props) => {
-    return <I18nProvider locale={props.pageProps.locale}>
+    return <I18nProvider locale={props.pageProps.localeNextUtils}>
       <App {...props}/>
     </I18nProvider>;
   };

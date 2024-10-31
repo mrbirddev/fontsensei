@@ -14,7 +14,6 @@ import {type LocaleStr, type TagValueMsgLabelType, useCurrentLocale, useI18n, us
 import {useRouter} from "next/router";
 import Link from "next/link";
 import Head from "next/head";
-import {getLocaleContent} from "../../shared/getStaticPropsLocale";
 import {GoogleFontHeaders} from "@fontsensei/components/GoogleFontHeaders";
 import {compact, debounce, throttle} from "lodash-es";
 import {cx} from "@emotion/css";
@@ -29,7 +28,7 @@ import {FaBars, FaSearch} from "react-icons/fa";
 import {FaTag} from "react-icons/fa6";
 import useEmbedStore from "./embed/useEmbedStore";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
-import {langMap} from "@nextutils/i18n/locales";
+import {getStaticPropsLocale, langMap} from "@nextutils/i18n/locales";
 import {locales, PRODUCT_NAME} from "@nextutils/config";
 import ChooseLocaleModal from "@nextutils/i18n/ChooseLocaleModal";
 import SwitchLocaleHint from "@nextutils/i18n/SwitchLocaleHint";
@@ -498,10 +497,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       initialFontItemList,
-      locale: await getLocaleContent(context.locale),
       countByTags: await import("../../../public/data/countByTags.json").then(res => res.default as Record<string, number>),
       firstFontByTags: await import("../../../public/data/firstFontByTags.json").then(res => res.default as Record<string, string>),
       placeholderText: (context.query.text as string | undefined) ?? null,
+      ...(await getStaticPropsLocale(context)).props,
     } as PageProps
   };
 };
