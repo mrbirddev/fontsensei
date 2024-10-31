@@ -83,4 +83,3 @@ export const matchClosestLocale = (str: string | undefined) => {
 export const {defineLocale, useI18n, useScopedI18n, I18nProvider, useChangeLocale, useCurrentLocale, getLocaleProps} = createI18n(allLoadedForServer);
 
 export type { RootDictType } from "./en";
-export type TagValueMsgLabelType = Exclude<keyof RootDictType["tagValueMsg"], "">;

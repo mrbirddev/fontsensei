@@ -7,11 +7,6 @@ import i18nMsg from "./i18nMsg";
 import landingMsg from "./landingMsg";
 
 const en = {
-  "product": product,
-  "modal": modal,
-  "form": form,
-  "feedback": feedback,
-  "i18nMsg": i18nMsg,
   "landingMsg": landingMsg,
   "tagValueMsg": tagValueMsg,
 } as const;

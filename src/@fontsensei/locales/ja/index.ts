@@ -10,11 +10,6 @@ import landingMsg from "./landingMsg";
 tagValueMsg.fude = '毛筆体';
 
 export default {
-  "product": product,
-  "modal": modal,
-  "form": form,
-  "feedback": feedback,
-  "i18nMsg": i18nMsg,
   "landingMsg": landingMsg,
   "tagValueMsg": tagValueMsg,
 } as const;

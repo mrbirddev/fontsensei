@@ -10,7 +10,8 @@ import React, {
   type CSSProperties,
   type PropsWithChildren, useContext, type ReactNode
 } from 'react';
-import {type LocaleStr, type TagValueMsgLabelType, useCurrentLocale, useI18n, useScopedI18n} from "@nextutils/locales";
+import {type LocaleStr, type TagValueMsgLabelType, useCurrentLocale, useI18n, useScopedI18n} from "@fontsensei/locales";
+import {useI18n as useI18nNextUtils} from "@nextutils/locales";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import Head from "next/head";
@@ -271,6 +272,7 @@ const TagButton = (props: PropsWithChildren<{
 }
 const FontPickerPage = (props: PageProps) => {
   const t = useI18n();
+  const tNextUtils = useI18nNextUtils();
   const currentLocale = useCurrentLocale();
   const tLandingMsg = useScopedI18n('landingMsg');
   const tTagValueMsg = useScopedI18n('tagValueMsg');
@@ -326,7 +328,7 @@ const FontPickerPage = (props: PageProps) => {
       }) + ' - '
     )
     : '';
-  const title = titlePrefix + PRODUCT_NAME + ' - ' + t('product.slogan');
+  const title = titlePrefix + PRODUCT_NAME + ' - ' + tNextUtils('product.slogan');
 
   const langTagList = useMemo(() => languageSpecificTags[currentLocale].map(tagToUrlSlug), [currentLocale]);
   const tagList = useMemo(
@@ -354,7 +356,7 @@ const FontPickerPage = (props: PageProps) => {
     <div className="font-normal mb-4">
       {
         (tagValue === 'all' || !tagValue)
-          ? <h2>{t('product.description', {productName: PRODUCT_NAME})}</h2>
+          ? <h2>{tNextUtils('product.description', {productName: PRODUCT_NAME})}</h2>
           : tLandingMsg('Free font tagged {tagValue} provided by Google fonts', {
             tagValue: tagDisplayName,
           })

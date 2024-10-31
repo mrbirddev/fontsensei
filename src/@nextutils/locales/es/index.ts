@@ -12,6 +12,4 @@ export default {
   "form": form,
   "feedback": feedback,
   "i18nMsg": i18nMsg,
-  "landingMsg": landingMsg,
-  "tagValueMsg": tagValueMsg,
 } as const;

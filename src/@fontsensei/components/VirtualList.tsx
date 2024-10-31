@@ -1,7 +1,8 @@
 import React, {type CSSProperties, forwardRef, useContext, useEffect, useMemo, useState} from "react";
 import {type FSFontItem} from "@fontsensei/core/types";
 import listFonts from "@fontsensei/core/listFonts";
-import {type TagValueMsgLabelType, useScopedI18n} from "@nextutils/locales";
+import {type TagValueMsgLabelType, useScopedI18n} from "@fontsensei/locales";
+import {useScopedI18n as useScopedI18nNextUtils} from "@nextutils/locales";
 import {throttle} from "lodash-es";
 import {GoogleFontHeaders} from "@fontsensei/components/GoogleFontHeaders";
 import AutoSizer from "react-virtualized-auto-sizer";
@@ -205,7 +206,7 @@ const VirtualList = ({
 
   const [configList, setConfigList] = useState([] as { name: string, text?: string }[]);
 
-  const tProduct = useScopedI18n('product');
+  const tProduct = useScopedI18nNextUtils('product');
   const lorem = tProduct('description', {productName: PRODUCT_NAME});
   const [text, setText] = useState(placeholderText ?? lorem);
   useEffect(() => {

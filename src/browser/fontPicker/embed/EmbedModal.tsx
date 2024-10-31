@@ -1,5 +1,5 @@
 import React, { useEffect, useRef} from "react";
-import {useI18n, useScopedI18n} from "@nextutils/locales";
+import {useI18n, useScopedI18n} from "@fontsensei/locales";
 import copyToClipboard from "copy-to-clipboard";
 import {FaCheck, FaCopy} from "react-icons/fa6";
 import {ModalButtons, ModalTextarea} from "@nextutils/ui/modal/commonComponents";

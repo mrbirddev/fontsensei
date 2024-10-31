@@ -12,8 +12,6 @@ const en = {
   "form": form,
   "feedback": feedback,
   "i18nMsg": i18nMsg,
-  "landingMsg": landingMsg,
-  "tagValueMsg": tagValueMsg,
 } as const;
 
 export default en;
