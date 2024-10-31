@@ -4,7 +4,7 @@ import {useScopedI18n} from "@nextutils/locales";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";
-import MobileOnlyModal from "@nextutils/ui/modal/MobileOnlyModal";
+import ModalDialog from "@nextutils/ui/modal/ModalDialog";
 import {ModalTitle} from "@nextutils/ui/modal/commonComponents";
 import {locales} from "@nextutils/config";
 
@@ -16,8 +16,8 @@ const ChooseLocaleModal = (props: {
   const router = useRouter();
 
   return (
-    <MobileOnlyModal isOpen={props.isOpen} setOpen={props.setOpen}>
-      <ModalTitle>
+    <ModalDialog isOpen={props.isOpen} setOpen={props.setOpen}>
+      <ModalTitle onCancel={() => props.setOpen(false)}>
         {tI18nMsg('Choose language')}
       </ModalTitle>
       <div className="flex flex-wrap justify-start items-start gap-6">
@@ -30,7 +30,7 @@ const ChooseLocaleModal = (props: {
           </Link>
         })}
       </div>
-    </MobileOnlyModal>
+    </ModalDialog>
   );
 }
 

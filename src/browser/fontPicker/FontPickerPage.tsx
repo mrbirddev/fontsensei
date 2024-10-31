@@ -33,7 +33,8 @@ import {locales, PRODUCT_NAME} from "@nextutils/config";
 import ChooseLocaleModal from "@nextutils/i18n/ChooseLocaleModal";
 import SwitchLocaleHint from "@nextutils/i18n/SwitchLocaleHint";
 import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";
-import MobileOnlyModal from "@nextutils/ui/modal/MobileOnlyModal";
+import ModalDialog from "@nextutils/ui/modal/ModalDialog";
+import {ModalTitle} from "@nextutils/ui/modal/commonComponents";
 
 const PAGE_SIZE = 10;
 
@@ -142,7 +143,9 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
               }}><FaBars /></div>
             </div>
 
-            <MobileOnlyModal isOpen={isMenuOpen} setOpen={setIsMenuOpen}>
+            <ModalDialog isOpen={isMenuOpen} setOpen={setIsMenuOpen}>
+              <ModalTitle onCancel={() => setIsMenuOpen(false)}>
+              </ModalTitle>
               {menuItems.map(item => {
                 const {icon, label, className, href, target, onClick} = item;
                 if (href) {
@@ -157,7 +160,7 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
                   </div>
                 }
               })}
-            </MobileOnlyModal>
+            </ModalDialog>
             {/*<div className="dropdown dropdown-end">*/}
             {/*  <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">*/}
             {/*    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>*/}
@@ -469,11 +472,13 @@ const FontPickerPage = (props: PageProps) => {
           </div>
         </div>
 
-        <MobileOnlyModal isOpen={isSelectorOpen} setOpen={setSelectorOpen}>
+        <ModalDialog isOpen={isSelectorOpen} setOpen={setSelectorOpen}>
+          <ModalTitle onCancel={() => setSelectorOpen(false)}>
+          </ModalTitle>
           <div className="flex flex-wrap justify-start items-start gap-6">
             {tagSelectorContent}
           </div>
-        </MobileOnlyModal>
+        </ModalDialog>
         {embedPopup}
       </LandingLayout>
     </NavbarContext.Provider>
