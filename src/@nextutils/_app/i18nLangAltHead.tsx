@@ -4,7 +4,7 @@ import {NextSeo} from "next-seo";
 import React from "react";
 import {AppFC, AppMiddleware} from "./AppMiddleware";
 import {getCanonicalUrl, hackAsPath} from "@nextutils/i18n/locales";
-import {noIndexPathList, PRODUCT_DOMAIN, PRODUCT_NAME} from "@nextutils/config";
+import {noIndexPathList, noLangAltList, PRODUCT_DOMAIN, PRODUCT_NAME} from "@nextutils/config";
 
 const i18nLangAltHead: AppMiddleware = (App) => {
   const Augmented: AppFC = (props) => {
@@ -14,6 +14,7 @@ const i18nLangAltHead: AppMiddleware = (App) => {
     const canonical = getCanonicalUrl(currentLocale, router.asPath);
 
     const noIndex = !!noIndexPathList.find(prefix => hackAsPath(router.asPath).startsWith(prefix));
+    const noLangAlt = !!noLangAltList.find(prefix => hackAsPath(router.asPath).startsWith(prefix));
 
     const seo = <NextSeo
       noindex={noIndex}
@@ -28,7 +29,7 @@ const i18nLangAltHead: AppMiddleware = (App) => {
         images: [{ url: `https://${PRODUCT_DOMAIN}/icon.png` }]
       }}
       languageAlternates={
-        [
+        noLangAlt ? [] : [
           ...allLocaleStrList.filter(localeStr => localeStr !== currentLocale).map(localeStr => {
             return {
               hrefLang: localeStr,

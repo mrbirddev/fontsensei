@@ -1,4 +1,5 @@
 export default {
   "This field cannot be empty": "Questo campo non può essere vuoto",
-  "Please enter a valid email address": "Inserisci un indirizzo email valido"
+  "Please enter a valid email address": "Per favore inserisci un indirizzo email valido",
+  "OR": "OPPURE",
 } as const;

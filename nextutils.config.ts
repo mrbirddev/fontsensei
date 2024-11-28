@@ -1,3 +1,5 @@
+import {LocaleStr} from "@nextutils/locales";
+
 export const PRODUCT_NAME = 'Font sensei';
 export const PRODUCT_ICON = '/icon.png';
 export const PRODUCT_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN_NAME;
@@ -7,6 +9,8 @@ export const noIndexPathList = [
   '/api',
   '/embed',
 ];
+
+export const noLangAltList = [] as string[];
 
 export type {AppRouter} from "./src/server/api/root";
 
@@ -33,4 +37,9 @@ export const locales = [
   {"locale": "sv", "lang": "Svenska"}
 ] as const;
 
+
+// override product slogan & description
+export const overrideLocales = (allLoadedForServer: Record<LocaleStr, () => Promise<unknown>>) => {
+
+}
 

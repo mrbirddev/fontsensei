@@ -1,8 +1,10 @@
-import {createI18n} from "next-international";
 import type {RootDictType} from "./en";
-import {z} from "zod";
 import invariant from "tiny-invariant";
 import {isEqual} from "lodash-es";
+import {overrideLocales} from "@nextutils/config";
+import createLocaleHelpers from "@nextutils/i18n/createLocaleHelpers";
+import {createI18n} from "next-international";
+import {z} from "zod";
 
 export const allLocaleStrList = [
   "en",
@@ -24,10 +26,6 @@ export const allLocaleStrList = [
   "sv"
 ] as const;
 
-export const zLocaleStr = z.enum(allLocaleStrList);
-
-export type LocaleStr = z.infer<typeof zLocaleStr>;
-
 export const allLoadedForServer = {
   "en": () => import("./en"),
   "es": () => import("./es"),
@@ -48,38 +46,26 @@ export const allLoadedForServer = {
   "sv": () => import("./sv")
 };
 
+overrideLocales(allLoadedForServer);
+
 if (process.env.NODE_ENV !== "production") {
   invariant(
     isEqual(Object.keys(allLoadedForServer), allLocaleStrList),
   )
 }
 
-export const narrowLocaleString = (str: string | undefined) => {
-  // @ts-expect-error narrowing
-  if (allLocaleStrList.indexOf(str) >= 0) {
-    return str as LocaleStr;
-  }
+const helpers = createLocaleHelpers(
+  allLocaleStrList,
+  // @ts-expect-error no need to check here, as we already get the type inference
+  allLoadedForServer
+);
+export const {
+  zLocaleStr,
+  matchClosestLocale,
+  narrowLocaleString,
+} = helpers;
 
-  return undefined;
-};
+export const {defineLocale, useI18n, useScopedI18n, I18nProvider, useChangeLocale, useCurrentLocale} = createI18n(allLoadedForServer);
 
-export const matchClosestLocale = (str: string | undefined) => {
-  const narrowed = narrowLocaleString(str);
-  if (narrowed) {
-    return narrowed;
-  }
-
-  // language match without location
-  const strWithoutLocation = str?.split('-')[0];
-  for (const locale of allLocaleStrList) {
-    if (locale.split('-')[0] === strWithoutLocation) {
-      return locale;
-    }
-  }
-
-  return undefined;
-};
-
-export const {defineLocale, useI18n, useScopedI18n, I18nProvider, useChangeLocale, useCurrentLocale, getLocaleProps} = createI18n(allLoadedForServer);
-
+export type LocaleStr = z.infer<typeof zLocaleStr>;
 export type { RootDictType } from "./en";
