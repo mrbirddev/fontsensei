@@ -12,7 +12,8 @@
     "nibble": "eslint-nibble src --config ./.eslintrc.cjs --ext .jsx,.js,.tsx,.ts",
     "pretty-locales": "npx prettier --write --trailing-comma none --bracket-spacing false --print-width 100000 --tab-width 2 --quote-props preserve \"src/locales/**/*.ts\"",
     "typecheck": "tsc --noEmit",
-    "start": "next start"
+    "start": "next start",
+    "sync-google-fonts": "curl https://fonts.google.com/metadata/fonts -o ./src/@fontsensei/data/raw/googleFonts/fonts.json"
   },
   "dependencies": {
     "@emotion/css": "11.13.0",
