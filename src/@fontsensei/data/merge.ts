@@ -172,9 +172,8 @@ const mergeData = async () => {
         }
       }
 
+      mergedData[family] = tags;
       if (tags.length) {
-        mergedData[family] = tags;
-
         for (const tag of tags) {
           countByTags[tag] = (countByTags[tag] ?? 0) + 1;
           if (!firstFontByTags[tag]) {
