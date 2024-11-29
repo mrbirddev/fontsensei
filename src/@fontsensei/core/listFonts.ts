@@ -5,6 +5,7 @@ import invariant from "tiny-invariant";
 const ENABLE_CACHE = true;
 let _serverCache = undefined as FSFontItem[] | undefined;
 let _clientCache = undefined as FSFontItem[] | undefined;
+let _clientCachePromise = undefined as Promise<FSFontItem[]> | undefined;
 
 const toFontItemList = async (jsonObj: object) => {
   const list = [] as FSFontItem[];
@@ -63,17 +64,17 @@ const listFonts = async (opts: FSFontFilterOptions) => {
     return filterByOpts(_clientCache, opts);
   }
 
-  const list = await fetch(`/data/tagsByName.json`).then((res) => {
-    return res.json();
-  }).then((json) => {
-    return toFontItemList(json);
-  });
-
-  if (ENABLE_CACHE) {
-    _clientCache = list;
+  if (!_clientCachePromise) {
+    _clientCachePromise = fetch(`/data/tagsByName.json`).then((res) => {
+      return res.json();
+    }).then((json) => {
+      return toFontItemList(json);
+    });
   }
 
-  return filterByOpts(list, opts);
+  _clientCache = await _clientCachePromise;
+
+  return filterByOpts(_clientCache, opts);
 };
 
 export default listFonts;
