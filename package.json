@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "syncGoogleFonts": "curl https://fonts.google.com/metadata/fonts -o ./src/@fontsensei/data/raw/googleFonts/fonts.json",
     "mergeData": "tsx src/@fontsensei/data/merge.ts",
     "build": "yarn mergeData && next build",
     "dev": "yarn mergeData && next dev",
@@ -12,8 +13,7 @@
     "nibble": "eslint-nibble src --config ./.eslintrc.cjs --ext .jsx,.js,.tsx,.ts",
     "pretty-locales": "npx prettier --write --trailing-comma none --bracket-spacing false --print-width 100000 --tab-width 2 --quote-props preserve \"src/locales/**/*.ts\"",
     "typecheck": "tsc --noEmit",
-    "start": "next start",
-    "sync-google-fonts": "curl https://fonts.google.com/metadata/fonts -o ./src/@fontsensei/data/raw/googleFonts/fonts.json"
+    "start": "next start"
   },
   "dependencies": {
     "@emotion/css": "11.13.0",
