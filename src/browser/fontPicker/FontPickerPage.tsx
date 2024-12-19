@@ -447,12 +447,12 @@ const FontPickerPage = (props: PageProps) => {
         )}>
           <div className={cx(
             "hidden md:block",
-            "py-4 flex-0 w-[40%] min-w-[200px] h-full overflow-scroll",
+            "py-4 flex-0 w-[40%] min-w-[200px] h-full overflow-y-scroll",
           )}>
             {tagSelectorContent}
           </div>
           <div className={cx(
-            "py-4 flex-1 h-full overflow-scroll"
+            "py-4 flex-1 h-full"
           )}>
             <div className="flex items-center justify-start gap-2 mb-4">
               {(filterText !== debouncedFilterText) && <span className="inline-block h-4 w-4 text-black/50 loading loading-sm"/>}
