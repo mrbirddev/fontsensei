@@ -11,7 +11,7 @@
     "postinstall": "husky",
     "lint": "next lint --quiet",
     "nibble": "eslint-nibble src --config ./.eslintrc.cjs --ext .jsx,.js,.tsx,.ts",
-    "pretty-locales": "npx prettier --write --trailing-comma none --bracket-spacing false --print-width 100000 --tab-width 2 --quote-props preserve \"src/locales/**/*.ts\"",
+    "pretty-locales": "npx prettier --write --trailing-comma none --bracket-spacing false --print-width 100000 --tab-width 2 --quote-props preserve \"src/{@fontsensei,@nextutils}/locales/**/*.ts\"",
     "typecheck": "tsc --noEmit",
     "start": "next start"
   },
