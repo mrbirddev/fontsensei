@@ -5,13 +5,13 @@ import {FontPickerPageContextOpts} from "@fontsensei/components/fontPickerCommon
 import useEmbedStore from "./embed/useEmbedStore";
 import EmbedModal from "./embed/EmbedModal";
 import {MdOutlineFeedback} from "react-icons/md";
-import {useI18n} from "@fontsensei/locales";
+import {useScopedI18n} from "@fontsensei/locales";
 
 const GITHUB_LINK = "https://github.com/mrbirddev/fontsensei";
-export const getExtraMenuItems = (t: ReturnType<typeof useI18n>) => [
+export const getExtraMenuItems = () => [
   {
     icon: <MdOutlineFeedback />,
-    label: t("landingMsg.Feedback"),
+    label: useScopedI18n("landingMsg")("Feedback"),
     href: GITHUB_LINK + "/issues/new",
     target: "_blank",
   },
