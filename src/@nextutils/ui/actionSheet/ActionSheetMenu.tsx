@@ -3,7 +3,7 @@ import React, {ReactNode} from "react";
 import useIsMobileWidth from "@nextutils/ui/useIsMobileWidth";
 import useActionSheetStore from "@nextutils/ui/actionSheet/useActionSheetStore";
 import ActionSheetWrapper from "@nextutils/ui/actionSheet/ActionSheetWrapper";
-import MobileStackRow from "@slidde/editor2/MobileStackRow";
+import MobileStackRow from "@nextutils/ui/MobileStackRow";
 
 export type ActionSheetMenuItem = {
   custom: ReactNode;
