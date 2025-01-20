@@ -15,6 +15,7 @@ import {AppFC} from "@nextutils/_app/AppMiddleware";
 import useActionSheetStore from "@nextutils/ui/actionSheet/useActionSheetStore";
 import {useRouter} from "next/router";
 import ActionSheetRenderStack from "@nextutils/ui/actionSheet/ActionSheetRenderStack";
+import useEruda from "@nextutils/ui/useEruda";
 
 const originalToastError = toast.error;
 // do not auto close error toasts by default
@@ -43,6 +44,8 @@ const MyApp: AppFC = ({
       useActionSheetStore.getState().clear();
     });
   }, []);
+
+  useEruda();
 
   return (
     <>
