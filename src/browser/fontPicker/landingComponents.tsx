@@ -3,26 +3,8 @@ import React from "react";
 import {FaExternalLinkAlt} from "react-icons/fa";
 import {FontPickerPageContextOpts} from "@fontsensei/components/fontPickerCommon";
 import EmbedModal from "./embed/EmbedModal";
-import {MdOutlineFeedback} from "react-icons/md";
-import {useI18n} from "@fontsensei/locales";
 import {fontFamilyToUrlParam} from "../../@fontsensei/utils";
 import useActionSheetStore from "@nextutils/ui/actionSheet/useActionSheetStore";
-
-const GITHUB_LINK = "https://github.com/mrbirddev/fontsensei";
-export const getExtraMenuItems = (t: ReturnType<typeof useI18n>) => [
-  {
-    icon: <MdOutlineFeedback />,
-    label: t("landingMsg.Feedback"),
-    href: GITHUB_LINK + "/issues/new",
-    target: "_blank",
-  },
-  {
-    icon: <FaGithub />,
-    label: "GitHub",
-    href: GITHUB_LINK,
-    target: "_blank",
-  }
-];
 
 /**
  * Exclude null and undefined from T
