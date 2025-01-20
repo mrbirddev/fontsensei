@@ -479,7 +479,7 @@ const FontPickerPage = (props: PageProps) => {
       <ActionSheetWrapper size="fullscreen" isHidden={!isSelectorOpen} onCancel={() => {
         setSelectorOpen(false);
       }}>
-        <div className="flex flex-wrap justify-start items-start gap-6">
+        <div className="flex flex-wrap justify-start items-start gap-6 px-3">
           {tagSelectorContent}
         </div>
       </ActionSheetWrapper>
