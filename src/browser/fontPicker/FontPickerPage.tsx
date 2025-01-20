@@ -34,7 +34,7 @@ import {FaBars, FaSearch} from "react-icons/fa";
 import {FaGithub, FaTag} from "react-icons/fa6";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 import {langMap} from "@nextutils/i18n/locales";
-import {locales, PRODUCT_NAME} from "@nextutils/config";
+import {locales, PRODUCT_ICON, PRODUCT_NAME} from "@nextutils/config";
 import ChooseLocaleModal from "@nextutils/i18n/ChooseLocaleModal";
 import SwitchLocaleHint from "@nextutils/i18n/SwitchLocaleHint";
 import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";
@@ -420,6 +420,13 @@ const FontPickerPage = (props: PageProps) => {
           {tTagValueMsg(t as TagValueMsgLabelType)} {props.countByTags[t]}
         </TagButton>)
       }
+    </div>
+
+    <div className="h-[200px] w-full">
+      <div className="h-full flex flex-col items-center justify-center gap-2">
+        <img src={PRODUCT_ICON} className="w-10 grayscale-[50%]" />
+        <span>THE END</span>
+      </div>
     </div>
   </>;
 
