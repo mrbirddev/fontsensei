@@ -5,13 +5,16 @@ import {FontPickerPageContextOpts} from "@fontsensei/components/fontPickerCommon
 import EmbedModal from "./embed/EmbedModal";
 import {fontFamilyToUrlParam} from "../../@fontsensei/utils";
 import useActionSheetStore from "@nextutils/ui/actionSheet/useActionSheetStore";
+import {useI18n} from "@fontsensei/locales";
 
 /**
  * Exclude null and undefined from T
  */
 type NonNullable<T> = T extends null | undefined ? never : T;
 
-export const Toolbar: NonNullable<FontPickerPageContextOpts>['Toolbar'] = ({fontItem}) => <div className="flex items-center justify-start gap-2 mt-2">
+export const Toolbar: NonNullable<FontPickerPageContextOpts>['Toolbar'] = ({fontItem}) => {
+  const t = useI18n();
+  return (<div className="flex items-center justify-start gap-2 mt-2">
     <div className="btn btn-sm btn-outline animate-none transition-none" onClick={(e) => {
       e.stopPropagation();
       useActionSheetStore.getState().push(<EmbedModal
@@ -28,7 +31,7 @@ export const Toolbar: NonNullable<FontPickerPageContextOpts>['Toolbar'] = ({font
         }}
       />);
     }}>
-      <FaCode/> Embed
+      <FaCode/> {t("landingMsg.Embed")}
     </div>
     <a
       className="btn btn-sm btn-ghost animate-none transition-none"
@@ -43,4 +46,5 @@ export const Toolbar: NonNullable<FontPickerPageContextOpts>['Toolbar'] = ({font
       <FaUser />
       {fontItem.metadata.designers.join(',')}
     </a>
-  </div>;
+  </div>);
+}
