@@ -31,7 +31,7 @@ import {tagToUrlSlug} from "../../@fontsensei/utils";
 import ProductIcon from "../ProductIcon";
 import {IoLanguage} from "react-icons/io5";
 import {FaBars, FaSearch} from "react-icons/fa";
-import {FaTag} from "react-icons/fa6";
+import {FaGithub, FaTag} from "react-icons/fa6";
 import useEmbedStore from "./embed/useEmbedStore";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 import {langMap} from "@nextutils/i18n/locales";
@@ -42,6 +42,7 @@ import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";
 import ModalDialog from "@nextutils/ui/modal/ModalDialog";
 import {ModalTitle} from "@nextutils/ui/modal/commonComponents";
 import ActionSheetWrapper from "@nextutils/ui/actionSheet/ActionSheetWrapper";
+import {MdOutlineFeedback} from "react-icons/md";
 
 const PAGE_SIZE = 10;
 
@@ -67,6 +68,8 @@ export type NavbarContextOpts = {
 } | undefined;
 
 export const NavbarContext = React.createContext<NavbarContextOpts>(undefined);
+
+const GITHUB_LINK = "https://github.com/mrbirddev/fontsensei";
 const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
   const [localeModalOpen, setLocaleModalOpen] = useState(false);
 
@@ -80,9 +83,24 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
 
   const navbarContext = useContext(NavbarContext);
 
+  const feedbackMsg = t("landingMsg.Feedback");
+
   const menuItems = useMemo(() => {
     return [
-      ...(navbarContext?.extraMenuItems ?? []),
+      ...(navbarContext?.extraMenuItems ?? [
+        {
+          icon: <MdOutlineFeedback />,
+          label: feedbackMsg,
+          href: GITHUB_LINK + "/issues/new",
+          target: "_blank",
+        },
+        {
+          icon: <FaGithub />,
+          label: "GitHub",
+          href: GITHUB_LINK,
+          target: "_blank",
+        }
+      ] as MenuItem[]),
       // {
       //   icon: <IoLanguage />,
       //   label: preferredLocale && (preferredLocale !== currentLocale)
@@ -94,7 +112,7 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
       //   },
       // } as MenuItem,
     ];
-  }, [lang, router.pathname, navbarContext?.extraMenuItems, preferredLocale]);
+  }, [lang, router.pathname, navbarContext?.extraMenuItems, preferredLocale, feedbackMsg]);
 
   const pickerBasePath = useContext(FontPickerPageContext)?.basePath ?? "";
 
