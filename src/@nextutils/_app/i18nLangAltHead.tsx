@@ -5,16 +5,18 @@ import React from "react";
 import {AppFC, AppMiddleware} from "./AppMiddleware";
 import {getCanonicalUrl, hackAsPath} from "@nextutils/i18n/locales";
 import {noIndexPathList, noLangAltList, PRODUCT_DOMAIN, PRODUCT_NAME} from "@nextutils/config";
+import { useIsClient } from "usehooks-ts";
 
 const i18nLangAltHead: AppMiddleware = (App) => {
   const Augmented: AppFC = (props) => {
     const t = useI18n();
     const currentLocale = useCurrentLocale();
     const router = useRouter();
-    const canonical = getCanonicalUrl(currentLocale, router.asPath);
+    const isClient = useIsClient();
+    const canonical = getCanonicalUrl(currentLocale, router.asPath, isClient);
 
-    const noIndex = !!noIndexPathList.find(prefix => hackAsPath(router.asPath).startsWith(prefix));
-    const noLangAlt = !!noLangAltList.find(prefix => hackAsPath(router.asPath).startsWith(prefix));
+    const noIndex = !!noIndexPathList.find(prefix => hackAsPath(router.asPath, isClient).startsWith(prefix));
+    const noLangAlt = !!noLangAltList.find(prefix => hackAsPath(router.asPath, isClient).startsWith(prefix));
 
     const seo = <NextSeo
       noindex={noIndex}
@@ -33,7 +35,7 @@ const i18nLangAltHead: AppMiddleware = (App) => {
           ...allLocaleStrList.filter(localeStr => localeStr !== currentLocale).map(localeStr => {
             return {
               hrefLang: localeStr,
-              href: getCanonicalUrl(localeStr, router.asPath),
+              href: getCanonicalUrl(localeStr, router.asPath, isClient),
             };
           }),
 

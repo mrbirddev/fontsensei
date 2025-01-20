@@ -8,8 +8,8 @@ import React, {
 import {useI18n} from "@nextutils/locales";
 import {Controller, type FieldError, type FieldValues} from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
-import Select from "react-select";
 import {RxCross1} from "react-icons/rx";
+import ActionSheetSelect, {ActionSheetCreatableSelect} from "@nextutils/ui/actionSheet/ActionSheetSelect";
 
 export const AlertWarning: FC<PropsWithChildren> = (props) => {
   return <div role="alert" className="rounded bg-amber-200 p-4">
@@ -18,7 +18,7 @@ export const AlertWarning: FC<PropsWithChildren> = (props) => {
 };
 
 export const ModalTitle:React.FC<PropsWithChildren<{onCancel?: () => void}>> = (props) => {
-  return <div className="font-bold text-2xl mb-6 flex items-center justify-start">
+  return <div className="h-[3rem] font-bold text-2xl mb-6 flex items-center justify-start">
     <span className="flex-1">{props.children}</span>
     {props.onCancel && <span className="btn btn-ghost btn-sm" onClick={() => {
       props.onCancel?.();
@@ -117,7 +117,7 @@ export const ModalSelect = <T extends FieldValues, >(props: PropsWithChildren<{
 
     <Controller
       render={({ field: { onChange, value, ref, name } }) => (
-        props.creatable ? <CreatableSelect
+        props.creatable ? <ActionSheetCreatableSelect
           name={name}
           value={value}
           styles={{
@@ -131,7 +131,7 @@ export const ModalSelect = <T extends FieldValues, >(props: PropsWithChildren<{
           isClearable
           menuPortalTarget={document.body}
           {...props.inputProps}
-        /> : <Select
+        /> : <ActionSheetSelect
           name={name}
           value={value}
           styles={{
