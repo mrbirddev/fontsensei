@@ -417,7 +417,7 @@ const FontPickerPage = (props: PageProps) => {
 
   const [isSelectorOpen, setSelectorOpen] = useState(false);
   const selectorModalButton = <div className={cx(
-    "btn btn-ghost",
+    "btn btn-outline shadow-md",
     "flex md:hidden items-center justify-center gap-1"
   )} onClick={() => {
     setSelectorOpen(true);
@@ -451,16 +451,25 @@ const FontPickerPage = (props: PageProps) => {
         )}>
           <div className="flex items-center justify-start gap-2 mb-4">
             {selectorModalButton}
-            {(filterText !== debouncedFilterText) && <span className="inline-block h-4 w-4 text-black/50 loading loading-sm"/>}
-            {(filterText === debouncedFilterText) && <FaSearch  className="inline-block h-4 w-4 text-black/50 flex items-center justify-start" /> }
-            <input
-              className="flex-1 h-12 input input-bordered w-full placeholder-black/50 bg-white/20 focus:outline-none shadow-md focus:shadow-lg"
-              value={filterText}
-              onChange={e => {
-                setFilterText(e.target.value);
-              }}
-              placeholder={t("landingMsg.Filter by font family")}
-            />
+            <div className={cx(
+              "relative",
+              "flex items-center justify-start gap-2",
+              "input input-bordered bg-white/20 shadow-md focus:outline-none focus:shadow-lg",
+              "w-full",
+            )}>
+              <div className="flex items-center justify-center">
+                {(filterText !== debouncedFilterText) && <span className="inline-block h-4 w-4 text-black/50 loading loading-sm"/>}
+                {(filterText === debouncedFilterText) && <FaSearch  className="inline-block h-4 w-4 text-black/50 flex items-center justify-start" /> }
+              </div>
+              <input
+                className="flex-1 h-12 w-full bg-transparent placeholder-black/50"
+                value={filterText}
+                onChange={e => {
+                  setFilterText(e.target.value);
+                }}
+                placeholder={t("landingMsg.Filter by font family")}
+              />
+            </div>
           </div>
           <div className="h-[calc(100%-4rem)]">
             {!loading && <VirtualList
@@ -475,7 +484,7 @@ const FontPickerPage = (props: PageProps) => {
         </div>
       </div>
 
-      <ActionSheetWrapper isHidden={!isSelectorOpen} onCancel={() => {
+      <ActionSheetWrapper size="fullscreen" isHidden={!isSelectorOpen} onCancel={() => {
         setSelectorOpen(false);
       }}>
         <div className="flex flex-wrap justify-start items-start gap-6">
