@@ -32,7 +32,6 @@ import ProductIcon from "../ProductIcon";
 import {IoLanguage} from "react-icons/io5";
 import {FaBars, FaSearch} from "react-icons/fa";
 import {FaGithub, FaTag} from "react-icons/fa6";
-import useEmbedStore from "./embed/useEmbedStore";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 import {langMap} from "@nextutils/i18n/locales";
 import {locales, PRODUCT_NAME} from "@nextutils/config";
@@ -294,7 +293,6 @@ const FontPickerPage = (props: PageProps) => {
   const raw_tagValue = router.query.slugList?.[0];
   const defaultTag = useMemo(() => getDefaultTag(currentLocale), [currentLocale]);
   const tagValue = useMemo(() => getTagValue(raw_tagValue, currentLocale), [raw_tagValue, currentLocale]);
-  const embedPopup = useEmbedStore(state => state.popup);
 
   const tagDisplayName = useMemo(
     () => tTagValueMsg(tagValue as TagValueMsgLabelType),
@@ -501,7 +499,6 @@ const FontPickerPage = (props: PageProps) => {
           {tagSelectorContent}
         </div>
       </ActionSheetWrapper>
-      {embedPopup}
     </LandingLayout>
   );
 };
