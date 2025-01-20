@@ -49,9 +49,10 @@ export const getCanonicalPath = (
   }`
 }
 
-// Fix this on vercel
-// https://github.com/vercel/next.js/issues/72063
-export const hackAsPath = (asPath: string) => {
+const FAKE_DOMAIN = 'https://fake.com';
+export const hackAsPath = (asPath: string, isClient: boolean) => {
+  // Fix this on vercel
+  // https://github.com/vercel/next.js/issues/72063
   let finalPath = asPath;
   for (const l of locales) {
     if (asPath.startsWith('/' + l.locale)) {
@@ -60,21 +61,34 @@ export const hackAsPath = (asPath: string) => {
     }
   }
 
-  // remove the parameter nxtPslugList
-  finalPath = finalPath.split('?')[0]!;
+  const url = new URL(finalPath, FAKE_DOMAIN);
 
-  return finalPath;
+  // remove the parameter nxtPslugList
+  if (url.searchParams.has('nxtPslugList')) {
+    url.searchParams.delete('nxtPslugList');
+  }
+
+  // Fix hydration of hash - remove hash on server
+  // https://github.com/vercel/next.js/issues/25202
+  if (!isClient) {
+    url.hash = '';
+  }
+
+  finalPath = url.toString();
+
+  return finalPath.slice(FAKE_DOMAIN.length);
 };
 
 export const getCanonicalUrl = (
   locale: string,
-  asPath: string // use router.asPath
+  asPath: string, // use router.asPath,
+  isClient: boolean,
 ) => {
   return `https://${
     PRODUCT_DOMAIN
   }${
     locale === fallbackLocale ? '' : '/' + locale
   }${
-    hackAsPath(asPath) === '/' ? '' : hackAsPath(asPath)
+    hackAsPath(asPath, isClient) === '/' ? '' : hackAsPath(asPath, isClient)
   }`
 };

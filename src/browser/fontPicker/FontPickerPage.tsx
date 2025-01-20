@@ -31,8 +31,7 @@ import {tagToUrlSlug} from "../../@fontsensei/utils";
 import ProductIcon from "../ProductIcon";
 import {IoLanguage} from "react-icons/io5";
 import {FaBars, FaSearch} from "react-icons/fa";
-import {FaTag} from "react-icons/fa6";
-import useEmbedStore from "./embed/useEmbedStore";
+import {FaGithub, FaTag} from "react-icons/fa6";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 import {langMap} from "@nextutils/i18n/locales";
 import {locales, PRODUCT_NAME} from "@nextutils/config";
@@ -41,6 +40,8 @@ import SwitchLocaleHint from "@nextutils/i18n/SwitchLocaleHint";
 import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";
 import ModalDialog from "@nextutils/ui/modal/ModalDialog";
 import {ModalTitle} from "@nextutils/ui/modal/commonComponents";
+import ActionSheetWrapper from "@nextutils/ui/actionSheet/ActionSheetWrapper";
+import {MdOutlineFeedback} from "react-icons/md";
 
 const PAGE_SIZE = 10;
 
@@ -62,11 +63,12 @@ export type MenuItem = {
 export type NavbarContextOpts = {
   shouldHide?: boolean;
   noSwitchLocaleHint?: boolean;
-  extraLeftNode?: ReactNode;
   extraMenuItems?: MenuItem[];
 } | undefined;
 
 export const NavbarContext = React.createContext<NavbarContextOpts>(undefined);
+
+const GITHUB_LINK = "https://github.com/mrbirddev/fontsensei";
 const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
   const [localeModalOpen, setLocaleModalOpen] = useState(false);
 
@@ -80,9 +82,24 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
 
   const navbarContext = useContext(NavbarContext);
 
+  const feedbackMsg = t("landingMsg.Feedback");
+
   const menuItems = useMemo(() => {
     return [
-      ...(navbarContext?.extraMenuItems ?? []),
+      ...(navbarContext?.extraMenuItems ?? [
+        {
+          icon: <MdOutlineFeedback />,
+          label: feedbackMsg,
+          href: GITHUB_LINK + "/issues/new",
+          target: "_blank",
+        },
+        {
+          icon: <FaGithub />,
+          label: "GitHub",
+          href: GITHUB_LINK,
+          target: "_blank",
+        }
+      ] as MenuItem[]),
       // {
       //   icon: <IoLanguage />,
       //   label: preferredLocale && (preferredLocale !== currentLocale)
@@ -94,7 +111,7 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
       //   },
       // } as MenuItem,
     ];
-  }, [lang, router.pathname, navbarContext?.extraMenuItems, preferredLocale]);
+  }, [lang, router.pathname, navbarContext?.extraMenuItems, preferredLocale, feedbackMsg]);
 
   const pickerBasePath = useContext(FontPickerPageContext)?.basePath ?? "";
 
@@ -116,7 +133,6 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
               </div>
             </Link>
             <h1 className="font-bold truncate hidden md:block">{PRODUCT_NAME}</h1>
-            {navbarContext?.extraLeftNode}
             <div className="btn btn-ghost" onClick={() => {
               setLocaleModalOpen(true);
             }} >
@@ -203,9 +219,6 @@ const LandingLayout = (props: PropsWithChildren & {
           "px-4 text-grey-700"
         )
       }
-      style={{
-        background: 'linear-gradient(to right, rgb(104, 136, 53), rgb(89, 138, 135))'
-      }}
     >
       <Navbar fullWidth={props.fullWidth} />
       {props.fullWidth && <div className={cx(
@@ -258,13 +271,8 @@ const TagButton = (props: PropsWithChildren<{
     key={tag}
     className={cx(
       // "focus:ring-4 focus:ring-gray-300",
-      "text-gray-900 bg-white/30 hover:bg-white/70 text-xl font-medium text-center",
-      "border border-transparent focus:outline-none rounded px-2 py-1",
-      (
-        isActive
-          ? "!border-white !bg-white/70 !hover:bg-white/70 !hover:border-white"
-          : false
-      )
+      "btn",
+      isActive ? "btn-primary" : "btn-outline",
     )}
     href={href}
     style={{
@@ -285,7 +293,6 @@ const FontPickerPage = (props: PageProps) => {
   const raw_tagValue = router.query.slugList?.[0];
   const defaultTag = useMemo(() => getDefaultTag(currentLocale), [currentLocale]);
   const tagValue = useMemo(() => getTagValue(raw_tagValue, currentLocale), [raw_tagValue, currentLocale]);
-  const embedPopup = useEmbedStore(state => state.popup);
 
   const tagDisplayName = useMemo(
     () => tTagValueMsg(tagValue as TagValueMsgLabelType),
@@ -418,7 +425,7 @@ const FontPickerPage = (props: PageProps) => {
 
   const [isSelectorOpen, setSelectorOpen] = useState(false);
   const selectorModalButton = <div className={cx(
-    "btn btn-ghost",
+    "btn btn-outline shadow-md",
     "flex md:hidden items-center justify-center gap-1"
   )} onClick={() => {
     setSelectorOpen(true);
@@ -430,35 +437,40 @@ const FontPickerPage = (props: PageProps) => {
   const navbarContextOutside = useContext(NavbarContext);
 
   return (
-    <NavbarContext.Provider value={{
-      ...navbarContextOutside,
-      extraLeftNode: selectorModalButton,
-    }}>
-      <LandingLayout fullWidth={true} className="relative">
-        <Head>
-          <title>{title}</title>
-        </Head>
-        <GoogleFontHeaders preConnect={true} configList={allFontConfigList} strategy="block"/>
+    <LandingLayout fullWidth={true} className="relative">
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <GoogleFontHeaders preConnect={true} configList={allFontConfigList} strategy="block"/>
 
+      <div className={cx(
+        "flex gap-4",
+        navbarContextOutside?.shouldHide ? "h-[100vh]" : false,
+        !navbarContextOutside?.shouldHide ? "h-[calc(100vh-4rem)]" : false,
+      )}>
         <div className={cx(
-          "flex gap-4",
-          navbarContextOutside?.shouldHide ? "h-[100vh]" : false,
-          !navbarContextOutside?.shouldHide ? "h-[calc(100vh-4rem)]" : false,
+          "hidden md:block",
+          "py-4 flex-0 w-[40%] min-w-[200px] h-full overflow-y-scroll",
         )}>
-          <div className={cx(
-            "hidden md:block",
-            "py-4 flex-0 w-[40%] min-w-[200px] h-full overflow-y-scroll",
-          )}>
-            {tagSelectorContent}
-          </div>
-          <div className={cx(
-            "py-4 flex-1 h-full"
-          )}>
-            <div className="flex items-center justify-start gap-2 mb-4">
-              {(filterText !== debouncedFilterText) && <span className="inline-block h-4 w-4 text-black/50 loading loading-sm"/>}
-              {(filterText === debouncedFilterText) && <FaSearch  className="inline-block h-4 w-4 text-black/50 flex items-center justify-start" /> }
+          {tagSelectorContent}
+        </div>
+        <div className={cx(
+          "py-4 flex-1 h-full"
+        )}>
+          <div className="flex items-center justify-start gap-2 mb-4">
+            {selectorModalButton}
+            <div className={cx(
+              "relative",
+              "flex items-center justify-start gap-2",
+              "input input-bordered bg-white/20 shadow-md focus:outline-none focus:shadow-lg",
+              "w-full",
+            )}>
+              <div className="flex items-center justify-center">
+                {(filterText !== debouncedFilterText) && <span className="inline-block h-4 w-4 text-black/50 loading loading-sm"/>}
+                {(filterText === debouncedFilterText) && <FaSearch  className="inline-block h-4 w-4 text-black/50 flex items-center justify-start" /> }
+              </div>
               <input
-                className="flex-1 h-12 input input-bordered w-full placeholder-black/50 bg-white/20 focus:outline-none shadow-md focus:shadow-lg"
+                className="flex-1 h-12 w-full bg-transparent placeholder-black/50"
                 value={filterText}
                 onChange={e => {
                   setFilterText(e.target.value);
@@ -466,29 +478,28 @@ const FontPickerPage = (props: PageProps) => {
                 placeholder={t("landingMsg.Filter by font family")}
               />
             </div>
-            <div className="h-[calc(100%-4rem)]">
-              {!loading && <VirtualList
-                  tagValue={tagValue}
-                  filterText={debouncedFilterText}
-                  initialFontItemList={initialFontItemList}
-                  placeholderText={props.placeholderText}
-                  pageSize={PAGE_SIZE}
-              />}
-              {loading && <span className="loading loading-bars loading-sm"/>}
-            </div>
+          </div>
+          <div className="h-[calc(100%-4rem)]">
+            {!loading && <VirtualList
+                tagValue={tagValue}
+                filterText={debouncedFilterText}
+                initialFontItemList={initialFontItemList}
+                placeholderText={props.placeholderText}
+                pageSize={PAGE_SIZE}
+            />}
+            {loading && <span className="loading loading-bars loading-sm"/>}
           </div>
         </div>
+      </div>
 
-        <ModalDialog isOpen={isSelectorOpen} setOpen={setSelectorOpen}>
-          <ModalTitle onCancel={() => setSelectorOpen(false)}>
-          </ModalTitle>
-          <div className="flex flex-wrap justify-start items-start gap-6">
-            {tagSelectorContent}
-          </div>
-        </ModalDialog>
-        {embedPopup}
-      </LandingLayout>
-    </NavbarContext.Provider>
+      <ActionSheetWrapper size="fullscreen" isHidden={!isSelectorOpen} onCancel={() => {
+        setSelectorOpen(false);
+      }}>
+        <div className="flex flex-wrap justify-start items-start gap-6 px-3">
+          {tagSelectorContent}
+        </div>
+      </ActionSheetWrapper>
+    </LandingLayout>
   );
 };
 

@@ -1,8 +1,9 @@
 import React, { useEffect, useRef} from "react";
-import {useI18n, useScopedI18n} from "@fontsensei/locales";
+import {useScopedI18n} from "@fontsensei/locales";
 import copyToClipboard from "copy-to-clipboard";
 import {FaCheck, FaCopy} from "react-icons/fa6";
-import {ModalButtons, ModalTextarea} from "@nextutils/ui/modal/commonComponents";
+import {ModalTextarea} from "@nextutils/ui/modal/commonComponents";
+import ActionSheetWrapper from "@nextutils/ui/actionSheet/ActionSheetWrapper";
 
 const EmbedModal = (props: {
   content: string;
@@ -33,8 +34,22 @@ const EmbedModal = (props: {
   }, [isCopied]);
 
   return (
-    <dialog id="my_modal_1" className={"modal " + (props.isOpen ? 'modal-open' : '')}>
-      <div className="modal-box text-grey-700">
+    <ActionSheetWrapper
+      confirmLabel={isCopied ? <>
+        <FaCheck className="text-success" />
+        <span>{tLandingMsg("Copied")}</span>
+      </> : <>
+        <FaCopy />
+        <span>{tLandingMsg("Copy")}</span>
+      </>}
+      onConfirm={() => {
+        copyToClipboard(props.content);
+        setIsCopied(true);
+      }}
+      onCancel={() => {
+        props.setOpen(false);
+      }}
+    >
         {/*<ModalTitle>{props.title}</ModalTitle>*/}
         <ModalTextarea
           label={tLandingMsg("Embed code in the <head> of your html")}
@@ -48,24 +63,7 @@ const EmbedModal = (props: {
             className: "outline-none text-lg block flex-1 border-0 bg-transparent p-2 text-grey-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6",
           }}
         />
-
-        <ModalButtons
-          confirmChildren={isCopied ? <>
-            <FaCheck className="text-success" />
-            <span>{tLandingMsg("Copied")}</span>
-          </> : <>
-            <FaCopy />
-            <span>{tLandingMsg("Copy")}</span>
-          </>}
-          onConfirm={() => {
-            copyToClipboard(props.content);
-            setIsCopied(true);
-          }}
-          onCancel={() => {
-            props.setOpen(false);
-          }}/>
-      </div>
-    </dialog>
+    </ActionSheetWrapper>
   );
 }
 
