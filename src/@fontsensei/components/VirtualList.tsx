@@ -75,8 +75,8 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
     key={fontItem.family}
     className={cx(
       ITEM_HEIGHT_CLS,
-      "overflow-hidden rounded-2xl",
-      "hover:shadow-xl hover:bg-white/30",
+      "overflow-hidden rounded",
+      "bg-white hover:bg-gray-200 transition",
       "p-2"
     )}
     style={style}
@@ -94,23 +94,24 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
         )}
         style={{whiteSpace: 'nowrap', overflow: 'auto hidden'}}
       >
-        <span>
+        <span className="text-gray-500">
           #{index + 1}
         </span>
         <span className="font-bold badge badge-neutral badge-lg">
           {fontItem.family}
         </span>
-        <span className="text-lg text-gray">
-          {fontItem.metadata.variants.length} Variant(s)
-        </span>
-        <span className="text-lg text-gray">
-          {fontItem.metadata.axes.length} Axes
-        </span>
+        {/*<span className="text-lg text-gray">*/}
+        {/*  {fontItem.metadata.variants.length} Variant(s)*/}
+        {/*</span>*/}
+        {/*<span className="text-lg text-gray">*/}
+        {/*  {fontItem.metadata.axes.length} Axes*/}
+        {/*</span>*/}
       </div>
       <div
         className={cx(
           "text-xl",
-          "flex items-center justify-start gap-1 mb-2"
+          "flex items-center justify-start gap-1 mb-2",
+          "overflow-x-auto",
         )}>
         {pageCtx?.onAddTag && <span
             className="badge badge-ghost bg-white/30 hover:bg-white/70"
@@ -122,7 +123,7 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
             <FaPlus />
         </span>}
         {fontItem.tags.map((tag) => {
-          return <span key={tag} className="badge badge-ghost bg-white/30">
+          return <span key={tag} className="badge badge-ghost bg-white/30" style={{ whiteSpace: "nowrap" }}>
             {tTagValueMsg(tag as TagValueMsgLabelType)}
             {pageCtx?.onRemoveTag && <span className="hover:bg-white/70" onClick={(e) => {
               e.stopPropagation();

@@ -202,9 +202,6 @@ const LandingLayout = (props: PropsWithChildren & {
           "px-4 text-grey-700"
         )
       }
-      style={{
-        background: 'linear-gradient(to right, rgb(104, 136, 53), rgb(89, 138, 135))'
-      }}
     >
       <Navbar fullWidth={props.fullWidth} />
       {props.fullWidth && <div className={cx(
@@ -257,13 +254,8 @@ const TagButton = (props: PropsWithChildren<{
     key={tag}
     className={cx(
       // "focus:ring-4 focus:ring-gray-300",
-      "text-gray-900 bg-white/30 hover:bg-white/70 text-xl font-medium text-center",
-      "border border-transparent focus:outline-none rounded px-2 py-1",
-      (
-        isActive
-          ? "!border-white !bg-white/70 !hover:bg-white/70 !hover:border-white"
-          : false
-      )
+      "btn",
+      isActive ? "btn-primary" : "btn-outline",
     )}
     href={href}
     style={{

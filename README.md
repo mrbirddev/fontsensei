@@ -8,8 +8,8 @@ View on https://fontsensei.com
 
 ## Features
 - Readable tags on the left for easy font discovery.
+- Tags Latin languages for easy discovery.
 - Tags for non-Latin languages, eg CJK(Chinese, Japanese, Korean), in their corresponding native language
-- Easy on the eye coloring for both day & night.
 
 ## Structure
 - src/@fontsensei contains the core code of this repo.
