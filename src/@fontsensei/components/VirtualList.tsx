@@ -76,6 +76,7 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
     className={cx(
       ITEM_HEIGHT_CLS,
       "overflow-hidden rounded",
+      "border-b",
       "bg-white hover:bg-gray-200 transition",
       "p-2"
     )}
@@ -280,7 +281,7 @@ const VirtualList = ({
         </List>
       )}
     </AutoSizer>}
-    {isLoading && <div className="absolute inset-0 flex items-center justify-center bg-white/10">
+    {isLoading && <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10">
       <span className="loading loading-bars" />
     </div>}
   </div>;
