@@ -41,6 +41,7 @@ import SwitchLocaleHint from "@nextutils/i18n/SwitchLocaleHint";
 import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";
 import ModalDialog from "@nextutils/ui/modal/ModalDialog";
 import {ModalTitle} from "@nextutils/ui/modal/commonComponents";
+import ActionSheetWrapper from "@nextutils/ui/actionSheet/ActionSheetWrapper";
 
 const PAGE_SIZE = 10;
 
@@ -62,7 +63,6 @@ export type MenuItem = {
 export type NavbarContextOpts = {
   shouldHide?: boolean;
   noSwitchLocaleHint?: boolean;
-  extraLeftNode?: ReactNode;
   extraMenuItems?: MenuItem[];
 } | undefined;
 
@@ -116,7 +116,6 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
               </div>
             </Link>
             <h1 className="font-bold truncate hidden md:block">{PRODUCT_NAME}</h1>
-            {navbarContext?.extraLeftNode}
             <div className="btn btn-ghost" onClick={() => {
               setLocaleModalOpen(true);
             }} >
@@ -430,65 +429,61 @@ const FontPickerPage = (props: PageProps) => {
   const navbarContextOutside = useContext(NavbarContext);
 
   return (
-    <NavbarContext.Provider value={{
-      ...navbarContextOutside,
-      extraLeftNode: selectorModalButton,
-    }}>
-      <LandingLayout fullWidth={true} className="relative">
-        <Head>
-          <title>{title}</title>
-        </Head>
-        <GoogleFontHeaders preConnect={true} configList={allFontConfigList} strategy="block"/>
+    <LandingLayout fullWidth={true} className="relative">
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <GoogleFontHeaders preConnect={true} configList={allFontConfigList} strategy="block"/>
 
+      <div className={cx(
+        "flex gap-4",
+        navbarContextOutside?.shouldHide ? "h-[100vh]" : false,
+        !navbarContextOutside?.shouldHide ? "h-[calc(100vh-4rem)]" : false,
+      )}>
         <div className={cx(
-          "flex gap-4",
-          navbarContextOutside?.shouldHide ? "h-[100vh]" : false,
-          !navbarContextOutside?.shouldHide ? "h-[calc(100vh-4rem)]" : false,
+          "hidden md:block",
+          "py-4 flex-0 w-[40%] min-w-[200px] h-full overflow-scroll",
         )}>
-          <div className={cx(
-            "hidden md:block",
-            "py-4 flex-0 w-[40%] min-w-[200px] h-full overflow-scroll",
-          )}>
-            {tagSelectorContent}
+          {tagSelectorContent}
+        </div>
+        <div className={cx(
+          "py-4 flex-1 h-full overflow-scroll"
+        )}>
+          <div className="flex items-center justify-start gap-2 mb-4">
+            {selectorModalButton}
+            {(filterText !== debouncedFilterText) && <span className="inline-block h-4 w-4 text-black/50 loading loading-sm"/>}
+            {(filterText === debouncedFilterText) && <FaSearch  className="inline-block h-4 w-4 text-black/50 flex items-center justify-start" /> }
+            <input
+              className="flex-1 h-12 input input-bordered w-full placeholder-black/50 bg-white/20 focus:outline-none shadow-md focus:shadow-lg"
+              value={filterText}
+              onChange={e => {
+                setFilterText(e.target.value);
+              }}
+              placeholder={t("landingMsg.Filter by font family")}
+            />
           </div>
-          <div className={cx(
-            "py-4 flex-1 h-full overflow-scroll"
-          )}>
-            <div className="flex items-center justify-start gap-2 mb-4">
-              {(filterText !== debouncedFilterText) && <span className="inline-block h-4 w-4 text-black/50 loading loading-sm"/>}
-              {(filterText === debouncedFilterText) && <FaSearch  className="inline-block h-4 w-4 text-black/50 flex items-center justify-start" /> }
-              <input
-                className="flex-1 h-12 input input-bordered w-full placeholder-black/50 bg-white/20 focus:outline-none shadow-md focus:shadow-lg"
-                value={filterText}
-                onChange={e => {
-                  setFilterText(e.target.value);
-                }}
-                placeholder={t("landingMsg.Filter by font family")}
-              />
-            </div>
-            <div className="h-[calc(100%-4rem)]">
-              {!loading && <VirtualList
-                  tagValue={tagValue}
-                  filterText={debouncedFilterText}
-                  initialFontItemList={initialFontItemList}
-                  placeholderText={props.placeholderText}
-                  pageSize={PAGE_SIZE}
-              />}
-              {loading && <span className="loading loading-bars loading-sm"/>}
-            </div>
+          <div className="h-[calc(100%-4rem)]">
+            {!loading && <VirtualList
+                tagValue={tagValue}
+                filterText={debouncedFilterText}
+                initialFontItemList={initialFontItemList}
+                placeholderText={props.placeholderText}
+                pageSize={PAGE_SIZE}
+            />}
+            {loading && <span className="loading loading-bars loading-sm"/>}
           </div>
         </div>
+      </div>
 
-        <ModalDialog isOpen={isSelectorOpen} setOpen={setSelectorOpen}>
-          <ModalTitle onCancel={() => setSelectorOpen(false)}>
-          </ModalTitle>
-          <div className="flex flex-wrap justify-start items-start gap-6">
-            {tagSelectorContent}
-          </div>
-        </ModalDialog>
-        {embedPopup}
-      </LandingLayout>
-    </NavbarContext.Provider>
+      <ActionSheetWrapper isHidden={!isSelectorOpen} onCancel={() => {
+        setSelectorOpen(false);
+      }}>
+        <div className="flex flex-wrap justify-start items-start gap-6">
+          {tagSelectorContent}
+        </div>
+      </ActionSheetWrapper>
+      {embedPopup}
+    </LandingLayout>
   );
 };
 
