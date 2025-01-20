@@ -455,7 +455,7 @@ const FontPickerPage = (props: PageProps) => {
           {tagSelectorContent}
         </div>
         <div className={cx(
-          "py-4 flex-1 h-full"
+          "py-4 flex-1 h-full w-full"
         )}>
           <div className="flex items-center justify-start gap-2 mb-4">
             {selectorModalButton}
