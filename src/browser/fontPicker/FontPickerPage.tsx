@@ -445,8 +445,8 @@ const FontPickerPage = (props: PageProps) => {
 
       <div className={cx(
         "flex gap-4",
-        navbarContextOutside?.shouldHide ? "h-[100vh]" : false,
-        !navbarContextOutside?.shouldHide ? "h-[calc(100vh-4rem)]" : false,
+        navbarContextOutside?.shouldHide ? "h-[100dvh]" : false,
+        !navbarContextOutside?.shouldHide ? "h-[calc(100dvh-4rem)]" : false,
       )}>
         <div className={cx(
           "hidden md:block",
