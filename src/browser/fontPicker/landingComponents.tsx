@@ -6,6 +6,7 @@ import useEmbedStore from "./embed/useEmbedStore";
 import EmbedModal from "./embed/EmbedModal";
 import {MdOutlineFeedback} from "react-icons/md";
 import {useI18n} from "@fontsensei/locales";
+import {fontFamilyToUrlParam} from "../../@fontsensei/utils";
 
 const GITHUB_LINK = "https://github.com/mrbirddev/fontsensei";
 export const getExtraMenuItems = (t: ReturnType<typeof useI18n>) => [
@@ -35,7 +36,7 @@ export const Toolbar: NonNullable<FontPickerPageContextOpts>['Toolbar'] = ({font
         content={`<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=${
-          fontItem.family.replace(' ', '+')
+          fontFamilyToUrlParam(fontItem.family)
         }${
           fontItem.metadata.defaultSuffix
         }&display=swap" rel="stylesheet">`}
