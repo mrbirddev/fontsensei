@@ -289,6 +289,7 @@ const FontPickerPage = (props: PageProps) => {
   const currentLocale = useCurrentLocale();
   const tLandingMsg = useScopedI18n('landingMsg');
   const tTagValueMsg = useScopedI18n('tagValueMsg');
+  const tTagDescMsg = useScopedI18n('tagDescMsg');
   const router = useRouter();
   const raw_tagValue = router.query.slugList?.[0];
   const defaultTag = useMemo(() => getDefaultTag(currentLocale), [currentLocale]);
@@ -365,15 +366,6 @@ const FontPickerPage = (props: PageProps) => {
   );
 
   const tagSelectorContent = <>
-    <div className="font-normal mb-4">
-      {
-        (tagValue === 'all' || !tagValue)
-          ? <h2>{tNextUtils('product.description', {productName: PRODUCT_NAME})}</h2>
-          : tLandingMsg('Free font tagged {tagValue} provided by Google fonts', {
-            tagValue: tagDisplayName,
-          })
-      }
-    </div>
     {!!langTagList.length && <>
         <div className="flex items-center justify-start flex-wrap gap-2">
           {
@@ -422,6 +414,7 @@ const FontPickerPage = (props: PageProps) => {
       }
     </div>
 
+    {/*TODO replace with product name bg*/}
     <div className="h-[200px] w-full">
       <div className="h-full flex flex-col items-center justify-center gap-2">
         <img src={PRODUCT_ICON} className="w-10 grayscale-[50%]" />
@@ -459,6 +452,12 @@ const FontPickerPage = (props: PageProps) => {
           "hidden md:block",
           "py-4 flex-0 w-[40%] min-w-[200px] h-full overflow-y-scroll",
         )}>
+          <h1 className="text-lg">{tLandingMsg('Free font tagged {tagValue} provided by Google fonts', { tagValue: tagDisplayName })}</h1>
+          {tTagDescMsg(tagValue as TagValueMsgLabelType)
+            && <p>{tTagDescMsg(tagValue as TagValueMsgLabelType)}</p>}
+
+          <div className="h-4" />
+
           {tagSelectorContent}
         </div>
         <div className={cx(
