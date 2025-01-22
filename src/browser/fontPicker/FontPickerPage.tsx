@@ -42,6 +42,7 @@ import ModalDialog from "@nextutils/ui/modal/ModalDialog";
 import {ModalTitle} from "@nextutils/ui/modal/commonComponents";
 import ActionSheetWrapper from "@nextutils/ui/actionSheet/ActionSheetWrapper";
 import {MdOutlineFeedback} from "react-icons/md";
+import MDX from "@mdx-js/runtime";
 
 const PAGE_SIZE = 10;
 
@@ -458,6 +459,19 @@ const FontPickerPage = (props: PageProps) => {
           <div className="h-4" />
 
           {tagSelectorContent}
+
+          <div className="h-4" />
+
+          <MDX components={{
+            h2: (props: PropsWithChildren) => <h3
+              className="mb-3 font-bold tracking-tight text-gray-900"
+            >{props.children}</h3>,
+            li: (props: PropsWithChildren) => <li className="mb-3 font-normal text-gray-500"> - {props.children}</li>,
+            p: (props: PropsWithChildren) => <p className="mb-3 font-normal text-gray-500">{props.children}</p>,
+            a: (props: PropsWithChildren<{href: string}>) => <Link className="link" href={props.href}>{props.children}</Link>
+          }}>
+            {t('indexFaq')}
+          </MDX>
         </div>
         <div className={cx(
           "py-4 flex-1 h-full w-full"
