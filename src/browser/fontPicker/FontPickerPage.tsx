@@ -453,8 +453,7 @@ const FontPickerPage = (props: PageProps) => {
           "py-4 flex-0 w-[40%] min-w-[200px] h-full overflow-y-scroll",
         )}>
           <h1 className="text-lg">{tLandingMsg('Free font tagged {tagValue} provided by Google fonts', { tagValue: tagDisplayName })}</h1>
-          {tTagDescMsg(tagValue as TagValueMsgLabelType)
-            && <p>{tTagDescMsg(tagValue as TagValueMsgLabelType)}</p>}
+          {(tTagDescMsg(tagValue as TagValueMsgLabelType) !== tagValue) && <p>{tTagDescMsg(tagValue as TagValueMsgLabelType)}</p>}
 
           <div className="h-4" />
 
