@@ -187,10 +187,6 @@ const VirtualList = ({
 }) => {
   const [list, setList] = useState([
     ...initialFontItemList,
-    {
-      family: 'LOADING',
-      tags: [],
-    } as unknown as FSFontItem
   ]);
 
   const [isLoading, setIsLoading] = useState(false);
