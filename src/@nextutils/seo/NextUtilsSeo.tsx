@@ -1,30 +1,32 @@
-import {allLocaleStrList, useCurrentLocale, useI18n} from "@nextutils/locales";
-import {useRouter} from "next/router";
-import {NextSeo} from "next-seo";
-import React from "react";
-import {AppFC, AppMiddleware} from "./AppMiddleware";
-import {getCanonicalUrl, hackAsPath} from "@nextutils/i18n/locales";
 import {noIndexPathList, noLangAltList, PRODUCT_DOMAIN, PRODUCT_NAME} from "@nextutils/config";
-import { useIsClient } from "usehooks-ts";
+import {allLocaleStrList, useCurrentLocale, useI18n} from "@nextutils/locales";
+import {getCanonicalUrl, hackAsPath} from "@nextutils/i18n/locales";
+import {useRouter} from "next/router";
+import {useIsClient} from "usehooks-ts";
+import React from "react";
+import {NextSeo} from "next-seo";
 
-const i18nLangAltHead: AppMiddleware = (App) => {
-  const Augmented: AppFC = (props) => {
-    const t = useI18n();
-    const currentLocale = useCurrentLocale();
-    const router = useRouter();
-    const isClient = useIsClient();
-    const canonical = getCanonicalUrl(currentLocale, router.asPath, isClient);
+const NextUtilsSeo = (props: {
+  title?: string
+}) => {
+  const t = useI18n();
+  const currentLocale = useCurrentLocale();
+  const router = useRouter();
+  const isClient = useIsClient();
+  const canonical = getCanonicalUrl(currentLocale, router.asPath, isClient);
 
-    const noIndex = !!noIndexPathList.find(prefix => hackAsPath(router.asPath, isClient).startsWith(prefix));
-    const noLangAlt = !!noLangAltList.find(prefix => hackAsPath(router.asPath, isClient).startsWith(prefix));
+  const noIndex = !!noIndexPathList.find(prefix => hackAsPath(router.asPath, isClient).startsWith(prefix));
+  const noLangAlt = !!noLangAltList.find(prefix => hackAsPath(router.asPath, isClient).startsWith(prefix));
 
-    const seo = <NextSeo
+  return  (
+    <NextSeo
       noindex={noIndex}
-      title={`${PRODUCT_NAME} - ${t('product.slogan')}`}
+      title={props.title ?? `${PRODUCT_NAME} - ${t('product.slogan')}`}
       description={`${PRODUCT_NAME} - ${t('product.slogan')}`}
       canonical={canonical}
       openGraph={{
         type: 'website',
+        title: props.title ?? `${PRODUCT_NAME} - ${t('product.slogan')}`,
         locale: currentLocale,
         url: canonical,
         siteName: `${PRODUCT_NAME} - ${t('product.slogan')}`,
@@ -44,14 +46,8 @@ const i18nLangAltHead: AppMiddleware = (App) => {
           {hrefLang: 'x-default', href: canonical}
         ]
       }
-    />;
-    return <>
-      {seo}
-      <App {...props}/>
-    </>;
-  };
-
-  return Augmented;
+    />
+  );
 };
 
-export default i18nLangAltHead;
+export default NextUtilsSeo;

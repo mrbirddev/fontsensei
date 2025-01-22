@@ -43,6 +43,7 @@ import {ModalTitle} from "@nextutils/ui/modal/commonComponents";
 import ActionSheetWrapper from "@nextutils/ui/actionSheet/ActionSheetWrapper";
 import {MdOutlineFeedback} from "react-icons/md";
 import MDX from "@mdx-js/runtime";
+import NextUtilsSeo from "@nextutils/seo/NextUtilsSeo";
 
 const PAGE_SIZE = 10;
 
@@ -209,10 +210,12 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
   </>
 };
 const LandingLayout = (props: PropsWithChildren & {
+  title?: string,
   className?: string,
   fullWidth?: boolean
 }) => {
-  return (
+  return (<>
+    <NextUtilsSeo title={props.title} />
     <main
       className={
         cx(
@@ -232,7 +235,7 @@ const LandingLayout = (props: PropsWithChildren & {
         {props.children}
       </div>}
     </main>
-  );
+  </>);
 };
 
 const getDefaultTag = (currentLocale: LocaleStr) => {
@@ -430,10 +433,7 @@ const FontPickerPage = (props: PageProps) => {
   const navbarContextOutside = useContext(NavbarContext);
 
   return (
-    <LandingLayout fullWidth={true} className="relative">
-      <Head>
-        <title>{title}</title>
-      </Head>
+    <LandingLayout title={title} fullWidth={true} className="relative">
       <GoogleFontHeaders preConnect={true} configList={allFontConfigList} strategy="block"/>
 
       <div className={cx(
