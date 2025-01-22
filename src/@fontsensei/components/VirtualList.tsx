@@ -65,9 +65,16 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
       ref={forwardedRef}
       data-itemindex={index}
     >
-      <div className="h-full flex flex-col items-center justify-center gap-2">
-        <img src={PRODUCT_ICON} className="w-10 grayscale-[50%]" />
-        <span>THE END</span>
+      <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+        <div
+          className="text-gray-200"
+          style={{
+            fontSize: '4rem',
+            whiteSpace: 'nowrap',
+            textShadow: "0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.8)",
+          }}>
+          THE END
+        </div>
       </div>
     </div>
   }
