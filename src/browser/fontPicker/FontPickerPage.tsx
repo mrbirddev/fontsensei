@@ -133,7 +133,7 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
                 <ProductIcon />
               </div>
             </Link>
-            <h1 className="font-bold truncate hidden md:block">{PRODUCT_NAME}</h1>
+            <div className="font-bold truncate hidden md:block">{PRODUCT_NAME}</div>
             <div className="btn btn-ghost" onClick={() => {
               setLocaleModalOpen(true);
             }} >
@@ -414,14 +414,6 @@ const FontPickerPage = (props: PageProps) => {
         </TagButton>)
       }
     </div>
-
-    {/*TODO replace with product name bg*/}
-    <div className="h-[200px] w-full">
-      <div className="h-full flex flex-col items-center justify-center gap-2">
-        <img src={PRODUCT_ICON} className="w-10 grayscale-[50%]" />
-        <span>THE END</span>
-      </div>
-    </div>
   </>;
 
   const [isSelectorOpen, setSelectorOpen] = useState(false);
@@ -463,9 +455,9 @@ const FontPickerPage = (props: PageProps) => {
           <div className="h-4" />
 
           <MDX components={{
-            h2: (props: PropsWithChildren) => <h3
+            h2: (props: PropsWithChildren) => <h2
               className="mb-3 font-bold tracking-tight text-gray-900"
-            >{props.children}</h3>,
+            >{props.children}</h2>,
             li: (props: PropsWithChildren) => <li className="mb-3 font-normal text-gray-500"> - {props.children}</li>,
             p: (props: PropsWithChildren) => <p className="mb-3 font-normal text-gray-500">{props.children}</p>,
             a: (props: PropsWithChildren<{href: string}>) => <Link className="link" href={props.href}>{props.children}</Link>
