@@ -160,6 +160,11 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
           const newText = window.prompt(tLandingMsg("Please enter the demo text"), text);
           if (newText) {
             void router.push({query: {...router.query, text: newText}});
+          } else {
+            // delete this query
+            const newQuery = {...router.query};
+            delete newQuery.text;
+            void router.push({query: newQuery});
           }
         }}
       >
