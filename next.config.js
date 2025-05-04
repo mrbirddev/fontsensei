@@ -98,6 +98,9 @@ const config = {
     // TODO ts checks here?
     locales: locales.map(v => v.locale),
     defaultLocale: "en",
+
+    // This is not good for SEO & UX. Disable localeDetection.
+    localeDetection: false,
   },
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   webpack: (config, { isServer }) => {
