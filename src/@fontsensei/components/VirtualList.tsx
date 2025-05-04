@@ -158,6 +158,12 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
         }}
         onClick={() => {
           const newText = window.prompt(tLandingMsg("Please enter the demo text"), text);
+
+          if (newText === null) {
+            // prompt cancelled, do nothing
+            return;
+          }
+
           if (newText) {
             void router.push({query: {...router.query, text: newText}});
           } else {
