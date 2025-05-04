@@ -1,13 +1,15 @@
 export default {
-  "Google fonts tagged {tagName}": "Google fonts etichettati {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "Font gratuito etichettato {tagValue} fornito da Google fonts",
+  "Google fonts tagged {tagName}": "Google fonts con tag {tagName}",
+  "Free font tagged {tagValue} provided by Google fonts": "Font gratuito con tag {tagValue} fornito da Google fonts",
   "Feedback": "Feedback",
   "Select": "Seleziona",
   "Copy": "Copia",
   "Copied": "Copiato",
   "Embed": "Incorpora",
   "Embed code in the <head> of your html": "Incorpora il codice nel <head> del tuo html",
-  "More tags": "Altre etichette",
+  "More tags": "Altri tag",
   "Filter by font family": "Filtra per famiglia di font",
   "Please enter the demo text": "Per favore inserisci il testo dimostrativo",
+  "Free website builder": "Costruttore di siti web gratuito",
+  "{productName} is a website builder where you can embed these fonts without coding": "{productName} è un costruttore di siti web dove puoi incorporare questi font senza programmare",
 } as const;

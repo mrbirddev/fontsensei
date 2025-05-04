@@ -9,5 +9,7 @@ export default {
   "Embed code in the <head> of your html": "Code im <head> Ihres HTML einbetten",
   "More tags": "Weitere Tags",
   "Filter by font family": "Nach Schriftfamilie filtern",
-  "Please enter the demo text": "Bitte geben Sie den Demo-Text ein",
+  "Please enter the demo text": "Bitte geben Sie den Demotext ein",
+  "Free website builder": "Kostenloser Website-Builder",
+  "{productName} is a website builder where you can embed these fonts without coding": "{productName} ist ein Website-Builder, in dem Sie diese Schriftarten ohne Programmierung einbetten können",
 } as const;

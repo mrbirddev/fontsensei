@@ -1,7 +1,7 @@
 export default {
-  "Google fonts tagged {tagName}": "Google yazı tipleri {tagName} etiketiyle etiketlendi",
+  "Google fonts tagged {tagName}": "Google yazı tipleri {tagName} ile etiketlendi",
   "Free font tagged {tagValue} provided by Google fonts": "Google yazı tipleri tarafından sağlanan {tagValue} etiketli ücretsiz yazı tipi",
-  "Feedback": "Geri Bildirim",
+  "Feedback": "Geri bildirim",
   "Select": "Seç",
   "Copy": "Kopyala",
   "Copied": "Kopyalandı",
@@ -10,4 +10,6 @@ export default {
   "More tags": "Daha fazla etiket",
   "Filter by font family": "Yazı tipi ailesine göre filtrele",
   "Please enter the demo text": "Lütfen demo metnini girin",
+  "Free website builder": "Ücretsiz web sitesi oluşturucu",
+  "{productName} is a website builder where you can embed these fonts without coding": "{productName}, bu yazı tiplerini kodlama yapmadan gömebileceğiniz bir web sitesi oluşturucusudur",
 } as const;

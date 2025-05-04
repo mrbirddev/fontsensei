@@ -1,13 +1,15 @@
 export default {
-  "Google fonts tagged {tagName}": "Google-lettertypen getagd {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "Gratis lettertype getagd {tagValue} geleverd door Google-lettertypen",
+  "Google fonts tagged {tagName}": "Google-lettertypen met tag {tagName}",
+  "Free font tagged {tagValue} provided by Google fonts": "Gratis lettertype met tag {tagValue} aangeboden door Google-lettertypen",
   "Feedback": "Feedback",
   "Select": "Selecteer",
   "Copy": "Kopiëren",
   "Copied": "Gekopieerd",
   "Embed": "Insluiten",
-  "Embed code in the <head> of your html": "Insluitcode in de <head> van je html",
+  "Embed code in the <head> of your html": "Voeg code in de <head> van je html in",
   "More tags": "Meer tags",
   "Filter by font family": "Filter op lettertypefamilie",
   "Please enter the demo text": "Voer de demotekst in",
+  "Free website builder": "Gratis websitebouwer",
+  "{productName} is a website builder where you can embed these fonts without coding": "{productName} is een websitebouwer waar je deze lettertypen kunt insluiten zonder te coderen",
 } as const;

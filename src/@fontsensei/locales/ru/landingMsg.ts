@@ -1,13 +1,15 @@
 export default {
   "Google fonts tagged {tagName}": "Шрифты Google с тегом {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "Бесплатный шрифт с тегом {tagValue}, предоставленный Google Fonts",
+  "Free font tagged {tagValue} provided by Google fonts": "Бесплатный шрифт с тегом {tagValue}, предоставленный Google шрифтами",
   "Feedback": "Обратная связь",
   "Select": "Выбрать",
   "Copy": "Копировать",
   "Copied": "Скопировано",
   "Embed": "Встроить",
-  "Embed code in the <head> of your html": "Вставьте код в <head> вашего HTML",
+  "Embed code in the <head> of your html": "Вставьте код в <head> вашего html",
   "More tags": "Больше тегов",
   "Filter by font family": "Фильтр по семейству шрифтов",
   "Please enter the demo text": "Пожалуйста, введите демонстрационный текст",
+  "Free website builder": "Бесплатный конструктор сайтов",
+  "{productName} is a website builder where you can embed these fonts without coding": "{productName} — это конструктор сайтов, где вы можете встроить эти шрифты без кодирования",
 } as const;

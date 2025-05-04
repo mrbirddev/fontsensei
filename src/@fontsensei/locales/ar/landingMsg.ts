@@ -1,13 +1,15 @@
 export default {
-  "Google fonts tagged {tagName}": "خطوط جوجل الموسومة بـ {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "خط مجاني موسوم بـ {tagValue} مقدم من خطوط جوجل",
+  "Google fonts tagged {tagName}": "خطوط جوجل الموسومة {tagName}",
+  "Free font tagged {tagValue} provided by Google fonts": "خط مجاني موسوم {tagValue} مقدم من خطوط جوجل",
   "Feedback": "ملاحظات",
   "Select": "اختر",
   "Copy": "نسخ",
   "Copied": "تم النسخ",
   "Embed": "تضمين",
-  "Embed code in the <head> of your html": "تضمين الكود في <head> من ملف HTML الخاص بك",
+  "Embed code in the <head> of your html": "تضمين الكود في <head> من ملف html الخاص بك",
   "More tags": "المزيد من الوسوم",
   "Filter by font family": "تصفية حسب عائلة الخط",
   "Please enter the demo text": "يرجى إدخال نص العرض",
+  "Free website builder": "منشئ مواقع مجاني",
+  "{productName} is a website builder where you can embed these fonts without coding": "{productName} هو منشئ مواقع حيث يمكنك تضمين هذه الخطوط دون الحاجة إلى البرمجة",
 } as const;

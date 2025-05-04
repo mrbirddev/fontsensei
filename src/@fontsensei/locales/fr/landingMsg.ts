@@ -1,13 +1,15 @@
 export default {
   "Google fonts tagged {tagName}": "Polices Google étiquetées {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "Police gratuite étiquetée {tagValue} fournie par Google Fonts",
+  "Free font tagged {tagValue} provided by Google fonts": "Police gratuite étiquetée {tagValue} fournie par Google fonts",
   "Feedback": "Retour d'information",
   "Select": "Sélectionner",
   "Copy": "Copier",
   "Copied": "Copié",
   "Embed": "Intégrer",
-  "Embed code in the <head> of your html": "Intégrez le code dans le <head> de votre HTML",
+  "Embed code in the <head> of your html": "Intégrer le code dans le <head> de votre html",
   "More tags": "Plus de tags",
   "Filter by font family": "Filtrer par famille de polices",
   "Please enter the demo text": "Veuillez entrer le texte de démonstration",
+  "Free website builder": "Créateur de site web gratuit",
+  "{productName} is a website builder where you can embed these fonts without coding": "{productName} est un créateur de site web où vous pouvez intégrer ces polices sans coder",
 } as const;
