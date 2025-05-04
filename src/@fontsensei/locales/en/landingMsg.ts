@@ -9,4 +9,5 @@ export default {
   "Embed code in the <head> of your html": "Embed code in the <head> of your html",
   "More tags": "More tags",
   "Filter by font family": "Filter by font family",
+  "Please enter the demo text": "Please enter the demo text",
 } as const;

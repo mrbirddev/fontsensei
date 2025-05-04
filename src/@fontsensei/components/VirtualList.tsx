@@ -11,6 +11,7 @@ import {cx} from "@emotion/css";
 import {FaPlus, FaXmark} from "react-icons/fa6";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 import {PRODUCT_ICON, PRODUCT_NAME} from "@nextutils/config";
+import {useRouter} from "next/router";
 
 const ITEM_HEIGHT = 200;
 const ITEM_HEIGHT_CLS = 'h-[200px]';
@@ -34,6 +35,9 @@ type RowProps = {
 const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) => {
   const tTagValueMsg = useScopedI18n('tagValueMsg');
   const pageCtx = useContext(FontPickerPageContext);
+
+  const router = useRouter();
+  const tLandingMsg = useScopedI18n('landingMsg');
 
   if (!fontItem || (fontItem?.family === 'LOADING')) {
     return <div
@@ -146,11 +150,17 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
       </div>
       {pageCtx?.Toolbar?.({fontItem}) ?? false}
       <div
-        className="text-4xl rounded py-4"
+        className="text-4xl rounded py-4 cursor-pointer"
         style={{
           fontFamily: `"${fontItem.family}"`,
           whiteSpace: 'nowrap',
           overflow: 'auto hidden'
+        }}
+        onClick={() => {
+          const newText = window.prompt(tLandingMsg("Please enter the demo text"), text);
+          if (newText) {
+            void router.push({query: {...router.query, text: newText}});
+          }
         }}
       >
         {text}
