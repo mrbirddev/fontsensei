@@ -10,4 +10,6 @@ export default {
   "More tags": "More tags",
   "Filter by font family": "Filter by font family",
   "Please enter the demo text": "Please enter the demo text",
+  "Free website builder": "Free website builder",
+  "{productName} is a website builder where you can embed these fonts without coding": "{productName} is a website builder where you can embed these fonts without coding",
 } as const;
