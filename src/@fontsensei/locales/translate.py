@@ -59,7 +59,7 @@ for locale in locales:
     # Execute the command
     subprocess.run(command)
 
-    # modify_file(source_filename)
+    modify_file(source_filename)
 
     # wait 20 seconds
     time.sleep(20)
