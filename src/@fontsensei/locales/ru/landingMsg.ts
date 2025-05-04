@@ -6,7 +6,8 @@ export default {
   "Copy": "Копировать",
   "Copied": "Скопировано",
   "Embed": "Встроить",
-  "Embed code in the <head> of your html": "Код встраивания в <head> вашего html",
-  "More tags": "Дополнительные теги",
-  "Filter by font family": "Фильтровать по семейству шрифтов"
+  "Embed code in the <head> of your html": "Вставьте код в <head> вашего HTML",
+  "More tags": "Больше тегов",
+  "Filter by font family": "Фильтр по семейству шрифтов",
+  "Please enter the demo text": "Пожалуйста, введите демонстрационный текст",
 } as const;

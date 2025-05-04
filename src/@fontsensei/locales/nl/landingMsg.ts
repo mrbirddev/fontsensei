@@ -8,5 +8,6 @@ export default {
   "Embed": "Insluiten",
   "Embed code in the <head> of your html": "Insluitcode in de <head> van je html",
   "More tags": "Meer tags",
-  "Filter by font family": "Filteren op lettertype familie"
+  "Filter by font family": "Filter op lettertypefamilie",
+  "Please enter the demo text": "Voer de demotekst in",
 } as const;

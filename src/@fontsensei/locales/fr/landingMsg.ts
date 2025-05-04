@@ -6,7 +6,8 @@ export default {
   "Copy": "Copier",
   "Copied": "Copié",
   "Embed": "Intégrer",
-  "Embed code in the <head> of your html": "Code d'intégration dans la <head> de votre html",
-  "More tags": "Plus d'étiquettes",
-  "Filter by font family": "Filtrer par famille de polices"
+  "Embed code in the <head> of your html": "Intégrez le code dans le <head> de votre HTML",
+  "More tags": "Plus de tags",
+  "Filter by font family": "Filtrer par famille de polices",
+  "Please enter the demo text": "Veuillez entrer le texte de démonstration",
 } as const;

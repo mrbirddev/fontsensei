@@ -34,7 +34,7 @@ locales = [
 ]
 
 # The source file to be translated
-source_file = "../en/indexFaq.md"
+source_file = "../en/landingMsg.ts"
 source_filename = os.path.basename(source_file)
 
 # Loop through each locale

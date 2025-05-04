@@ -5,8 +5,9 @@ export default {
   "Select": "Seleccionar",
   "Copy": "Copiar",
   "Copied": "Copiado",
-  "Embed": "Insertar",
-  "Embed code in the <head> of your html": "Código de inserción en la etiqueta <head> de tu html",
+  "Embed": "Incrustar",
+  "Embed code in the <head> of your html": "Incrustar código en el <head> de tu HTML",
   "More tags": "Más etiquetas",
-  "Filter by font family": "Filtrar por familia de fuentes"
+  "Filter by font family": "Filtrar por familia de fuentes",
+  "Please enter the demo text": "Por favor, introduce el texto de demostración",
 } as const;
