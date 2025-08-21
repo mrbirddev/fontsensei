@@ -41,6 +41,8 @@ Latin tag data => [Font Library](https://github.com/katydecorah/font-library)
 
 The logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
 
+Use directly in a website builder => [Slidde](https://slidde.co)
+
 
 ## CJK Data Demo
 Check the data on UI ->
