@@ -110,7 +110,7 @@
   "ct3aMetadata": {
     "initVersion": "7.24.1"
   },
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "yarn@4.10.3",
   "resolutions": {
     "jackspeak": "2.1.1",
     "react-select/@emotion/cache": "11.13.0",
