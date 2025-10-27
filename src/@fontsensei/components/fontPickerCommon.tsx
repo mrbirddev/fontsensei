@@ -6,6 +6,7 @@ export type FontPickerPageContextOpts =  {
   onAddTag?: (family: string) => void;
   onRemoveTag?: (family: string) => void;
   Toolbar?: (props: {fontItem: FSFontItem}) => ReactNode;
+  TagsTop?: () => ReactNode;
   basePath?: string;
 } | undefined;
 

@@ -337,6 +337,7 @@ const FontPickerPage = (props: PageProps) => {
   }, [tagValue, filterText]);
 
   const pickerBasePath = useContext(FontPickerPageContext)?.basePath ?? "";
+  const TagsTop = useContext(FontPickerPageContext)?.TagsTop ?? (() => false);
 
   const titlePrefix = tagDisplayName
     ? (
@@ -370,6 +371,7 @@ const FontPickerPage = (props: PageProps) => {
   );
 
   const tagSelectorContent = <>
+    <TagsTop />
     {!!langTagList.length && <>
         <div className="flex items-center justify-start flex-wrap gap-2">
           {
