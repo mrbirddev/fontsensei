@@ -34,7 +34,7 @@ locales = [
 ]
 
 # The source file to be translated
-source_file = "../en/landingMsg.ts"
+source_file = "../en/tagValueMsg.ts"
 source_filename = os.path.basename(source_file)
 
 # Loop through each locale
@@ -57,14 +57,33 @@ for locale in locales:
     command = ["chatgpt-md-translator", "-m", "gpt-4o", source_file, "-o", source_filename, "--interval", "0"]
 
     # Execute the command
-    subprocess.run(command)
+    LIMIT = 10
+    i = 1
+    while i <= LIMIT:
+        print(f"Executing command {i}...", output_dir, command)
+        i = i+1
+        result = subprocess.run(command, text=True, capture_output=True, encoding="utf-8")
+        stdout = result.stdout.lower() if result.stdout else ""
+        stderr = result.stderr.lower() if result.stderr else ""
+        if "error" not in stdout and "error" not in stderr:
+            print("✅ Command succeeded.")
 
-    modify_file(source_filename)
+            modify_file(source_filename)
 
-    # wait 20 seconds
-    time.sleep(20)
+            # wait 20 seconds
+            time.sleep(20)
 
-    # Change back to the original working directory
-    os.chdir("..")
+            # Change back to the original working directory
+            os.chdir("..")
+
+            break  # Exit the loop if the command succeeds
+        else:
+            print(stdout)
+            print(stderr)
+            print("Command failed, retrying...")
+
+    if i > LIMIT:
+        print("❌ Command failed after retries.", output_dir, command)
+        break
 
 print("Translation commands executed successfully.")
