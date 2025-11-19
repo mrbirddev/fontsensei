@@ -12,6 +12,7 @@ import {
   getStaticPropsLocale,
   type LocaleStr,
   type TagValueMsgLabelType,
+  type TagDescMsgLabelType,
   useCurrentLocale,
   useI18n,
   useScopedI18n
@@ -448,7 +449,7 @@ const FontPickerPage = (props: PageProps) => {
           "py-4 flex-0 w-[40%] min-w-[200px] h-full overflow-y-scroll",
         )}>
           <h1 className="text-lg text-gray-900 mb-2">{tLandingMsg('Free font tagged {tagValue} provided by Google fonts', { tagValue: tagDisplayName })}</h1>
-          {(tTagDescMsg(tagValue as TagValueMsgLabelType) !== tagValue) && <p className="text-gray-600 ">{tTagDescMsg(tagValue as TagValueMsgLabelType)}</p>}
+          {(tTagDescMsg(tagValue as TagDescMsgLabelType) !== tagValue) && <p className="text-gray-600 ">{tTagDescMsg(tagValue as TagDescMsgLabelType)}</p>}
 
           <div className="h-4" />
 

@@ -86,6 +86,7 @@ export const {defineLocale, useI18n, useScopedI18n, I18nProvider, useChangeLocal
 
 export type { RootDictType } from "./en";
 export type TagValueMsgLabelType = Exclude<keyof RootDictType["tagValueMsg"], "">;
+export type TagDescMsgLabelType = Exclude<keyof RootDictType["tagDescMsg"], "">;
 
 const getLocaleContent = async (localeStr: string | undefined) => {
   const localeKey = narrowLocaleString(localeStr) ?? "en";
