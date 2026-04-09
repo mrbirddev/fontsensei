@@ -20,7 +20,6 @@ const i18nProviderMain: AppMiddleware = (App) => {
 };
 
 const _appMiddlewares = [
-  vercel,
   loadingBar,
   i18nProviderMain,
   i18nProvider,
