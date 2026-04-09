@@ -408,13 +408,27 @@ const FontPickerPage = (props: PageProps) => {
   const allFontConfigList = useMemo(
     () =>
       Object.keys(props.firstFontByTags).reduce(
-        (acc, tag) => [...acc, {
-          name: props.firstFontByTags[tag]!,
-          text: tTagValueMsg(tag as TagValueMsgLabelType),
-        }],
+        (acc, tag) => {
+          const localizedLabel = tTagValueMsg(tag as TagValueMsgLabelType);
+          const {primary} = getTagLabelsForDisplay({
+            tag,
+            currentLocale,
+            localizedLabel,
+            disableTranslation: langTagList.includes(tag),
+          });
+          return [
+            ...acc,
+            {
+              name: props.firstFontByTags[tag]!,
+              // Important: the Google Fonts `text=` subset must include what we actually render,
+              // otherwise non-Latin locales show English primary labels with missing glyphs.
+              text: primary,
+            }
+          ];
+        },
         [] as { name: string; text: string }[],
       ),
-    [props.firstFontByTags, tTagValueMsg]
+    [props.firstFontByTags, tTagValueMsg, currentLocale, langTagList]
   );
 
   const tagSelectorContent = <>
