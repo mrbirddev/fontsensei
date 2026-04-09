@@ -35,10 +35,10 @@
     ".eslintrc.cjs",
     "global.d.ts",
     "next-env.d.ts",
+    "src/env.js",
     "**/*.ts",
     "**/*.tsx",
 //    "**/*.cjs",
-//    "**/*.js",
     ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules", "public", "tools"]

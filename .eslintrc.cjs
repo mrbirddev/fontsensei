@@ -2,7 +2,7 @@
 const config = {
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: true,
+    project: "./tsconfig.eslint.json",
   },
   plugins: ["@typescript-eslint", "react", "import"],
   extends: [

@@ -18,7 +18,7 @@ function createT(context: I18nContextValue, scope: string | undefined) {
   const { localeContent, fallbackLocale } = context;
   const content: FlatLocale = Object.assign(
     {},
-    fallbackLocale != null ? fallbackLocale : {},
+    fallbackLocale ?? {},
     localeContent
   );
   const pluralKeys = new Set(
