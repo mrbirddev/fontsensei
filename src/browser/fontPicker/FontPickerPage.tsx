@@ -440,10 +440,11 @@ const FontPickerPage = (props: PageProps) => {
               onClick={() => {
                 setSelectorOpen(false);
               }}
-              href={t === defaultTag
-                ? localizedPickerBasePath || '/'
+              href={(t === defaultTag || t === "all")
+                ? (localizedPickerBasePath || "/")
                 : `${localizedPickerBasePath}/tag/${t}`
-              }>
+              }
+            >
             </TagButton>)
           }
         </div>
@@ -470,10 +471,11 @@ const FontPickerPage = (props: PageProps) => {
           onClick={() => {
             setSelectorOpen(false);
           }}
-          href={t === defaultTag
-            ? localizedPickerBasePath || '/'
+          href={(t === defaultTag || t === "all")
+            ? (localizedPickerBasePath || "/")
             : `${localizedPickerBasePath}/tag/${t}`
-          }>
+          }
+        >
         </TagButton>)
       }
     </div>
