@@ -156,6 +156,26 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
           whiteSpace: 'nowrap',
           overflow: 'auto hidden'
         }}
+        onWheel={(e) => {
+          const el = e.currentTarget;
+          const hasHorizontalOverflow = el.scrollWidth > el.clientWidth;
+          if (!hasHorizontalOverflow) {
+            return;
+          }
+
+          const absX = Math.abs(e.deltaX);
+          const absY = Math.abs(e.deltaY);
+          const isHorizontalIntent = absX > 0 && absX >= absY;
+          const isShiftWheelHorizontal = e.shiftKey && absY > 0;
+          if (!isHorizontalIntent && !isShiftWheelHorizontal) {
+            return;
+          }
+
+          const delta = isHorizontalIntent ? e.deltaX : e.deltaY;
+          el.scrollLeft += delta;
+          e.preventDefault();
+          e.stopPropagation();
+        }}
         onClick={() => {
           const newText = window.prompt(tLandingMsg("Please enter the demo text"), text);
 
