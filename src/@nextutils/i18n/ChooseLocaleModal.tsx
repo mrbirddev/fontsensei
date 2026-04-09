@@ -1,5 +1,5 @@
 import React from "react";
-import {hackAsPath} from "./locales";
+import {buildLocalizedPath} from "./locales";
 import {useScopedI18n} from "@nextutils/locales";
 import {useRouter} from "next/router";
 import Link from "next/link";
@@ -23,7 +23,7 @@ const ChooseLocaleModal = (props: {
     >
       <div className="flex flex-wrap justify-start items-start gap-6">
         {locales.map(item => {
-          return <Link key={item.locale} className="link link-ghost" href={hackAsPath(router.asPath, true)} locale={item.locale} onClick={() => {
+          return <Link key={item.locale} className="link link-ghost" href={buildLocalizedPath(item.locale, router.asPath, true)} onClick={() => {
             useUserPreferencesStore.getState().setLocale(item.locale);
             props.setOpen(false);
           }}>

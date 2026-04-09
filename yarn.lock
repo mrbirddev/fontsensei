@@ -1282,52 +1282,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@trpc/client@npm:^10.43.6":
-  version: 10.44.1
-  resolution: "@trpc/client@npm:10.44.1"
-  peerDependencies:
-    "@trpc/server": 10.44.1
-  checksum: 10c0/36dc6ca6b401f3d4cdf9eb1bf35e0a5bd92c22b19a07fa538b63cbc5b726cd40dc0b6d1617607dcb9c857018fb669ea4c510c96c04953c3fcf083a8937a00a8b
-  languageName: node
-  linkType: hard
-
-"@trpc/next@npm:^10.43.6":
-  version: 10.44.1
-  resolution: "@trpc/next@npm:10.44.1"
-  dependencies:
-    react-ssr-prepass: "npm:^1.5.0"
-  peerDependencies:
-    "@tanstack/react-query": ^4.18.0
-    "@trpc/client": 10.44.1
-    "@trpc/react-query": 10.44.1
-    "@trpc/server": 10.44.1
-    next: "*"
-    react: ">=16.8.0"
-    react-dom: ">=16.8.0"
-  checksum: 10c0/d5b78fada50db488757709c99c4fbefd9ede59fe6101da3d49c684bfb05adfa96b5f9f1e29655fe0d04bff1b696ed58df6901403f6d668bf5a388ebf60d9fcbb
-  languageName: node
-  linkType: hard
-
-"@trpc/react-query@npm:^10.43.6":
-  version: 10.44.1
-  resolution: "@trpc/react-query@npm:10.44.1"
-  peerDependencies:
-    "@tanstack/react-query": ^4.18.0
-    "@trpc/client": 10.44.1
-    "@trpc/server": 10.44.1
-    react: ">=16.8.0"
-    react-dom: ">=16.8.0"
-  checksum: 10c0/7a7efa25d61effbc82df8511b336121b6ef8054aa5c3ffe01d2b60ffd9c00a7f26841f6b9cfdcb900af2427d96a203c11504c22b781e9338ca50e1a60177928d
-  languageName: node
-  linkType: hard
-
-"@trpc/server@npm:^10.43.6":
-  version: 10.44.1
-  resolution: "@trpc/server@npm:10.44.1"
-  checksum: 10c0/838fb12286b91c4f1fe22479b426d6c1100700d253980c54b3417358008abc5e7c3f7a78f8ac0526d7693fcf70276bf42ce5fd6d25b6db2b6e3fdbe16c087dca
-  languageName: node
-  linkType: hard
-
 "@types/acorn@npm:^4.0.0":
   version: 4.0.6
   resolution: "@types/acorn@npm:4.0.6"
@@ -2578,7 +2532,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"client-only@npm:0.0.1, client-only@npm:^0.0.1":
+"client-only@npm:0.0.1":
   version: 0.0.1
   resolution: "client-only@npm:0.0.1"
   checksum: 10c0/9d6cfd0c19e1c96a434605added99dff48482152af791ec4172fb912a71cff9027ff174efd8cdb2160cc7f377543e0537ffc462d4f279bc4701de3f2a3c4b358
@@ -3892,10 +3846,6 @@ __metadata:
     "@t3-oss/env-nextjs": "npm:^0.7.1"
     "@tailwindcss/typography": "npm:^0.5.12"
     "@tanstack/react-query": "npm:^4.36.1"
-    "@trpc/client": "npm:^10.43.6"
-    "@trpc/next": "npm:^10.43.6"
-    "@trpc/react-query": "npm:^10.43.6"
-    "@trpc/server": "npm:^10.43.6"
     "@types/css": "npm:^0.0.37"
     "@types/eslint": "npm:^8.44.7"
     "@types/js-beautify": "npm:^1.14.3"
@@ -3941,7 +3891,6 @@ __metadata:
     lodash-es: "npm:^4.17.21"
     next: "npm:^14.1.4"
     next-auth: "npm:^4.24.7"
-    next-international: "npm:^1.2.4"
     next-seo: "npm:^6.5.0"
     nodemailer: "npm:^6.9.13"
     postcss: "npm:^8.4.31"
@@ -4630,13 +4579,6 @@ __metadata:
     hasown: "npm:^2.0.0"
     side-channel: "npm:^1.0.4"
   checksum: 10c0/f8b294a4e6ea3855fc59551bbf35f2b832cf01fd5e6e2a97f5c201a071cc09b49048f856e484b67a6c721da5e55736c5b6ddafaf19e2dbeb4a3ff1821680de6c
-  languageName: node
-  linkType: hard
-
-"international-types@npm:^0.8.1":
-  version: 0.8.1
-  resolution: "international-types@npm:0.8.1"
-  checksum: 10c0/a568f64a398f74affd73336e8eda488075ec328fc20e87721555e0b45e791f72132df19cadeca01d62100b77825b8da0efcfb82cdcdba021f7cc3ffe6542e537
   languageName: node
   linkType: hard
 
@@ -6134,17 +6076,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-international@npm:^1.2.4":
-  version: 1.2.4
-  resolution: "next-international@npm:1.2.4"
-  dependencies:
-    client-only: "npm:^0.0.1"
-    international-types: "npm:^0.8.1"
-    server-only: "npm:^0.0.1"
-  checksum: 10c0/7564bfd46bb6a6d6e16a4070ee2be6888426a72e178430d9696d88bc3a721e7375bba3d1df806fd56187ed12aca9f69d32ecb788928a06963f30faf0d4734322
-  languageName: node
-  linkType: hard
-
 "next-seo@npm:^6.5.0":
   version: 6.5.0
   resolution: "next-seo@npm:6.5.0"
@@ -6982,15 +6913,6 @@ __metadata:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
   checksum: 10c0/b4b98aaf117ee5cc4642871b7bd51fd0e2697988d0b880f30b21e933ca90258959147117d8aada36713b622e0e4cb06bd18ec02069f3f108896e0d31e69e3c16
-  languageName: node
-  linkType: hard
-
-"react-ssr-prepass@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "react-ssr-prepass@npm:1.5.0"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10c0/5158b13cdc230b6342c986f73eb21bafc27a666701aa7a309f5f39832c445d69e0b9f94df71cbe708feb49823417bd6c16eed81afe612efa6a55d89e03d9f5d3
   languageName: node
   linkType: hard
 

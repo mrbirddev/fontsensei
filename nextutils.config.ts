@@ -12,8 +12,6 @@ export const noIndexPathList = [
 
 export const noLangAltList = [] as string[];
 
-export type {AppRouter} from "./src/server/api/root";
-
 export const defaultLocale = {"locale": "en", "lang": "English"} as const;
 
 // extracted wordpress.com

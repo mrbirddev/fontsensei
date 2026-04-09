@@ -1,10 +1,14 @@
-import {BaseLocale, createI18n, flattenLocale} from "next-international";
 import type {RootDictType} from "./en";
+import {flattenLocale} from "@nextutils/i18n/flattenLocale";
+import {createPathLocaleI18n} from "@nextutils/i18n/pathLocaleI18n";
 import {z} from "zod";
 import invariant from "tiny-invariant";
 import {isEqual} from "lodash-es";
 import {GetStaticProps} from "next";
-import {getStaticPropsLocale as getStaticPropsLocaleNextUtils} from '@nextutils/i18n/locales';
+import {
+  getStaticPropsLocale as getStaticPropsLocaleNextUtils,
+  resolvePathLocaleFromContext,
+} from "@nextutils/i18n/locales";
 
 export const allLocaleStrList = [
   "en",
@@ -82,19 +86,20 @@ export const matchClosestLocale = (str: string | undefined) => {
   return undefined;
 };
 
-export const {defineLocale, useI18n, useScopedI18n, I18nProvider, useChangeLocale, useCurrentLocale, getLocaleProps} = createI18n(allLoadedForServer);
+export const {I18nProvider, useCurrentLocale, useI18n, useScopedI18n} =
+  createPathLocaleI18n<LocaleStr>();
 
 export type { RootDictType } from "./en";
 export type TagValueMsgLabelType = Exclude<keyof RootDictType["tagValueMsg"], "">;
 export type TagDescMsgLabelType = Exclude<keyof RootDictType["tagDescMsg"], "">;
 
-const getLocaleContent = async (localeStr: string | undefined) => {
-  const localeKey = narrowLocaleString(localeStr) ?? "en";
+const getLocaleContent = async (localeKey: LocaleStr) => {
   return flattenLocale((await allLoadedForServer[localeKey]()).default);
 };
 
 export const getStaticPropsLocale = (async (context) => {
-  const localeContent = await getLocaleContent(context.locale);
+  const pathLocale = resolvePathLocaleFromContext(context);
+  const localeContent = await getLocaleContent(pathLocale);
   return {
     props: {
       locale: localeContent,
@@ -102,7 +107,8 @@ export const getStaticPropsLocale = (async (context) => {
     }
   };
 }) satisfies GetStaticProps<{
-  // locale: any
-  locale: BaseLocale
+  locale: Record<string, string>;
+  localeNextUtils: Record<string, string>;
+  pathLocale: LocaleStr;
 }>;
 

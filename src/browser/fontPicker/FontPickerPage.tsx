@@ -1,6 +1,6 @@
 // templates/[[...slugList]].tsx
 
-import {type GetServerSideProps} from 'next';
+import {type GetStaticPaths, type GetStaticProps} from 'next';
 import React, {
   useEffect,
   useState,
@@ -35,7 +35,7 @@ import {FaBars, FaSearch} from "react-icons/fa";
 import {FaGithub, FaTag} from "react-icons/fa6";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 import {langMap} from "@nextutils/i18n/locales";
-import {locales, PRODUCT_ICON, PRODUCT_NAME} from "@nextutils/config";
+import {defaultLocale, locales, PRODUCT_ICON, PRODUCT_NAME} from "@nextutils/config";
 import ChooseLocaleModal from "@nextutils/i18n/ChooseLocaleModal";
 import SwitchLocaleHint from "@nextutils/i18n/SwitchLocaleHint";
 import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";
@@ -117,6 +117,7 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
   }, [lang, router.pathname, navbarContext?.extraMenuItems, preferredLocale, feedbackMsg]);
 
   const pickerBasePath = useContext(FontPickerPageContext)?.basePath ?? "";
+  const localizedPickerBasePath = `${currentLocale === defaultLocale.locale ? '' : `/${currentLocale}`}${pickerBasePath}`;
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -130,7 +131,7 @@ const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
       <div className={"container mx-auto px-4" + (props.fullWidth ? ' max-w-full' : '')}>
         <div className="flex items-center justify-center gap-2 py-2">
           <div className="flex-1 flex items-center justify-start gap-1">
-            <Link className="btn btn-ghost px-0 text-xl" href={pickerBasePath}>
+            <Link className="btn btn-ghost px-0 text-xl" href={localizedPickerBasePath || '/'}>
               <div style={{height: '3rem', width: '3rem'}}>
                 <ProductIcon />
               </div>
@@ -338,6 +339,7 @@ const FontPickerPage = (props: PageProps) => {
   }, [tagValue, filterText]);
 
   const pickerBasePath = useContext(FontPickerPageContext)?.basePath ?? "";
+  const localizedPickerBasePath = `${currentLocale === defaultLocale.locale ? '' : `/${currentLocale}`}${pickerBasePath}`;
   const TagsTop = useContext(FontPickerPageContext)?.TagsTop ?? (() => false);
 
   const titlePrefix = tagDisplayName
@@ -388,8 +390,8 @@ const FontPickerPage = (props: PageProps) => {
                 setSelectorOpen(false);
               }}
               href={t === defaultTag
-                ? pickerBasePath + ""
-                : pickerBasePath + `/tag/${t}`
+                ? localizedPickerBasePath || '/'
+                : `${localizedPickerBasePath}/tag/${t}`
               }>
               {tTagValueMsg(t as TagValueMsgLabelType)} {props.countByTags[t]}
             </TagButton>)
@@ -413,8 +415,8 @@ const FontPickerPage = (props: PageProps) => {
             setSelectorOpen(false);
           }}
           href={t === defaultTag
-            ? pickerBasePath + ""
-            : pickerBasePath + `/tag/${t}`
+            ? localizedPickerBasePath || '/'
+            : `${localizedPickerBasePath}/tag/${t}`
           }>
           {tTagValueMsg(t as TagValueMsgLabelType)} {props.countByTags[t]}
         </TagButton>)
@@ -498,7 +500,7 @@ const FontPickerPage = (props: PageProps) => {
                 tagValue={tagValue}
                 filterText={debouncedFilterText}
                 initialFontItemList={initialFontItemList}
-                placeholderText={props.placeholderText}
+                placeholderText={(router.query.text as string | undefined) ?? props.placeholderText}
                 pageSize={PAGE_SIZE}
             />}
             {loading && <span className="loading loading-bars loading-sm"/>}
@@ -517,28 +519,86 @@ const FontPickerPage = (props: PageProps) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const slugList = context.params?.slugList ?? [];
-  const tagValue = getTagValue(
-    Array.isArray(slugList) ? slugList[0] : undefined,
-    (context.locale ?? "en") as LocaleStr
-  );
+const getTagStaticPaths = async (includePathLocale: boolean) => {
+  const countByTags = await import("../../../public/data/countByTags.json")
+    .then(res => res.default as Record<string, number>);
+  const allTags = Object.keys(countByTags);
 
-  const initialFontItemList = await listFonts({
-    tagValue: tagValue,
-    filterText: '',
-    skip: 0,
-    take: PAGE_SIZE
-  });
+  const paths = includePathLocale
+    ? locales
+      .filter((item) => item.locale !== defaultLocale.locale)
+      .flatMap((item) => {
+        const localeDefaultTag = getDefaultTag(item.locale as LocaleStr);
+        return allTags
+          .filter((tag) => tag !== localeDefaultTag)
+          .map((tag) => ({
+            params: {
+              pathLocale: item.locale,
+              slugList: [tag],
+            }
+          }));
+      })
+    : allTags
+      .filter((tag) => tag !== getDefaultTag(defaultLocale.locale as LocaleStr))
+      .map((tag) => ({
+        params: {
+          slugList: [tag],
+        }
+      }));
 
   return {
-    props: {
-      initialFontItemList,
-      countByTags: await import("../../../public/data/countByTags.json").then(res => res.default as Record<string, number>),
-      firstFontByTags: await import("../../../public/data/firstFontByTags.json").then(res => res.default as Record<string, string>),
-      placeholderText: (context.query.text as string | undefined) ?? null,
-      ...(await getStaticPropsLocale(context)).props,
-    } as PageProps
+    paths,
+    fallback: false,
+  };
+};
+
+const makeStaticProps = (includePathLocale: boolean): GetStaticProps<PageProps> => {
+  return async (context) => {
+    const slugList = context.params?.slugList ?? [];
+    const rawPathLocale = Array.isArray(context.params?.pathLocale)
+      ? context.params.pathLocale[0]
+      : context.params?.pathLocale;
+    const localeForPage = includePathLocale ? rawPathLocale : defaultLocale.locale;
+    const locale = (localeForPage ?? defaultLocale.locale) as LocaleStr;
+    const tagValue = getTagValue(
+      Array.isArray(slugList) ? slugList[0] : undefined,
+      locale
+    );
+
+    const initialFontItemList = await listFonts({
+      tagValue: tagValue,
+      filterText: '',
+      skip: 0,
+      take: PAGE_SIZE
+    });
+
+    return {
+      props: {
+        initialFontItemList,
+        countByTags: await import("../../../public/data/countByTags.json").then(res => res.default as Record<string, number>),
+        firstFontByTags: await import("../../../public/data/firstFontByTags.json").then(res => res.default as Record<string, string>),
+        placeholderText: null,
+        ...(await getStaticPropsLocale(context)).props,
+      } as PageProps
+    };
+  };
+};
+
+export const getStaticProps = makeStaticProps(false);
+export const getStaticPropsWithPathLocale = makeStaticProps(true);
+export const getStaticPathsForTagPage: GetStaticPaths = async () => getTagStaticPaths(false);
+export const getStaticPathsForTagPageWithPathLocale: GetStaticPaths = async () => getTagStaticPaths(true);
+
+export const getStaticPathsForPathLocaleIndexPage: GetStaticPaths = async () => {
+  return {
+    paths: locales
+      .filter((item) => item.locale !== defaultLocale.locale)
+      .map((item) => ({
+        params: {
+          pathLocale: item.locale
+        }
+      })),
+    fallback: false,
   };
 };
 

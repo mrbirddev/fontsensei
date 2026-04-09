@@ -1,6 +1,6 @@
+import {flattenLocale} from "@nextutils/i18n/flattenLocale";
 import {allLoadedForServer, type LocaleStr, narrowLocaleString} from "@nextutils/locales";
 import {locales, PREFERENCES_PREFIX, PRODUCT_DOMAIN} from "@nextutils/config";
-import {BaseLocale, flattenLocale} from "next-international";
 import {GetStaticProps} from "next";
 
 const getLocaleContent = async (localeStr: string | undefined) => {
@@ -8,16 +8,28 @@ const getLocaleContent = async (localeStr: string | undefined) => {
   return flattenLocale((await allLoadedForServer[localeKey]()).default);
 };
 
+export function resolvePathLocaleFromContext(context: {
+  params?: { pathLocale?: string | string[] };
+  locale?: string;
+}): LocaleStr {
+  const raw = Array.isArray(context.params?.pathLocale)
+    ? context.params.pathLocale[0]
+    : context.params?.pathLocale;
+  return narrowLocaleString(raw ?? context.locale) ?? "en";
+}
+
 export const getStaticPropsLocale = (async (context) => {
-  const localeContent = await getLocaleContent(context.locale);
+  const pathLocale = resolvePathLocaleFromContext(context);
+  const localeContent = await getLocaleContent(pathLocale);
   return {
     props: {
       localeNextUtils: localeContent,
+      pathLocale,
     }
   };
 }) satisfies GetStaticProps<{
-  // locale: any
-  localeNextUtils: BaseLocale
+  localeNextUtils: Record<string, string>;
+  pathLocale: LocaleStr;
 }>;
 
 export const langMap = locales.reduce((map, l) => {
@@ -37,6 +49,18 @@ export const getPreferredLocaleInBrowser = () => {
 };
 
 export const fallbackLocale = 'en' as const;
+
+export const buildLocalizedPath = (
+  locale: string,
+  asPath: string,
+  isClient: boolean,
+) => {
+  const normalizedPath = hackAsPath(asPath, isClient);
+  if (locale === fallbackLocale) {
+    return normalizedPath;
+  }
+  return `/${locale}${normalizedPath === '/' ? '' : normalizedPath}`;
+};
 
 export const getCanonicalPath = (
   locale: string,

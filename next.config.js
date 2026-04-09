@@ -6,42 +6,13 @@ import withMdx from "@next/mdx";
  */
 await import("./src/env.js");
 
-/** @type {import("./src/browser/i18n/locales").default} */
-const locales = [
-  {"locale": "en", "lang": "English"},
-  {"locale": "es", "lang": "Español"},
-  {"locale": "pt-br", "lang": "Português do Brasil"},
-  {"locale": "de", "lang": "Deutsch"},
-  {"locale": "fr", "lang": "Français"},
-  {"locale": "he", "lang": "עִבְרִית"},
-  {"locale": "ja", "lang": "日本語"},
-  {"locale": "it", "lang": "Italiano"},
-  {"locale": "nl", "lang": "Nederlands"},
-  {"locale": "ru", "lang": "Русский"},
-  {"locale": "tr", "lang": "Türkçe"},
-  {"locale": "id", "lang": "Bahasa Indonesia"},
-  {"locale": "zh-cn", "lang": "简体中文"},
-  {"locale": "zh-tw", "lang": "繁體中文"},
-  {"locale": "ko", "lang": "한국어"},
-  {"locale": "ar", "lang": "العربية"},
-  {"locale": "sv", "lang": "Svenska"}
-];
-
-// TODO more restrictive? This is added because we need to iframe umami
-const contentSecurityPolicy = [
-  `default-src * data:`,
-  `img-src * blob: data:`,
-  `script-src * 'unsafe-eval' 'unsafe-inline'`,
-  `style-src * 'unsafe-inline'`,
-  `frame-src *`,
-  `worker-src * data: blob:`,
-];
-
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
+  output: "export",
 
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -52,29 +23,6 @@ const config = {
     ],
   },
 
-  async redirects() {
-    return [
-      {
-        source: '/dash',
-        destination: '/dash/sites',
-        permanent: false,
-      },
-      {
-        source: '/start',
-        destination: '/templates',
-        permanent: true, // For 301 redirect
-        // handle locales automatically
-      },
-    ]
-  },
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: '/auth/:path*',
-  //       destination: '/api/auth/:path*'
-  //     },
-  //   ]
-  // },
   eslint: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
@@ -89,19 +37,6 @@ const config = {
     // !! WARN !!
     // ignoreBuildErrors: true,
   },
-  /**
-   * If you are using `appDir` then you must comment the below `i18n` config out.
-   *
-   * @see https://github.com/vercel/next.js/issues/41980
-   */
-  i18n: {
-    // TODO ts checks here?
-    locales: locales.map(v => v.locale),
-    defaultLocale: "en",
-
-    // This is not good for SEO & UX. Disable localeDetection.
-    localeDetection: false,
-  },
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   webpack: (config, { isServer }) => {
     // Fixes npm packages (mdx) that depend on `fs` module
@@ -109,23 +44,6 @@ const config = {
       config.resolve.fallback.fs = false
     }
     return config
-  },
-
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Content-Security-Policy',
-            value: contentSecurityPolicy
-              .join(';')
-              .replace(/\s{2,}/g, ' ')
-              .trim(),
-          },
-        ],
-      },
-    ]
   },
 };
 

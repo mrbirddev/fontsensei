@@ -1,19 +1,19 @@
 import React, {useEffect, useRef, useState} from "react";
 import {
+  allLoadedForServer,
   type LocaleStr,
   matchClosestLocale,
-  useChangeLocale,
   useCurrentLocale
 } from "@nextutils/locales";
 import {PRODUCT_NAME} from "@nextutils/config";
-import {getPreferredLocaleInBrowser, langMap} from "./locales";
-import {tClient} from "@nextutils/trpc/api";
+import {buildLocalizedPath, getPreferredLocaleInBrowser, langMap} from "./locales";
 import {type Id, toast} from "react-toastify";
 import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";
+import {useRouter} from "next/router";
 
 const SwitchLocaleHint = () => {
-  const changeLocale = useChangeLocale();
   const sourceLocale = useCurrentLocale();
+  const router = useRouter();
 
   const [isOpen, setOpen] = useState(false);
   const [targetLocale, setTargetLocale] = useState(undefined as LocaleStr | undefined);
@@ -59,9 +59,8 @@ const SwitchLocaleHint = () => {
       return;
     }
 
-    void tClient.profile.loadLocaleRootDict.query({
-      targetLocale
-    }).then((rootDict) => {
+    void allLoadedForServer[targetLocale]().then((dictModule) => {
+      const rootDict = dictModule.default;
       const msg = rootDict.i18nMsg["{productName} is available in the {targetLang} language"]
         .replace('{targetLang}', langMap[targetLocale])
         .replace('{productName}', PRODUCT_NAME);
@@ -73,7 +72,7 @@ const SwitchLocaleHint = () => {
         <div
           className="ml-2 btn btn-sm btn-outline"
           onClick={() => {
-            changeLocale(targetLocale);
+            void router.push(buildLocalizedPath(targetLocale, router.asPath, true));
             useUserPreferencesStore.getState().setLocale(targetLocale);
             setOpen(false);
             dismissRef.current && toast.dismiss(dismissRef.current);

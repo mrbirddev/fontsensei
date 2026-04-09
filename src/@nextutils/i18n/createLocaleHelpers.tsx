@@ -1,8 +1,6 @@
 import {z} from "zod";
 import invariant from "tiny-invariant";
 import {isEqual} from "lodash-es";
-import {BaseLocale, flattenLocale} from "next-international";
-import {GetStaticProps} from "next";
 type DictFile<LocaleDict extends Record<string, unknown>> = {default: LocaleDict};
 
 const createLocaleHelpers = <TLocaleKey extends string, T2 extends Record<TLocaleKey, unknown>, T3 extends DictFile<T2>>(
@@ -58,31 +56,12 @@ const createLocaleHelpers = <TLocaleKey extends string, T2 extends Record<TLocal
     return narrowLocaleString(firstSegment) ?? "en";
   });
 
-  const getLocaleContent = async (localeStr: LocaleStr) => {
-    return flattenLocale((await allLoadedForServer[localeStr]!()).default);
-  };
-
-  const getStaticPropsLocale = (async (context) => {
-    const narrowed = narrowLocaleString(context.locale);
-    invariant(narrowed);
-    const localeContent = await getLocaleContent(narrowed);
-    return {
-      props: {
-        locale: localeContent,
-      }
-    };
-  }) satisfies GetStaticProps<{
-    // locale: any
-    locale: BaseLocale
-  }>;
-
   return {
     zLocaleStr,
     defaultLocaleStr,
     narrowLocaleString,
     matchClosestLocale,
     getLocaleOutsideReact,
-    getStaticPropsLocale,
   };
 };
 

@@ -1,9 +1,8 @@
-import type {RootDictType} from "./en";
 import invariant from "tiny-invariant";
 import {isEqual} from "lodash-es";
 import {overrideLocales} from "@nextutils/config";
 import createLocaleHelpers from "@nextutils/i18n/createLocaleHelpers";
-import {createI18n} from "next-international";
+import {createPathLocaleI18n} from "@nextutils/i18n/pathLocaleI18n";
 import {z} from "zod";
 
 export const allLocaleStrList = [
@@ -65,7 +64,8 @@ export const {
   narrowLocaleString,
 } = helpers;
 
-export const {defineLocale, useI18n, useScopedI18n, I18nProvider, useChangeLocale, useCurrentLocale} = createI18n(allLoadedForServer);
-
 export type LocaleStr = z.infer<typeof zLocaleStr>;
+
+export const {I18nProvider, useCurrentLocale, useI18n, useScopedI18n} =
+  createPathLocaleI18n<LocaleStr>();
 export type { RootDictType } from "./en";
