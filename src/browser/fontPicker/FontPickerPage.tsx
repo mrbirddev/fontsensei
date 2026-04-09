@@ -13,6 +13,7 @@ import {
   type LocaleStr,
   type TagValueMsgLabelType,
   type TagDescMsgLabelType,
+  isNonLatinLocale,
   useCurrentLocale,
   useI18n,
   useScopedI18n
@@ -45,6 +46,7 @@ import ActionSheetWrapper from "@nextutils/ui/actionSheet/ActionSheetWrapper";
 import {MdOutlineFeedback} from "react-icons/md";
 import MDX from "@mdx-js/runtime";
 import NextUtilsSeo from "@nextutils/seo/NextUtilsSeo";
+import enTagValueMsg from "../../@fontsensei/locales/en/tagValueMsg";
 
 const PAGE_SIZE = 10;
 
@@ -263,14 +265,44 @@ const getTagValue = (raw_tagValue: string | undefined, currentLocale: LocaleStr)
   return getDefaultTag(currentLocale);
 };
 
+const getEnTagLabel = (tag: string): string => {
+  return (enTagValueMsg as Record<string, string>)[tag] ?? tag;
+};
+
+const getTagLabelsForDisplay = (opts: {
+  tag: string;
+  currentLocale: LocaleStr;
+  localizedLabel: string;
+  disableTranslation?: boolean;
+}) => {
+  const {tag, currentLocale, localizedLabel, disableTranslation} = opts;
+
+  if (tag === "all") {
+    return {primary: localizedLabel, secondary: undefined as string | undefined};
+  }
+
+  if (!isNonLatinLocale(currentLocale) || disableTranslation) {
+    return {primary: localizedLabel, secondary: undefined as string | undefined};
+  }
+
+  const enLabel = getEnTagLabel(tag);
+  if (!enLabel || enLabel === localizedLabel) {
+    return {primary: localizedLabel, secondary: undefined as string | undefined};
+  }
+
+  return {primary: enLabel, secondary: localizedLabel};
+};
+
 const TagButton = (props: PropsWithChildren<{
   isActive: boolean,
   tag: string,
   font: string | undefined,
   href: Parameters<typeof Link>[0]['href'],
   onClick?: () => void,
+  label: { primary: string; secondary?: string },
+  count?: number,
 }>) => {
-  const {isActive, tag, font, href, children, onClick} = props;
+  const {isActive, tag, font, href, onClick, label, count} = props;
 
   return <Link
     type="button"
@@ -281,12 +313,17 @@ const TagButton = (props: PropsWithChildren<{
       isActive ? "btn-primary" : "btn-outline",
     )}
     href={href}
-    style={{
-      fontFamily: `"${font}"`,
-    }}
     onClick={onClick}
   >
-    {children}
+    <span
+      style={{
+        fontFamily: font ? `"${font}"` : undefined,
+      }}
+    >
+      {label.primary}
+    </span>
+    {label.secondary && <span> ({label.secondary})</span>}
+    {(typeof count === "number") && <span>&nbsp;{count}</span>}
   </Link>;
 }
 const FontPickerPage = (props: PageProps) => {
@@ -301,10 +338,18 @@ const FontPickerPage = (props: PageProps) => {
   const defaultTag = useMemo(() => getDefaultTag(currentLocale), [currentLocale]);
   const tagValue = useMemo(() => getTagValue(raw_tagValue, currentLocale), [raw_tagValue, currentLocale]);
 
-  const tagDisplayName = useMemo(
-    () => tTagValueMsg(tagValue as TagValueMsgLabelType),
-    [tagValue]
-  );
+  const langTagList = useMemo(() => languageSpecificTags[currentLocale].map(tagToUrlSlug), [currentLocale]);
+
+  const tagDisplayLabel = useMemo(() => {
+    const localized = tTagValueMsg(tagValue as TagValueMsgLabelType);
+    const {primary, secondary} = getTagLabelsForDisplay({
+      tag: tagValue,
+      currentLocale,
+      localizedLabel: localized,
+      disableTranslation: langTagList.includes(tagValue),
+    });
+    return secondary ? `${primary} (${secondary})` : primary;
+  }, [tagValue, currentLocale, langTagList, tTagValueMsg]);
 
   const [initialFontItemList, setInitialFontItemList] = useState<FSFontItem[]>(props.initialFontItemList);
   const lastTagValueRef = useRef(tagValue);
@@ -342,16 +387,15 @@ const FontPickerPage = (props: PageProps) => {
   const localizedPickerBasePath = `${currentLocale === defaultLocale.locale ? '' : `/${currentLocale}`}${pickerBasePath}`;
   const TagsTop = useContext(FontPickerPageContext)?.TagsTop ?? (() => false);
 
-  const titlePrefix = tagDisplayName
+  const titlePrefix = tagDisplayLabel
     ? (
       tLandingMsg('Google fonts tagged {tagName}', {
-        tagName: tagDisplayName,
+        tagName: tagDisplayLabel,
       }) + ' - '
     )
     : '';
   const title = titlePrefix + PRODUCT_NAME + ' - ' + tNextUtils('product.slogan');
 
-  const langTagList = useMemo(() => languageSpecificTags[currentLocale].map(tagToUrlSlug), [currentLocale]);
   const tagList = useMemo(
     () => compact([
       langTagList.length ? false : 'all',
@@ -386,6 +430,13 @@ const FontPickerPage = (props: PageProps) => {
               isActive={(tagValue === t)}
               tag={t}
               font={props.firstFontByTags[t]}
+              label={getTagLabelsForDisplay({
+                tag: t,
+                currentLocale,
+                localizedLabel: tTagValueMsg(t as TagValueMsgLabelType),
+                disableTranslation: langTagList.includes(t),
+              })}
+              count={props.countByTags[t]}
               onClick={() => {
                 setSelectorOpen(false);
               }}
@@ -393,7 +444,6 @@ const FontPickerPage = (props: PageProps) => {
                 ? localizedPickerBasePath || '/'
                 : `${localizedPickerBasePath}/tag/${t}`
               }>
-              {tTagValueMsg(t as TagValueMsgLabelType)} {props.countByTags[t]}
             </TagButton>)
           }
         </div>
@@ -411,6 +461,12 @@ const FontPickerPage = (props: PageProps) => {
           isActive={(tagValue === t)}
           tag={t}
           font={props.firstFontByTags[t]}
+          label={getTagLabelsForDisplay({
+            tag: t,
+            currentLocale,
+            localizedLabel: tTagValueMsg(t as TagValueMsgLabelType),
+          })}
+          count={props.countByTags[t]}
           onClick={() => {
             setSelectorOpen(false);
           }}
@@ -418,7 +474,6 @@ const FontPickerPage = (props: PageProps) => {
             ? localizedPickerBasePath || '/'
             : `${localizedPickerBasePath}/tag/${t}`
           }>
-          {tTagValueMsg(t as TagValueMsgLabelType)} {props.countByTags[t]}
         </TagButton>)
       }
     </div>
@@ -432,7 +487,7 @@ const FontPickerPage = (props: PageProps) => {
     setSelectorOpen(true);
   }} >
     <FaTag />
-    <span>{tagValue ? tTagValueMsg(tagValue as TagValueMsgLabelType) : ''}</span>
+    <span>{tagValue ? tagDisplayLabel : ''}</span>
   </div>;
 
   const navbarContextOutside = useContext(NavbarContext);
@@ -450,7 +505,7 @@ const FontPickerPage = (props: PageProps) => {
           "hidden md:block",
           "py-4 flex-0 w-[40%] min-w-[200px] h-full overflow-y-scroll",
         )}>
-          <h1 className="text-lg text-gray-900 mb-2">{tLandingMsg('Free font tagged {tagValue} provided by Google fonts', { tagValue: tagDisplayName })}</h1>
+          <h1 className="text-lg text-gray-900 mb-2">{tLandingMsg('Free font tagged {tagValue} provided by Google fonts', { tagValue: tagDisplayLabel })}</h1>
           {(tTagDescMsg(tagValue as TagDescMsgLabelType) !== tagValue) && <p className="text-gray-600 ">{tTagDescMsg(tagValue as TagDescMsgLabelType)}</p>}
 
           <div className="h-4" />

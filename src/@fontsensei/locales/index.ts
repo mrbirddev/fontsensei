@@ -93,6 +93,8 @@ export type { RootDictType } from "./en";
 export type TagValueMsgLabelType = Exclude<keyof RootDictType["tagValueMsg"], "">;
 export type TagDescMsgLabelType = Exclude<keyof RootDictType["tagDescMsg"], "">;
 
+export {getLocaleScript, isNonLatinLocale, type LocaleScript} from "./localeScript";
+
 const getLocaleContent = async (localeKey: LocaleStr) => {
   return flattenLocale((await allLoadedForServer[localeKey]()).default);
 };
