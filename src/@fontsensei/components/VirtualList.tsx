@@ -16,8 +16,8 @@ import {useRouter} from "next/router";
 const ITEM_HEIGHT = 200;
 const ITEM_HEIGHT_CLS = 'h-[200px]';
 
-const LOADING_ALL_ROW: FSFontItem = {family: 'LOADING', tags: []} as FSFontItem;
-const END_ROW: FSFontItem = {family: 'THE_END', tags: []} as unknown as FSFontItem;
+const LOADING_ALL_ROW = {family: 'LOADING', tags: []} as unknown as FSFontItem;
+const END_ROW = {family: 'THE_END', tags: []} as unknown as FSFontItem;
 
 const LOADING_ALL_FONTS_GIF_PATH = '/images/loading-all-fonts.gif';
 
