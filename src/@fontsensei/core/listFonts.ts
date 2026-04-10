@@ -1,6 +1,7 @@
 import {type FSFontFilterOptions, type FSFontItem} from "./types";
-import getMetadata from "@fontsensei/core/getMetadata";
+import {loadMetadataRecord} from "@fontsensei/core/getMetadata";
 import {FONT_DATA_FOLDER} from "@fontsensei/data/generated/fontDataFolder";
+import type {FontMetadataReduced} from "@fontsensei/data/raw/googleFonts";
 import invariant from "tiny-invariant";
 
 const ENABLE_CACHE = true;
@@ -8,10 +9,10 @@ let _serverCache = undefined as FSFontItem[] | undefined;
 let _clientCache = undefined as FSFontItem[] | undefined;
 let _clientCachePromise = undefined as Promise<FSFontItem[]> | undefined;
 
-const toFontItemList = async (jsonObj: object) => {
+const toFontItemList = (jsonObj: object, metadataRecord: Record<string, FontMetadataReduced>) => {
   const list = [] as FSFontItem[];
   for (const fontName of Object.keys(jsonObj)) {
-    const metadata = await getMetadata(fontName);
+    const metadata = metadataRecord[fontName];
     invariant(metadata);
     list.push({
       family: fontName,
@@ -46,8 +47,11 @@ const listFonts = async (opts: FSFontFilterOptions) => {
       return filterByOpts(_serverCache, opts);
     }
 
-    const mod = await import(`../../../public/data/${FONT_DATA_FOLDER}/tagsByName.json`);
-    const list = await toFontItemList(mod.default);
+    const [tagsMod, metadataRecord] = await Promise.all([
+      import(`../../../public/data/${FONT_DATA_FOLDER}/tagsByName.json`),
+      loadMetadataRecord(),
+    ]);
+    const list = toFontItemList(tagsMod.default, metadataRecord);
 
     if (ENABLE_CACHE) {
       _serverCache = list;
@@ -65,10 +69,11 @@ const listFonts = async (opts: FSFontFilterOptions) => {
   }
 
   if (!_clientCachePromise) {
-    _clientCachePromise = fetch(`/data/${FONT_DATA_FOLDER}/tagsByName.json`).then((res) => {
-      return res.json();
-    }).then((json) => {
-      return toFontItemList(json);
+    _clientCachePromise = Promise.all([
+      fetch(`/data/${FONT_DATA_FOLDER}/tagsByName.json`).then((res) => res.json()),
+      loadMetadataRecord(),
+    ]).then(([json, metadataRecord]) => {
+      return toFontItemList(json, metadataRecord);
     });
   }
 

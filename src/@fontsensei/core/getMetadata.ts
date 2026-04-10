@@ -48,10 +48,10 @@ export const reduceMetadata = (metadata: FontMetadata) => {
   } as FontMetadataReduced;
 }
 
-const getMetadata = async (family: string) => {
+export async function loadMetadataRecord(): Promise<Record<string, FontMetadataReduced>> {
   if (typeof window === 'undefined') {
     if (_serverCache) {
-      return _serverCache[family];
+      return _serverCache;
     }
 
     const mod = await import(`../../../public/data/${FONT_DATA_FOLDER}/metadataRecord.json`);
@@ -61,15 +61,11 @@ const getMetadata = async (family: string) => {
       _serverCache = record;
     }
 
-    return record[family];
+    return record;
   }
 
   if (_clientCache) {
-    // force make this function async
-    // otherwise React will combine loading state and the initial list is not refreshed
-    await new Promise((resolve) => setTimeout(resolve, 1));
-
-    return _clientCache[family];
+    return _clientCache;
   }
 
   const record = (await fetch(`/data/${FONT_DATA_FOLDER}/metadataRecord.json`).then((res) => {
@@ -78,6 +74,20 @@ const getMetadata = async (family: string) => {
 
   if (ENABLE_CACHE) {
     _clientCache = record;
+  }
+
+  return record;
+}
+
+const getMetadata = async (family: string) => {
+  const hadClientCache = typeof window !== 'undefined' && !!_clientCache;
+
+  const record = await loadMetadataRecord();
+
+  if (typeof window !== 'undefined' && hadClientCache) {
+    // force make this function async
+    // otherwise React will combine loading state and the initial list is not refreshed
+    await new Promise((resolve) => setTimeout(resolve, 1));
   }
 
   return record[family];
