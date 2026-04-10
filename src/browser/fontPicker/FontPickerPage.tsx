@@ -266,6 +266,16 @@ const getTagValue = (raw_tagValue: string | undefined, currentLocale: LocaleStr)
   return getDefaultTag(currentLocale);
 };
 
+/** Keeps demo `text` in the URL when navigating (static export: normal href + client Link). */
+const appendUrlTextParam = (path: string, text: string | undefined): string => {
+  if (!text) {
+    return path;
+  }
+  const params = new URLSearchParams({text});
+  const sep = path.includes('?') ? '&' : '?';
+  return `${path}${sep}${params.toString()}`;
+};
+
 const getEnTagLabel = (tag: string): string => {
   return (enTagValueMsg as Record<string, string>)[tag] ?? tag;
 };
@@ -388,6 +398,17 @@ const FontPickerPage = (props: PageProps) => {
   const localizedPickerBasePath = `${currentLocale === defaultLocale.locale ? '' : `/${currentLocale}`}${pickerBasePath}`;
   const TagsTop = useContext(FontPickerPageContext)?.TagsTop ?? (() => false);
 
+  const preservedDemoText = useMemo(() => {
+    const q = router.query.text;
+    if (typeof q === 'string') {
+      return q;
+    }
+    if (Array.isArray(q) && typeof q[0] === 'string') {
+      return q[0];
+    }
+    return undefined;
+  }, [router.query.text]);
+
   const titlePrefix = tagDisplayLabel
     ? (
       tLandingMsg('Google fonts tagged {tagName}', {
@@ -455,10 +476,12 @@ const FontPickerPage = (props: PageProps) => {
               onClick={() => {
                 setSelectorOpen(false);
               }}
-              href={(t === defaultTag || t === "all")
-                ? (localizedPickerBasePath || "/")
-                : `${localizedPickerBasePath}/tag/${t}`
-              }
+              href={appendUrlTextParam(
+                (t === defaultTag || t === "all")
+                  ? (localizedPickerBasePath || "/")
+                  : `${localizedPickerBasePath}/tag/${t}`,
+                preservedDemoText,
+              )}
             >
             </TagButton>)
           }
@@ -486,10 +509,12 @@ const FontPickerPage = (props: PageProps) => {
           onClick={() => {
             setSelectorOpen(false);
           }}
-          href={(t === defaultTag || t === "all")
-            ? (localizedPickerBasePath || "/")
-            : `${localizedPickerBasePath}/tag/${t}`
-          }
+          href={appendUrlTextParam(
+            (t === defaultTag || t === "all")
+              ? (localizedPickerBasePath || "/")
+              : `${localizedPickerBasePath}/tag/${t}`,
+            preservedDemoText,
+          )}
         >
         </TagButton>)
       }
