@@ -13,7 +13,6 @@ import {
   type LocaleStr,
   type TagValueMsgLabelType,
   type TagDescMsgLabelType,
-  isNonLatinLocale,
   useCurrentLocale,
   useI18n,
   useScopedI18n
@@ -31,6 +30,7 @@ import {FONT_DATA_FOLDER} from "@fontsensei/data/generated/fontDataFolder";
 import languageSpecificTags from "@fontsensei/data/raw/fontSensei/languageSpecificTags";
 import VirtualList from "@fontsensei/components/VirtualList";
 import {tagToUrlSlug} from "../../@fontsensei/utils";
+import {getTagLabelsForDisplay} from "../../@fontsensei/getTagLabelsForDisplay";
 import ProductIcon from "../ProductIcon";
 import {IoLanguage} from "react-icons/io5";
 import {FaBars, FaSearch} from "react-icons/fa";
@@ -47,8 +47,6 @@ import ActionSheetWrapper from "@nextutils/ui/actionSheet/ActionSheetWrapper";
 import {MdOutlineFeedback} from "react-icons/md";
 import MDX from "@mdx-js/runtime";
 import NextUtilsSeo from "@nextutils/seo/NextUtilsSeo";
-import enTagValueMsg from "../../@fontsensei/locales/en/tagValueMsg";
-
 const PAGE_SIZE = 10;
 
 interface PageProps {
@@ -250,42 +248,24 @@ const getTagValue = (raw_tagValue: string | undefined) => {
   return "all";
 };
 
-/** Keeps demo `text` in the URL when navigating (static export: normal href + client Link). */
-const appendUrlTextParam = (path: string, text: string | undefined): string => {
-  if (!text) {
+/** Keeps demo `text` and family filter in the URL when navigating (static export: normal href + client Link). */
+const appendPickerQueryParams = (
+  path: string,
+  opts: { text?: string; filter?: string },
+): string => {
+  const params = new URLSearchParams();
+  if (opts.text) {
+    params.set('text', opts.text);
+  }
+  const ft = opts.filter?.trim();
+  if (ft) {
+    params.set('filter', ft);
+  }
+  if (params.toString() === '') {
     return path;
   }
-  const params = new URLSearchParams({text});
   const sep = path.includes('?') ? '&' : '?';
   return `${path}${sep}${params.toString()}`;
-};
-
-const getEnTagLabel = (tag: string): string => {
-  return (enTagValueMsg as Record<string, string>)[tag] ?? tag;
-};
-
-const getTagLabelsForDisplay = (opts: {
-  tag: string;
-  currentLocale: LocaleStr;
-  localizedLabel: string;
-  disableTranslation?: boolean;
-}) => {
-  const {tag, currentLocale, localizedLabel, disableTranslation} = opts;
-
-  if (tag === "all") {
-    return {primary: localizedLabel, secondary: undefined as string | undefined};
-  }
-
-  if (!isNonLatinLocale(currentLocale) || disableTranslation) {
-    return {primary: localizedLabel, secondary: undefined as string | undefined};
-  }
-
-  const enLabel = getEnTagLabel(tag);
-  if (!enLabel || enLabel === localizedLabel) {
-    return {primary: localizedLabel, secondary: undefined as string | undefined};
-  }
-
-  return {primary: enLabel, secondary: localizedLabel};
 };
 
 const TagButton = (props: PropsWithChildren<{
@@ -357,6 +337,22 @@ const FontPickerPage = (props: PageProps) => {
     }, 500);
     return () => clearTimeout(id);
   }, [filterText]);
+
+  useEffect(() => {
+    if (!router.isReady) {
+      return;
+    }
+    const raw = router.query.filter;
+    const f =
+      typeof raw === 'string'
+        ? raw
+        : Array.isArray(raw) && typeof raw[0] === 'string'
+          ? raw[0]
+          : undefined;
+    if (typeof f === 'string') {
+      setFilterText(f);
+    }
+  }, [router.isReady, router.query.filter]);
 
   useEffect(() => {
     if (lastTagValueRef.current === tagValue) {
@@ -459,11 +455,11 @@ const FontPickerPage = (props: PageProps) => {
               onClick={() => {
                 setSelectorOpen(false);
               }}
-              href={appendUrlTextParam(
+              href={appendPickerQueryParams(
                 t === "all"
                   ? (localizedPickerBasePath || "/")
                   : `${localizedPickerBasePath}/tag/${t}`,
-                preservedDemoText,
+                {text: preservedDemoText, filter: filterText},
               )}
             >
             </TagButton>)
@@ -492,11 +488,11 @@ const FontPickerPage = (props: PageProps) => {
           onClick={() => {
             setSelectorOpen(false);
           }}
-          href={appendUrlTextParam(
+          href={appendPickerQueryParams(
             t === "all"
               ? (localizedPickerBasePath || "/")
               : `${localizedPickerBasePath}/tag/${t}`,
-            preservedDemoText,
+            {text: preservedDemoText, filter: filterText},
           )}
         >
         </TagButton>)
@@ -582,6 +578,11 @@ const FontPickerPage = (props: PageProps) => {
                 initialFontItemList={initialFontItemList}
                 placeholderText={(router.query.text as string | undefined) ?? props.placeholderText}
                 pageSize={PAGE_SIZE}
+                tagPageHref={(tag) =>
+                  appendPickerQueryParams(
+                    `${localizedPickerBasePath}/tag/${tag}`,
+                    {text: preservedDemoText, filter: filterText},
+                  )}
             />}
             {loading && <span className="loading loading-bars loading-sm"/>}
           </div>

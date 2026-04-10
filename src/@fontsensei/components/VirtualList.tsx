@@ -1,7 +1,7 @@
-import React, {type CSSProperties, forwardRef, useContext, useEffect, useState} from "react";
+import React, {type CSSProperties, forwardRef, useContext, useEffect, useMemo, useState} from "react";
 import {type FSFontItem} from "@fontsensei/core/types";
 import listFonts from "@fontsensei/core/listFonts";
-import {type TagValueMsgLabelType, useScopedI18n} from "@fontsensei/locales";
+import {type TagValueMsgLabelType, useCurrentLocale, useScopedI18n} from "@fontsensei/locales";
 import {useScopedI18n as useScopedI18nNextUtils} from "@nextutils/locales";
 import {throttle} from "lodash-es";
 import {GoogleFontHeaders} from "@fontsensei/components/GoogleFontHeaders";
@@ -12,6 +12,10 @@ import {FaPlus, FaXmark} from "react-icons/fa6";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 import {PRODUCT_ICON, PRODUCT_NAME} from "@nextutils/config";
 import {useRouter} from "next/router";
+import Link from "next/link";
+import languageSpecificTags from "@fontsensei/data/raw/fontSensei/languageSpecificTags";
+import {getTagLabelsForDisplay} from "../getTagLabelsForDisplay";
+import {tagToUrlSlug} from "../utils";
 
 const ITEM_HEIGHT = 200;
 const ITEM_HEIGHT_CLS = 'h-[200px]';
@@ -35,12 +39,18 @@ type RowProps = {
   fontItem?: FSFontItem,
   text: string,
   onWheel?: (event: React.WheelEvent<HTMLDivElement>) => void,
-  forwardedRef: React.Ref<HTMLDivElement>
+  forwardedRef: React.Ref<HTMLDivElement>,
+  tagPageHref?: (tag: string) => string,
 };
 
-const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) => {
+const Row = ({index, style, fontItem, text, onWheel, forwardedRef, tagPageHref}: RowProps) => {
   const tTagValueMsg = useScopedI18n('tagValueMsg');
   const pageCtx = useContext(FontPickerPageContext);
+  const currentLocale = useCurrentLocale();
+  const langTagList = useMemo(
+    () => languageSpecificTags[currentLocale].map(tagToUrlSlug),
+    [currentLocale],
+  );
 
   const router = useRouter();
   const tLandingMsg = useScopedI18n('landingMsg');
@@ -143,8 +153,29 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
             <FaPlus />
         </span>}
         {fontItem.tags.map((tag) => {
+          const localized = tTagValueMsg(tag as TagValueMsgLabelType);
+          const {primary, secondary} = getTagLabelsForDisplay({
+            tag,
+            currentLocale,
+            localizedLabel: localized,
+            disableTranslation: langTagList.includes(tag),
+          });
+          const labelInner = <>
+            <span>{primary}</span>
+            {secondary && <span> ({secondary})</span>}
+          </>;
+          const href = tagPageHref?.(tag);
           return <span key={tag} className="badge badge-ghost bg-white/30" style={{ whiteSpace: "nowrap" }}>
-            {tTagValueMsg(tag as TagValueMsgLabelType)}
+            {href
+              ? <Link
+                  href={href}
+                  className="link link-hover"
+                  prefetch={false}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {labelInner}
+                </Link>
+              : labelInner}
             {pageCtx?.onRemoveTag && <span className="hover:bg-white/70" onClick={(e) => {
               e.stopPropagation();
               e.preventDefault();
@@ -226,12 +257,14 @@ const VirtualList = ({
   initialFontItemList,
   placeholderText,
   pageSize,
+  tagPageHref,
 }: {
   tagValue: string,
   placeholderText: string | null;
   initialFontItemList: FSFontItem[],
   pageSize: number,
-  filterText: string
+  filterText: string,
+  tagPageHref?: (tag: string) => string,
 }) => {
   const [list, setList] = useState([
     ...initialFontItemList,
@@ -312,6 +345,7 @@ const VirtualList = ({
           text={text}
           style={{}}
           forwardedRef={() => void 0}
+          tagPageHref={tagPageHref}
         />
       ))}
     </div>}
@@ -325,7 +359,7 @@ const VirtualList = ({
           itemCount={list.length}
           itemSize={ITEM_HEIGHT}
         >
-          {(props) => <RefForwardedRow {...props} fontItem={list[props.index]} text={text}/>}
+          {(props) => <RefForwardedRow {...props} fontItem={list[props.index]} text={text} tagPageHref={tagPageHref}/>}
         </List>
       )}
     </AutoSizer>}
