@@ -243,27 +243,11 @@ const LandingLayout = (props: PropsWithChildren & {
   </>);
 };
 
-const getDefaultTag = (currentLocale: LocaleStr) => {
-  switch (currentLocale) {
-    case "ja":
-      return "lang_ja";
-    case "zh-cn":
-      return "lang_zh-hans";
-    case "zh-tw":
-      return "lang_zh-hant";
-    case "ko":
-      return "lang_ko";
-    default:
-      return "all";
-  }
-}
-
-const getTagValue = (raw_tagValue: string | undefined, currentLocale: LocaleStr) => {
+const getTagValue = (raw_tagValue: string | undefined) => {
   if (raw_tagValue) {
     return raw_tagValue;
   }
-
-  return getDefaultTag(currentLocale);
+  return "all";
 };
 
 /** Keeps demo `text` in the URL when navigating (static export: normal href + client Link). */
@@ -346,8 +330,7 @@ const FontPickerPage = (props: PageProps) => {
   const tTagDescMsg = useScopedI18n('tagDescMsg');
   const router = useRouter();
   const raw_tagValue = router.query.slugList?.[0];
-  const defaultTag = useMemo(() => getDefaultTag(currentLocale), [currentLocale]);
-  const tagValue = useMemo(() => getTagValue(raw_tagValue, currentLocale), [raw_tagValue, currentLocale]);
+  const tagValue = useMemo(() => getTagValue(raw_tagValue), [raw_tagValue]);
 
   const langTagList = useMemo(() => languageSpecificTags[currentLocale].map(tagToUrlSlug), [currentLocale]);
 
@@ -477,7 +460,7 @@ const FontPickerPage = (props: PageProps) => {
                 setSelectorOpen(false);
               }}
               href={appendUrlTextParam(
-                (t === defaultTag || t === "all")
+                t === "all"
                   ? (localizedPickerBasePath || "/")
                   : `${localizedPickerBasePath}/tag/${t}`,
                 preservedDemoText,
@@ -510,7 +493,7 @@ const FontPickerPage = (props: PageProps) => {
             setSelectorOpen(false);
           }}
           href={appendUrlTextParam(
-            (t === defaultTag || t === "all")
+            t === "all"
               ? (localizedPickerBasePath || "/")
               : `${localizedPickerBasePath}/tag/${t}`,
             preservedDemoText,
@@ -619,25 +602,20 @@ const FontPickerPage = (props: PageProps) => {
 const getTagStaticPaths = async (includePathLocale: boolean) => {
   const countByTags = await import(`../../../public/data/${FONT_DATA_FOLDER}/countByTags.json`)
     .then(res => res.default as Record<string, number>);
-  const allTags = Object.keys(countByTags);
+  const allTags = Object.keys(countByTags).filter((tag) => tag !== "all");
 
   const paths = includePathLocale
     ? locales
       .filter((item) => item.locale !== defaultLocale.locale)
-      .flatMap((item) => {
-        const localeDefaultTag = getDefaultTag(item.locale as LocaleStr);
-        return allTags
-          .filter((tag) => tag !== localeDefaultTag)
-          .map((tag) => ({
-            params: {
-              pathLocale: item.locale,
-              slugList: [tag],
-            }
-          }));
-      })
-    : allTags
-      .filter((tag) => tag !== getDefaultTag(defaultLocale.locale as LocaleStr))
-      .map((tag) => ({
+      .flatMap((item) =>
+        allTags.map((tag) => ({
+          params: {
+            pathLocale: item.locale,
+            slugList: [tag],
+          }
+        }))
+      )
+    : allTags.map((tag) => ({
         params: {
           slugList: [tag],
         }
@@ -659,7 +637,6 @@ const makeStaticProps = (includePathLocale: boolean): GetStaticProps<PageProps> 
     const locale = (localeForPage ?? defaultLocale.locale) as LocaleStr;
     const tagValue = getTagValue(
       Array.isArray(slugList) ? slugList[0] : undefined,
-      locale
     );
 
     const initialFontItemList = await listFonts({
