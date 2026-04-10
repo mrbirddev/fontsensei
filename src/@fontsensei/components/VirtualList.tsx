@@ -19,8 +19,6 @@ const ITEM_HEIGHT_CLS = 'h-[200px]';
 const LOADING_ALL_ROW = {family: 'LOADING', tags: []} as unknown as FSFontItem;
 const END_ROW = {family: 'THE_END', tags: []} as unknown as FSFontItem;
 
-const LOADING_ALL_FONTS_GIF_PATH = '/images/loading-all-fonts.gif';
-
 const isRealFontRow = (item: FSFontItem) =>
   item.family !== 'LOADING' && item.family !== 'THE_END';
 
@@ -60,15 +58,7 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
       data-itemindex={index}
     >
       <div className="h-full flex flex-col items-center justify-center text-center px-2">
-        <img
-          src={LOADING_ALL_FONTS_GIF_PATH}
-          alt=""
-          width={166}
-          height={76}
-          className="max-h-[5.5rem] w-auto object-contain pointer-events-none select-none"
-          decoding="async"
-          aria-hidden={true}
-        />
+        <span className="loading loading-bars" />
         <span className="text-sm text-gray-500 mt-2">{tLandingMsg('Loading all fonts')}</span>
       </div>
     </div>;
