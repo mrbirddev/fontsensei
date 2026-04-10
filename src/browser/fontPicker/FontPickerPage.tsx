@@ -32,7 +32,7 @@ import VirtualList from "@fontsensei/components/VirtualList";
 import {tagToUrlSlug} from "../../@fontsensei/utils";
 import {getTagLabelsForDisplay} from "../../@fontsensei/getTagLabelsForDisplay";
 import ProductIcon from "../ProductIcon";
-import {IoLanguage} from "react-icons/io5";
+import {IoClose, IoLanguage} from "react-icons/io5";
 import {FaBars, FaSearch} from "react-icons/fa";
 import {FaGithub, FaTag} from "react-icons/fa6";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
@@ -555,14 +555,32 @@ const FontPickerPage = (props: PageProps) => {
               "relative",
               "flex items-center justify-start gap-2",
               "input input-bordered bg-white/20 shadow-md focus:outline-none focus:shadow-lg",
-              "w-full",
+              "w-full min-w-0",
             )}>
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center shrink-0">
                 {(filterText !== debouncedFilterText) && <span className="inline-block h-4 w-4 text-black/50 loading loading-sm"/>}
                 {(filterText === debouncedFilterText) && <FaSearch  className="inline-block h-4 w-4 text-black/50 flex items-center justify-start" /> }
               </div>
+              {tagValue !== "all" && (
+                <Link
+                  className={cx(
+                    "hidden md:inline-flex",
+                    "items-center gap-0.5 shrink-0 max-w-[min(38vw,11rem)]",
+                    "rounded-full border border-black/[0.08] bg-black/[0.05]",
+                    "px-2.5 py-1 text-base font-medium leading-none text-black/65",
+                    "hover:bg-black/[0.09] hover:text-black/80 transition-colors",
+                  )}
+                  href={appendPickerQueryParams(localizedPickerBasePath || "/", {
+                    text: preservedDemoText,
+                    filter: filterText,
+                  })}
+                >
+                  <span className="truncate">{tagDisplayLabel}</span>
+                  <IoClose className="h-4 w-4 shrink-0 opacity-55" aria-hidden />
+                </Link>
+              )}
               <input
-                className="flex-1 h-12 w-full bg-transparent placeholder-black/50"
+                className="flex-1 min-w-0 h-12 w-full bg-transparent text-base placeholder-black/50"
                 value={filterText}
                 onChange={e => {
                   setFilterText(e.target.value);
