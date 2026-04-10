@@ -9,6 +9,7 @@ export default {
   "Embed code in the <head> of your html": "HTMLの<head>にコードを埋め込む",
   "More tags": "さらにタグ",
   "Filter by font family": "フォントファミリーでフィルタ",
+  "Loading all fonts": "すべてのフォントを読み込み中",
   "Please enter the demo text": "デモテキストを入力してください",
   "Free website builder": "無料のウェブサイトビルダー",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName}は、これらのフォントをコーディングなしで埋め込むことができるウェブサイトビルダーです",

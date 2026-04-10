@@ -1,4 +1,4 @@
-import React, {type CSSProperties, forwardRef, useContext, useEffect, useMemo, useState} from "react";
+import React, {type CSSProperties, forwardRef, useContext, useEffect, useState} from "react";
 import {type FSFontItem} from "@fontsensei/core/types";
 import listFonts from "@fontsensei/core/listFonts";
 import {type TagValueMsgLabelType, useScopedI18n} from "@fontsensei/locales";
@@ -15,6 +15,14 @@ import {useRouter} from "next/router";
 
 const ITEM_HEIGHT = 200;
 const ITEM_HEIGHT_CLS = 'h-[200px]';
+
+const LOADING_ALL_ROW: FSFontItem = {family: 'LOADING', tags: []} as FSFontItem;
+const END_ROW: FSFontItem = {family: 'THE_END', tags: []} as unknown as FSFontItem;
+
+const LOADING_ALL_FONTS_GIF_PATH = '/images/loading-all-fonts.gif';
+
+const isRealFontRow = (item: FSFontItem) =>
+  item.family !== 'LOADING' && item.family !== 'THE_END';
 
 // add a function onOuterWheel to window typing
 declare global {
@@ -51,8 +59,17 @@ const Row = ({index, style, fontItem, text, onWheel, forwardedRef}: RowProps) =>
       ref={forwardedRef}
       data-itemindex={index}
     >
-      <div className="text-center">
-        <span className="loading loading-bars" />
+      <div className="h-full flex flex-col items-center justify-center text-center px-2">
+        <img
+          src={LOADING_ALL_FONTS_GIF_PATH}
+          alt=""
+          width={166}
+          height={76}
+          className="max-h-[5.5rem] w-auto object-contain pointer-events-none select-none"
+          decoding="async"
+          aria-hidden={true}
+        />
+        <span className="text-sm text-gray-500 mt-2">{tLandingMsg('Loading all fonts')}</span>
       </div>
     </div>;
   }
@@ -230,24 +247,20 @@ const VirtualList = ({
     ...initialFontItemList,
   ]);
 
-  const [isLoading, setIsLoading] = useState(false);
-
   useEffect(() => {
-    setIsLoading(true);
+    const hasSearch = filterText.trim() !== '';
+    setList(
+      hasSearch
+        ? [LOADING_ALL_ROW]
+        : [...initialFontItemList, LOADING_ALL_ROW],
+    );
     void listFonts({
       filterText,
       tagValue,
       skip: 0,
       take: 10000,
     }).then(res => {
-      setList([
-        ...res,
-        {
-          family: 'THE_END',
-          tags: [],
-        } as unknown as FSFontItem
-      ]);
-      setIsLoading(false);
+      setList([...res, END_ROW]);
     });
   }, [tagValue, filterText, initialFontItemList]);
 
@@ -263,10 +276,10 @@ const VirtualList = ({
   useEffect(() => {
     const update = (start: number, count: number) => {
       setConfigList(
-        list.slice(
-          start,
-          start + count,
-        ).map(fontItem => ({name: fontItem.family, text: text})),
+        list
+          .slice(start, start + count)
+          .filter(isRealFontRow)
+          .map((fontItem) => ({name: fontItem.family, text})),
       );
     };
 
@@ -326,9 +339,6 @@ const VirtualList = ({
         </List>
       )}
     </AutoSizer>}
-    {isLoading && <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10">
-      <span className="loading loading-bars" />
-    </div>}
   </div>;
 };
 

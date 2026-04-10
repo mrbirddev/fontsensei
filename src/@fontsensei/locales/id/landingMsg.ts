@@ -9,6 +9,7 @@ export default {
   "Embed code in the <head> of your html": "Sematkan kode di <head> dari html Anda",
   "More tags": "Lebih banyak tag",
   "Filter by font family": "Filter berdasarkan keluarga font",
+  "Loading all fonts": "Memuat semua font",
   "Please enter the demo text": "Silakan masukkan teks demo",
   "Free website builder": "Pembuat situs web gratis",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName} adalah pembuat situs web di mana Anda dapat menyematkan font ini tanpa pengkodean",

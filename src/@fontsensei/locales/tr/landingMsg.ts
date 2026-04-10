@@ -9,6 +9,7 @@ export default {
   "Embed code in the <head> of your html": "HTML'nizin <head> bölümüne kodu gömün",
   "More tags": "Daha fazla etiket",
   "Filter by font family": "Yazı tipi ailesine göre filtrele",
+  "Loading all fonts": "Tüm yazı tipleri yükleniyor",
   "Please enter the demo text": "Lütfen demo metnini girin",
   "Free website builder": "Ücretsiz web sitesi oluşturucu",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName}, bu yazı tiplerini kodlama yapmadan gömebileceğiniz bir web sitesi oluşturucusudur",

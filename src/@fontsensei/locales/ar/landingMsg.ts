@@ -9,6 +9,7 @@ export default {
   "Embed code in the <head> of your html": "تضمين الكود في <head> من ملف html الخاص بك",
   "More tags": "المزيد من الوسوم",
   "Filter by font family": "تصفية حسب عائلة الخط",
+  "Loading all fonts": "جارٍ تحميل جميع الخطوط",
   "Please enter the demo text": "يرجى إدخال نص العرض",
   "Free website builder": "منشئ مواقع مجاني",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName} هو منشئ مواقع حيث يمكنك تضمين هذه الخطوط دون الحاجة إلى البرمجة",

@@ -9,6 +9,7 @@ export default {
   "Embed code in the <head> of your html": "Bädda in koden i <head> på din html",
   "More tags": "Fler taggar",
   "Filter by font family": "Filtrera efter teckensnittsfamilj",
+  "Loading all fonts": "Laddar alla typsnitt",
   "Please enter the demo text": "Vänligen ange demotexten",
   "Free website builder": "Gratis webbplatsbyggare",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName} är en webbplatsbyggare där du kan bädda in dessa teckensnitt utan kodning",

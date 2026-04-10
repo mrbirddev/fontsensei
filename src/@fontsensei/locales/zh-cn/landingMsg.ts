@@ -9,6 +9,7 @@ export default {
   "Embed code in the <head> of your html": "在 HTML 的 <head> 中嵌入代码",
   "More tags": "更多标签",
   "Filter by font family": "按字体系列筛选",
+  "Loading all fonts": "正在加载全部字体",
   "Please enter the demo text": "请输入演示文本",
   "Free website builder": "免费网站构建器",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName} 是一个网站构建器，您可以在其中嵌入这些字体而无需编码",

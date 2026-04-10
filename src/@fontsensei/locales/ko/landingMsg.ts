@@ -9,6 +9,7 @@ export default {
   "Embed code in the <head> of your html": "HTML의 <head>에 코드 임베드",
   "More tags": "더 많은 태그",
   "Filter by font family": "폰트 패밀리로 필터링",
+  "Loading all fonts": "모든 글꼴 불러오는 중",
   "Please enter the demo text": "데모 텍스트를 입력하세요",
   "Free website builder": "무료 웹사이트 빌더",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName}은(는) 코딩 없이 이 폰트를 임베드할 수 있는 웹사이트 빌더입니다",

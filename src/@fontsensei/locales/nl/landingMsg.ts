@@ -9,6 +9,7 @@ export default {
   "Embed code in the <head> of your html": "Voeg code in de <head> van je html in",
   "More tags": "Meer tags",
   "Filter by font family": "Filter op lettertypefamilie",
+  "Loading all fonts": "Alle lettertypen laden",
   "Please enter the demo text": "Voer de demotekst in",
   "Free website builder": "Gratis websitebouwer",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName} is een websitebouwer waar je deze lettertypen kunt insluiten zonder te coderen",
