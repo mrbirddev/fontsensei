@@ -27,6 +27,7 @@ import {compact, debounce, throttle} from "lodash-es";
 import {cx} from "@emotion/css";
 import listFonts from "@fontsensei/core/listFonts";
 import {FSFontFilterOptions, type FSFontItem} from "@fontsensei/core/types";
+import {FONT_DATA_FOLDER} from "@fontsensei/data/generated/fontDataFolder";
 import languageSpecificTags from "@fontsensei/data/raw/fontSensei/languageSpecificTags";
 import VirtualList from "@fontsensei/components/VirtualList";
 import {tagToUrlSlug} from "../../@fontsensei/utils";
@@ -591,7 +592,7 @@ const FontPickerPage = (props: PageProps) => {
 };
 
 const getTagStaticPaths = async (includePathLocale: boolean) => {
-  const countByTags = await import("../../../public/data/countByTags.json")
+  const countByTags = await import(`../../../public/data/${FONT_DATA_FOLDER}/countByTags.json`)
     .then(res => res.default as Record<string, number>);
   const allTags = Object.keys(countByTags);
 
@@ -646,8 +647,8 @@ const makeStaticProps = (includePathLocale: boolean): GetStaticProps<PageProps> 
     return {
       props: {
         initialFontItemList,
-        countByTags: await import("../../../public/data/countByTags.json").then(res => res.default as Record<string, number>),
-        firstFontByTags: await import("../../../public/data/firstFontByTags.json").then(res => res.default as Record<string, string>),
+        countByTags: await import(`../../../public/data/${FONT_DATA_FOLDER}/countByTags.json`).then(res => res.default as Record<string, number>),
+        firstFontByTags: await import(`../../../public/data/${FONT_DATA_FOLDER}/firstFontByTags.json`).then(res => res.default as Record<string, string>),
         placeholderText: null,
         ...(await getStaticPropsLocale(context)).props,
       } as PageProps

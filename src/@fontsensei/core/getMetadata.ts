@@ -1,4 +1,5 @@
 import {FontMetadata, FontMetadataReduced} from "@fontsensei/data/raw/googleFonts";
+import {FONT_DATA_FOLDER} from "@fontsensei/data/generated/fontDataFolder";
 import {compact} from "lodash-es";
 
 const ENABLE_CACHE = true; // this is so dangerous without cache, will be sending infinite requests
@@ -53,8 +54,7 @@ const getMetadata = async (family: string) => {
       return _serverCache[family];
     }
 
-    // reading the file from public/merged.json on server side,
-    const mod = await import(`../../../public/data/metadataRecord.json`);
+    const mod = await import(`../../../public/data/${FONT_DATA_FOLDER}/metadataRecord.json`);
     const record = mod.default as unknown as Record<string, FontMetadataReduced>;
 
     if (ENABLE_CACHE) {
@@ -72,7 +72,7 @@ const getMetadata = async (family: string) => {
     return _clientCache[family];
   }
 
-  const record = (await fetch(`/data/metadataRecord.json`).then((res) => {
+  const record = (await fetch(`/data/${FONT_DATA_FOLDER}/metadataRecord.json`).then((res) => {
     return res.json();
   })) as unknown as Record<string, FontMetadataReduced>;
 

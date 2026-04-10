@@ -1,5 +1,6 @@
 import {type FSFontFilterOptions, type FSFontItem} from "./types";
 import getMetadata from "@fontsensei/core/getMetadata";
+import {FONT_DATA_FOLDER} from "@fontsensei/data/generated/fontDataFolder";
 import invariant from "tiny-invariant";
 
 const ENABLE_CACHE = true;
@@ -45,8 +46,7 @@ const listFonts = async (opts: FSFontFilterOptions) => {
       return filterByOpts(_serverCache, opts);
     }
 
-    // reading the file from public/merged.json on server side,
-    const mod = await import(`../../../public/data/tagsByName.json`);
+    const mod = await import(`../../../public/data/${FONT_DATA_FOLDER}/tagsByName.json`);
     const list = await toFontItemList(mod.default);
 
     if (ENABLE_CACHE) {
@@ -65,7 +65,7 @@ const listFonts = async (opts: FSFontFilterOptions) => {
   }
 
   if (!_clientCachePromise) {
-    _clientCachePromise = fetch(`/data/tagsByName.json`).then((res) => {
+    _clientCachePromise = fetch(`/data/${FONT_DATA_FOLDER}/tagsByName.json`).then((res) => {
       return res.json();
     }).then((json) => {
       return toFontItemList(json);
