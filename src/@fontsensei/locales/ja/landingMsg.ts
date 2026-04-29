@@ -1,6 +1,6 @@
 export default {
-  "Google fonts tagged {tagName}": "Googleフォントにタグ付けされた{tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "Googleフォントが提供するタグ付き{tagValue}の無料フォント",
+  "{tagName} Google fonts": "{tagName}のGoogleフォント",
+  "Free {tagValue} font from Google fonts": "無料の{tagValue}フォント（Googleフォント）",
   "Feedback": "フィードバック",
   "Select": "選択",
   "Copy": "コピー",

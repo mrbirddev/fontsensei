@@ -1,6 +1,6 @@
 export default {
-  "Google fonts tagged {tagName}": "Google 폰트 태그 {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "Google 폰트에서 제공하는 무료 폰트 태그 {tagValue}",
+  "{tagName} Google fonts": "{tagName} Google 폰트",
+  "Free {tagValue} font from Google fonts": "무료 {tagValue} 폰트(Google 폰트)",
   "Feedback": "피드백",
   "Select": "선택",
   "Copy": "복사",

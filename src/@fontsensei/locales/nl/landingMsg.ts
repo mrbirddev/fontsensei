@@ -1,6 +1,6 @@
 export default {
-  "Google fonts tagged {tagName}": "Google-lettertypen met tag {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "Gratis lettertype met tag {tagValue} aangeboden door Google-lettertypen",
+  "{tagName} Google fonts": "{tagName} Google-lettertypen",
+  "Free {tagValue} font from Google fonts": "Gratis {tagValue}-lettertype van Google Fonts",
   "Feedback": "Feedback",
   "Select": "Selecteer",
   "Copy": "Kopiëren",

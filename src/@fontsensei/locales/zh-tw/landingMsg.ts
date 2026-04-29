@@ -1,6 +1,6 @@
 export default {
-  "Google fonts tagged {tagName}": "Google 字體標籤 {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "由 Google 字體提供的免費字體標籤 {tagValue}",
+  "{tagName} Google fonts": "{tagName} Google 字體",
+  "Free {tagValue} font from Google fonts": "免費{tagValue}字型（Google 字體）",
   "Feedback": "反饋",
   "Select": "選擇",
   "Copy": "複製",

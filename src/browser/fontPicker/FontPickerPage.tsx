@@ -196,7 +196,7 @@ const FontPickerPage = (props: PageProps) => {
 
   const titlePrefix = tagDisplayLabel
     ? (
-      tLandingMsg('Google fonts tagged {tagName}', {
+      tLandingMsg('{tagName} Google fonts', {
         tagName: tagDisplayLabel,
       }) + ' - '
     )
@@ -332,7 +332,7 @@ const FontPickerPage = (props: PageProps) => {
           "hidden md:block",
           "py-4 flex-0 w-[40%] min-w-[200px] h-full overflow-y-scroll",
         )}>
-          <h1 className="text-lg text-gray-900 mb-2">{tLandingMsg('Free font tagged {tagValue} provided by Google fonts', {tagValue: tagDisplayLabel})}</h1>
+          <h1 className="text-lg text-gray-900 mb-2">{tLandingMsg('Free {tagValue} font from Google fonts', {tagValue: tagDisplayLabel})}</h1>
           {(tTagDescMsg(tagValue as TagDescMsgLabelType) !== tagValue) && <p className="text-gray-600 ">{tTagDescMsg(tagValue as TagDescMsgLabelType)}</p>}
 
           <div className="h-4" />

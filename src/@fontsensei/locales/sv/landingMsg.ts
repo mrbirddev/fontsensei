@@ -1,6 +1,6 @@
 export default {
-  "Google fonts tagged {tagName}": "Google-teckensnitt taggade {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "Gratis teckensnitt taggat {tagValue} tillhandahållet av Google-teckensnitt",
+  "{tagName} Google fonts": "{tagName} Google Fonts",
+  "Free {tagValue} font from Google fonts": "Gratis {tagValue}-typsnitt från Google Fonts",
   "Feedback": "Feedback",
   "Select": "Välj",
   "Copy": "Kopiera",

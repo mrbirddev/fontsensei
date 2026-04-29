@@ -1,6 +1,6 @@
 export default {
-  "Google fonts tagged {tagName}": "خطوط جوجل الموسومة {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "خط مجاني موسوم {tagValue} مقدم من خطوط جوجل",
+  "{tagName} Google fonts": "{tagName} خطوط جوجل",
+  "Free {tagValue} font from Google fonts": "خط {tagValue} مجاني من خطوط جوجل",
   "Feedback": "ملاحظات",
   "Select": "اختر",
   "Copy": "نسخ",

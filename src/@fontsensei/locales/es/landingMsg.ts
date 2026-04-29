@@ -1,6 +1,6 @@
 export default {
-  "Google fonts tagged {tagName}": "Fuentes de Google etiquetadas {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "Fuente gratuita etiquetada {tagValue} proporcionada por Google fonts",
+  "{tagName} Google fonts": "{tagName} fuentes de Google",
+  "Free {tagValue} font from Google fonts": "Fuente gratuita {tagValue} de Google Fonts",
   "Feedback": "Comentarios",
   "Select": "Seleccionar",
   "Copy": "Copiar",

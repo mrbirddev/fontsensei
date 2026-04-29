@@ -1,6 +1,6 @@
 export default {
-  "Google fonts tagged {tagName}": "Шрифты Google с тегом {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "Бесплатный шрифт с тегом {tagValue}, предоставленный Google шрифтами",
+  "{tagName} Google fonts": "{tagName} — шрифты Google",
+  "Free {tagValue} font from Google fonts": "Бесплатный шрифт {tagValue} от Google Fonts",
   "Feedback": "Обратная связь",
   "Select": "Выбрать",
   "Copy": "Копировать",

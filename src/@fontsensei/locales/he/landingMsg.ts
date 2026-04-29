@@ -1,6 +1,6 @@
 export default {
-  "Google fonts tagged {tagName}": "גופנים של Google מתויגים {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "גופן חינמי מתויג {tagValue} מסופק על ידי גופנים של Google",
+  "{tagName} Google fonts": "{tagName} גופני Google",
+  "Free {tagValue} font from Google fonts": "גופן חינמי {tagValue} מגופני Google",
   "Feedback": "משוב",
   "Select": "בחר",
   "Copy": "העתק",

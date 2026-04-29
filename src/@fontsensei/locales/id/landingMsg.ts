@@ -1,6 +1,6 @@
 export default {
-  "Google fonts tagged {tagName}": "Google fonts ditandai {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "Font gratis ditandai {tagValue} disediakan oleh Google fonts",
+  "{tagName} Google fonts": "{tagName} Google Fonts",
+  "Free {tagValue} font from Google fonts": "Font gratis {tagValue} dari Google Fonts",
   "Feedback": "Masukan",
   "Select": "Pilih",
   "Copy": "Salin",

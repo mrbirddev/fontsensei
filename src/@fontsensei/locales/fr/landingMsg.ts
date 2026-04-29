@@ -1,6 +1,6 @@
 export default {
-  "Google fonts tagged {tagName}": "Polices Google étiquetées {tagName}",
-  "Free font tagged {tagValue} provided by Google fonts": "Police gratuite étiquetée {tagValue} fournie par Google fonts",
+  "{tagName} Google fonts": "{tagName} polices Google",
+  "Free {tagValue} font from Google fonts": "Police gratuite {tagValue} de Google Fonts",
   "Feedback": "Retour d'information",
   "Select": "Sélectionner",
   "Copy": "Copier",
