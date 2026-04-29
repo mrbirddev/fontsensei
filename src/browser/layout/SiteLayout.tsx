@@ -83,7 +83,7 @@ export const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties 
 
   return <>
     <div className="h-16" />
-    <div className="fixed left-0 top-0 right-0 z-10" style={props.style}>
+    <div className="fixed left-0 top-0 right-0 z-10 bg-white" style={props.style}>
       <div className={"container mx-auto px-4" + (props.fullWidth ? " max-w-full" : "")}>
         <div className="flex items-center justify-center gap-2 py-2">
           <div className="flex-1 flex items-center justify-start gap-1">
