@@ -8,13 +8,14 @@
     "syncGoogleFonts": "curl https://fonts.google.com/metadata/fonts -o ./src/@fontsensei/data/raw/googleFonts/fonts.json",
     "mergeData": "tsx src/@fontsensei/data/merge.ts",
     "validateLocales": "tsx src/@fontsensei/data/validateLocaleMessages.ts",
-    "build": "yarn mergeData && yarn validateLocales && next build",
-    "dev": "yarn mergeData && next dev",
+    "ensureFontDataFolder": "node scripts/ensureFontDataFolder.mjs",
+    "build": "yarn ensureFontDataFolder && yarn mergeData && yarn validateLocales && next build",
+    "dev": "yarn ensureFontDataFolder && yarn mergeData && next dev",
     "postinstall": "husky",
-    "lint": "next lint --quiet",
+    "lint": "yarn ensureFontDataFolder && next lint --quiet",
     "nibble": "eslint-nibble src --config ./.eslintrc.cjs --ext .jsx,.js,.tsx,.ts",
     "pretty-locales": "npx prettier --write --trailing-comma none --bracket-spacing false --print-width 100000 --tab-width 2 --quote-props preserve \"src/{@fontsensei,@nextutils}/locales/**/*.ts\"",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "yarn ensureFontDataFolder && tsc --noEmit",
     "start": "next start"
   },
   "dependencies": {

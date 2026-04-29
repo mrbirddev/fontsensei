@@ -30,6 +30,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+import {createHash} from "crypto";
 import {uniq} from "lodash-es";
 import {tagToUrlSlug} from "../utils";
 import languageSpecificTags from "@fontsensei/data/raw/fontSensei/languageSpecificTags";
@@ -49,8 +50,35 @@ const tagsChineseTraditionalPath = path.join(__dirname, './raw/fontSensei/step2-
 const tagsKoreanPath = path.join(__dirname, './raw/fontSensei/step2-generated/tags-korean.json');
 const tagsHardCodedPath = path.join(__dirname, './raw/fontSensei/tags-hardcoded.json');
 
-/** Milliseconds since Unix epoch (UTC instant); numeric only — no calendar timezone ambiguity. */
-const dataFolderStamp = () => String(Date.now());
+/**
+ * Deterministic stamp derived from input files.
+ *
+ * Goal: avoid dirty diffs where only `FONT_DATA_FOLDER` changes due to `Date.now()`,
+ * while still producing a stable folder name when the input dataset is unchanged.
+ */
+const dataFolderStamp = () => {
+  const languageSpecificTagsTsPath = path.join(__dirname, './raw/fontSensei/languageSpecificTags.ts');
+
+  const sourcePaths = [
+    googleApiResPath,
+    jsonFilePath,
+    tagsJapanesePath,
+    tagsChineseSimplifiedPath,
+    tagsChineseTraditionalPath,
+    tagsKoreanPath,
+    tagsHardCodedPath,
+    languageSpecificTagsTsPath,
+  ];
+
+  const hash = createHash('sha256');
+  for (const p of sourcePaths) {
+    // eslint-disable-next-line no-sync
+    hash.update(fs.readFileSync(p));
+    hash.update(Buffer.from('\0'));
+  }
+
+  return hash.digest('hex');
+};
 
 const writeFontDataFolderModule = (folder: string) => {
   const generatedPath = path.join(__dirname, 'generated/fontDataFolder.ts');

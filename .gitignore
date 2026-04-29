@@ -47,6 +47,7 @@ yarn-error.log*
 public/robots.txt
 public/sitemap*.xml
 public/robots.txt
+src/@fontsensei/data/generated/fontDataFolder.ts
 
 public/data
 /.idea/
