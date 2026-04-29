@@ -1,22 +1,53 @@
-## 什麼是 "Fontsensei"？
-Fontsensei 是一個線上的 Google 字體選擇器，字體依照標籤分類，方便用戶探索。
+#關於
+Font sensei 是一個依標籤名稱分類的 Google 字體選擏器。
 
-## 什麼是 Google 字體？
-Google 字體是一個免費的網路服務，提供大量開源字體庫。Google 字體的主要特點包括：
-- 簡單。您可以直接在 Google Docs 或 Google Slides 中使用，或者嵌入幾行代碼直接在您的應用程式中使用。
-- 快速加載。與本地字體文件不同，您可以動態加載字體文件的一部分，字體的加載不會阻礙網頁的渲染。
+![screenshot](./public/screenshot.png)
 
-## 這些字體可以免費使用嗎？
-是的，因為我們使用 Google 字體，所有字體都是開源且免費的。用戶可以下載並免費使用這些字體。
+## 特點
+- 左側提供易讀的標籤，方便快速找到字體。
+- 提供拉丁語言的標籤，便於查找。
+- 提供非拉丁語言的標籤，例如 CJK(中文、日文、韓文)，並以對應的母語呈現。
 
-## 這些字體可以用於商業用途嗎？
-是的，因為我們使用 Google 字體，所有字體都可以用於商業用途。它們是根據開源許可證授權的，允許包含在商業銷售的產品中。
+## 鳴謝
+字體來源 => [Google fonts](https://fonts.google.com)
+拉丁標籤資料 => [Font Library](https://github.com/katydecorah/font-library)
+Logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+可直接用於網站建置工具 => [Slidde](https://slidde.co)
 
-## 如何使用這些字體？
-- 對於網頁專案，只需複製嵌入代碼並將其放在 HTML 文件的 `<head />` 區域中 [閱讀更多](https://developers.google.com/fonts/docs/getting_started)。
-- 在 Google Docs 或 Google Slides 中，點擊 "更多字體" 也可以使用這些字體 [閱讀更多](https://fonts.google.com/knowledge/choosing_type/adding_fonts_to_google_docs)。
-- [在 Android 中使用](https://developers.google.com/fonts/docs/android)
-- 您也可以下載這些字體。
+## CJK 資料示範
+在介面上查看資料 ->
 
-## 這些字體可以在哪裡使用？
-Google 字體可以用於網站、應用程式、印刷材料、電子書以及任何需要字體的媒介。它們用途廣泛，可以增強各種專案的視覺吸引力。
+### [日文 (ja)](https://fontsensei.com/ja)
+- [明朝體 (Mincho)](https://fontsensei.com/ja/tag/mincho)
+- [角ゴシック (Kaku Gothic)](https://fontsensei.com/ja/tag/kaku-gothic)
+- [丸ゴシック (Maru Gothic)](https://fontsensei.com/ja/tag/maru-gothic)
+- [手書き (Tegaki)](https://fontsensei.com/ja/tag/tegaki)
+- [毛筆體 (Fude)](https://fontsensei.com/ja/tag/fude)
+- [ポップ体 (Poppu)](https://fontsensei.com/ja/tag/poppu)
+- [かわいい (Kawaii)](https://fontsensei.com/ja/tag/kawaii)
+- [マンガ(Manga)](https://fontsensei.com/ja/tag/manga)
+
+### [簡體中文 (zh-cn)](https://fontsensei.com/zh-cn)
+- [宋体 (Songti)](https://fontsensei.com/zh-cn/tag/songti)
+- [黑体 (Heiti)](https://fontsensei.com/zh-cn/tag/heiti)
+- [楷体 (Kaiti)](https://fontsensei.com/zh-cn/tag/kaiti)
+- [手写 (Shouxie)](https://fontsensei.com/zh-cn/tag/shouxie)
+- [毛笔 (Maobi)](https://fontsensei.com/zh-cn/tag/maobi)
+- [美术体 (Meishuti)](https://fontsensei.com/zh-cn/tag/meishuti)
+
+### [繁體中文 (zh-tw)](https://fontsensei.com/zh-tw)
+- [宋體 (Songti)](https://fontsensei.com/zh-tw/tag/songti)
+- [黑體 (Heiti)](https://fontsensei.com/zh-tw/tag/heiti)
+- [楷體 (Kaiti)](https://fontsensei.com/zh-tw/tag/kaiti)
+- [手寫 (Shouxie)](https://fontsensei.com/zh-tw/tag/shouxie)
+- [毛筆 (Maobi)](https://fontsensei.com/zh-tw/tag/maobi)
+- [美術體 (Meishuti)](https://fontsensei.com/zh-tw/tag/meishuti)
+
+### [韓語 (ko)](https://fontsensei.com/ko)
+- [돋움 (Dotum)](https://fontsensei.com/ko/tag/dotum)
+- [바탕 (Batang)](https://fontsensei.com/ko/tag/batang)
+- [송을씨체 (Songeulssi)](https://fontsensei.com/ko/tag/songeulssi)
+- [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
+- [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
+- [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
+

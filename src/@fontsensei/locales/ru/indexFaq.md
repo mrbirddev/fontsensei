@@ -1,25 +1,53 @@
-## Что такое "Fontsensei"?
-Fontsensei — это онлайн-инструмент для выбора шрифтов Google Fonts, где шрифты классифицированы по тегам для более удобного поиска.
+#О проекте
+Font sensei — это подборщик Google Fonts, сгруппированный по названиям тегов.
 
-## Что такое Google Fonts?
-Google Fonts — это бесплатный веб-сервис, предоставляющий доступ к обширной библиотеке шрифтов с открытым исходным кодом. Основные особенности Google Fonts:
-- Простота. Вы можете использовать их напрямую в Google Docs или Google Slides, либо вставить несколько строк кода, чтобы использовать их в вашем приложении.
-- Быстрая загрузка. В отличие от локальных файлов шрифтов, вы можете загружать только часть файлов шрифтов динамически. И загрузка шрифта не будет блокировать рендеринг веб-страницы.
+![screenshot](./public/screenshot.png)
 
-## Эти шрифты бесплатны для использования?
-Да, поскольку мы используем Google Fonts, все они имеют открытый исходный код и доступны бесплатно. Пользователи могут загружать и использовать их без каких-либо сборов.
+## Возможности
+- Читаемые теги слева для удобного поиска шрифтов.
+- Теги для латинских языков для более простого обнаружения.
+- Теги для нелатинских языков, например CJK(китайский, японский, корейский), на соответствующем родном языке.
 
-## Можно ли использовать эти шрифты в коммерческих целях?
-Да, поскольку мы используем Google Fonts, все они могут использоваться в коммерческих целях. Они лицензированы под лицензиями с открытым исходным кодом, что позволяет включать их в продукты, которые продаются коммерчески.
+## Кредиты
+Источник шрифтов => [Google fonts](https://fonts.google.com)
+Данные латинских тегов => [Font Library](https://github.com/katydecorah/font-library)
+Логотип => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+Использовать напрямую в конструкторе сайтов => [Slidde](https://slidde.co)
 
-## Как использовать эти шрифты?
-- Для веб-проектов просто скопируйте код для вставки и поместите его в раздел `<head />` в HTML-документе [Подробнее](https://developers.google.com/fonts/docs/getting_started).
-- В Google Docs или Google Slides нажмите "Больше шрифтов", чтобы также использовать эти шрифты [Подробнее](https://fonts.google.com/knowledge/choosing_type/adding_fonts_to_google_docs).
-- [Использование в Android](https://developers.google.com/fonts/docs/android)
-- Вы также можете скачать эти шрифты.
+## Демонстрация данных CJK
+Проверьте данные в интерфейсе ->
 
-## Где можно использовать эти шрифты?
-Google Fonts можно использовать на веб-сайтах, в приложениях, печатных материалах, электронных книгах и в любом другом месте, где требуется типографика. Они универсальны и могут улучшить визуальную привлекательность различных проектов.
+### [Японский (ja)](https://fontsensei.com/ja)
+- [明朝体 (Mincho)](https://fontsensei.com/ja/tag/mincho)
+- [角ゴシック (Kaku Gothic)](https://fontsensei.com/ja/tag/kaku-gothic)
+- [丸ゴシック (Maru Gothic)](https://fontsensei.com/ja/tag/maru-gothic)
+- [手書き (Tegaki)](https://fontsensei.com/ja/tag/tegaki)
+- [毛筆体 (Fude)](https://fontsensei.com/ja/tag/fude)
+- [ポップ体 (Poppu)](https://fontsensei.com/ja/tag/poppu)
+- [かわいい (Kawaii)](https://fontsensei.com/ja/tag/kawaii)
+- [マンガ(Manga)](https://fontsensei.com/ja/tag/manga)
 
+### [Китайский (упрощённый) (zh-cn)](https://fontsensei.com/zh-cn)
+- [宋体 (Songti)](https://fontsensei.com/zh-cn/tag/songti)
+- [黑体 (Heiti)](https://fontsensei.com/zh-cn/tag/heiti)
+- [楷体 (Kaiti)](https://fontsensei.com/zh-cn/tag/kaiti)
+- [手写 (Shouxie)](https://fontsensei.com/zh-cn/tag/shouxie)
+- [毛笔 (Maobi)](https://fontsensei.com/zh-cn/tag/maobi)
+- [美术体 (Meishuti)](https://fontsensei.com/zh-cn/tag/meishuti)
 
-Пожалуйста, предоставьте содержимое файла TypeScript, который вы хотите перевести.
+### [Китайский (традиционный) (zh-tw)](https://fontsensei.com/zh-tw)
+- [宋體 (Songti)](https://fontsensei.com/zh-tw/tag/songti)
+- [黑體 (Heiti)](https://fontsensei.com/zh-tw/tag/heiti)
+- [楷體 (Kaiti)](https://fontsensei.com/zh-tw/tag/kaiti)
+- [手寫 (Shouxie)](https://fontsensei.com/zh-tw/tag/shouxie)
+- [毛筆 (Maobi)](https://fontsensei.com/zh-tw/tag/maobi)
+- [美術體 (Meishuti)](https://fontsensei.com/zh-tw/tag/meishuti)
+
+### [Корейский (ko)](https://fontsensei.com/ko)
+- [돋움 (Dotum)](https://fontsensei.com/ko/tag/dotum)
+- [바탕 (Batang)](https://fontsensei.com/ko/tag/batang)
+- [송을씨체 (Songeulssi)](https://fontsensei.com/ko/tag/songeulssi)
+- [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
+- [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
+- [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
+

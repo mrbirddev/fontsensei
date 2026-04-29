@@ -1,22 +1,53 @@
-## "Fontsensei"란 무엇인가요?
-Fontsensei는 온라인 Google Fonts 선택기로, 글꼴이 태그로 분류되어 있어 탐색이 더 쉽습니다.
+#소개
+Font sensei는 태그 이름을 기준으로 분류된 Google Fonts 픽커입니다.
 
-## Google Fonts란 무엇인가요?
-Google Fonts는 방대한 오픈 소스 글꼴 라이브러리에 접근할 수 있는 무료 웹 서비스입니다. Google Fonts의 주요 기능은 다음과 같습니다.
-- 간편함. Google Docs나 Google Slides에서 직접 사용할 수 있으며, 몇 줄의 코드를 삽입하여 애플리케이션에서 직접 사용할 수 있습니다.
-- 빠른 로딩. 로컬 글꼴 파일과 달리 글꼴 파일의 일부만 동적으로 로드할 수 있습니다. 그리고 글꼴 로딩이 웹페이지의 렌더링을 방해하지 않습니다.
+![screenshot](./public/screenshot.png)
 
-## 이 글꼴들은 무료로 사용할 수 있나요?
-네, Google Fonts를 사용하기 때문에 모든 글꼴이 오픈 소스이며 비용 없이 사용할 수 있습니다. 사용자는 이 글꼴을 다운로드하여 무료로 사용할 수 있습니다.
+## 기능
+- 왼쪽에 읽기 쉬운 태그가 있어 폰트를 쉽게 찾을 수 있습니다.
+- 라틴 언어용 태그로 쉽게 탐색할 수 있습니다.
+- 비(非)라틴 언어용 태그는 해당 모국어로 제공됩니다. 예: CJK(중국어, 일본어, 한국어)
 
-## 이 글꼴들은 상업적으로 사용해도 괜찮나요?
-네, Google Fonts를 사용하기 때문에 모든 글꼴을 상업적 목적으로 사용할 수 있습니다. 이들은 오픈 소스 라이선스 하에 제공되어 상업적으로 판매되는 제품에 포함될 수 있습니다.
+## 크레딧
+폰트 소스 => [Google fonts](https://fonts.google.com)
+라틴 태그 데이터 => [Font Library](https://github.com/katydecorah/font-library)
+로고 => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+웹사이트 빌더에서 바로 사용 => [Slidde](https://slidde.co)
 
-## 이 글꼴들을 어떻게 사용하나요?
-- 웹 프로젝트의 경우, 임베드 코드를 복사하여 HTML 문서의 `<head />` 섹션에 넣으세요 [자세히 알아보기](https://developers.google.com/fonts/docs/getting_started).
-- Google Docs나 Google Slides에서는 "더 많은 글꼴"을 클릭하여 이 글꼴들을 사용할 수 있습니다 [자세히 알아보기](https://fonts.google.com/knowledge/choosing_type/adding_fonts_to_google_docs).
-- [Android에서 사용하기](https://developers.google.com/fonts/docs/android)
-- 이 글꼴들을 다운로드할 수도 있습니다.
+## CJK 데이터 데모
+UI에서 데이터를 확인하세요 ->
 
-## 이 글꼴들을 어디에서 사용할 수 있나요?
-Google Fonts는 웹사이트, 애플리케이션, 인쇄물, 전자책 및 타이포그래피가 필요한 모든 매체에서 사용할 수 있습니다. 이들은 다재다능하며 다양한 프로젝트의 시각적 매력을 높일 수 있습니다.
+### [일본어 (ja)](https://fontsensei.com/ja)
+- [明朝体 (Mincho)](https://fontsensei.com/ja/tag/mincho)
+- [角ゴシック (Kaku Gothic)](https://fontsensei.com/ja/tag/kaku-gothic)
+- [丸ゴシック (Maru Gothic)](https://fontsensei.com/ja/tag/maru-gothic)
+- [手書き (Tegaki)](https://fontsensei.com/ja/tag/tegaki)
+- [毛筆体 (Fude)](https://fontsensei.com/ja/tag/fude)
+- [ポップ体 (Poppu)](https://fontsensei.com/ja/tag/poppu)
+- [かわいい (Kawaii)](https://fontsensei.com/ja/tag/kawaii)
+- [マンガ(Manga)](https://fontsensei.com/ja/tag/manga)
+
+### [간체 중국어 (zh-cn)](https://fontsensei.com/zh-cn)
+- [宋体 (Songti)](https://fontsensei.com/zh-cn/tag/songti)
+- [黑体 (Heiti)](https://fontsensei.com/zh-cn/tag/heiti)
+- [楷体 (Kaiti)](https://fontsensei.com/zh-cn/tag/kaiti)
+- [手写 (Shouxie)](https://fontsensei.com/zh-cn/tag/shouxie)
+- [毛笔 (Maobi)](https://fontsensei.com/zh-cn/tag/maobi)
+- [美术体 (Meishuti)](https://fontsensei.com/zh-cn/tag/meishuti)
+
+### [번체 중국어 (zh-tw)](https://fontsensei.com/zh-tw)
+- [宋體 (Songti)](https://fontsensei.com/zh-tw/tag/songti)
+- [黑體 (Heiti)](https://fontsensei.com/zh-tw/tag/heiti)
+- [楷體 (Kaiti)](https://fontsensei.com/zh-tw/tag/kaiti)
+- [手寫 (Shouxie)](https://fontsensei.com/zh-tw/tag/shouxie)
+- [毛筆 (Maobi)](https://fontsensei.com/zh-tw/tag/maobi)
+- [美術體 (Meishuti)](https://fontsensei.com/zh-tw/tag/meishuti)
+
+### [한국어 (ko)](https://fontsensei.com/ko)
+- [돋움 (Dotum)](https://fontsensei.com/ko/tag/dotum)
+- [바탕 (Batang)](https://fontsensei.com/ko/tag/batang)
+- [송을씨체 (Songeulssi)](https://fontsensei.com/ko/tag/songeulssi)
+- [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
+- [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
+- [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
+

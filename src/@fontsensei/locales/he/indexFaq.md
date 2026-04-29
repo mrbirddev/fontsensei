@@ -1,22 +1,53 @@
-## מהו "Fontsensei"?
-Fontsensei הוא בוחר גופנים מקוון של Google Fonts שבו הגופנים מקוטלגים לפי תגיות לחקירה קלה יותר.
+#אודות
+Font sensei הוא בוחר גופנים של Google, שמסווג לפי שמות תגיות.
 
-## מהו Google Fonts?
-Google Fonts הוא שירות אינטרנט חינמי המספק גישה לספרייה עצומה של גופנים בקוד פתוח. התכונות העיקריות של Google Fonts הן:
-- קל. ניתן להשתמש בו ישירות ב-Google Docs או Google Slides, או להטמיע מספר שורות קוד כדי להשתמש בו ישירות באפליקציה שלך.
-- טעינה מהירה. בניגוד לקבצי גופנים מקומיים, ניתן לטעון רק חלק מקבצי הגופנים באופן דינמי. והטעינה של הגופן לא תחסום את הרינדור של דף האינטרנט.
+![screenshot](./public/screenshot.png)
 
-## האם הגופנים הללו חופשיים לשימוש?
-כן, מכיוון שאנו משתמשים ב-Google Fonts, כולם בקוד פתוח וזמינים ללא עלות. משתמשים יכולים להוריד ולהשתמש בהם ללא תשלום.
+## תכונות
+- תגיות קריאות משמאל כדי למצוא גופנים בקלות.
+- תגיות עבור שפות לטיניות כדי להקל על הגילוי.
+- תגיות עבור שפות שאינן לטיניות, למשל CJK(סינית, יפנית, קוריאנית), בשפה הילידית המתאימה.
 
-## האם הגופנים הללו מתאימים לשימוש מסחרי?
-כן, מכיוון שאנו משתמשים ב-Google Fonts, כולם יכולים לשמש למטרות מסחריות. הם מורשים תחת רישיונות קוד פתוח, מה שמאפשר הכללה במוצרים שנמכרים מסחרית.
+## קרדיטים
+מקור הגופנים => [Google fonts](https://fonts.google.com)
+נתוני תגיות לטיניות => [Font Library](https://github.com/katydecorah/font-library)
+הלוגו => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+להשתמש בו ישירות בבונה אתרים => [Slidde](https://slidde.co)
 
-## כיצד להשתמש בגופנים הללו?
-- עבור פרויקטים באינטרנט, פשוט העתיקו את קוד ההטמעה והכניסו אותו לחלק ה-`<head />` במסמך ה-HTML [קרא עוד](https://developers.google.com/fonts/docs/getting_started).
-- ב-Google Docs או Google Slides, לחצו על "עוד גופנים" ותוכלו גם להשתמש בגופנים הללו [קרא עוד](https://fonts.google.com/knowledge/choosing_type/adding_fonts_to_google_docs)
-- [שימוש באנדרואיד](https://developers.google.com/fonts/docs/android)
-- ניתן גם להוריד את הגופנים הללו.
+## הדגמת נתוני CJK
+בדקו את הנתונים בממשק ->
 
-## היכן ניתן להשתמש בגופנים הללו?
-Google Fonts ניתן להשתמש באתרים, באפליקציות, בחומרי דפוס, בספרים אלקטרוניים ובכל מדיום אחר שבו נדרשת טיפוגרפיה. הם רב-תכליתיים ויכולים לשפר את המשיכה הוויזואלית של פרויקטים שונים.
+### [יפנית (ja)](https://fontsensei.com/ja)
+- [明朝体 (Mincho)](https://fontsensei.com/ja/tag/mincho)
+- [角ゴシック (Kaku Gothic)](https://fontsensei.com/ja/tag/kaku-gothic)
+- [丸ゴシック (Maru Gothic)](https://fontsensei.com/ja/tag/maru-gothic)
+- [手書き (Tegaki)](https://fontsensei.com/ja/tag/tegaki)
+- [毛筆体 (Fude)](https://fontsensei.com/ja/tag/fude)
+- [ポップ体 (Poppu)](https://fontsensei.com/ja/tag/poppu)
+- [かわいい (Kawaii)](https://fontsensei.com/ja/tag/kawaii)
+- [マンガ(Manga)](https://fontsensei.com/ja/tag/manga)
+
+### [סינית מפושטת (zh-cn)](https://fontsensei.com/zh-cn)
+- [宋体 (Songti)](https://fontsensei.com/zh-cn/tag/songti)
+- [黑体 (Heiti)](https://fontsensei.com/zh-cn/tag/heiti)
+- [楷体 (Kaiti)](https://fontsensei.com/zh-cn/tag/kaiti)
+- [手写 (Shouxie)](https://fontsensei.com/zh-cn/tag/shouxie)
+- [毛笔 (Maobi)](https://fontsensei.com/zh-cn/tag/maobi)
+- [美术体 (Meishuti)](https://fontsensei.com/zh-cn/tag/meishuti)
+
+### [סינית מסורתית (zh-tw)](https://fontsensei.com/zh-tw)
+- [宋體 (Songti)](https://fontsensei.com/zh-tw/tag/songti)
+- [黑體 (Heiti)](https://fontsensei.com/zh-tw/tag/heiti)
+- [楷體 (Kaiti)](https://fontsensei.com/zh-tw/tag/kaiti)
+- [手寫 (Shouxie)](https://fontsensei.com/zh-tw/tag/shouxie)
+- [毛筆 (Maobi)](https://fontsensei.com/zh-tw/tag/maobi)
+- [美術體 (Meishuti)](https://fontsensei.com/zh-tw/tag/meishuti)
+
+### [קוריאנית (ko)](https://fontsensei.com/ko)
+- [돋움 (Dotum)](https://fontsensei.com/ko/tag/dotum)
+- [바탕 (Batang)](https://fontsensei.com/ko/tag/batang)
+- [송을씨체 (Songeulssi)](https://fontsensei.com/ko/tag/songeulssi)
+- [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
+- [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
+- [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
+

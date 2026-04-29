@@ -1,25 +1,53 @@
-## Qu'est-ce que "Fontsensei" ?
-Fontsensei est un sélecteur de polices en ligne de Google Fonts où les polices sont classées par tags pour une exploration plus facile.
+#À propos
+Font sensei est un sélecteur de Google Fonts classé par noms de tags.
 
-## Qu'est-ce que Google Fonts ?
-Google Fonts est un service web gratuit qui offre l'accès à une vaste bibliothèque de polices open-source. Les principales caractéristiques de Google Fonts sont :
-- Facilité. Vous pouvez l'utiliser directement dans Google Docs ou Google Slides, ou vous pouvez intégrer plusieurs lignes de code pour l'utiliser directement dans votre application.
-- Chargement rapide. Contrairement aux fichiers de polices locaux, vous pouvez charger dynamiquement seulement une partie des fichiers de polices. Et le chargement de la police ne bloquera pas le rendu de la page web.
+![screenshot](./public/screenshot.png)
 
-## Ces polices sont-elles gratuites à utiliser ?
-Oui, puisque nous utilisons Google Fonts, toutes sont open source et disponibles gratuitement. Les utilisateurs peuvent les télécharger et les utiliser sans frais.
+## Fonctionnalités
+- Des tags lisibles à gauche pour découvrir facilement les polices.
+- Des tags pour les langues latines afin de faciliter la découverte.
+- Des tags pour les langues non latines, par ex. CJK(Chinois, Japonais, Coréen), dans leur langue d'origine correspondante.
 
-## Ces polices sont-elles autorisées pour un usage commercial ?
-Oui, puisque nous utilisons Google Fonts, toutes peuvent être utilisées à des fins commerciales. Elles sont sous licences open-source, permettant leur inclusion dans des produits vendus commercialement.
+## Crédits
+Source des polices => [Google fonts](https://fonts.google.com)
+Données des tags latins => [Font Library](https://github.com/katydecorah/font-library)
+Le logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+Utiliser directement dans un constructeur de sites web => [Slidde](https://slidde.co)
 
-## Comment utiliser ces polices ?
-- Pour les projets web, copiez simplement le code d'intégration et placez-le dans votre section `<head />` du document HTML [En savoir plus](https://developers.google.com/fonts/docs/getting_started).
-- Dans Google Docs ou Google Slides, cliquez sur "Plus de polices" pour utiliser ces polices [En savoir plus](https://fonts.google.com/knowledge/choosing_type/adding_fonts_to_google_docs)
-- [Utilisation sur Android](https://developers.google.com/fonts/docs/android)
-- Vous pouvez également télécharger ces polices.
+## Démo des données CJK
+Consultez les données sur l'interface ->
 
-## Où puis-je utiliser ces polices ?
-Google Fonts peut être utilisé sur des sites web, dans des applications, des supports imprimés, des livres électroniques, et tout autre support nécessitant de la typographie. Elles sont polyvalentes et peuvent améliorer l'attrait visuel de divers projets.
+### [Japonais (ja)](https://fontsensei.com/ja)
+- [明朝体 (Mincho)](https://fontsensei.com/ja/tag/mincho)
+- [角ゴシック (Kaku Gothic)](https://fontsensei.com/ja/tag/kaku-gothic)
+- [丸ゴシック (Maru Gothic)](https://fontsensei.com/ja/tag/maru-gothic)
+- [手書き (Tegaki)](https://fontsensei.com/ja/tag/tegaki)
+- [毛筆体 (Fude)](https://fontsensei.com/ja/tag/fude)
+- [ポップ体 (Poppu)](https://fontsensei.com/ja/tag/poppu)
+- [かわいい (Kawaii)](https://fontsensei.com/ja/tag/kawaii)
+- [マンガ(Manga)](https://fontsensei.com/ja/tag/manga)
 
+### [Chinois simplifié (zh-cn)](https://fontsensei.com/zh-cn)
+- [宋体 (Songti)](https://fontsensei.com/zh-cn/tag/songti)
+- [黑体 (Heiti)](https://fontsensei.com/zh-cn/tag/heiti)
+- [楷体 (Kaiti)](https://fontsensei.com/zh-cn/tag/kaiti)
+- [手写 (Shouxie)](https://fontsensei.com/zh-cn/tag/shouxie)
+- [毛笔 (Maobi)](https://fontsensei.com/zh-cn/tag/maobi)
+- [美术体 (Meishuti)](https://fontsensei.com/zh-cn/tag/meishuti)
 
-It seems like you haven't provided the TypeScript file yet. Please paste the content of the file, and I'll help you translate the locale strings into French.
+### [Chinois traditionnel (zh-tw)](https://fontsensei.com/zh-tw)
+- [宋體 (Songti)](https://fontsensei.com/zh-tw/tag/songti)
+- [黑體 (Heiti)](https://fontsensei.com/zh-tw/tag/heiti)
+- [楷體 (Kaiti)](https://fontsensei.com/zh-tw/tag/kaiti)
+- [手寫 (Shouxie)](https://fontsensei.com/zh-tw/tag/shouxie)
+- [毛筆 (Maobi)](https://fontsensei.com/zh-tw/tag/maobi)
+- [美術體 (Meishuti)](https://fontsensei.com/zh-tw/tag/meishuti)
+
+### [Coréen (ko)](https://fontsensei.com/ko)
+- [돋움 (Dotum)](https://fontsensei.com/ko/tag/dotum)
+- [바탕 (Batang)](https://fontsensei.com/ko/tag/batang)
+- [송을씨체 (Songeulssi)](https://fontsensei.com/ko/tag/songeulssi)
+- [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
+- [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
+- [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
+

@@ -1,25 +1,53 @@
-## "Fontsensei" Nedir?
-Fontsensei, yazı tiplerinin daha kolay keşfedilmesi için etiketlerle kategorize edildiği çevrimiçi bir Google Fonts seçicisidir.
+#Hakkında
+Font sensei, etiket adlarına göre kategorize edilmiş bir Google Fonts seçicisidir.
 
-## Google Fonts Nedir?
-Google Fonts, açık kaynaklı yazı tiplerinden oluşan geniş bir kütüphaneye erişim sağlayan ücretsiz bir web hizmetidir. Google Fonts'un ana özellikleri şunlardır:
-- Kolay. Google Dokümanlar veya Google Slaytlar'da doğrudan kullanabilir veya uygulamanızda doğrudan kullanmak için birkaç satır kod ekleyebilirsiniz.
-- Hızlı yükleme. Yerel yazı tipi dosyalarının aksine, yazı tipi dosyalarının yalnızca bir kısmını dinamik olarak yükleyebilirsiniz. Ve yazı tipinin yüklenmesi, web sayfasının render edilmesini engellemez.
+![screenshot](./public/screenshot.png)
 
-## Bu yazı tipleri ücretsiz mi?
-Evet, Google Fonts kullandığımız için hepsi açık kaynaklıdır ve ücretsiz olarak sunulmaktadır. Kullanıcılar bunları indirip herhangi bir ücret ödemeden kullanabilirler.
+## Özellikler
+- Kolay font keşfi için solda okunabilir etiketler.
+- Kolay keşif için Latin dillerine yönelik etiketler.
+- Latin olmayan diller için etiketler, örn. CJK(Çince, Japonca, Korece), ilgili ana dilinde.
 
-## Bu yazı tipleri ticari kullanım için uygun mu?
-Evet, Google Fonts kullandığımız için hepsi ticari amaçlarla kullanılabilir. Açık kaynak lisansları altında lisanslanmışlardır, bu da ticari olarak satılan ürünlere dahil edilmelerine olanak tanır.
+## Katkılar
+Font kaynağı => [Google fonts](https://fonts.google.com)
+Latin etiket verileri => [Font Library](https://github.com/katydecorah/font-library)
+Logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+Bir web sitesi oluşturucusunda doğrudan kullanın => [Slidde](https://slidde.co)
 
-## Bu yazı tiplerini nasıl kullanabilirim?
-- Web projeleri için gömme kodunu kopyalayıp HTML belgesindeki `<head />` bölümüne yerleştirin [Daha fazla bilgi](https://developers.google.com/fonts/docs/getting_started).
-- Google Dokümanlar veya Google Slaytlar'da "Daha fazla yazı tipi"ne tıklayın, bu yazı tiplerini de kullanabilirsiniz [Daha fazla bilgi](https://fonts.google.com/knowledge/choosing_type/adding_fonts_to_google_docs)
-- [Android'de Kullanım](https://developers.google.com/fonts/docs/android)
-- Bu yazı tiplerini indirebilirsiniz de.
+## CJK Veri Demo
+Veriyi arayüzde kontrol edin ->
 
-## Bu yazı tiplerini nerede kullanabilirim?
-Google Fonts, web sitelerinde, uygulamalarda, basılı materyallerde, e-kitaplarda ve tipografinin gerektiği diğer tüm ortamlarda kullanılabilir. Çok yönlüdürler ve çeşitli projelerin görsel çekiciliğini artırabilirler.
+### [Japonca (ja)](https://fontsensei.com/ja)
+- [明朝体 (Mincho)](https://fontsensei.com/ja/tag/mincho)
+- [角ゴシック (Kaku Gothic)](https://fontsensei.com/ja/tag/kaku-gothic)
+- [丸ゴシック (Maru Gothic)](https://fontsensei.com/ja/tag/maru-gothic)
+- [手書き (Tegaki)](https://fontsensei.com/ja/tag/tegaki)
+- [毛筆体 (Fude)](https://fontsensei.com/ja/tag/fude)
+- [ポップ体 (Poppu)](https://fontsensei.com/ja/tag/poppu)
+- [かわいい (Kawaii)](https://fontsensei.com/ja/tag/kawaii)
+- [マンガ(Manga)](https://fontsensei.com/ja/tag/manga)
 
+### [Basitleştirilmiş Çince (zh-cn)](https://fontsensei.com/zh-cn)
+- [宋体 (Songti)](https://fontsensei.com/zh-cn/tag/songti)
+- [黑体 (Heiti)](https://fontsensei.com/zh-cn/tag/heiti)
+- [楷体 (Kaiti)](https://fontsensei.com/zh-cn/tag/kaiti)
+- [手写 (Shouxie)](https://fontsensei.com/zh-cn/tag/shouxie)
+- [毛笔 (Maobi)](https://fontsensei.com/zh-cn/tag/maobi)
+- [美术体 (Meishuti)](https://fontsensei.com/zh-cn/tag/meishuti)
 
-Lütfen çevirmemi istediğiniz TypeScript dosyasını paylaşın, böylece size yardımcı olabilirim.
+### [Geleneksel Çince (zh-tw)](https://fontsensei.com/zh-tw)
+- [宋體 (Songti)](https://fontsensei.com/zh-tw/tag/songti)
+- [黑體 (Heiti)](https://fontsensei.com/zh-tw/tag/heiti)
+- [楷體 (Kaiti)](https://fontsensei.com/zh-tw/tag/kaiti)
+- [手寫 (Shouxie)](https://fontsensei.com/zh-tw/tag/shouxie)
+- [毛筆 (Maobi)](https://fontsensei.com/zh-tw/tag/maobi)
+- [美術體 (Meishuti)](https://fontsensei.com/zh-tw/tag/meishuti)
+
+### [Korece (ko)](https://fontsensei.com/ko)
+- [돋움 (Dotum)](https://fontsensei.com/ko/tag/dotum)
+- [바탕 (Batang)](https://fontsensei.com/ko/tag/batang)
+- [송을씨체 (Songeulssi)](https://fontsensei.com/ko/tag/songeulssi)
+- [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
+- [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
+- [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
+
