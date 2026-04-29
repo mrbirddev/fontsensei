@@ -11,6 +11,9 @@ const AboutPage = () => {
   const aboutTitle = t("landingMsg.About");
   const tNextUtils = useI18nNextUtils();
   const metaTitle = `${aboutTitle} - ${PRODUCT_NAME} - ${tNextUtils("product.slogan")}`;
+  // README-style markdown uses `./public/...`; under `/about` it's a relative URL and breaks.
+  // Normalize to Next.js static root (`public/` is served at `/`).
+  const indexFaqContent = t("indexFaq").replaceAll("./public/", "/");
 
   return (
     <LandingLayout title={metaTitle}>
@@ -33,7 +36,7 @@ const AboutPage = () => {
           p: (props: PropsWithChildren) => <p className="mb-3 font-normal text-gray-500">{props.children}</p>,
           a: (props: PropsWithChildren<{href: string}>) => <Link className="link" href={props.href}>{props.children}</Link>
         }}>
-          {t("indexFaq")}
+          {indexFaqContent}
         </MDX>
 
       </div>

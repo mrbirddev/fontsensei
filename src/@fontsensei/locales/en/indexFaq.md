@@ -1,23 +1,53 @@
-## What is "Fontsensei"?
-Font sensei is an online Google Fonts picker where the fonts are categorized by tags for easier exploration.
+#About
+Font sensei is a Google fonts picker categorized by tag names.
 
-## What is Google Fonts?
-Google Fonts is a free web service that provides access to a vast library of open-source fonts. The main features of Google Fonts are, 
-- Easy. You can directly use it in Google Docs or Google Slides, or you can embed several lines of code to directly use it in your application. 
-- Quick loading. Unlike local font files, you can load only part of the font files dynamically. And the loading of the font won't block the rendering of the webpage.
+![screenshot](./public/screenshot.png)
 
-## Are these fonts free to use?
-Yes, sinc we use Google Fonts, all of them are open source and available at no cost. Users can download and use them without any fees.
+## Features
+- Readable tags on the left for easy font discovery.
+- Tags Latin languages for easy discovery.
+- Tags for non-Latin languages, eg CJK(Chinese, Japanese, Korean), in their corresponding native language
 
-## Are these fonts OK for commercial use?
-Yes, sinc we use Google Fonts, all of them can be used for commercial purposes. They are licensed under open-source licenses, allowing inclusion in products that are sold commercially.
+## Credits
+Font source => [Google fonts](https://fonts.google.com)
+Latin tag data => [Font Library](https://github.com/katydecorah/font-library)
+The logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+Use directly in a website builder => [Slidde](https://slidde.co)
 
-## How to use these fonts?
-- For web projects just copy the embed code and put it in your `<head />` section in the HTML document [Read more](https://developers.google.com/fonts/docs/getting_started).
-- In Google Docs or Google Slides, click "More fonts" you can also use these fonts [Read more](https://fonts.google.com/knowledge/choosing_type/adding_fonts_to_google_docs)
-- [Using in Android](https://developers.google.com/fonts/docs/android) 
-- You can also download these fonts.
+## CJK Data Demo
+Check the data on UI ->
 
-## Where can I use these fonts?
-Google Fonts can be used on websites, in applications, print materials, e-books, and any other medium where typography is needed. They are versatile and can enhance the visual appeal of various projects. 
+### [Japanese (ja)](https://fontsensei.com/ja)
+- [明朝体 (Mincho)](https://fontsensei.com/ja/tag/mincho)
+- [角ゴシック (Kaku Gothic)](https://fontsensei.com/ja/tag/kaku-gothic)
+- [丸ゴシック (Maru Gothic)](https://fontsensei.com/ja/tag/maru-gothic)
+- [手書き (Tegaki)](https://fontsensei.com/ja/tag/tegaki)
+- [毛筆体 (Fude)](https://fontsensei.com/ja/tag/fude)
+- [ポップ体 (Poppu)](https://fontsensei.com/ja/tag/poppu)
+- [かわいい (Kawaii)](https://fontsensei.com/ja/tag/kawaii)
+- [マンガ(Manga)](https://fontsensei.com/ja/tag/manga)
+
+### [Chinese Simplified (zh-cn)](https://fontsensei.com/zh-cn)
+- [宋体 (Songti)](https://fontsensei.com/zh-cn/tag/songti)
+- [黑体 (Heiti)](https://fontsensei.com/zh-cn/tag/heiti)
+- [楷体 (Kaiti)](https://fontsensei.com/zh-cn/tag/kaiti)
+- [手写 (Shouxie)](https://fontsensei.com/zh-cn/tag/shouxie)
+- [毛笔 (Maobi)](https://fontsensei.com/zh-cn/tag/maobi)
+- [美术体 (Meishuti)](https://fontsensei.com/zh-cn/tag/meishuti)
+
+### [Chinese Traditional (zh-tw)](https://fontsensei.com/zh-tw)
+- [宋體 (Songti)](https://fontsensei.com/zh-tw/tag/songti)
+- [黑體 (Heiti)](https://fontsensei.com/zh-tw/tag/heiti)
+- [楷體 (Kaiti)](https://fontsensei.com/zh-tw/tag/kaiti)
+- [手寫 (Shouxie)](https://fontsensei.com/zh-tw/tag/shouxie)
+- [毛筆 (Maobi)](https://fontsensei.com/zh-tw/tag/maobi)
+- [美術體 (Meishuti)](https://fontsensei.com/zh-tw/tag/meishuti)
+
+### [Korean (ko)](https://fontsensei.com/ko)
+- [돋움 (Dotum)](https://fontsensei.com/ko/tag/dotum)
+- [바탕 (Batang)](https://fontsensei.com/ko/tag/batang)
+- [송을씨체 (Songeulssi)](https://fontsensei.com/ko/tag/songeulssi)
+- [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
+- [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
+- [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
 
