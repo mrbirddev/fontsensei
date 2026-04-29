@@ -13,4 +13,5 @@ export default {
   "Please enter the demo text": "デモテキストを入力してください",
   "Free website builder": "無料のウェブサイトビルダー",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName}は、これらのフォントをコーディングなしで埋め込むことができるウェブサイトビルダーです",
+  "About": "概要",
 } as const;

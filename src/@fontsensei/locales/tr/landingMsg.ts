@@ -13,4 +13,5 @@ export default {
   "Please enter the demo text": "Lütfen demo metnini girin",
   "Free website builder": "Ücretsiz web sitesi oluşturucu",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName}, bu yazı tiplerini kodlama yapmadan gömebileceğiniz bir web sitesi oluşturucusudur",
+  "About": "Hakkında",
 } as const;

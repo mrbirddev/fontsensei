@@ -13,4 +13,5 @@ export default {
   "Please enter the demo text": "Silakan masukkan teks demo",
   "Free website builder": "Pembuat situs web gratis",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName} adalah pembuat situs web di mana Anda dapat menyematkan font ini tanpa pengkodean",
+  "About": "Tentang",
 } as const;

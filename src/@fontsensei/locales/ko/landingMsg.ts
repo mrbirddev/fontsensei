@@ -13,4 +13,5 @@ export default {
   "Please enter the demo text": "데모 텍스트를 입력하세요",
   "Free website builder": "무료 웹사이트 빌더",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName}은(는) 코딩 없이 이 폰트를 임베드할 수 있는 웹사이트 빌더입니다",
+  "About": "정보",
 } as const;

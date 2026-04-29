@@ -13,4 +13,5 @@ export default {
   "Please enter the demo text": "Vänligen ange demotexten",
   "Free website builder": "Gratis webbplatsbyggare",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName} är en webbplatsbyggare där du kan bädda in dessa teckensnitt utan kodning",
+  "About": "Om",
 } as const;

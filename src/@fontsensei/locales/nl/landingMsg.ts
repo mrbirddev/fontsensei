@@ -13,4 +13,5 @@ export default {
   "Please enter the demo text": "Voer de demotekst in",
   "Free website builder": "Gratis websitebouwer",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName} is een websitebouwer waar je deze lettertypen kunt insluiten zonder te coderen",
+  "About": "Over",
 } as const;

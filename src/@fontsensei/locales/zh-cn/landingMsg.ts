@@ -13,4 +13,5 @@ export default {
   "Please enter the demo text": "请输入演示文本",
   "Free website builder": "免费网站构建器",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName} 是一个网站构建器，您可以在其中嵌入这些字体而无需编码",
+  "About": "关于",
 } as const;

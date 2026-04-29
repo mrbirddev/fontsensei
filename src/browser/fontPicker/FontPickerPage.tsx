@@ -6,13 +6,13 @@ import React, {
   useState,
   useRef,
   useMemo,
-  type PropsWithChildren, useContext, type ReactNode
+  type PropsWithChildren, useContext
 } from 'react';
 import {
   getStaticPropsLocale,
   type LocaleStr,
-  type TagValueMsgLabelType,
   type TagDescMsgLabelType,
+  type TagValueMsgLabelType,
   useCurrentLocale,
   useI18n,
   useScopedI18n
@@ -31,22 +31,13 @@ import languageSpecificTags from "@fontsensei/data/raw/fontSensei/languageSpecif
 import VirtualList from "@fontsensei/components/VirtualList";
 import {tagToUrlSlug} from "../../@fontsensei/utils";
 import {getTagLabelsForDisplay} from "../../@fontsensei/getTagLabelsForDisplay";
-import ProductIcon from "../ProductIcon";
-import {IoClose, IoLanguage} from "react-icons/io5";
-import {FaBars, FaSearch} from "react-icons/fa";
-import {FaGithub, FaTag} from "react-icons/fa6";
+import {IoClose} from "react-icons/io5";
+import {FaSearch} from "react-icons/fa";
+import {FaTag} from "react-icons/fa6";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
-import {langMap} from "@nextutils/i18n/locales";
-import {defaultLocale, locales, PRODUCT_ICON, PRODUCT_NAME} from "@nextutils/config";
-import ChooseLocaleModal from "@nextutils/i18n/ChooseLocaleModal";
-import SwitchLocaleHint from "@nextutils/i18n/SwitchLocaleHint";
-import useUserPreferencesStore from "@nextutils/useUserPreferencesStore";
-import ModalDialog from "@nextutils/ui/modal/ModalDialog";
-import {ModalTitle} from "@nextutils/ui/modal/commonComponents";
+import {defaultLocale, locales, PRODUCT_NAME} from "@nextutils/config";
 import ActionSheetWrapper from "@nextutils/ui/actionSheet/ActionSheetWrapper";
-import {MdOutlineFeedback} from "react-icons/md";
-import MDX from "@mdx-js/runtime";
-import NextUtilsSeo from "@nextutils/seo/NextUtilsSeo";
+import {LandingLayout, NavbarContext} from "../layout/SiteLayout";
 const PAGE_SIZE = 10;
 
 interface PageProps {
@@ -55,191 +46,6 @@ interface PageProps {
   firstFontByTags: Record<string, string>;
   placeholderText: string | null;
 }
-
-export type MenuItem = {
-  icon: ReactNode,
-  label: string,
-  className?: string,
-  href?: Parameters<typeof Link>[0]['href'],
-  target?: Parameters<typeof Link>[0]['target'],
-  onClick?: () => void,
-};
-export type NavbarContextOpts = {
-  shouldHide?: boolean;
-  noSwitchLocaleHint?: boolean;
-  extraMenuItems?: MenuItem[];
-} | undefined;
-
-export const NavbarContext = React.createContext<NavbarContextOpts>(undefined);
-
-const GITHUB_LINK = "https://github.com/mrbirddev/fontsensei";
-const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties }) => {
-  const [localeModalOpen, setLocaleModalOpen] = useState(false);
-
-  const t = useI18n();
-  const currentLocale = useCurrentLocale();
-  const lang = useMemo(() => (locales.filter(l => l.locale === currentLocale)[0])?.lang, [currentLocale]);
-
-  const router = useRouter();
-
-  const preferredLocale = useUserPreferencesStore(s => s.locale);
-
-  const navbarContext = useContext(NavbarContext);
-
-  const feedbackMsg = t("landingMsg.Feedback");
-
-  const menuItems = useMemo(() => {
-    return [
-      ...(navbarContext?.extraMenuItems ?? [
-        {
-          icon: <MdOutlineFeedback />,
-          label: feedbackMsg,
-          href: GITHUB_LINK + "/issues/new",
-          target: "_blank",
-        },
-        {
-          icon: <FaGithub />,
-          label: "GitHub",
-          href: GITHUB_LINK,
-          target: "_blank",
-        }
-      ] as MenuItem[]),
-      // {
-      //   icon: <IoLanguage />,
-      //   label: preferredLocale && (preferredLocale !== currentLocale)
-      //     ? lang + " | " + langMap[preferredLocale]
-      //     : lang,
-      //   href: "",
-      //   onClick: () => {
-      //     setLocaleModalOpen(true);
-      //   },
-      // } as MenuItem,
-    ];
-  }, [lang, router.pathname, navbarContext?.extraMenuItems, preferredLocale, feedbackMsg]);
-
-  const pickerBasePath = useContext(FontPickerPageContext)?.basePath ?? "";
-  const localizedPickerBasePath = `${currentLocale === defaultLocale.locale ? '' : `/${currentLocale}`}${pickerBasePath}`;
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  if (navbarContext?.shouldHide) {
-    return false;
-  }
-
-  return <>
-    <div className="h-16" />
-    <div className="fixed left-0 top-0 right-0 z-10" style={props.style}>
-      <div className={"container mx-auto px-4" + (props.fullWidth ? ' max-w-full' : '')}>
-        <div className="flex items-center justify-center gap-2 py-2">
-          <div className="flex-1 flex items-center justify-start gap-1">
-            <Link className="btn btn-ghost px-0 text-xl" href={localizedPickerBasePath || '/'}>
-              <div style={{height: '3rem', width: '3rem'}}>
-                <ProductIcon />
-              </div>
-            </Link>
-            <div className="font-bold truncate hidden md:block">{PRODUCT_NAME}</div>
-            <div className="btn btn-ghost" onClick={() => {
-              setLocaleModalOpen(true);
-            }} >
-              <IoLanguage />
-              <span>{preferredLocale && (preferredLocale !== currentLocale)
-                ? lang + " | " + langMap[preferredLocale]
-                : lang}</span>
-            </div>
-          </div>
-          <div className="flex items-center justify-end gap-1">
-            <div className="hidden md:inline-flex items-center">
-              {menuItems.map((item) => {
-                const {icon, label, className, href, target, onClick} = item;
-                if (href) {
-                  return <Link key={label} className={className ?? "btn btn-ghost"} href={href} target={target} onClick={onClick}>
-                    {icon}
-                    <span>{label}</span>
-                  </Link>
-                } else {
-                  return <div key={label} className={className ?? "btn btn-ghost"} onClick={onClick} >
-                    {icon}
-                    <span>{label}</span>
-                  </div>
-                }
-              })}
-            </div>
-            <div className="block md:hidden">
-              <div tabIndex={0} role="button" className="btn btn-ghost" onClick={() => {
-                setIsMenuOpen(!isMenuOpen);
-              }}><FaBars /></div>
-            </div>
-
-            <ModalDialog isOpen={isMenuOpen} setOpen={setIsMenuOpen}>
-              <ModalTitle onCancel={() => setIsMenuOpen(false)}>
-              </ModalTitle>
-              {menuItems.map(item => {
-                const {icon, label, className, href, target, onClick} = item;
-                if (href) {
-                  return <Link key={label} className={className ?? "btn btn-ghost"} href={href} target={target} onClick={onClick}>
-                    {icon}
-                    <span>{label}</span>
-                  </Link>
-                } else {
-                  return <div key={label} className={className ?? "btn btn-ghost"} onClick={onClick} >
-                    {icon}
-                    <span>{label}</span>
-                  </div>
-                }
-              })}
-            </ModalDialog>
-            {/*<div className="dropdown dropdown-end">*/}
-            {/*  <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">*/}
-            {/*    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>*/}
-            {/*  </div>*/}
-            {/*  <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">*/}
-            {/*    <li><a>Item 1</a></li>*/}
-            {/*    <li>*/}
-            {/*      <a>Parent</a>*/}
-            {/*      <ul className="p-2">*/}
-            {/*        <li><a>Submenu 1</a></li>*/}
-            {/*        <li><a>Submenu 2</a></li>*/}
-            {/*      </ul>*/}
-            {/*    </li>*/}
-            {/*    <li><a>Item 3</a></li>*/}
-            {/*  </ul>*/}
-            {/*</div>*/}
-          </div>
-        </div>
-      </div>
-    </div>
-    <ChooseLocaleModal isOpen={localeModalOpen} setOpen={setLocaleModalOpen} />
-    {navbarContext?.noSwitchLocaleHint && <SwitchLocaleHint />}
-  </>
-};
-const LandingLayout = (props: PropsWithChildren & {
-  title?: string,
-  className?: string,
-  fullWidth?: boolean
-}) => {
-  return (<>
-    <NextUtilsSeo title={props.title} />
-    <main
-      className={
-        cx(
-          !props.fullWidth && "min-h-screen container mx-auto",
-          "px-4 text-grey-700"
-        )
-      }
-    >
-      <Navbar fullWidth={props.fullWidth} />
-      {props.fullWidth && <div className={cx(
-        "w-full",
-        props.className
-      )}>
-        {props.children}
-      </div>}
-      {!props.fullWidth && <div className={"container mx-auto " + (props.className ?? "")}>
-        {props.children}
-      </div>}
-    </main>
-  </>);
-};
 
 const getTagValue = (raw_tagValue: string | undefined) => {
   if (raw_tagValue) {
@@ -526,25 +332,12 @@ const FontPickerPage = (props: PageProps) => {
           "hidden md:block",
           "py-4 flex-0 w-[40%] min-w-[200px] h-full overflow-y-scroll",
         )}>
-          <h1 className="text-lg text-gray-900 mb-2">{tLandingMsg('Free font tagged {tagValue} provided by Google fonts', { tagValue: tagDisplayLabel })}</h1>
+          <h1 className="text-lg text-gray-900 mb-2">{tLandingMsg('Free font tagged {tagValue} provided by Google fonts', {tagValue: tagDisplayLabel})}</h1>
           {(tTagDescMsg(tagValue as TagDescMsgLabelType) !== tagValue) && <p className="text-gray-600 ">{tTagDescMsg(tagValue as TagDescMsgLabelType)}</p>}
 
           <div className="h-4" />
 
           {tagSelectorContent}
-
-          <div className="h-4" />
-
-          <MDX components={{
-            h2: (props: PropsWithChildren) => <h2
-              className="mb-3 font-bold tracking-tight text-gray-900"
-            >{props.children}</h2>,
-            li: (props: PropsWithChildren) => <li className="mb-3 font-normal text-gray-500"> - {props.children}</li>,
-            p: (props: PropsWithChildren) => <p className="mb-3 font-normal text-gray-500">{props.children}</p>,
-            a: (props: PropsWithChildren<{href: string}>) => <Link className="link" href={props.href}>{props.children}</Link>
-          }}>
-            {t('indexFaq')}
-          </MDX>
         </div>
         <div className={cx(
           "py-4 flex-1 h-full w-full"

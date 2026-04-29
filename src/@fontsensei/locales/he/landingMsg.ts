@@ -13,4 +13,5 @@ export default {
   "Please enter the demo text": "אנא הזן את טקסט ההדגמה",
   "Free website builder": "בונה אתרים חינמי",
   "{productName} is a website builder where you can embed these fonts without coding": "{productName} הוא בונה אתרים שבו ניתן להטמיע את הגופנים הללו ללא קוד",
+  "About": "אודות",
 } as const;

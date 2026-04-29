@@ -1,5 +1,5 @@
 import FontPickerPage from "../../browser/fontPicker/FontPickerPage";
-import {NavbarContext} from "../../browser/fontPicker/FontPickerPage";
+import {NavbarContext} from "../../browser/layout/SiteLayout";
 import React from "react";
 import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 import EmbeddedToolbar from "../../shared/embed/EmbeddedToolbar";
