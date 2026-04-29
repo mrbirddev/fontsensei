@@ -1,7 +1,6 @@
-#Über uns
 Font sensei ist ein Google-Fonts-Auswahler, der nach Tag-Namen kategorisiert ist.
 
-![screenshot](./public/screenshot.png)
+![screenshot](/screenshot.png)
 
 ## Funktionen
 - Lesbare Tags links für eine einfache Entdeckung von Schriftarten.
@@ -9,10 +8,10 @@ Font sensei ist ein Google-Fonts-Auswahler, der nach Tag-Namen kategorisiert ist
 - Tags für nicht-lateinische Sprachen, z. B. CJK(Chinesisch, Japanisch, Koreanisch), in ihrer jeweiligen Muttersprache.
 
 ## Credits
-Quelle der Schriftarten => [Google fonts](https://fonts.google.com)
-Lateinische Tag-Daten => [Font Library](https://github.com/katydecorah/font-library)
-Das Logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
-Direkt in einem Website-Builder verwenden => [Slidde](https://slidde.co)
+- Quelle der Schriftarten => [Google fonts](https://fonts.google.com)
+- Lateinische Tag-Daten => [Font Library](https://github.com/katydecorah/font-library)
+- Das Logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+- Direkt in einem Website-Builder verwenden => [Slidde](https://slidde.co)
 
 ## CJK-Daten-Demo
 Überprüfe die Daten in der UI ->
@@ -50,4 +49,3 @@ Direkt in einem Website-Builder verwenden => [Slidde](https://slidde.co)
 - [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
 - [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
 - [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
-

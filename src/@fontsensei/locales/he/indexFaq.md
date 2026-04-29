@@ -1,7 +1,6 @@
-#אודות
 Font sensei הוא בוחר גופנים של Google, שמסווג לפי שמות תגיות.
 
-![screenshot](./public/screenshot.png)
+![screenshot](/screenshot.png)
 
 ## תכונות
 - תגיות קריאות משמאל כדי למצוא גופנים בקלות.
@@ -9,10 +8,10 @@ Font sensei הוא בוחר גופנים של Google, שמסווג לפי שמו
 - תגיות עבור שפות שאינן לטיניות, למשל CJK(סינית, יפנית, קוריאנית), בשפה הילידית המתאימה.
 
 ## קרדיטים
-מקור הגופנים => [Google fonts](https://fonts.google.com)
-נתוני תגיות לטיניות => [Font Library](https://github.com/katydecorah/font-library)
-הלוגו => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
-להשתמש בו ישירות בבונה אתרים => [Slidde](https://slidde.co)
+- מקור הגופנים => [Google fonts](https://fonts.google.com)
+- נתוני תגיות לטיניות => [Font Library](https://github.com/katydecorah/font-library)
+- הלוגו => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+- להשתמש בו ישירות בבונה אתרים => [Slidde](https://slidde.co)
 
 ## הדגמת נתוני CJK
 בדקו את הנתונים בממשק ->
@@ -50,4 +49,3 @@ Font sensei הוא בוחר גופנים של Google, שמסווג לפי שמו
 - [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
 - [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
 - [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
-

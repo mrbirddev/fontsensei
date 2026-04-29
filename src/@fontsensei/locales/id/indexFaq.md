@@ -1,7 +1,6 @@
-#Tentang
 Font sensei adalah pemilih Google Fonts yang dikategorikan berdasarkan nama tag.
 
-![screenshot](./public/screenshot.png)
+![screenshot](/screenshot.png)
 
 ## Fitur
 - Tag yang mudah dibaca di sebelah kiri untuk menemukan font dengan mudah.
@@ -9,10 +8,10 @@ Font sensei adalah pemilih Google Fonts yang dikategorikan berdasarkan nama tag.
 - Tag untuk bahasa non-Latin, mis. CJK(Tionghoa, Jepang, Korea), dalam bahasa aslinya yang sesuai.
 
 ## Kredit
-Sumber font => [Google fonts](https://fonts.google.com)
-Data tag Latin => [Font Library](https://github.com/katydecorah/font-library)
-Logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
-Gunakan langsung di pembuat situs web => [Slidde](https://slidde.co)
+- Sumber font => [Google fonts](https://fonts.google.com)
+- Data tag Latin => [Font Library](https://github.com/katydecorah/font-library)
+- Logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+- Gunakan langsung di pembuat situs web => [Slidde](https://slidde.co)
 
 ## Demo Data CJK
 Cek datanya di UI ->
@@ -50,4 +49,3 @@ Cek datanya di UI ->
 - [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
 - [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
 - [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
-

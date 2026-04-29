@@ -1,7 +1,6 @@
-#Hakkında
 Font sensei, etiket adlarına göre kategorize edilmiş bir Google Fonts seçicisidir.
 
-![screenshot](./public/screenshot.png)
+![screenshot](/screenshot.png)
 
 ## Özellikler
 - Kolay font keşfi için solda okunabilir etiketler.
@@ -9,10 +8,10 @@ Font sensei, etiket adlarına göre kategorize edilmiş bir Google Fonts seçici
 - Latin olmayan diller için etiketler, örn. CJK(Çince, Japonca, Korece), ilgili ana dilinde.
 
 ## Katkılar
-Font kaynağı => [Google fonts](https://fonts.google.com)
-Latin etiket verileri => [Font Library](https://github.com/katydecorah/font-library)
-Logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
-Bir web sitesi oluşturucusunda doğrudan kullanın => [Slidde](https://slidde.co)
+- Font kaynağı => [Google fonts](https://fonts.google.com)
+- Latin etiket verileri => [Font Library](https://github.com/katydecorah/font-library)
+- Logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+- Bir web sitesi oluşturucusunda doğrudan kullanın => [Slidde](https://slidde.co)
 
 ## CJK Veri Demo
 Veriyi arayüzde kontrol edin ->
@@ -50,4 +49,3 @@ Veriyi arayüzde kontrol edin ->
 - [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
 - [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
 - [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
-

@@ -1,7 +1,6 @@
-#Acerca de
 Font sensei es un selector de Google Fonts, categorizado por nombres de etiquetas.
 
-![screenshot](./public/screenshot.png)
+![screenshot](/screenshot.png)
 
 ## Funciones
 - Etiquetas legibles a la izquierda para descubrir fuentes fácilmente.
@@ -9,10 +8,10 @@ Font sensei es un selector de Google Fonts, categorizado por nombres de etiqueta
 - Etiquetas para idiomas no latinos, por ejemplo CJK(Chino, Japonés, Coreano), en su idioma nativo correspondiente.
 
 ## Créditos
-Fuente de las fuentes => [Google fonts](https://fonts.google.com)
-Datos de etiquetas latinas => [Font Library](https://github.com/katydecorah/font-library)
-El logotipo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
-Úsalo directamente en un creador de sitios web => [Slidde](https://slidde.co)
+- Fuente de las fuentes => [Google fonts](https://fonts.google.com)
+- Datos de etiquetas latinas => [Font Library](https://github.com/katydecorah/font-library)
+- El logotipo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+- Úsalo directamente en un creador de sitios web => [Slidde](https://slidde.co)
 
 ## Demo de datos CJK
 Consulta los datos en la interfaz ->
@@ -50,4 +49,3 @@ Consulta los datos en la interfaz ->
 - [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
 - [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
 - [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
-

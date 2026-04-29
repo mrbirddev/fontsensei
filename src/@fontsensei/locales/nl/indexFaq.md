@@ -1,7 +1,6 @@
-#Over
 Font sensei is een Google Fonts-kiezer die is gecategoriseerd op tag-namen.
 
-![screenshot](./public/screenshot.png)
+![screenshot](/screenshot.png)
 
 ## Functies
 - Leesbare tags links voor het eenvoudig ontdekken van lettertypen.
@@ -9,10 +8,10 @@ Font sensei is een Google Fonts-kiezer die is gecategoriseerd op tag-namen.
 - Tags voor niet-Latijnse talen, bijv. CJK(Chinees, Japans, Koreaans), in hun bijbehorende moedertaal.
 
 ## Credits
-Bron van de lettertypen => [Google fonts](https://fonts.google.com)
-Gegevens van Latijnse tags => [Font Library](https://github.com/katydecorah/font-library)
-Het logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
-Gebruik het direct in een websitebouwer => [Slidde](https://slidde.co)
+- Bron van de lettertypen => [Google fonts](https://fonts.google.com)
+- Gegevens van Latijnse tags => [Font Library](https://github.com/katydecorah/font-library)
+- Het logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+- Gebruik het direct in een websitebouwer => [Slidde](https://slidde.co)
 
 ## CJK-gegevensdemo
 Bekijk de data in de UI ->
@@ -50,4 +49,3 @@ Bekijk de data in de UI ->
 - [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
 - [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
 - [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
-

@@ -1,7 +1,6 @@
-#概要
 Font senseiは、タグ名でカテゴリ分けされたGoogleフォントのピッカーです。
 
-![screenshot](./public/screenshot.png)
+![screenshot](/screenshot.png)
 
 ## 特徴
 - 左側に見やすいタグがあり、フォントを簡単に見つけられます。
@@ -9,10 +8,10 @@ Font senseiは、タグ名でカテゴリ分けされたGoogleフォントのピ
 - 非ラテン文字の言語向けタグは、それぞれの母国語で（例：CJK(中国語、日本語、韓国語)）表示されます。
 
 ## クレジット
-フォントの出典 => [Google fonts](https://fonts.google.com)
-ラテン系タグのデータ => [Font Library](https://github.com/katydecorah/font-library)
-ロゴ => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
-Webサイトビルダーでそのまま使う => [Slidde](https://slidde.co)
+- フォントの出典 => [Google fonts](https://fonts.google.com)
+- ラテン系タグのデータ => [Font Library](https://github.com/katydecorah/font-library)
+- ロゴ => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+- Webサイトビルダーでそのまま使う => [Slidde](https://slidde.co)
 
 ## CJK データデモ
 UI上でデータを確認 ->
@@ -50,4 +49,3 @@ UI上でデータを確認 ->
 - [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
 - [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
 - [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
-

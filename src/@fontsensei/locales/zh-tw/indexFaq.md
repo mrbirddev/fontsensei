@@ -1,7 +1,6 @@
-#關於
 Font sensei 是一個依標籤名稱分類的 Google 字體選擏器。
 
-![screenshot](./public/screenshot.png)
+![screenshot](/screenshot.png)
 
 ## 特點
 - 左側提供易讀的標籤，方便快速找到字體。
@@ -9,10 +8,10 @@ Font sensei 是一個依標籤名稱分類的 Google 字體選擏器。
 - 提供非拉丁語言的標籤，例如 CJK(中文、日文、韓文)，並以對應的母語呈現。
 
 ## 鳴謝
-字體來源 => [Google fonts](https://fonts.google.com)
-拉丁標籤資料 => [Font Library](https://github.com/katydecorah/font-library)
-Logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
-可直接用於網站建置工具 => [Slidde](https://slidde.co)
+- 字體來源 => [Google fonts](https://fonts.google.com)
+- 拉丁標籤資料 => [Font Library](https://github.com/katydecorah/font-library)
+- Logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+- 可直接用於網站建置工具 => [Slidde](https://slidde.co)
 
 ## CJK 資料示範
 在介面上查看資料 ->
@@ -50,4 +49,3 @@ Logo => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
 - [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
 - [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
 - [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
-

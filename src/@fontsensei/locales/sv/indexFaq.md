@@ -1,7 +1,6 @@
-#Om
 Font sensei är en Google Fonts-väljare som är kategoriserad efter taggnamn.
 
-![screenshot](./public/screenshot.png)
+![screenshot](/screenshot.png)
 
 ## Funktioner
 - Läsbara taggar till vänster för enkel upptäckt av typsnitt.
@@ -9,10 +8,10 @@ Font sensei är en Google Fonts-väljare som är kategoriserad efter taggnamn.
 - Taggar för icke-latinska språk, t.ex. CJK(Kinesiska, Japanska, Koreanska), på deras respektive modersmål.
 
 ## Credits
-Typsnitts-källa => [Google fonts](https://fonts.google.com)
-Data för latinska taggar => [Font Library](https://github.com/katydecorah/font-library)
-Logotyp => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
-Använd direkt i en webbplatsbyggare => [Slidde](https://slidde.co)
+- Typsnitts-källa => [Google fonts](https://fonts.google.com)
+- Data för latinska taggar => [Font Library](https://github.com/katydecorah/font-library)
+- Logotyp => [SyntheOtaku](https://syntheotaku.itch.io/anime-teacher-sprite)
+- Använd direkt i en webbplatsbyggare => [Slidde](https://slidde.co)
 
 ## CJK-datademo
 Se datan i UI ->
@@ -50,4 +49,3 @@ Se datan i UI ->
 - [장식체 (Jangsikche)](https://fontsensei.com/ko/tag/jangsikche)
 - [캘리폰트 (Kaelriponteu)](https://fontsensei.com/ko/tag/kaelriponteu)
 - [코딩체 (Kodingche)](https://fontsensei.com/ko/tag/kodingche)
-
