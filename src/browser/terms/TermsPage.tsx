@@ -1,0 +1,65 @@
+import React from "react";
+import {LandingLayout} from "../layout/SiteLayout";
+import {PRODUCT_NAME} from "@nextutils/config";
+
+const TermsPage = () => {
+  const metaTitle = `Terms of Service - ${PRODUCT_NAME}`;
+
+  return (
+    <LandingLayout title={metaTitle}>
+      <div className="py-8 max-w-3xl">
+        <h1 className="text-lg text-gray-900 mb-2">Terms of Service</h1>
+        <p className="mb-3 font-normal text-gray-500">
+          This page is a template. Please replace it with your official Terms of Service.
+        </p>
+
+        <h2 className="mb-3 font-bold tracking-tight text-gray-900">1. Acceptance of the terms</h2>
+        <p className="mb-3 font-normal text-gray-500">
+          By accessing or using {PRODUCT_NAME}, you agree to these Terms of Service.
+        </p>
+
+        <h2 className="mb-3 font-bold tracking-tight text-gray-900">2. Use of the service</h2>
+        <p className="mb-3 font-normal text-gray-500">
+          You agree to use the service only for lawful purposes and in a way that does not violate any applicable law or regulation.
+        </p>
+
+        <h2 className="mb-3 font-bold tracking-tight text-gray-900">3. Intellectual property</h2>
+        <p className="mb-3 font-normal text-gray-500">
+          The service and its original content (excluding your data) are owned by {PRODUCT_NAME} and are protected by applicable intellectual property laws.
+        </p>
+
+        <h2 className="mb-3 font-bold tracking-tight text-gray-900">4. Disclaimers</h2>
+        <p className="mb-3 font-normal text-gray-500">
+          The service is provided on an "as is" and "as available" basis. We disclaim all warranties, express or implied, to the fullest extent permitted by law.
+        </p>
+
+        <h2 className="mb-3 font-bold tracking-tight text-gray-900">5. Limitation of liability</h2>
+        <p className="mb-3 font-normal text-gray-500">
+          To the fullest extent permitted by law, {PRODUCT_NAME} will not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service.
+        </p>
+
+        <h2 className="mb-3 font-bold tracking-tight text-gray-900">6. Termination</h2>
+        <p className="mb-3 font-normal text-gray-500">
+          We may suspend or terminate your access if you violate these Terms or if we are required to do so for legal or security reasons.
+        </p>
+
+        <h2 className="mb-3 font-bold tracking-tight text-gray-900">7. Governing law</h2>
+        <p className="mb-3 font-normal text-gray-500">
+          These terms are governed by the laws of the jurisdiction where {PRODUCT_NAME} is operated, without regard to conflict of law principles.
+        </p>
+
+        <h2 className="mb-3 font-bold tracking-tight text-gray-900">8. Contact</h2>
+        <p className="mb-3 font-normal text-gray-500">
+          For questions about these Terms, contact us at <span className="font-medium">your-email@example.com</span>.
+        </p>
+
+        <p className="mt-6 text-sm font-normal text-gray-500">
+          Last updated: Please replace with your last updated date.
+        </p>
+      </div>
+    </LandingLayout>
+  );
+};
+
+export default TermsPage;
+
