@@ -3,13 +3,19 @@ import {useI18n} from "@fontsensei/locales";
 import Link from "next/link";
 import MDX from "@mdx-js/runtime";
 import {LandingLayout} from "../layout/SiteLayout";
+import {useI18n as useI18nNextUtils} from "@nextutils/locales";
+import {PRODUCT_NAME} from "@nextutils/config";
 
 const AboutPage = () => {
   const t = useI18n();
+  const aboutTitle = t("landingMsg.About");
+  const tNextUtils = useI18nNextUtils();
+  const metaTitle = `${aboutTitle} - ${PRODUCT_NAME} - ${tNextUtils("product.slogan")}`;
 
   return (
-    <LandingLayout title="About">
+    <LandingLayout title={metaTitle}>
       <div className="py-8 max-w-3xl">
+        <h1 className="text-lg text-gray-900 mb-2">{aboutTitle}</h1>
         <MDX components={{
           h2: (props: PropsWithChildren) => <h2
             className="mb-3 font-bold tracking-tight text-gray-900"
