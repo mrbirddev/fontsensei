@@ -31,12 +31,12 @@ const AboutPage = () => {
           <h2 className="mb-3 font-bold tracking-tight text-gray-900">Legal</h2>
           <ul className="list-disc pl-5">
             <li className="mb-3 font-normal text-gray-500">
-              <Link className="link" href="/privacy-policy/">
+              <Link className="link" href="/privacy-policy">
                 Privacy Policy
               </Link>
             </li>
             <li className="mb-3 font-normal text-gray-500">
-              <Link className="link" href="/terms/">
+              <Link className="link" href="/terms">
                 Terms of Service
               </Link>
             </li>
