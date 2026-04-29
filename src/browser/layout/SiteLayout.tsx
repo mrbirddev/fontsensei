@@ -4,6 +4,7 @@ import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
 import {useCurrentLocale, useI18n} from "@fontsensei/locales";
 import {defaultLocale, locales, PRODUCT_NAME} from "@nextutils/config";
 import ChooseLocaleModal from "@nextutils/i18n/ChooseLocaleModal";
+import {getCanonicalPath} from "@nextutils/i18n/locales";
 import {langMap} from "@nextutils/i18n/locales";
 import SwitchLocaleHint from "@nextutils/i18n/SwitchLocaleHint";
 import NextUtilsSeo from "@nextutils/seo/NextUtilsSeo";
@@ -59,7 +60,7 @@ export const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties 
         {
           icon: <FaCircleInfo />,
           label: aboutMsg,
-          href: `${localizedPickerBasePath || "/"}/about`,
+          href: getCanonicalPath(currentLocale, "/about"),
         },
         {
           icon: <MdOutlineFeedback />,
