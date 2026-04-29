@@ -15,7 +15,16 @@ const AboutPage = () => {
   return (
     <LandingLayout title={metaTitle}>
       <div className="py-8 max-w-3xl">
-        <h1 className="text-lg text-gray-900 mb-2">{aboutTitle}</h1>
+        <h1 className="text-2xl text-gray-900 mb-4">{aboutTitle}</h1>
+
+        <div className="mb-6">
+          <Link className="link mr-4" href="/privacy-policy.html">
+            Privacy Policy
+          </Link>
+          <Link className="link" href="/terms.html">
+            Terms of Service
+          </Link>
+        </div>
         <MDX components={{
           h2: (props: PropsWithChildren) => <h2
             className="mb-3 font-bold tracking-tight text-gray-900"
@@ -27,21 +36,6 @@ const AboutPage = () => {
           {t("indexFaq")}
         </MDX>
 
-        <div className="mt-8">
-          <h2 className="mb-3 font-bold tracking-tight text-gray-900">Legal</h2>
-          <ul className="list-disc pl-5">
-            <li className="mb-3 font-normal text-gray-500">
-              <Link className="link" href="/privacy-policy">
-                Privacy Policy
-              </Link>
-            </li>
-            <li className="mb-3 font-normal text-gray-500">
-              <Link className="link" href="/terms">
-                Terms of Service
-              </Link>
-            </li>
-          </ul>
-        </div>
       </div>
     </LandingLayout>
   );
