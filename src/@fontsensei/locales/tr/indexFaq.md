@@ -7,10 +7,10 @@ Google Fonts, açık kaynaklı yazı tiplerinden oluşan geniş bir kütüphaney
 - Hızlı yükleme. Yerel yazı tipi dosyalarının aksine, yazı tipi dosyalarının yalnızca bir kısmını dinamik olarak yükleyebilirsiniz. Ve yazı tipinin yüklenmesi, web sayfasının render edilmesini engellemez.
 
 ## Bu yazı tipleri ücretsiz mi?
-Evet, Google Fonts kullandığımız için hepsi açık kaynaklıdır ve ücretsiz olarak sunulmaktadır. Kullanıcılar bunları indirip herhangi bir ücret ödemeden kullanabilirler[1].
+Evet, Google Fonts kullandığımız için hepsi açık kaynaklıdır ve ücretsiz olarak sunulmaktadır. Kullanıcılar bunları indirip herhangi bir ücret ödemeden kullanabilirler.
 
 ## Bu yazı tipleri ticari kullanım için uygun mu?
-Evet, Google Fonts kullandığımız için hepsi ticari amaçlarla kullanılabilir. Açık kaynak lisansları altında lisanslanmışlardır, bu da ticari olarak satılan ürünlere dahil edilmelerine olanak tanır[1].
+Evet, Google Fonts kullandığımız için hepsi ticari amaçlarla kullanılabilir. Açık kaynak lisansları altında lisanslanmışlardır, bu da ticari olarak satılan ürünlere dahil edilmelerine olanak tanır.
 
 ## Bu yazı tiplerini nasıl kullanabilirim?
 - Web projeleri için gömme kodunu kopyalayıp HTML belgesindeki `<head />` bölümüne yerleştirin [Daha fazla bilgi](https://developers.google.com/fonts/docs/getting_started).
@@ -19,16 +19,7 @@ Evet, Google Fonts kullandığımız için hepsi ticari amaçlarla kullanılabil
 - Bu yazı tiplerini indirebilirsiniz de.
 
 ## Bu yazı tiplerini nerede kullanabilirim?
-Google Fonts, web sitelerinde, uygulamalarda, basılı materyallerde, e-kitaplarda ve tipografinin gerektiği diğer tüm ortamlarda kullanılabilir. Çok yönlüdürler ve çeşitli projelerin görsel çekiciliğini artırabilirler[1].
+Google Fonts, web sitelerinde, uygulamalarda, basılı materyallerde, e-kitaplarda ve tipografinin gerektiği diğer tüm ortamlarda kullanılabilir. Çok yönlüdürler ve çeşitli projelerin görsel çekiciliğini artırabilirler.
 
-## Kaynaklar
-[1] https://developers.google.com/fonts/faq  
-[2] https://developers.google.com/fonts/docs/getting_started  
-[3] https://developers.google.com/fonts/?csw=1  
-[4] https://css-tricks.com/how-we-tagged-google-fonts-and-created-goofonts-com/  
-[5] https://harmonica80.blogspot.com/2017/03/faq-google-fonts.html  
-[6] https://siteorigin.com/thread/using-a-custom-web-font-not-included-in-google-fonts/  
-[7] https://news.ycombinator.com/item?id=25305081  
-[8] https://stackoverflow.com/questions/4823468/comments-in-markdown/20885980  
 
 Lütfen çevirmemi istediğiniz TypeScript dosyasını paylaşın, böylece size yardımcı olabilirim.
