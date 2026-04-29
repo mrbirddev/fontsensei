@@ -20,6 +20,3 @@ Google 字體是一個免費的網路服務，提供大量開源字體庫。Goog
 
 ## 這些字體可以在哪裡使用？
 Google 字體可以用於網站、應用程式、印刷材料、電子書以及任何需要字體的媒介。它們用途廣泛，可以增強各種專案的視覺吸引力。
-
-
-It seems like there was no content provided. Please paste the TypeScript file content that you would like translated, and I'll assist you with the translation.

@@ -20,6 +20,3 @@ Google Fonts는 방대한 오픈 소스 글꼴 라이브러리에 접근할 수 
 
 ## 이 글꼴들을 어디에서 사용할 수 있나요?
 Google Fonts는 웹사이트, 애플리케이션, 인쇄물, 전자책 및 타이포그래피가 필요한 모든 매체에서 사용할 수 있습니다. 이들은 다재다능하며 다양한 프로젝트의 시각적 매력을 높일 수 있습니다.
-
-
-It seems like there was no content provided. Could you please paste the TypeScript file content that you need translated into Korean?
