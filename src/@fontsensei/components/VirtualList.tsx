@@ -1,6 +1,7 @@
 import React, {type CSSProperties, forwardRef, useContext, useEffect, useMemo, useState} from "react";
 import {type FSFontItem} from "@fontsensei/core/types";
 import listFonts from "@fontsensei/core/listFonts";
+import {FSFontFilterOptions} from "@fontsensei/core/types";
 import {type TagValueMsgLabelType, useCurrentLocale, useScopedI18n} from "@fontsensei/locales";
 import {useScopedI18n as useScopedI18nNextUtils} from "@nextutils/locales";
 import {throttle} from "lodash-es";
@@ -258,6 +259,7 @@ const VirtualList = ({
   placeholderText,
   pageSize,
   tagPageHref,
+  listFontsFn,
 }: {
   tagValue: string,
   placeholderText: string | null;
@@ -265,6 +267,7 @@ const VirtualList = ({
   pageSize: number,
   filterText: string,
   tagPageHref?: (tag: string) => string,
+  listFontsFn?: (opts: FSFontFilterOptions) => Promise<FSFontItem[]>,
 }) => {
   const [list, setList] = useState([
     ...initialFontItemList,
@@ -277,7 +280,8 @@ const VirtualList = ({
         ? [LOADING_ALL_ROW]
         : [...initialFontItemList, LOADING_ALL_ROW],
     );
-    void listFonts({
+    const queryFn = listFontsFn ?? listFonts;
+    void queryFn({
       filterText,
       tagValue,
       skip: 0,
@@ -285,7 +289,7 @@ const VirtualList = ({
     }).then(res => {
       setList([...res, END_ROW]);
     });
-  }, [tagValue, filterText, initialFontItemList]);
+  }, [tagValue, filterText, initialFontItemList, listFontsFn]);
 
   const [configList, setConfigList] = useState([] as { name: string, text?: string }[]);
 

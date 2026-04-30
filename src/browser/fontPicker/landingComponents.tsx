@@ -5,7 +5,9 @@ import {FontPickerPageContextOpts} from "@fontsensei/components/fontPickerCommon
 import EmbedModal from "./embed/EmbedModal";
 import {fontFamilyToUrlParam} from "../../@fontsensei/utils";
 import useActionSheetStore from "@nextutils/ui/actionSheet/useActionSheetStore";
-import {useI18n} from "@fontsensei/locales";
+import {useCurrentLocale, useI18n} from "@fontsensei/locales";
+import {defaultLocale} from "@nextutils/config";
+import {useRouter} from "next/router";
 
 /**
  * Exclude null and undefined from T
@@ -14,6 +16,20 @@ type NonNullable<T> = T extends null | undefined ? never : T;
 
 export const Toolbar: NonNullable<FontPickerPageContextOpts>['Toolbar'] = ({fontItem}) => {
   const t = useI18n();
+  const currentLocale = useCurrentLocale();
+  const router = useRouter();
+  const pathPrefix = currentLocale === defaultLocale.locale ? "" : `/${currentLocale}`;
+  const similarParams = new URLSearchParams();
+  if (typeof router.query.text === "string") {
+    similarParams.set("text", router.query.text);
+  }
+  if (typeof router.query.filter === "string") {
+    similarParams.set("filter", router.query.filter);
+  }
+  const similarPath = `${pathPrefix}/similar/${fontFamilyToUrlParam(fontItem.family)}`;
+  const similarHref = similarParams.toString()
+    ? `${similarPath}?${similarParams.toString()}`
+    : similarPath;
   return (<div className="flex items-center justify-start gap-2 mt-2">
     <div className="btn btn-sm btn-outline animate-none transition-none" onClick={(e) => {
       e.stopPropagation();
@@ -35,8 +51,20 @@ export const Toolbar: NonNullable<FontPickerPageContextOpts>['Toolbar'] = ({font
     </div>
     <a
       className="btn btn-sm btn-ghost animate-none transition-none"
+      href={similarHref}
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+    >
+      Similar fonts
+    </a>
+    <a
+      className="btn btn-sm btn-ghost animate-none transition-none"
       href={'https://fonts.google.com/specimen/' + fontItem.family.split(' ').join('+')}
       target="_blank"
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
     ><FaExternalLinkAlt /> Google</a>
     <a
       className="btn btn-sm btn-ghost animate-none transition-none"
