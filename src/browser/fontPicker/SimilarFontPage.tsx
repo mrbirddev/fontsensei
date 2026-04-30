@@ -1,12 +1,11 @@
 import {type GetStaticPaths, type GetStaticProps} from "next";
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useCallback, useEffect, useMemo, useState} from "react";
 import {useRouter} from "next/router";
 import {
   getStaticPropsLocale,
   type LocaleStr,
   type TagValueMsgLabelType,
   useCurrentLocale,
-  useI18n,
   useScopedI18n,
 } from "@fontsensei/locales";
 import {defaultLocale, locales, PRODUCT_NAME} from "@nextutils/config";
@@ -20,6 +19,8 @@ import languageSpecificTags from "@fontsensei/data/raw/fontSensei/languageSpecif
 import {getTagLabelsForDisplay} from "../../@fontsensei/getTagLabelsForDisplay";
 import {LandingLayout} from "../layout/SiteLayout";
 import {GoogleFontHeaders} from "@fontsensei/components/GoogleFontHeaders";
+import {FontPickerPageContext} from "@fontsensei/components/fontPickerCommon";
+import {Toolbar} from "./landingComponents";
 
 const PAGE_SIZE = 10;
 
@@ -53,7 +54,6 @@ const appendPickerQueryParams = (
 };
 
 const SimilarFontPage = (props: PageProps) => {
-  const t = useI18n();
   const tLandingMsg = useScopedI18n("landingMsg");
   const tTagValueMsg = useScopedI18n("tagValueMsg");
   const tNextUtils = useI18nNextUtils();
@@ -91,70 +91,75 @@ const SimilarFontPage = (props: PageProps) => {
     }
     return undefined;
   }, [router.query.text]);
+  const listSimilarFontsFn = useCallback(
+    (opts: { filterText: string; tagValue: string; skip: number; take: number }) =>
+      listSimilarFonts(fontName, {
+        filterText: opts.filterText,
+        skip: opts.skip,
+        take: opts.take,
+      }),
+    [fontName],
+  );
 
   return (
-    <LandingLayout title={title} fullWidth={true} className="relative">
-      <GoogleFontHeaders
-        preConnect={true}
-        strategy="block"
-        configList={[{name: fontName, text: fontName}]}
-      />
-      <div className="h-[calc(100dvh-4rem)] py-4 flex flex-col min-h-0">
-        <div className="mb-4">
-          <div className="rounded-xl border border-black/10 bg-white/60 shadow-sm px-4 py-3 w-full min-w-0">
-            <h1
-              className="text-xl text-gray-900 mb-2 truncate"
-              title={`${tLandingMsg("Free fonts similar to")} ${fontName}`}
-            >
-              <span className="text-gray-700 mr-2" style={{fontFamily: "inherit"}}>
-                {tLandingMsg("Free fonts similar to")}
-              </span>
-              <span style={{fontFamily: `"${fontName}"`}}>
-                {fontName}
-              </span>
-            </h1>
-            <div className="flex items-center justify-start gap-2 flex-nowrap overflow-x-auto overflow-y-hidden whitespace-nowrap">
-              {props.sourceTags.map((tag) => {
-                const localized = tTagValueMsg(tag as TagValueMsgLabelType);
-                const {primary, secondary} = getTagLabelsForDisplay({
-                  tag,
-                  currentLocale,
-                  localizedLabel: localized,
-                  disableTranslation: langTagList.includes(tag),
-                });
-                return (
-                  <span key={tag} className="badge badge-outline shrink-0">
-                    {primary}
-                    {secondary ? ` (${secondary})` : ""}
-                  </span>
-                );
-              })}
+    <FontPickerPageContext.Provider value={{Toolbar}}>
+      <LandingLayout title={title} fullWidth={true} className="relative">
+        <GoogleFontHeaders
+          preConnect={true}
+          strategy="block"
+          configList={[{name: fontName, text: fontName}]}
+        />
+        <div className="h-[calc(100dvh-4rem)] py-4 flex flex-col min-h-0">
+          <div className="mb-4">
+            <div className="rounded-xl border border-black/10 bg-white/60 shadow-sm px-4 py-3 w-full min-w-0">
+              <h1
+                className="text-xl text-gray-900 mb-2 truncate"
+                title={`${tLandingMsg("Free fonts similar to")} ${fontName}`}
+              >
+                <span className="text-gray-700 mr-2" style={{fontFamily: "inherit"}}>
+                  {tLandingMsg("Free fonts similar to")}
+                </span>
+                <span style={{fontFamily: `"${fontName}"`}}>
+                  {fontName}
+                </span>
+              </h1>
+              <div className="flex items-center justify-start gap-2 flex-nowrap overflow-x-auto overflow-y-hidden whitespace-nowrap">
+                {props.sourceTags.map((tag) => {
+                  const localized = tTagValueMsg(tag as TagValueMsgLabelType);
+                  const {primary, secondary} = getTagLabelsForDisplay({
+                    tag,
+                    currentLocale,
+                    localizedLabel: localized,
+                    disableTranslation: langTagList.includes(tag),
+                  });
+                  return (
+                    <span key={tag} className="badge badge-outline shrink-0">
+                      {primary}
+                      {secondary ? ` (${secondary})` : ""}
+                    </span>
+                  );
+                })}
+              </div>
             </div>
           </div>
+          <div className="flex-1 min-h-0">
+            <VirtualList
+              tagValue="all"
+              filterText=""
+              initialFontItemList={initialFontItemList}
+              placeholderText={(router.query.text as string | undefined) ?? props.placeholderText}
+              pageSize={PAGE_SIZE}
+              tagPageHref={(tag) =>
+                appendPickerQueryParams(`${localizedBasePath}/tag/${tag}`, {
+                  text: preservedDemoText,
+                })
+              }
+              listFontsFn={listSimilarFontsFn}
+            />
+          </div>
         </div>
-        <div className="flex-1 min-h-0">
-          <VirtualList
-            tagValue="all"
-            filterText=""
-            initialFontItemList={initialFontItemList}
-            placeholderText={(router.query.text as string | undefined) ?? props.placeholderText}
-            pageSize={PAGE_SIZE}
-            tagPageHref={(tag) =>
-              appendPickerQueryParams(`${localizedBasePath}/tag/${tag}`, {
-                text: preservedDemoText,
-              })
-            }
-            listFontsFn={(opts) =>
-              listSimilarFonts(fontName, {
-                filterText: opts.filterText,
-                skip: opts.skip,
-                take: opts.take,
-              })
-            }
-          />
-        </div>
-      </div>
-    </LandingLayout>
+      </LandingLayout>
+    </FontPickerPageContext.Provider>
   );
 };
 
