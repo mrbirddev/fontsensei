@@ -56,7 +56,7 @@ export const Toolbar: NonNullable<FontPickerPageContextOpts>['Toolbar'] = ({font
         e.stopPropagation();
       }}
     >
-      Similar fonts
+      {t("landingMsg.Similar fonts")}
     </a>
     <a
       className="btn btn-sm btn-ghost animate-none transition-none"

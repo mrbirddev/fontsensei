@@ -80,7 +80,7 @@ const SimilarFontPage = (props: PageProps) => {
   }, [fontName]);
 
   const localizedBasePath = currentLocale === defaultLocale.locale ? "" : `/${currentLocale}`;
-  const title = `${fontName} similar fonts - ${PRODUCT_NAME} - ${tNextUtils("product.slogan")}`;
+  const title = `${tLandingMsg("{fontName} similar fonts", {fontName})} - ${PRODUCT_NAME} - ${tNextUtils("product.slogan")}`;
   const preservedDemoText = useMemo(() => {
     const q = router.query.text;
     if (typeof q === "string") {
@@ -102,15 +102,16 @@ const SimilarFontPage = (props: PageProps) => {
       <div className="h-[calc(100dvh-4rem)] py-4 flex flex-col min-h-0">
         <div className="mb-4">
           <div className="rounded-xl border border-black/10 bg-white/60 shadow-sm px-4 py-3 w-full min-w-0">
-            <p className="text-sm text-gray-600 mb-1">
-              Free fonts similar to
-            </p>
             <h1
               className="text-xl text-gray-900 mb-2 truncate"
-              style={{fontFamily: `"${fontName}"`}}
-              title={fontName}
+              title={`${tLandingMsg("Free fonts similar to")} ${fontName}`}
             >
-              {fontName}
+              <span className="text-gray-700 mr-2" style={{fontFamily: "inherit"}}>
+                {tLandingMsg("Free fonts similar to")}
+              </span>
+              <span style={{fontFamily: `"${fontName}"`}}>
+                {fontName}
+              </span>
             </h1>
             <div className="flex items-center justify-start gap-2 flex-nowrap overflow-x-auto overflow-y-hidden whitespace-nowrap">
               {props.sourceTags.map((tag) => {
