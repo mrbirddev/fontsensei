@@ -16,7 +16,7 @@ Font sensei adalah pemilih Google Fonts yang dikategorikan berdasarkan nama tag.
 ## Demo Data CJK
 Cek datanya di UI ->
 
-### [Jepang (ja)](https://fontsensei.com/ja)
+### [Jepang (ja)](https://fontsensei.com/ja/tag/lang_ja)
 - [明朝体 (Mincho)](https://fontsensei.com/ja/tag/mincho)
 - [角ゴシック (Kaku Gothic)](https://fontsensei.com/ja/tag/kaku-gothic)
 - [丸ゴシック (Maru Gothic)](https://fontsensei.com/ja/tag/maru-gothic)
@@ -26,7 +26,7 @@ Cek datanya di UI ->
 - [かわいい (Kawaii)](https://fontsensei.com/ja/tag/kawaii)
 - [マンガ(Manga)](https://fontsensei.com/ja/tag/manga)
 
-### [Cina Sederhana (zh-cn)](https://fontsensei.com/zh-cn)
+### [Cina Sederhana (zh-cn)](https://fontsensei.com/zh-cn/tag/lang_zh-hans)
 - [宋体 (Songti)](https://fontsensei.com/zh-cn/tag/songti)
 - [黑体 (Heiti)](https://fontsensei.com/zh-cn/tag/heiti)
 - [楷体 (Kaiti)](https://fontsensei.com/zh-cn/tag/kaiti)
@@ -34,7 +34,7 @@ Cek datanya di UI ->
 - [毛笔 (Maobi)](https://fontsensei.com/zh-cn/tag/maobi)
 - [美术体 (Meishuti)](https://fontsensei.com/zh-cn/tag/meishuti)
 
-### [Cina Tradisional (zh-tw)](https://fontsensei.com/zh-tw)
+### [Cina Tradisional (zh-tw)](https://fontsensei.com/zh-tw/tag/lang_zh-hant)
 - [宋體 (Songti)](https://fontsensei.com/zh-tw/tag/songti)
 - [黑體 (Heiti)](https://fontsensei.com/zh-tw/tag/heiti)
 - [楷體 (Kaiti)](https://fontsensei.com/zh-tw/tag/kaiti)
@@ -42,7 +42,7 @@ Cek datanya di UI ->
 - [毛筆 (Maobi)](https://fontsensei.com/zh-tw/tag/maobi)
 - [美術體 (Meishuti)](https://fontsensei.com/zh-tw/tag/meishuti)
 
-### [Korea (ko)](https://fontsensei.com/ko)
+### [Korea (ko)](https://fontsensei.com/ko/tag/lang_ko)
 - [돋움 (Dotum)](https://fontsensei.com/ko/tag/dotum)
 - [바탕 (Batang)](https://fontsensei.com/ko/tag/batang)
 - [송을씨체 (Songeulssi)](https://fontsensei.com/ko/tag/songeulssi)

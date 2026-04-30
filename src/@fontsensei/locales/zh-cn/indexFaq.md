@@ -16,7 +16,7 @@ Font sensei 是一个按标签名称分类的 Google 字体选择器。
 ## CJK 数据演示
 在界面上查看数据 ->
 
-### [日语 (ja)](https://fontsensei.com/ja)
+### [日语 (ja)](https://fontsensei.com/ja/tag/lang_ja)
 - [明朝体 (Mincho)](https://fontsensei.com/ja/tag/mincho)
 - [角ゴシック (Kaku Gothic)](https://fontsensei.com/ja/tag/kaku-gothic)
 - [丸ゴシック (Maru Gothic)](https://fontsensei.com/ja/tag/maru-gothic)
@@ -26,7 +26,7 @@ Font sensei 是一个按标签名称分类的 Google 字体选择器。
 - [かわいい (Kawaii)](https://fontsensei.com/ja/tag/kawaii)
 - [マンガ(Manga)](https://fontsensei.com/ja/tag/manga)
 
-### [简体中文 (zh-cn)](https://fontsensei.com/zh-cn)
+### [简体中文 (zh-cn)](https://fontsensei.com/zh-cn/tag/lang_zh-hans)
 - [宋体 (Songti)](https://fontsensei.com/zh-cn/tag/songti)
 - [黑体 (Heiti)](https://fontsensei.com/zh-cn/tag/heiti)
 - [楷体 (Kaiti)](https://fontsensei.com/zh-cn/tag/kaiti)
@@ -34,7 +34,7 @@ Font sensei 是一个按标签名称分类的 Google 字体选择器。
 - [毛笔 (Maobi)](https://fontsensei.com/zh-cn/tag/maobi)
 - [美术体 (Meishuti)](https://fontsensei.com/zh-cn/tag/meishuti)
 
-### [繁体中文 (zh-tw)](https://fontsensei.com/zh-tw)
+### [繁体中文 (zh-tw)](https://fontsensei.com/zh-tw/tag/lang_zh-hant)
 - [宋體 (Songti)](https://fontsensei.com/zh-tw/tag/songti)
 - [黑體 (Heiti)](https://fontsensei.com/zh-tw/tag/heiti)
 - [楷體 (Kaiti)](https://fontsensei.com/zh-tw/tag/kaiti)
@@ -42,7 +42,7 @@ Font sensei 是一个按标签名称分类的 Google 字体选择器。
 - [毛筆 (Maobi)](https://fontsensei.com/zh-tw/tag/maobi)
 - [美術體 (Meishuti)](https://fontsensei.com/zh-tw/tag/meishuti)
 
-### [韩语 (ko)](https://fontsensei.com/ko)
+### [韩语 (ko)](https://fontsensei.com/ko/tag/lang_ko)
 - [돋움 (Dotum)](https://fontsensei.com/ko/tag/dotum)
 - [바탕 (Batang)](https://fontsensei.com/ko/tag/batang)
 - [송을씨체 (Songeulssi)](https://fontsensei.com/ko/tag/songeulssi)
