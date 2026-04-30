@@ -7,10 +7,10 @@ import invariant from "tiny-invariant";
 const ENABLE_CACHE = true;
 
 let _serverCache = undefined as FSFontItem[] | undefined;
-let _serverScoreCache = {} as Record<string, Record<string, number>>;
+const _serverScoreCache = {} as Record<string, Record<string, number>>;
 let _clientCache = undefined as FSFontItem[] | undefined;
 let _clientCachePromise = undefined as Promise<FSFontItem[]> | undefined;
-let _clientScoreCache = {} as Record<string, Record<string, number>>;
+const _clientScoreCache = {} as Record<string, Record<string, number>>;
 
 const toFontItemList = (jsonObj: object, metadataRecord: Record<string, FontMetadataReduced>) => {
   const list = [] as FSFontItem[];
