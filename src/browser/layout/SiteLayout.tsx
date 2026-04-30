@@ -88,12 +88,12 @@ export const Navbar = (props: {fullWidth?: boolean, style?: React.CSSProperties 
       <div className={"container mx-auto px-4" + (props.fullWidth ? " max-w-full" : "")}>
         <div className="flex items-center justify-center gap-2 py-2">
           <div className="flex-1 flex items-center justify-start gap-1">
-            <Link className="btn btn-ghost px-0 text-xl" href={localizedPickerBasePath || "/"}>
+            <Link className="btn btn-ghost px-0 text-xl gap-1 normal-case" href={localizedPickerBasePath || "/"}>
               <div style={{height: "3rem", width: "3rem"}}>
                 <ProductIcon />
               </div>
+              <div className="font-bold truncate hidden md:block md:mr-3">{PRODUCT_NAME}</div>
             </Link>
-            <div className="font-bold truncate hidden md:block">{PRODUCT_NAME}</div>
             <div className="btn btn-ghost" onClick={() => {
               setLocaleModalOpen(true);
             }} >
